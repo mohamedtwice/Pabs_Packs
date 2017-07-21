@@ -7,8 +7,7 @@ var pg = require('pg');
 //@TODO update pool config for Heroku deployment
 
 var config = {
-  user: 'mohamedtwice', //env var: PGUSER
-  database: 'grouptest', //env var: PGDATABASE
+  database: 'pabs_packs', //env var: PGDATABASE
   password: '', //env var: PGPASSWORD
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
@@ -25,7 +24,7 @@ var acquireCount = 0
 pool.on('acquire', function(client) {
   acquireCount++;
   console.log('client acquired: ', acquireCount);
-})
+});
 
 var connectCount = 0
 pool.on('connect', function() {

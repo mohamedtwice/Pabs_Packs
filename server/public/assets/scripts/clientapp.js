@@ -1,24 +1,69 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 /// Routes ///
 
+myApp.directive('head', ['$rootScope', '$compile',
+  function($rootScope, $compile) {
+    return {
+      restrict: 'E',
+      link: function(scope, elem) {
+        var html = '<link rel="stylesheet" ng-repeat="(routeCtrl, cssUrl) in routeStyles" ng-href="{{cssUrl}}" />';
+        elem.append($compile(html)(scope));
+        scope.routeStyles = {};
+        $rootScope.$on('$routeChangeStart', function(e, next, current) {
+          if (current && current.$$route && current.$$route.css) {
+            if (!angular.isArray(current.$$route.css)) {
+              current.$$route.css = [current.$$route.css];
+            }
+            angular.forEach(current.$$route.css, function(sheet) {
+              delete scope.routeStyles[sheet];
+            });
+          }
+          if (next && next.$$route && next.$$route.css) {
+            if (!angular.isArray(next.$$route.css)) {
+              next.$$route.css = [next.$$route.css];
+            }
+            angular.forEach(next.$$route.css, function(sheet) {
+              scope.routeStyles[sheet] = sheet;
+            });
+          }
+        });
+      }
+    };
+  }
+]); // to switch out style sheets accordingly between routes
+
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/home', {
       templateUrl: '/views/home.html',
-      controller: "LoginController"
+      controller: "LoginController",
+      css: "style.css"
     })
     .when('/register', {
       templateUrl: '/views/register.html',
-      controller: "LoginController"
+      controller: "LoginController",
+      css: "style.css"
     })
     .when('/user', {
       templateUrl: '/views/user.html',
-      controller: "UserController"
+      controller: "UserController",
+      css: "style.css"
     })
-    .when('/dashboard', {
-      templateUrl: '/views/dashboard.html',
-      controller: "UserController"
-    })
+    // .when('/dashboard', {
+    //   templateUrl: '/views/dashboard.html',
+    //   controller: "UserController",
+    //   css: "dashboard.css"
+    // })
+    // .when('/inventory', {
+    //   templateUrl: '/views/inventory.html',
+    //   controller: "UserController",
+    //   css: "inventory.css"
+    // })
+    // .when('/tracker', {
+    //   templateUrl: '/views/tracker.html',
+    //   controller: "UserController",
+    //   css: "tracker.css"
+    // })
     .otherwise({
       redirectTo: 'home'
     })

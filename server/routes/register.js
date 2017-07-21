@@ -11,7 +11,7 @@ var pg = require('pg');
 
 // Handles request for HTML file
 router.get('/', function(req, res, next) {
-    res.sendFile(path.resolve(__dirname, '../public/views/register.html'));
+  res.sendFile(path.resolve(__dirname, '../public/views/register.html'));
 });
 
 // Handles POST request with new user data
@@ -24,22 +24,21 @@ router.post('/', function(req, res, next) {
   console.log('new user:', saveUser);
 
   pg.connect(connection, function(err, client, done) {
-    if(err) {
+    if (err) {
       console.log("Error connecting: ", err);
       next(err);
     }
-    client.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id",
-      [saveUser.username, saveUser.password],
-        function (err, result) {
-          client.end();
+    client.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id", [saveUser.username, saveUser.password],
+      function(err, result) {
+        client.end();
 
-          if(err) {
-            console.log("Error inserting data: ", err);
-            next(err);
-          } else {
-            res.redirect('/');
-          }
-        });
+        if (err) {
+          console.log("Error inserting data: ", err);
+          next(err);
+        } else {
+          res.redirect('/');
+        }
+      });
   });
 
 });
