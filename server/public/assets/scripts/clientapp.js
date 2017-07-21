@@ -49,21 +49,21 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "UserController",
       css: "style.css"
     })
-    // .when('/dashboard', {
-    //   templateUrl: '/views/dashboard.html',
-    //   controller: "UserController",
-    //   css: "dashboard.css"
-    // })
-    // .when('/inventory', {
-    //   templateUrl: '/views/inventory.html',
-    //   controller: "UserController",
-    //   css: "inventory.css"
-    // })
-    // .when('/tracker', {
-    //   templateUrl: '/views/tracker.html',
-    //   controller: "UserController",
-    //   css: "tracker.css"
-    // })
+    .when('/dashboard', {
+      templateUrl: '/views/dashboard.html',
+      controller: "UserController",
+      css: "dashboard.css"
+    })
+    .when('/inventory', {
+      templateUrl: '/views/inventory.html',
+      controller: "UserController",
+      css: "inventory.css"
+    })
+    .when('/tracker', {
+      templateUrl: '/views/tracker.html',
+      controller: "UserController",
+      css: "tracker.css"
+    })
     .otherwise({
       redirectTo: 'home'
     })

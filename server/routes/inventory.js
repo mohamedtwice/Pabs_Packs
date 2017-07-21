@@ -40,11 +40,15 @@ router.get('/', function(req, res) {
 // POST /inventory
 router.post('/', function(req, res) {
   var inventory = req.body; // data from the client
-
+  var item = req.body.item;
+  var vendor_id = req.body.vendor_id;
+  var number_on_hand = req.body.number_on_hand;
+  var low_number = req.body.low_number;
+  var type = req.body.type;
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
-      client.query('INSERT INTO inventory (item, vendor_id, onhand, lownumber, notes) VALUES($1, $2, $3, $4, $5)', [req.body.item, req.body.vendor_id, req.onhand, req.lownumber, req.notes])
+      client.query('INSERT INTO inventory (item, vendor_id, number_on_hand, low_number, type) VALUES($1, $2, $3, $4, $5)', [item, vendor_id, onhand, lownumber, notes])
         .then(function() {
           client.release();
           res.sendStatus(201); // created

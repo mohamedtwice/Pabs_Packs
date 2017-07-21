@@ -10,7 +10,7 @@ var session = require('express-session');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
-// var inventory = require('./routes/inventory');
+var inventory = require('./routes/inventory');
 
 
 app.use(bodyParser.json());
@@ -41,7 +41,7 @@ app.use(passport.session());
 app.use('/register', register);
 app.use('/user', user);
 app.use('/*', index);
-// app.use('/inventory', inventory);
+app.use('/inventory', inventory);
 
 
 // App Set //
