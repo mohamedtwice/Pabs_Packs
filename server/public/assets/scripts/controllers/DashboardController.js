@@ -18,5 +18,16 @@ myApp.controller('DashboardController', ['$scope', '$http', '$location', functio
       console.log('logged out');
       $location.path("/home");
     });
-  }
-}]);
+  }; // end $scope.logout
+
+  var vm = this;
+
+  // pie chart
+  // pie piece labels
+  vm.labels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
+  // dummy data
+  vm.data = [300, 500, 100];
+  // legend
+  vm.options = {legend: {display: true}};
+
+}]); // end controller

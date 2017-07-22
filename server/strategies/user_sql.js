@@ -7,7 +7,7 @@ var pg = require('pg');
 //@TODO update pool config for Heroku deployment
 
 var config = {
-  user: 'mohamedtwice', //env var: PGUSER
+  user: 'karabayse', //env var: PGUSER
   database: 'grouptest', //env var: PGDATABASE
   password: '', //env var: PGPASSWORD
   port: 5432, //env var: PGPORT

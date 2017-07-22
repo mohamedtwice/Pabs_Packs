@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'chart.js']);
 /// Routes ///
 
 myApp.config(['$routeProvider', function($routeProvider) {
@@ -21,5 +21,5 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .otherwise({
       redirectTo: 'home'
-    })
+    });
 }]);
