@@ -11,25 +11,28 @@
   </div>
 </section>
 
-<div ng-controller="DashboardController as gc" class="container">
+<div ng-controller="DashboardController as dc" class="container">
 
 <section>
 <div class="container" id="pie">
   <h3>Annual Goal for Pack Donations</h3>
-  <canvas id="pie" class="chart chart-pie" chart-data="gc.pieData" chart-labels="gc.pieLabels" chart-options="gc.pieOptions"></canvas>
+  <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions"></canvas>
 </div>
 </section>
 
 <section>
   <div class="container" id="upcomingEvents">
     <h3>Upcoming Events</h3>
+    <div class="col-sm-3" id="upcomingEventsColumns">
+
+    </div>
   </div>
 </section>
 
 <section>
   <div class="container" id="itemsRunningLow">
     <h3>Items Running Low</h3>
-    <canvas id="base" class="chart-horizontal-bar" chart-data="gc.barData" chart-labels="gc.barLabels"></canvas> 
+    <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels"></canvas>
   </div>
 </section>
 

@@ -110,6 +110,10 @@ section {
   /*margin-bottom: 100px;*/
 }
 
+#upcomingEventsColumns {
+  border-style: solid;
+}
+
 #itemsRunningLow {
   float: left;
   width: 620px;
