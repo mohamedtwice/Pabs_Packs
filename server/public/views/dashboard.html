@@ -13,11 +13,24 @@
 
 <div ng-controller="DashboardController as gc" class="container">
 
+<section>
 <div class="container" id="pie">
   <h3>Annual Goal for Pack Donations</h3>
-  <canvas id="pie" class="chart chart-pie" chart-data="gc.data" chart-labels="gc.labels" chart-options="gc.options"></canvas>
+  <canvas id="pie" class="chart chart-pie" chart-data="gc.pieData" chart-labels="gc.pieLabels" chart-options="gc.pieOptions"></canvas>
 </div>
+</section>
 
+<section>
+  <div class="container" id="upcomingEvents">
+    <h3>Upcoming Events</h3>
+  </div>
+</section>
 
+<section>
+  <div class="container" id="itemsRunningLow">
+    <h3>Items Running Low</h3>
+    <canvas id="base" class="chart-horizontal-bar" chart-data="gc.barData" chart-labels="gc.barLabels"></canvas> 
+  </div>
+</section>
 
 </div>

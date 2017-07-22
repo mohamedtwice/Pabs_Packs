@@ -24,10 +24,18 @@ myApp.controller('DashboardController', ['$scope', '$http', '$location', functio
 
   // pie chart
   // pie piece labels
-  vm.labels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
+  vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
   // dummy data
-  vm.data = [300, 500, 100];
+  vm.pieData = [300, 500, 100];
   // legend
-  vm.options = {legend: {display: true}};
+  vm.pieOptions = {legend: {display: true}};
 
+
+  // horizontal bar chart
+  vm.barLabels = ['Gray Backpacks', 'Blankets', 'Journals', 'Bracelets', 'Heart Stress Relievers', 'Organza Bags', 'Pabby the Penguin', 'Lip Care', 'Lotion', 'Postcards', 'Stamps', 'Handwritten Notes', 'PAB\'S PACKS Story Cards'];
+  vm.barSeries = ['Series A', 'Series B'];
+
+  vm.barData = [
+    [500, 500, 500, 300, 300, 300, 500,500, 500, 250, 100, 250, 250],
+  ];
 }]); // end controller

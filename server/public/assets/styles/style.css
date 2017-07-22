@@ -88,10 +88,31 @@ section {
   display: inline-block;
 }
 
+
+/**** DASHBOARD ****/
+
 #pie {
+  float: right;
   width: 40%;
+  /*width: 300px;*/
   margin: 15px auto;
   text-align: center;
   margin-right: 10px;
   margin-bottom: 0px;
+}
+
+#upcomingEvents {
+  float: left;
+  width: 620px;
+  margin: 15px auto;
+  /*top: 10px;*/
+  /*left: 10px;*/
+  /*margin-bottom: 100px;*/
+}
+
+#itemsRunningLow {
+  float: left;
+  width: 620px;
+  margin: 15px auto;
+  /*margin-bottom: 0px;*/
 }
