@@ -14,16 +14,73 @@
 <div ng-controller="EventsController as ec" class="container">
 
 
-<section>
-  <h3>Pack Totals</h3>
+  <section>
+    <h3>Pack Totals</h3>
+    <div class="col-md-3" id="packTotals">
 
-</section>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Needed Packs</th>
+            <th>Packs Currently Packed</th>
+            <th>CTD Annual Donated Packs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
 
-<section>
-  <h3>Event Schedule and Pack Inventory</h3>
+  <section>
+    <h3>Event Schedule and Pack Inventory</h3>
+    <h6>View Events For
+      <input type="date" id="date" value="Select Month" ng-model="ec.dateInput">
+      <button type="button" name="button">Add New</button>
+      <button type="button" name="button">Edit</button>
+      <button type="button" name="button">Print</button>
+    </h6>
 
-</section>
+        <div class="col-md-6" id="eventColumns">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Event</th>
+              <th>Packs Promised</th>
+              <th>Packs Needed</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        </div>
+  </section>
 
 
 </div>
