@@ -13,10 +13,18 @@ myApp.controller('DashboardController', ['$scope', '$http', '$location', functio
   //     }
   // });
   //
+
+  // $scope.createItem = function() {
+  // $http.get('/inventory').then(function(response) {
+  // console.log('create item');
+  // // $location.path("/home");
+  // });
+  // }
+
   $scope.logout = function() {
     $http.get('/user/logout').then(function(response) {
       console.log('logged out');
       $location.path("/home");
     });
-  }
+  };
 }]);
