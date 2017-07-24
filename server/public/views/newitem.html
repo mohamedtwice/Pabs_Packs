@@ -1,0 +1,55 @@
+section ng-controller='newitemController as nic'>
+  <div class="container" ng-init="getInventory()">
+  <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+          <h1></h1>
+    <h2 id="welcome" class="lead">Welcome, {{userName}}!</h2>
+    <hr>
+    <div class="form">
+
+    <form ng-submit="createItem()">
+      <div>
+          <input type="text" ng-model="item" class="input50" placeholder="Item" />
+          <input type="text" ng-model="vendor_id" class="input50" placeholder="Vendor" />
+
+      </div>
+      <div>
+        <input type="number" ng-model="onhand" class="input50" placeholder="On Hand" />
+          <input type="number" ng-model="lownumber" class="input50" placeholder="Low Number" />
+      </div>
+      <div>
+        <input type="text" ng-model="type" class="input50" placeholder="Type" />
+          <input type="text" ng-model="notes" class="input50" placeholder="Notes" />
+      </div>
+      <input class="btn btn-default input100" type="submit" name="submit" value="Create" />
+      <button class="btn btn-default" ng-click="createItem()">Create Item</button>
+    </form>
+    <button class="btn btn-default" ng-click="logout()">Log Out</button>
+  </div>
+  <br>
+<hr>
+  <br>
+<h3>Inventory</h3>
+  <div class="table-responsive">
+  <table class="table table-hover">
+    <th>
+      <td>Item</td>
+      <td>Vendor</td>
+      <td># On Hand</td>
+      <td>Type</td>
+      <td>Notes</td>
+    </th>
+    <tr>
+
+      <td>{{x.item}}</td>
+      <td>{{x.vendor_id}}</td>
+      <td>{{x.onhand}}</td>
+      <td>{{x.type}}</td>
+      <td>{{x.notes}}</td>
+    </tr>
+  </table>
+</div>
+  </div>
+</div>
+</div>
+</section>

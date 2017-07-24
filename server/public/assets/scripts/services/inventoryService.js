@@ -1,7 +1,8 @@
-myApp.service('InventoryService', function($http) {
+myApp.service('inventoryService', function($http) {
   console.log('in inventory service');
 
   var sv = this;
+
 
   sv.getInventory = function(item) {
     return $http({
@@ -10,27 +11,27 @@ myApp.service('InventoryService', function($http) {
     }).then(function(response) {
       sv.inventoryData = response.data;
       console.log(sv.inventoryData);
-    }); // find the average rating
-  }
+    });
+  }; // end get
 
-  sv.postInventoryItem = function(newItem) {
-    console.log(newItem);
+  sv.postInventoryItem = function(inventoryItem) {
+    console.log(inventoryItem);
     return $http({
       method: 'POST',
       url: '/inventory',
-      data: newItem
+      data: inventoryItem
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
     });
   }
 
   sv.deleteItem = function(id) {
-  return $http({
-    method: 'DELETE',
-    url: '/inventory/' + id,
-  }).then(function() {
-    console.log('item deleted');
-  });
-}
+    return $http({
+      method: 'DELETE',
+      url: '/inventory/' + id,
+    }).then(function() {
+      console.log('item deleted');
+    });
+  }
 
 });

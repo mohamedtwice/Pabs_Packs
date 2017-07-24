@@ -54,9 +54,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "InventoryController as ic",
       css: "inventory.css"
     })
-    .when('/tracker', {
-      templateUrl: '/views/tracker.html',
+    .when('/events', {
+      templateUrl: '/views/events.html',
       controller: "TrackerController as tc",
+      css: "tracker.css"
+    })
+    .when('/newitem', {
+      templateUrl: '/views/newitem.html',
+      controller: "newitemController as nic",
       css: "tracker.css"
     })
     .otherwise({
