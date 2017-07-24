@@ -13,6 +13,27 @@
 
 <div ng-controller="EventsController as ec" class="container">
 
+<section>
+<div class="dropdown" class="btn-group dropdown dropdown-notifications sw-open">
+  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <i data-count="3" class="glyphicon glyphicon-bell notification-icon"></i>
+    <span class="caret"></span>
+  </button>
+
+  <div class="dropdown-container">
+   <div class="dropdown-toolbar">
+      <div class="dropdown-toolbar-actions">
+        <a href="#"><i class="glyphicon glyphicon-search"></i> View All</a>
+      </div>
+      <h3 class="dropdown-toolbar-title">Recent Notifications  (3)</h3>
+    </div><!-- /dropdown-toolbar -->
+
+    <ul class="dropdown-menu notifications">
+      ...
+    </ul>
+  </div>
+</div>
+</section>
 
   <section>
     <h3>Pack Totals</h3>

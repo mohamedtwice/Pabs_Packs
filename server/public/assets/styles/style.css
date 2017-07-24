@@ -141,6 +141,10 @@ section {
 
 /**** EVENT SCHEDULER ****/
 
+.dropdown {
+  float: right;
+}
+
 #eventsButton {
   margin: 5px;
 }
