@@ -165,3 +165,190 @@ h2 {
   margin: 0;
   padding: 0;
 }
+
+
+
+
+
+
+/** {
+  font-family: Raleway, sans-serif;
+}
+
+body {
+  background-image: url("/images/pattern.jpg");
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+}
+
+.wrapper {
+  padding: 5px;
+  background: #e7e9dd;
+  margin: 50px 0px;
+}
+
+#navHeader {
+  background-color: #fdfefb;
+  height: 200px;
+  width: 100%;
+}
+
+section {
+  padding: 50px 0;
+}
+
+img {
+  height: 5rem;
+}
+
+h2 {
+  margin-top: 9rem;
+}
+
+.boxsignup {
+  padding: 25px;
+  background: #e7e9dd;
+  margin: 50px 0px;
+}
+
+.input100 {
+  font-size: 1.65rem;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+}
+
+.input50 {
+  font-size: 1.65rem;
+  width: 48%;
+  padding: 10px 20px;
+  margin-right: 1%;
+  margin: 5px 0px;
+}
+
+.formh1 {
+  margin-bottom: 20px;
+  font-size: 3rem !important;
+  font-weight: 300;
+  line-height: 1.4rem;
+  text-transform: uppercase;
+  margin-top: 0px;
+}
+
+.suregisterbutton {
+  margin-left: 10px;
+  font-size: 1.65rem;
+  font-weight: 300;
+}
+
+.instructions .container h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.instructions {
+  background-color: #e7e9dd;
+  color: #DDDDDD;
+}
+
+#entryForm {
+  margin-top: 14px;
+}
+
+#container {
+  margin-top: 10px;
+}
+
+.container p {
+  margin-top: 14px;
+}
+
+.message {
+  padding: 10px 0;
+}
+
+.message p {
+  margin-left: 10px;
+}
+
+.message:nth-child(odd) {
+  background-color: #eeeeee;
+}
+
+.message:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.btn-danger {
+  margin-left: 10px;
+}
+
+.navmenu {
+  padding: 15px 10px;
+}
+
+.logo {
+  display: inline-block;
+}*/
+
+
+/**** DASHBOARD ****/
+
+/*#pie {
+  float: right;
+  width: 40%;*/
+  /*width: 300px;*/
+  /*margin: 15px auto;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 0px;*/
+}
+
+/*#upcomingEvents {
+  float: left;
+  width: 620px;
+  margin: 15px auto;
+  /*top: 10px;*/
+  /*left: 10px;*/
+  /*margin-bottom: 100px;*/
+/*}*/
+
+/*#itemsRunningLow {
+  float: left;
+  width: 620px;
+  margin: 15px auto;
+  /*margin-bottom: 0px;*/
+/*}*/
+
+
+/**** INVENTORY ****/
+
+/*@media (min-width: 768px) {
+  .seven-cols .col-md-1, .seven-cols .col-sm-1, .seven-cols .col-lg-1 {
+    width: 100%;
+    *width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .seven-cols .col-md-1, .seven-cols .col-sm-1, .seven-cols .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+  }
+}*/
+
+
+/**** EVENT SCHEDULER ****/
+
+/*.dropdown {
+  float: right;
+}*/
+
+/*#eventsButton {
+  margin: 5px;
+}
+
+.col-md-6 {
+  margin: 0;
+  padding: 0;
+}*/

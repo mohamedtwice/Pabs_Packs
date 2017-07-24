@@ -43,9 +43,9 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   console.log(req.body);
   var item = req.body.item;
-  var vendor_id = req.body.vendor;
-  var on_hand = req.body.number_on_hand;
-  var low_number = req.body.low_number;
+  var vendor = req.body.vendor;
+  var on_hand = req.body.numberOnHand;
+  var low_number = req.body.reorderAlertNumber;
   var type = req.body.type;
   // do database query to make a new todo
   pool.connect()
@@ -60,6 +60,38 @@ router.post('/', function(req, res) {
       client.release();
       res.sendStatus(500); // server error
     });
+});
+
+router.delete('/:id', function(req, res) {
+  console.log(req.body);
+  var results = [];
+  // Grab data from the URL parameters
+  var id = req.params.id;
+  // Get a Postgres client from the connection pool
+  pool.connect(connectionString, function(err, client, done) {
+    // Handle connection errors
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        data: err
+      });
+    }
+    // SQL Query > Delete Data
+    client.query('DELETE FROM inventory WHERE id=($1)', [id]);
+    // SQL Query > Select Data
+    var query = client.query('SELECT * FROM items ORDER BY id ASC');
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', function() {
+      done();
+      return res.json(results);
+    });
+  });
 });
 
 module.exports = router;
