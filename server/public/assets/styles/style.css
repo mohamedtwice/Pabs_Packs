@@ -1,3 +1,25 @@
+* {
+  font-family: Raleway, sans-serif;
+}
+
+body {
+  background-image: url("/images/pattern.jpg");
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+}
+
+.wrapper {
+  padding: 5px;
+  background: #e7e9dd;
+  margin: 50px 0px;
+}
+
+#navHeader {
+  background-color: #fdfefb;
+  height: 200px;
+  width: 100%;
+}
+
 section {
   padding: 50px 0;
 }
@@ -12,7 +34,7 @@ h2 {
 
 .boxsignup {
   padding: 25px;
-  background: #f5f6f7;
+  background: #e7e9dd;
   margin: 50px 0px;
 }
 
@@ -128,19 +150,15 @@ h2 {
 
 /**** INVENTORY ****/
 
-@media (min-width: 768px){
-  .seven-cols .col-md-1,
-  .seven-cols .col-sm-1,
-  .seven-cols .col-lg-1  {
+@media (min-width: 768px) {
+  .seven-cols .col-md-1, .seven-cols .col-sm-1, .seven-cols .col-lg-1 {
     width: 100%;
     *width: 100%;
   }
 }
 
 @media (min-width: 992px) {
-  .seven-cols .col-md-1,
-  .seven-cols .col-sm-1,
-  .seven-cols .col-lg-1 {
+  .seven-cols .col-md-1, .seven-cols .col-sm-1, .seven-cols .col-lg-1 {
     width: 14.285714285714285714285714285714%;
     *width: 14.285714285714285714285714285714%;
   }
