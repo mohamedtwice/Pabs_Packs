@@ -18,7 +18,7 @@
     <h3>Pack Totals</h3>
     <div class="col-md-3" id="packTotals">
 
-      <table class="table">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>Needed Packs</th>
@@ -42,14 +42,14 @@
     <h3>Event Schedule and Pack Inventory</h3>
     <h6>View Events For
       <input type="date" id="date" value="Select Month" ng-model="ec.dateInput">
-      <button type="button" name="button">Add New</button>
-      <button type="button" name="button">Edit</button>
-      <button type="button" name="button">Print</button>
+      <button type="button" id="eventsButton" class="btn btn-primary btn-sm pull-right">Print</button>
+      <button type="button" id="eventsButton" class="btn btn-primary btn-sm pull-right">Edit</button>
+      <button type="button" id="eventsButton" class="btn btn-primary btn-sm pull-right">Add New</button>
     </h6>
 
         <div class="col-md-6" id="eventColumns">
 
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>Date</th>

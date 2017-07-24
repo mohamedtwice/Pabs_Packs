@@ -137,3 +137,15 @@ section {
     *width: 14.285714285714285714285714285714%;
   }
 }
+
+
+/**** EVENT SCHEDULER ****/
+
+#eventsButton {
+  margin: 5px;
+}
+
+.col-md-6 {
+  margin: 0;
+  padding: 0;
+}
