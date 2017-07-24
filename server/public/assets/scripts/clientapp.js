@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 /// Routes ///
 
 myApp.directive('head', ['$rootScope', '$compile',
@@ -44,24 +44,19 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "LoginController",
       css: "style.css"
     })
-    .when('/user', {
-      templateUrl: '/views/user.html',
-      controller: "UserController",
-      css: "style.css"
-    })
     .when('/dashboard', {
       templateUrl: '/views/dashboard.html',
-      controller: "UserController",
+      controller: "DashboardController as dc",
       css: "dashboard.css"
     })
     .when('/inventory', {
       templateUrl: '/views/inventory.html',
-      controller: "UserController",
+      controller: "InventoryController as ic",
       css: "inventory.css"
     })
     .when('/tracker', {
       templateUrl: '/views/tracker.html',
-      controller: "UserController",
+      controller: "TrackerController as tc",
       css: "tracker.css"
     })
     .otherwise({

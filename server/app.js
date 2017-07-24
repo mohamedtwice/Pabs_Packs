@@ -12,7 +12,6 @@ var user = require('./routes/user');
 var register = require('./routes/register');
 var inventory = require('./routes/inventory');
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -42,7 +41,6 @@ app.use('/register', register);
 app.use('/user', user);
 app.use('/*', index);
 app.use('/inventory', inventory);
-
 
 // App Set //
 app.set('port', (process.env.PORT || 5000));

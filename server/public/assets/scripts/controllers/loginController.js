@@ -1,4 +1,5 @@
 myApp.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
   $scope.user = {
     username: '',
     password: ''
@@ -15,7 +16,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', function($s
           console.log('success: ', response.data);
           // location works with SPA (ng-route)
           console.log('redirecting to user page');
-          $location.path('/user');
+          $location.path('/dashboard');
         } else {
           console.log('failure: ', response);
           $scope.message = "Wrong!!";
@@ -23,6 +24,25 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', function($s
       });
     }
   }
+
+  // $scope.login = function() {
+  //   if ($scope.user.username == '' || $scope.user.password == '') {
+  //     $scope.message = "Enter your username and password!";
+  //   } else {
+  //     console.log('sending to server...', $scope.user);
+  //     AccessService.login('/', $scope.user).then(function() {
+  //       if (AccessService.response.data.username) {
+  //         console.log('success: ', AccessService.response.data);
+  //         // location works with SPA (ng-route)
+  //         console.log('redirecting to user page');
+  //         $location.path('/user');
+  //       } else {
+  //         console.log('failure: ', AccessService.response);
+  //         $scope.message = "Wrong!!";
+  //       }
+  //     });
+  //   }
+  // }
 
   $scope.registerUser = function() {
     if ($scope.user.username == '' || $scope.user.password == '') {
@@ -39,4 +59,21 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', function($s
         });
     }
   }
+
+  // $scope.registerUser = function() {
+  //   if ($scope.user.username == '' || $scope.user.password == '') {
+  //     $scope.message = "Choose a username and password!";
+  //   } else {
+  //     console.log('sending to server...', $scope.user);
+  //     AccessService.register($scope.user).then(function(response) {
+  //         console.log('success');
+  //         $location.path('/home');
+  //       },
+  //       function(response) {
+  //         console.log('error');
+  //         $scope.message = "Please try again."
+  //       });
+  //   }
+  // }
+
 }]);

@@ -1,4 +1,6 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
+
+
 
 myApp.controller('UserController', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.userName;

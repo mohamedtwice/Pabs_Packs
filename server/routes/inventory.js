@@ -8,11 +8,18 @@ var path = require('path');
 var connection = require('../modules/connection');
 var pg = require('pg');
 
+var config = {
+  database: 'pabs_packs',
+  host: 'localhost',
+  port: 5432, // always use this port for localhost postgresql
+  max: 12
+};
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
 // GET /inventory
 // Only modify IF you are doing Eye of the Tiger
 router.get('/', function(req, res) {
+  console.log('get hit');
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -20,7 +27,6 @@ router.get('/', function(req, res) {
       done();
       return;
     }
-
     client.query('SELECT * FROM inventory;', function(err, result) {
       done();
       if (err) {
@@ -28,7 +34,6 @@ router.get('/', function(req, res) {
         res.sendStatus(500);
         return;
       }
-
       console.log('Got rows from the DB:', result.rows);
       res.send(result.rows);
     });
@@ -39,16 +44,15 @@ router.get('/', function(req, res) {
 
 // POST /inventory
 router.post('/', function(req, res) {
-  var inventory = req.body; // data from the client
   var item = req.body.item;
-  var vendor_id = req.body.vendor_id;
-  var number_on_hand = req.body.number_on_hand;
+  var vendor_id = req.body.vendor;
+  var on_hand = req.body.number_on_hand;
   var low_number = req.body.low_number;
   var type = req.body.type;
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
-      client.query('INSERT INTO inventory (item, vendor_id, number_on_hand, low_number, type) VALUES($1, $2, $3, $4, $5)', [item, vendor_id, onhand, lownumber, notes])
+      client.query('INSERT INTO inventory (item, vendor, number_on_hand, low_number, type) VALUES($1, $2, $3, $4, $5)', [item, vendor, on_hand, low_number, type])
         .then(function() {
           client.release();
           res.sendStatus(201); // created
@@ -60,47 +64,4 @@ router.post('/', function(req, res) {
     });
 });
 
-// PUT /inventory/<id>
-// router.put('/:id', function(req, res) {
-//   var completed = req.body;
-//   console.log('received completed from client', completed);
-//
-//   var id = req.params.id;
-//
-//   pool.connect()
-//     .then(function(client) {
-//       client.query('UPDATE inventory ' +
-//           'SET description = $1 ' +
-//           'WHERE id = $2', [completed.description, id])
-//         .then(function() {
-//           client.release();
-//           res.sendStatus(204); // something good
-//         });
-//     })
-//     .catch(function(err) {
-//       client.release();
-//       res.sendStatus(500); // server error
-//     });
-// });
-
-// DELETE /inventory/<id>
-// router.delete('/:id', function(req, res) {
-//   var id = req.params.id;
-//
-//   pool.connect()
-//     .then(function(client) {
-//       client.query('DELETE FROM inventory ' +
-//           'WHERE id = $1', [id])
-//         .then(function() {
-//           client.release();
-//           res.sendStatus(204); // something good
-//         });
-//     })
-//     .catch(function(err) {
-//       client.release();
-//       res.sendStatus(500); // server error
-//     });
-// });
-
-/** ---- DO NOT MODIFY BELOW ---- **/
 module.exports = router;

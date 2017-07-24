@@ -2,6 +2,14 @@ section {
   padding: 50px 0;
 }
 
+img {
+  height: 5rem;
+}
+
+h2 {
+  margin-top: 9rem;
+}
+
 .boxsignup {
   padding: 25px;
   background: #f5f6f7;
@@ -44,7 +52,7 @@ section {
 }
 
 .instructions {
-  background-color: #333333;
+  background-color: #e7e9dd;
   color: #DDDDDD;
 }
 
