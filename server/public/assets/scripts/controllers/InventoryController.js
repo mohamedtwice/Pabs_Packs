@@ -2,7 +2,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   console.log('in inventory controller');
   var vm = this;
 
-  vm.isCollapsed = false;
   vm.orderByField = 'item';
   vm.reverseSort = false;
 
@@ -16,7 +15,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'InventoryController',
+      controller: 'InventoryController as ic',
       size: size
     });
   }
@@ -34,7 +33,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       item: vm.item,
       vendor: vm.vendor,
       numberOnHand: vm.numberOnHand,
-      dateOrdered: vm.dateOrdered,
       comments: vm.comments,
       reorderAlertNumber: vm.reorderAlertNumber
     }
@@ -71,7 +69,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       buttonsStyling: false
     }).then(function() {
       console.log('in remove');
-      var id = vm.inventory[index]._id;
+      var id = vm.inventory[index].id;
       InventoryService.deleteItem(id);
       vm.reload();
       swal(

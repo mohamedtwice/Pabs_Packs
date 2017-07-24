@@ -43,6 +43,7 @@ router.get('/', function(req, res) {
 
 // POST /inventory
 router.post('/', function(req, res) {
+  console.log(req.body);
   var item = req.body.item;
   var vendor_id = req.body.vendor;
   var on_hand = req.body.number_on_hand;
