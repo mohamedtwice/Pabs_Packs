@@ -1,28 +1,39 @@
-CREATE EXTENSION pgcrypto;
-
-CREATE TABLE users (
-  id uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
-  username text NOT NULL,
-  password text NOT NULL
-);
-
 CREATE TABLE inventory (
-  id uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
-  item text NOT NULL,
-  vendor_id text NOT NULL,
-  number_on_hand integer NOT NULL,
-  comments text NOT NULL,
-  low_number integer NOT NULL ,
-  type text NOT NULL
+  id SERIAL PRIMARY KEY,
+  item varchar(80),
+  vendor_id int,
+  number_on_hand int,
+  low_number int,
+  type varchar(80),
+  comments text
 );
 
+INSERT INTO inventory (item,z	 vendor_id, onhand, lownumber, type, notes)
+VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1'),
+('Item 2', 1, 30, 20, 'Merch', 'comments for 2'),
+('Item 3', 1, 50, 10, 'Pack', 'comments for 3'),
+('Item 4', 3, 100, 30, 'Pack', 'comments for 4'),
+('Item 5', 2, 100, 30, 'Pack', 'comments for 5'),
+('Item 6', 4, 100, 30, 'Pack', 'comments for 6')
 
-SELECT * FROM inventory;
+CREATE TABLE backpack_goal (
+  id SERIAL PRIMARY KEY,
+  annual_goal varchar(80),
+  year varchar(80)
+  );
+  
+INSERT INTO backpack_goal (annual_goal, year)
+VALUES ('500', '2015'),
+('1500', '2016'),
+('2000', '2017')
 
-DROP TABLE users;
-
-DROP TABLE inventory;
-
-INSERT INTO inventory (item, vendor_id, number_on_hand, comments, low_number, type) VALUES
-    ('jkdsfjkd', 12, 110, 'Good stuff man', 1, 'merchandise'),
-    ('fsdf', 1, 110, 'whoooa', 23, 'backpack');
+CREATE TABLE events (
+  id SERIAL PRIMARY KEY,
+  event_date date,
+  event_time time,
+  event_type varchar(80),
+  partner_id int,
+  packs_promised int,
+  packs_made int,
+  comments text
+);
