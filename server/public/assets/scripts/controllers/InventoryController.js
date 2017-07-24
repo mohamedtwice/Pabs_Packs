@@ -34,7 +34,8 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vendor: vm.vendor,
       numberOnHand: vm.numberOnHand,
       comments: vm.comments,
-      reorderAlertNumber: vm.reorderAlertNumber
+      reorderAlertNumber: vm.reorderAlertNumber,
+      type: vm.type
     }
     console.log(newItem);
     InventoryService.postInventoryItem(newItem).then(function() {
