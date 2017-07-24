@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['ngRoute', 'chart.js', 'ui.bootstrap']);
 /// Routes ///
 
 myApp.directive('head', ['$rootScope', '$compile',
@@ -61,5 +61,5 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .otherwise({
       redirectTo: 'home'
-    })
+    });
 }]);
