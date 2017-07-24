@@ -39,8 +39,9 @@ app.use(passport.session());
 // Routes
 app.use('/register', register);
 app.use('/user', user);
-app.use('/*', index);
 app.use('/inventory', inventory);
+app.use('/*', index);
+
 
 // App Set //
 app.set('port', (process.env.PORT || 5000));

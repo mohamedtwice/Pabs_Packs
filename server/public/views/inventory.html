@@ -1,55 +1,101 @@
 <div class="container" ng-init="ic.getInventory()">
   <h2>Inventory</h2>
+
+  <!-- beginning of tabs -->
   <tabset>
-    <tab heading="Packs" select="ic.alertMe()">
+    <!-- packs tab -->
+    <tab heading="Packs" select="ic.getInventory()">
+      <div class="table-responsive" ng-model="ic.packs">
+        <table class="table table-bordered table-hover">
+          <!-- header with sort -->
+          <thead>
+            <tr>
+              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
+                Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
+                Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='dateOrdered'; ic.reverseSort = !ic.reverseSort">
+                Date Ordered <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
+                Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tr ng-repeat="items in ic.inventory track by $index | filter:ic.inventory.type==='merchandise' | orderBy: 'dateOrdered' ">
+            <td>{{items.item}}</td>
+            <td>{{items.vendor}}</td>
+            <td>{{items.numberOnHand}}</td>
+            <td>{{items.dateOrdered}}</td>
+            <td>{{items.comments}}</td>
+            <td>{{items.reorderAlertNumber}}</td>
+            <td><button ng-click="ic.deleteItem($index)">X</button></td>
+          </tr>
 
+        </table>
+      </div>
     </tab>
-    <tab heading="Merchandise" select="ic.alertMe()">
 
+    <!-- merchandise section -->
+    <tab heading="Merchandise" select="ic.getInventory()">
+      <div class="table-responsive" ng-model="ic.packs">
+        <table class="table table-bordered table-hover">
+          <!-- header with sort -->
+          <thead>
+            <tr>
+              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
+                Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
+                Number On Hand <span ng-show="ic.orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='dateOrdered'; ic.reverseSort = !ic.reverseSort">
+                Date Ordered <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
+                Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tr>
+            <td ng-repeat="items in ic.inventory track by $index | filter:ic.inventory.type==='packs' | orderBy: 'dateOrdered' ">
+              <button ng-click="ic.deleteItem($index)">X</button>
+            </td>
+          </tr>
+
+        </table>
+      </div>
     </tab>
   </tabset>
 
-  <div class="table-responsive" ng-model="ic.packs">
-    <table class="table table-bordered table-hover">
-      <!-- header with sort -->
-      <thead>
-        <tr>
-          <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-            Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-          <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
-            Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-          <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
-            Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-          <th><a ng-click="ic.orderByField='dateOrdered'; ic.reverseSort = !ic.reverseSort">
-            Date Ordered <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-          <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-            Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-          <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
-            Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-        </tr>
-      </thead>
-      <tr>
-        <td ng-repeat="items in ic.inventory | filter:inventory.type==='merchandise' | orderBy: 'dateOrdered' ">
-          <button ng-click="ic.deleteItem($index)">X</button>
-        </td>
-      </tr>
-      <div collapse="ic.isCollapsed">
-        <div class="well">
-          <tr>
-            <td><input type="text" ng-model="ic.item"></td>
-            <td><input type="text" ng-model="ic.vendor"></td>
-            <td><input type="number" ng-model="ic.numberOnHand"></td>
-            <td><input type="date" ng-model="ic.dateOrdered"></td>
-            <td><input type="text" ng-model="ic.comments"></td>
-            <td><input type="number" ng-model="ic.reorderAlertNumber"></td>
-            <td><button class="btn btn-primary" ng-click="ic.postInventoryItem()">Post</button></td>
-          </tr>
+  <!-- modal -->
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">New Item</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Item: <input type="text" ng-model="ic.item"></p>
+          <p>Vendor: <input type="text" ng-model="ic.vendor"></p>
+          <p>Number on hand: <input type="number" ng-model="ic.numberOnHand"></p>
+          <p>Date: <input type="date" ng-model="ic.dateOrdered"></p>
+          <p>Comments: <input type="text" ng-model="ic.comments"></p>
+          <p>Reorder Alert Amount: <input type="number" ng-model="ic.reorderAlertNumber"></p>
         </div>
       </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ic.postInventoryItem()">Post</button>
+    </div>
+  </script>
+  <!-- end modal -->
 
-    </table>
-  </div>
-  <button class="btn btn-success" ng-click="ic.isCollapsed = !ic.isCollapsed">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+  <button class="btn btn-success" ng-click="ic.open()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 
   <!-- add new row functionality -->
 

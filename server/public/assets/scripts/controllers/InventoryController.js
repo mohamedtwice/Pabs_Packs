@@ -1,4 +1,4 @@
-myApp.controller('InventoryController', function(InventoryService, $route) {
+myApp.controller('InventoryController', function(InventoryService, $modal, $route) {
   console.log('in inventory controller');
   var vm = this;
 
@@ -9,6 +9,17 @@ myApp.controller('InventoryController', function(InventoryService, $route) {
   vm.reload = function() {
     $route.reload();
   } //  to reload page after new item has been added to show immediately
+
+  vm.animationsEnabled = true;
+
+  vm.open = function (size) {
+    var modalInstance = $modal.open({
+      animation: vm.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'InventoryController',
+      size: size
+    });
+  }
 
   vm.getInventory = function() {
     console.log('Getting the inventory');
