@@ -39,8 +39,6 @@ router.get('/', function(req, res) {
   });
 });
 
-/** ---- PUT YOUR CODE BELOW ---- **/
-
 // POST /inventory
 router.post('/', function(req, res) {
   console.log(req.body);

@@ -17,6 +17,24 @@ myApp.controller('DashboardController', ['$scope', '$http', '$location', functio
       console.log('logged out');
       $location.path("/home");
     });
-  };
+  }; // end $scope.logout
 
-}]);
+  var vm = this;
+
+  // pie chart
+  // pie piece labels
+  vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
+  // dummy data
+  vm.pieData = [300, 500, 100];
+  // legend
+  vm.pieOptions = {legend: {display: true}};
+
+
+  // horizontal bar chart
+  vm.barLabels = ['Gray Backpacks', 'Blankets', 'Journals', 'Bracelets', 'Heart Stress Relievers', 'Organza Bags', 'Pabby the Penguin', 'Lip Care', 'Lotion', 'Postcards', 'Stamps', 'Handwritten Notes', 'PAB\'S PACKS Story Cards'];
+  vm.barSeries = ['Series A', 'Series B'];
+
+  vm.barData = [
+    [500, 500, 500, 300, 300, 300, 500,500, 500, 250, 100, 250, 250],
+  ];
+}]); // end controller
