@@ -79,11 +79,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           if (dismiss === 'timer') {
             console.log('I was closed by the timer');
           }
-<<<<<<< HEAD
-        });
-    });
-    vm.reload();
-=======
         })
     } else {
       InventoryService.postInventoryItem(newItem).then(function() {
@@ -103,7 +98,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vm.reload();
     }
 
->>>>>>> carl
   } // end postInventoryItem
 
   vm.deleteItem = function(index) {
@@ -113,7 +107,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#3085d6 ',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, cancel!',
