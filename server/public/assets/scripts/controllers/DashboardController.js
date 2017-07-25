@@ -1,4 +1,4 @@
-myApp.controller('DashboardController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+myApp.controller('DashboardController', ['DashboardService', '$scope', '$http', '$location', function(DashboardService, $scope, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
   console.log('checking user');
   $http.get('/user').then(function(response) {
@@ -19,15 +19,39 @@ myApp.controller('DashboardController', ['$scope', '$http', '$location', functio
     });
   }; // end $scope.logout
 
+
   var vm = this;
 
-  // pie chart
-  // pie piece labels
-  vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
-  // dummy data
-  vm.pieData = [300, 500, 100];
-  // legend
-  vm.pieOptions = {legend: {display: true}};
+  // pie chart post function
+  vm.postPieChart = function() {
+    console.log('in controller, postPieChart');
+    // pie piece labels
+    vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
+    // legend
+    vm.pieOptions = {legend: {display: true}};
+    // dummy data:  [200, 300, 500]
+    vm.pieData = [];
+    // pie object
+    var pieObject = {
+      labels: vm.pieLabels,
+      options: vm.pieOptions,
+      data: vm.pieData
+    }; // end pieObject
+    DashboardService.postPieChart().then(function() {
+      vm.pieChart = DashboardService.data;
+      console.log('back in controller with:', vm.pieChart);
+    });
+  }; // end postPieChart
+
+  // pie chart get function
+  vm.getPieChart = function() {
+    console.log('in controller, getPieChart');
+  }; // end getPieChart
+
+
+
+
+
 
 
   // horizontal bar chart
