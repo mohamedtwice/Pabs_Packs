@@ -20,7 +20,6 @@ var config = {
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
 // GET /inventory
-// Only modify IF you are doing Eye of the Tiger
 router.get('/', function(req, res) {
   console.log('get hit');
   pool.connect(function(err, client, done) {
@@ -68,35 +67,20 @@ router.post('/', function(req, res) {
 });
 
 router.delete('/:id', function(req, res) {
-  console.log(req.body);
-  var results = [];
-  // Grab data from the URL parameters
-  var id = req.params.id;
-  // Get a Postgres client from the connection pool
-  pool.connect(connectionString, function(err, client, done) {
-    // Handle connection errors
-    if (err) {
-      done();
-      console.log(err);
-      return res.status(500).json({
-        success: false,
-        data: err
-      });
-    }
-    // SQL Query > Delete Data
-    client.query('DELETE FROM inventory WHERE id=($1)', [id]);
-    // SQL Query > Select Data
-    var query = client.query('SELECT * FROM items ORDER BY id ASC');
-    // Stream results back one row at a time
-    query.on('row', function(row) {
-      results.push(row);
+  console.log('-------------------------++++++++++++++++++++++++');
+  console.log(req.params.id);
+  pool.connect(function(err, connection, done) {
+      console.log('Post hit');
+      var id = req.params.id;
+      if (err) {
+        console.log('error in connection', err);
+        done();
+        res.send(400);
+      } else {
+        connection.query("DELETE FROM inventory WHERE id = '" + id + "';");
+        res.send('deleted');
+      }
     });
-    // After all data is returned, close connection and return results
-    query.on('end', function() {
-      done();
-      return res.json(results);
-    });
-  });
 });
 
 module.exports = router;
