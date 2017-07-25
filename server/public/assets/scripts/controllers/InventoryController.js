@@ -79,67 +79,65 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           if (dismiss === 'timer') {
             console.log('I was closed by the timer');
           }
-<<<<<<< HEAD
         });
     });
-    vm.reload();
-=======
-        })
-    } else {
-      InventoryService.postInventoryItem(newItem).then(function() {
-        swal({
-          type: 'success',
-          title: 'New item added!',
-          timer: 2000
-        }).then(
-          function() {},
-          // handling the promise rejection
-          function(dismiss) {
-            if (dismiss === 'timer') {
-              console.log('I was closed by the timer');
-            }
-          })
-      });
-      vm.reload();
-    }
-
->>>>>>> carl
-  } // end postInventoryItem
-
-  vm.deleteItem = function(index) {
-    console.log(index);
+  vm.reload();
+})
+}
+else {
+  InventoryService.postInventoryItem(newItem).then(function() {
     swal({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      buttonsStyling: false
-    }).then(function() {
-      console.log('in remove');
-      InventoryService.deleteItem(index);
-      vm.reload();
-      swal(
-        'Deleted!',
-        'Your item has been deleted.',
-        'success'
-      )
-    }, function(dismiss) {
-      // dismiss can be 'cancel', 'overlay',
-      // 'close', and 'timer'
-      if (dismiss === 'cancel') {
-        swal(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
-      }
-    })
+      type: 'success',
+      title: 'New item added!',
+      timer: 2000
+    }).then(
+      function() {},
+      // handling the promise rejection
+      function(dismiss) {
+        if (dismiss === 'timer') {
+          console.log('I was closed by the timer');
+        }
+      })
+  });
+  vm.reload();
+}
+
+} // end postInventoryItem
+
+vm.deleteItem = function(index) {
+console.log(index);
+swal({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!',
+  confirmButtonClass: 'btn btn-success',
+  cancelButtonClass: 'btn btn-danger',
+  buttonsStyling: false
+}).then(function() {
+  console.log('in remove');
+  InventoryService.deleteItem(index);
+  vm.reload();
+  swal(
+    'Deleted!',
+    'Your item has been deleted.',
+    'success'
+  )
+}, function(dismiss) {
+  // dismiss can be 'cancel', 'overlay',
+  // 'close', and 'timer'
+  if (dismiss === 'cancel') {
+    swal(
+      'Cancelled',
+      'Your imaginary file is safe :)',
+      'error'
+    )
   }
+})
+}
 
 });
