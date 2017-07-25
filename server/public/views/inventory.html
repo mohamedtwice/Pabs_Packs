@@ -1,6 +1,9 @@
 <div class="container" ng-init="ic.getInventory()">
   <h2>Inventory</h2>
-  <button class="btn btn-default" ng-click="Edit">Edit</button>
+  <span>
+  <button class="btn btn-default" ng-click="toggle = !toggle">Edit</button>
+
+  </span>
 
   <!-- beginning of tabs -->
   <tabset>
@@ -11,27 +14,68 @@
           <!-- header with sort -->
           <thead>
             <tr>
-              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='vendor_id'; ic.reverseSort = !ic.reverseSort">
-                Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='number_on_hand'; ic.reverseSort = !ic.reverseSort">
-                Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                Comments <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
-                Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th>
+                <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
               <th>Delete</th>
             </tr>
           </thead>
-          <tr ng-repeat="items in ic.inventory track by $index">
-            <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
-            <td>{{items.item}}</td>
-            <td>{{items.vendor_id}}</td>
-            <td>{{items.number_on_hand}}</td>
-            <td>{{items.comments}}</td>
-            <td>{{items.low_number}}</td>
-            <td><button class="btn btn-warning" ng-click="ic.deleteItem(items.id)">X</button></td>
+          <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse">
+            <!-- | orderBy:column:reverse -->
+            <!-- | filter:items.type==='merchandise' -->
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.item}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.item}}" value="{{items.item}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.vendor_id}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.number_on_hand}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.number_on_hand}}" value="{{items.number_on_hand}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.comments}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.low_number}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
+            </td>
+            <td id="$index"><button class="btn btn-warning" ng-click="ic.deleteItem($index)">X</button></td>
           </tr>
         </table>
       </div>
@@ -44,27 +88,68 @@
           <!-- header with sort -->
           <thead>
             <tr>
-              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
-                Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
-                Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-              <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
-                Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+              <th>
+                <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount <thing ng-hide="arrow">
+                  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </thing>
+              <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
               <th>Delete</th>
             </tr>
           </thead>
-          <tr ng-repeat="items in ic.inventory track by $index">
-            <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
-            <td>{{items.item}}</td>
-            <td>{{items.vendor_id}}</td>
-            <td>{{items.number_on_hand}}</td>
-            <td>{{items.comments}}</td>
-            <td>{{items.low_number}}</td>
-            <td><button class="btn btn-warning" ng-click="ic.deleteItem(items.id)">X</button></td>
+          <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse">
+            <!-- | orderBy:column:reverse -->
+            <!-- | filter:items.type==='merchandise' -->
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.item}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.item}}" value="{{items.item}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.vendor_id}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.number_on_hand}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.number_on_hand}}" value="{{items.number_on_hand}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.comments}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
+            </td>
+            <td id="$index">
+              <thing ng-hide="toggle">{{items.low_number}}</thing>
+              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
+            </td>
+            <td id="$index"><button class="btn btn-warning" ng-click="ic.deleteItem($index)">X</button></td>
           </tr>
         </table>
       </div>
@@ -80,12 +165,19 @@
       <div class="row">
         <div class="col-md-12">
           <form>
-            <div class="form-group"><label>Item: </label><input type="text" ng-model="ic.item"></div>
-            <div class="form-group"><label>Vendor: </label><input type="text" ng-model="ic.vendor"></div>
-            <div class="form-group"><label>Number on hand: </label><input type="number" ng-model="ic.numberOnHand"></div>
-            <div class="form-group"><label>Comments: </label><input type="text" ng-model="ic.comments"></div>
-            <div class="form-group"><label>Reorder Alert Amount: </label><input type="number" ng-model="ic.reorderAlertNumber"></div>
-            <div class="form-group"><label>Type: </label><input type="text" ng-model="ic.type"></div>
+            <div class="form-group"><label>Item: </label for="item"><input type="text" id="item" ng-model="ic.item"></div>
+            <div class="form-group"><label>Vendor: </label for="vendor"><input type="text" id="vendor" ng-model="ic.vendor"></div>
+            <div class="form-group"><label>Number on hand: </label for="numberOnHand"><input type="number" id="numberOnHand" ng-model="ic.numberOnHand"></div>
+            <div class="form-group"><label>Comments: </label for="comments"><input type="text" id="comments" ng-model="ic.comments"></div>
+            <div class="form-group"><label>Reorder Alert Amount: </label for="reorderAlertNumber"><input type="number" id="reorderAlertNumber" ng-model="ic.reorderAlertNumber"></div>
+            <div class="form-group"><label>Type: </label for="type"><input type="text" id="type" ng-model="ic.type"></div>
+            <!-- <div class="form-group">
+              <label for="type">Type: </label>
+              <select class="form-control" id="type">
+    <option ng-click="ic.setRole('Backpack')">Backpack</option>
+    <option ng-click="ic.setRole('Merchandise')">Merchandise</option>
+  </select> -->
+            </div>
           </form>
         </div>
       </div>

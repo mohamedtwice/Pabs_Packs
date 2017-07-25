@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var bodyParser = require('body-parser')
 var path = require('path');
 
 // module with db
+router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.json());
+
 var connection = require('../modules/connection');
 var pg = require('pg');
 
@@ -44,13 +48,14 @@ router.post('/', function(req, res) {
   console.log(req.body);
   var item = req.body.item;
   var vendor = req.body.vendor;
+  var comments = req.body.comments;
   var on_hand = req.body.numberOnHand;
   var low_number = req.body.reorderAlertNumber;
   var type = req.body.type;
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
-      client.query('INSERT INTO inventory (item, vendor, number_on_hand, low_number, type) VALUES($1, $2, $3, $4, $5)', [item, vendor, on_hand, low_number, type])
+      client.query('INSERT INTO inventory (item, vendor_id, number_on_hand, comments, low_number, type) VALUES($1, $2, $3, $4, $5, $6)', [item, vendor, on_hand, comments, low_number, type])
         .then(function() {
           client.release();
           res.sendStatus(201); // created

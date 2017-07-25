@@ -4,20 +4,56 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
 
   vm.orderByField = 'item';
   vm.reverseSort = false;
+  vm.role = '';
 
   vm.reload = function() {
     $route.reload();
-  } //  to reload page after new item has been added to show immediately
+  } //  reloads page after new item has been added to show immediately
 
   vm.animationsEnabled = true;
 
-  vm.open = function (size) {
+  vm.open = function(size) {
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
       controller: 'InventoryController as ic',
       size: size
     });
+  }
+
+  vm.column = 'item';
+
+  // sort ordering (Ascending or Descending). Set true for desending
+  vm.reverse = false;
+
+  // called on header click
+  vm.sortColumn = function(col) {
+    vm.column = col;
+    if (vm.reverse) {
+      vm.reverse = false;
+      vm.reverseclass = 'arrow-up';
+    } else {
+      vm.reverse = true;
+      vm.reverseclass = 'arrow-down';
+    }
+  };
+
+  // remove and change class
+  vm.sortClass = function(col) {
+    if (vm.column == col) {
+      if (vm.reverse) {
+        return 'arrow-down';
+      } else {
+        return 'arrow-up';
+      }
+    } else {
+      return '';
+    }
+  }
+
+  vm.setRole = function(role) {
+    console.log('role changed to', role);
+    vm.role = role;
   }
 
   vm.getInventory = function() {
@@ -35,7 +71,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       numberOnHand: vm.numberOnHand,
       comments: vm.comments,
       reorderAlertNumber: vm.reorderAlertNumber,
-      type: vm.type
+      type: vm.role
     }
     console.log(newItem);
     InventoryService.postInventoryItem(newItem).then(function() {
@@ -70,7 +106,8 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       buttonsStyling: false
     }).then(function() {
       console.log('in remove');
-      var id = vm.inventory[index].id;
+      var id = vm.inventory.index;
+      console.log(id);
       InventoryService.deleteItem(id);
       vm.reload();
       swal(
