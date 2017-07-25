@@ -8,7 +8,7 @@ CREATE TABLE inventory (
   comments text
 );
 
-INSERT INTO inventory (item,z	 vendor_id, onhand, lownumber, type, notes)
+INSERT INTO inventory (item,z	 vendor_id, number_on_hand, low_number, type, comments)
 VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1'),
 ('Item 2', 1, 30, 20, 'Merch', 'comments for 2'),
 ('Item 3', 1, 50, 10, 'Pack', 'comments for 3'),
@@ -21,7 +21,7 @@ CREATE TABLE backpack_goal (
   annual_goal varchar(80),
   year varchar(80)
   );
-  
+
 INSERT INTO backpack_goal (annual_goal, year)
 VALUES ('500', '2015'),
 ('1500', '2016'),
@@ -70,9 +70,7 @@ CREATE TABLE vendor (
   vendor_email varchar(80),
   vendor_address varchar(80)
   );
-  
-  INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
+
+INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
 VALUES ('Vendor 1', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125'),
 ('Vendor 2', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125')
-
-
