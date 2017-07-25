@@ -54,10 +54,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "InventoryController as ic",
       css: "inventory.css"
     })
-    .when('/tracker', {
-      templateUrl: '/views/tracker.html',
-      controller: "TrackerController as tc",
-      css: "tracker.css"
+    .when('/events', {
+      templateUrl: '/views/events.html',
+      controller: "EventController as ec",
+      css: "events.css"
     })
     .otherwise({
       redirectTo: 'home'

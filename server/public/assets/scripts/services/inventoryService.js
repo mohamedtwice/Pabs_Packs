@@ -1,4 +1,4 @@
-myApp.service('InventoryService', function($http) {
+myApp.service('inventoryService', function($http) {
   console.log('in inventory service');
 
   var sv = this;
@@ -17,7 +17,7 @@ myApp.service('InventoryService', function($http) {
     console.log(newItem);
     return $http({
       method: 'POST',
-      url: '/inventory',
+      url: '/',
       data: newItem
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
@@ -25,12 +25,12 @@ myApp.service('InventoryService', function($http) {
   }
 
   sv.deleteItem = function(id) {
-  return $http({
-    method: 'DELETE',
-    url: '/inventory/' + id,
-  }).then(function() {
-    console.log('item deleted');
-  });
-}
+    return $http({
+      method: 'DELETE',
+      url: '/inventory/' + id,
+    }).then(function() {
+      console.log('item deleted');
+    });
+  }
 
 });
