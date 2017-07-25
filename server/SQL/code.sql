@@ -8,7 +8,7 @@ CREATE TABLE inventory (
   comments text
 );
 
-INSERT INTO inventory (item,z	 vendor_id, number_on_hand, low_number, type, comments)
+INSERT INTO inventory (item, vendor_id, number_on_hand, low_number, type, comments)
 VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1'),
 ('Item 2', 1, 30, 20, 'Merch', 'comments for 2'),
 ('Item 3', 1, 50, 10, 'Pack', 'comments for 3'),

@@ -56,8 +56,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/events', {
       templateUrl: '/views/events.html',
-      controller: "TrackerController as tc",
-      css: "tracker.css"
+      controller: "EventController as ec",
+      css: "events.css"
     })
     .otherwise({
       redirectTo: 'home'

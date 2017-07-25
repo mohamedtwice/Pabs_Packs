@@ -1,5 +1,137 @@
-<section>
+<div class="container" ng-init="ec.getEvents()">
 
+
+<div class="col-sm-12">
+  <h2>Event Tracker</h2>
+  <div class="rows">
+  <!-- beginning of tabs -->
+  <tabset>
+    <!-- packs tab -->
+    <tab heading="Donation Events">
+      <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Event</th>
+                <th>Packs Promised</th>
+                <th>Packs Needed</th>
+                <th>Notes</th>
+                    <!-- header with sort -->
+                    <!-- <thead>
+                      <tr>
+                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                          Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
+                          Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
+                          Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                          Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
+                          Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th>Delete</th> -->
+                      </tr>
+                    </thead>
+                    <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Donation'">
+                      <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
+                      <td>{{events.event_date | date:"MM/dd/yyyy"}}</td>
+                      <td>{{events.event_time}}</td>
+                      <td>{{events.partner_id}}</td>
+                      <td>{{events.packs_promised}}</td>
+                      <td></td>
+                      <td>{{events.comments}}</td>
+                      <td><button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button></td>
+                       <!-- //mc.deleteOrder(x._id) -->
+                    </tr>
+                  </table>
+                </div>
+
+    </tab>
+
+
+    <tab heading="Packing Events">
+      <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Event</th>
+                <th>Packs Made</th>
+                <th>Notes</th>
+                    <!-- header with sort -->
+                    <!-- <thead>
+                      <tr>
+                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                          Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
+                          Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
+                          Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
+                          Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
+                          Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
+                        <th>Delete</th> -->
+                      </tr>
+                    </thead>
+                    <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
+                      <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
+                      <td>{{events.event_date | date:"MM/dd/yyyy"}}</td>
+                      <td>{{events.event_time}}</td>
+                      <td>{{events.partner_id}}</td>
+                      <td>{{events.packs_made}}</td>
+                      <td>{{events.comments}}</td>
+                      <td><button class="btn btn-warning" ng-click="ic.deleteItem(items.id)">X</button></td>
+                    </tr>
+                  </table>
+                </div>
+
+    </tab>
+
+      </div>
+
+</div>
+
+<section>
+  <div class="container">
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+
+    <form ng-submit="ec.createEvent()">
+    <div>
+        <input type="text" ng-model="ecevent_date" class="input100" placeholder="Date" />
+    </div>
+    <div>
+        <input type="text" ng-model="ec.event_time" class="input100" placeholder="Time" />
+    </div>
+    <div>
+      <input type="number" ng-model="ec.partner_id" class="input100" placeholder="Partner" />
+      </div>
+    <div>
+      <select label="-- Select option --" class="form-control input-lg input100" ng-model="ec.event_type" placeholder="What type of event?">
+    <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
+  <option class="form-control input-lg input100" value="Donation">Donation Event</option>
+  <option class="form-control input-lg input100" value="Packing">Packing Event</option>
+  </select>
+
+  <input class="form-control input-lg input100" ng-model="ec.packs_promised" ng-show="ec.event_type=='Donation'" placeholder="How many Packs promised?" type="text">
+  <input class="form-control input-lg input100" ng-model="ec.packs_made" ng-show="ec.event_type=='Packing'" placeholder="How many Packs made?" type="text">
+    </div>
+    <input class="btn btn-default input100" type="submit" name="submit" value="Create" />
+    <!-- <button class="btn btn-default input100" ng-click="ec.createEvent()">Create Event</button> -->
+  </form>
+  </div>
+</div>
+
+</section>
+
+</div>
+
+<section
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-6 col-md-offset-3">
@@ -32,14 +164,14 @@
       <h3 class="dropdown-toolbar-title">Recent Notifications</h3>
     </div><!-- /dropdown-toolbar -->
 
-    <ul class="dropdown-menu notifications">
+  <ul class="dropdown-menu notifications">
       ...
     </ul>
   </div>
 </div>
 </section>
 
-  <section>
+ <section>
     <h3>Pack Totals</h3>
     <div class="col-md-3" id="packTotals">
 
@@ -139,6 +271,3 @@
 
         </div>
   </section>
-
-
-</div>
