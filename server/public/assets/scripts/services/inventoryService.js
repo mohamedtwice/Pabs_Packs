@@ -29,6 +29,9 @@ myApp.service('inventoryService', function($http) {
     return $http({
       method: 'DELETE',
       url: '/inventory/' + id,
+      params: {
+        id: id
+      }
     }).then(function() {
       console.log('item deleted');
     });

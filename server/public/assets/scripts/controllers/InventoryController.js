@@ -2,12 +2,16 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   console.log('in inventory controller');
   var vm = this;
 
+  vm.column = 'item';
+  // sort ordering (Ascending or Descending). Set true for desending
+  vm.reverse = false;
   vm.orderByField = 'item';
   vm.reverseSort = false;
+  vm.type = 'backpack';
 
   vm.reload = function() {
     $route.reload();
-  } //  to reload page after new item has been added to show immediately
+  } //  reloads page after new item has been added to show immediately
 
   vm.animationsEnabled = true;
 
@@ -18,6 +22,31 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       controller: 'InventoryController as ic',
       size: size
     });
+  }
+
+  // called on header click
+  vm.sortColumn = function(col) {
+    vm.column = col;
+    if (vm.reverse) {
+      vm.reverse = false;
+      vm.reverseclass = 'arrow-up';
+    } else {
+      vm.reverse = true;
+      vm.reverseclass = 'arrow-down';
+    }
+  };
+
+  // remove and change class
+  vm.sortClass = function(col) {
+    if (vm.column == col) {
+      if (vm.reverse) {
+        return 'arrow-down';
+      } else {
+        return 'arrow-up';
+      }
+    } else {
+      return '';
+    }
   }
 
   vm.getInventory = function() {
@@ -38,10 +67,10 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       type: vm.type
     }
     console.log(newItem);
-    InventoryService.postInventoryItem(newItem).then(function() {
+    if (newItem.item === undefined) {
       swal({
-        type: 'success',
-        title: 'New item added!',
+        type: 'warning',
+        title: 'Item was not entered!',
         timer: 2000
       }).then(
         function() {},
@@ -50,12 +79,35 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           if (dismiss === 'timer') {
             console.log('I was closed by the timer');
           }
+<<<<<<< HEAD
         });
     });
     vm.reload();
+=======
+        })
+    } else {
+      InventoryService.postInventoryItem(newItem).then(function() {
+        swal({
+          type: 'success',
+          title: 'New item added!',
+          timer: 2000
+        }).then(
+          function() {},
+          // handling the promise rejection
+          function(dismiss) {
+            if (dismiss === 'timer') {
+              console.log('I was closed by the timer');
+            }
+          })
+      });
+      vm.reload();
+    }
+
+>>>>>>> carl
   } // end postInventoryItem
 
   vm.deleteItem = function(index) {
+    console.log(index);
     swal({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -70,8 +122,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       buttonsStyling: false
     }).then(function() {
       console.log('in remove');
-      var id = vm.inventory[index].id;
-      InventoryService.deleteItem(id);
+      InventoryService.deleteItem(index);
       vm.reload();
       swal(
         'Deleted!',
