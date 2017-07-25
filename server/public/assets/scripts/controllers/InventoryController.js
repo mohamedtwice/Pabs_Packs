@@ -11,7 +11,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
 
   vm.animationsEnabled = true;
 
-  vm.open = function (size) {
+  vm.open = function(size) {
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
@@ -50,7 +50,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           if (dismiss === 'timer') {
             console.log('I was closed by the timer');
           }
-        })
+        });
     });
     vm.reload();
   } // end postInventoryItem
