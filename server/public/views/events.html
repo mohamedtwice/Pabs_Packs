@@ -47,7 +47,10 @@
                       <td>{{events.packs_promised}}</td>
                       <td></td>
                       <td>{{events.comments}}</td>
-                      <td><button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button></td>
+                      <td>
+                        <button class="btn btn-success" ng-click="toggle = !toggle">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button ng-click="ic.updateProperties(items.id)" ng-show="toggle" class="btn btn-default">Update</button>
+                        <button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button></td>
                        <!-- //mc.deleteOrder(x._id) -->
                     </tr>
                   </table>
@@ -68,19 +71,39 @@
                 <th>Packs Made</th>
                 <th>Notes</th>
                     <!-- header with sort -->
-                    <!-- <thead>
+                    <thead>
                       <tr>
-                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                          Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
-                          Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
-                          Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                          Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
-                          Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th>Delete</th> -->
+                        <th>
+                          <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Date
+                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>time
+                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Partner
+                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Packs Made
+                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Comments
+                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                          </a>
+                        </th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">

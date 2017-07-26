@@ -1,4 +1,6 @@
 <div class="container" ng-init="ic.getInventory()">
+
+  <div class="bg">
   <h2>Inventory</h2>
   <span>
   <button class="btn btn-success pull-right" ng-click="toggle = !toggle">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -186,7 +188,7 @@
       </div>
     </div>
 </div>
-</div>
+
 <!-- post button -->
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="ic.postInventoryItem()">Post</button>
@@ -195,4 +197,5 @@
 <!-- end modal -->
 <button class="btn btn-info" ng-click="ic.open()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 <!-- add new row functionality -->
+</div>
 </div>
