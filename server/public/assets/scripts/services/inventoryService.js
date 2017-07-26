@@ -1,4 +1,4 @@
-myApp.service('inventoryService', function($http) {
+myApp.service('InventoryService', function($http) {
   console.log('in inventory service');
 
   var sv = this;
