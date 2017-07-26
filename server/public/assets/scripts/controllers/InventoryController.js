@@ -90,6 +90,10 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vm.reload();
     }
   } // end postInventoryItem
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6da71359ced81fcb645e45fa7f80e4c19b186fb2
   vm.updateProperties = function(index) {
     console.log('in updateProperties');
     console.log(index);
@@ -118,6 +122,10 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     });
     vm.reload();
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6da71359ced81fcb645e45fa7f80e4c19b186fb2
   vm.deleteItem = function(index) {
     console.log(index);
     swal({

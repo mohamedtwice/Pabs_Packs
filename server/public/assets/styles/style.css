@@ -33,6 +33,13 @@ section {
 img {
   height: 5rem;
 }
+/*
+body {
+  background: url('../../images/pattern.jpg')
+}
+.container {
+  background-color: white;
+}*/
 
 h2 {
   margin-top: 9rem;
@@ -40,6 +47,10 @@ h2 {
 
 label {
   margin-top: 10px;
+}
+
+.btn-success {
+  margin-left: 1.5rem;
 }
 
 .modalInput {
