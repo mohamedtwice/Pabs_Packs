@@ -68,16 +68,18 @@ router.post('/', function(req, res) {
 
 // POST /inventory
 router.put('/', function(req, res) {
-  console.log(req.body);
-  var item = req.body.item;
-  var vendor = req.body.vendor;
-  var comments = req.body.comments;
-  var on_hand = req.body.numberOnHand;
-  var low_number = req.body.reorderAlertNumber;
+  console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}');
+  var id = req.params.id;
+  var item = req.body.itemUpdate;
+  var vendor = req.body.vendorUpdate;
+  var comments = req.body.commentsUpdate;
+  var on_hand = req.body.numberOnHandUpdate;
+  var low_number = req.body.reorderAlertNumberUpdate;
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
-      client.query('UPDATE inventory (item, vendor_id, number_on_hand, comments, low_number) VALUES($1, $2, $3, $4, $5)', [item, vendor, on_hand, comments, low_number])
+      // client.query("UPDATE inventory SET item='" + item + "' WHERE id='" + id + "'")
+      client.query("UPDATE inventory SET item='" + item + "' WHERE id='db32fc38-6c84-479f-ad8f-be67cfcf73c1'")
         .then(function() {
           client.release();
           res.sendStatus(201); // created

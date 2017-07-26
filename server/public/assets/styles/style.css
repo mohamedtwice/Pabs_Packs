@@ -2,13 +2,16 @@ section {
   padding: 50px 0;
 }
 
-.red {
-  background-color: red;
-}
-
 img {
   height: 5rem;
 }
+/*
+body {
+  background: url('../../images/pattern.jpg')
+}
+.container {
+  background-color: white;
+}*/
 
 h2 {
   margin-top: 9rem;

@@ -3,7 +3,7 @@
   <h2>Inventory</h2>
   <span>
   <button class="btn btn-success pull-right" ng-click="toggle = !toggle">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-  <button ng-click="ic.updateProperties(ic.inventory.id)" ng-show="toggle" class="btn btn-default pull-right">Update</button>
+  <!-- <button ng-click="ic.updateProperties(ic.inventory.id)" ng-show="toggle" class="btn btn-default pull-right">Update</button> -->
 
   </span>
 
@@ -76,6 +76,7 @@
         </table>
       </div>
     </tab>
+    <button ng-click="ic.updateProperties(items.id)" ng-show="toggle" class="btn btn-default pull-right">Update</button>
 
     <!-- merchandise section -->
     <tab heading="Merchandise" select="ic.getInventory()">
@@ -118,7 +119,7 @@
             </tr>
           </thead>
           <!-- repeat items with hide/show inputs to show upon clicking edit button -->
-          <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{danger: true}"  ng-if="items.type==='merchandise'">
+          <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}"   ng-if="items.type==='merchandise'">
             <td>
               <thing ng-hide="toggle">{{items.item}}</thing>
               <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.item}}"></thing>

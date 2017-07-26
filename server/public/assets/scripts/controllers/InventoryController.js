@@ -105,10 +105,11 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     console.log(index);
     var updatedProperty = {
       item: vm.itemUpdate,
-      vendor: vm.vendorUpdate,
-      numberOnHand: vm.numberOnHandUpdate,
-      comments: vm.commentsUpdate,
-      reorderAlertNumber: vm.reorderAlertNumberUpdate
+      id: vm.inventory.id
+      // vendor: vm.vendorUpdate,
+      // numberOnHand: vm.numberOnHandUpdate,
+      // comments: vm.commentsUpdate,
+      // reorderAlertNumber: vm.reorderAlertNumberUpdate
     }
     console.log(updatedProperty);
     InventoryService.updateProperties(index, updatedProperty).then(function() {
