@@ -17,10 +17,25 @@ myApp.service('InventoryService', function($http) {
     console.log(newItem);
     return $http({
       method: 'POST',
-      url: '/',
+      url: '/inventory',
       data: newItem
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
+    });
+  }
+
+  sv.updateProperties = function(index, updatedProperty) {
+    console.log(updatedProperty);
+    console.log(index);
+    return $http({
+      method: 'PUT',
+      url: '/inventory',
+      data: updatedProperty,
+      params: {
+        id: index
+      }
+    }).then(function(response) {
+      console.log('back from updatedProperty:', response);
     });
   }
 

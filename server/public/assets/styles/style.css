@@ -2,6 +2,10 @@
   font-family: Raleway, sans-serif;
 }
 
+.bg {
+  background: #f5f6f7;
+}
+
 body {
   background-image: url("/images/pattern.jpg");
   background-repeat: repeat-x;
@@ -44,7 +48,7 @@ label {
 }
 
 #inventoryTitle {
-  float:left;
+  float: left;
 }
 
 #editBtn {

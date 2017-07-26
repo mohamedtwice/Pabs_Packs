@@ -3,16 +3,11 @@ var router = express.Router();
 var passport = require('passport');
 var bodyParser = require('body-parser')
 var path = require('path');
-var bodyParser = require('body-parser');
 
+// module with db
 router.use(bodyParser.urlencoded({
   extended: true
 }));
-router.use(bodyParser.json());
-
-
-// module with db
-router.use(bodyParser.urlencoded({extended: true}));
 router.use(bodyParser.json());
 
 var connection = require('../modules/connection');
@@ -73,21 +68,46 @@ router.post('/', function(req, res) {
     });
 });
 
+// POST /inventory
+router.put('/', function(req, res) {
+  console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}');
+  var id = req.params.id;
+  var item = req.body.itemUpdate;
+  var vendor = req.body.vendorUpdate;
+  var comments = req.body.commentsUpdate;
+  var on_hand = req.body.numberOnHandUpdate;
+  var low_number = req.body.reorderAlertNumberUpdate;
+  // do database query to make a new todo
+  pool.connect()
+    .then(function(client) {
+      // client.query("UPDATE inventory SET item='" + item + "' WHERE id='" + id + "'")
+      client.query("UPDATE inventory SET item='" + item + "' WHERE id='db32fc38-6c84-479f-ad8f-be67cfcf73c1'")
+        .then(function() {
+          client.release();
+          res.sendStatus(201); // created
+        });
+    })
+    .catch(function(err) {
+      client.release();
+      res.sendStatus(500); // server error
+    });
+});
+
 router.delete('/:id', function(req, res) {
   console.log('-------------------------++++++++++++++++++++++++');
   console.log(req.params.id);
   pool.connect(function(err, connection, done) {
-      console.log('Post hit');
-      var id = req.params.id;
-      if (err) {
-        console.log('error in connection', err);
-        done();
-        res.send(400);
-      } else {
-        connection.query("DELETE FROM inventory WHERE id = '" + id + "';");
-        res.send('deleted');
-      }
-    });
+    console.log('Post hit');
+    var id = req.params.id;
+    if (err) {
+      console.log('error in connection', err);
+      done();
+      res.send(400);
+    } else {
+      connection.query("DELETE FROM inventory WHERE id = '" + id + "';");
+      res.send('deleted');
+    }
+  });
 });
 
 module.exports = router;

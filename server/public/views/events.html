@@ -1,4 +1,6 @@
 <div class="container" ng-init="ec.getEvents()">
+<div class="bg">
+
 
 
 <div class="col-sm-12">
@@ -88,7 +90,7 @@
                       <td>{{events.partner_id}}</td>
                       <td>{{events.packs_made}}</td>
                       <td>{{events.comments}}</td>
-                      <td><button class="btn btn-warning" ng-click="ic.deleteItem(items.id)">X</button></td>
+                      <td><button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button></td>
                     </tr>
                   </table>
                 </div>
@@ -271,3 +273,8 @@
 
         </div>
   </section>
+</div>
+</div>
+</div>
+</div>
+</div>

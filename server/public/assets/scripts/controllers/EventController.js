@@ -27,9 +27,7 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
 
   vm.createEvent = function() {
     console.log('in createEvent');
-    if (vm_event_type == '' | partner_id === '') {
 
-    }
     var newEvent = {
       date: vm.event_date,
       time: vm.event_time,

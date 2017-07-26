@@ -1,20 +1,16 @@
 myApp.controller('InventoryController', function(InventoryService, $modal, $route) {
   console.log('in inventory controller');
   var vm = this;
-
   vm.column = 'item';
   // sort ordering (Ascending or Descending). Set true for desending
   vm.reverse = false;
   vm.orderByField = 'item';
   vm.reverseSort = false;
   vm.type = 'backpack';
-
   vm.reload = function() {
     $route.reload();
   } //  reloads page after new item has been added to show immediately
-
   vm.animationsEnabled = true;
-
   vm.open = function(size) {
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
@@ -23,7 +19,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       size: size
     });
   }
-
   // called on header click
   vm.sortColumn = function(col) {
     vm.column = col;
@@ -35,7 +30,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vm.reverseclass = 'arrow-down';
     }
   };
-
   // remove and change class
   vm.sortClass = function(col) {
     if (vm.column == col) {
@@ -48,7 +42,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       return '';
     }
   }
-
   vm.getInventory = function() {
     console.log('Getting the inventory');
     InventoryService.getInventory().then(function() {
@@ -56,7 +49,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       console.log(vm.inventory);
     });
   } // end getInventory
-
   vm.postInventoryItem = function() {
     var newItem = {
       item: vm.item,
@@ -97,9 +89,35 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       });
       vm.reload();
     }
-
   } // end postInventoryItem
-
+  vm.updateProperties = function(index) {
+    console.log('in updateProperties');
+    console.log(index);
+    var updatedProperty = {
+      item: vm.itemUpdate,
+      id: vm.inventory.id
+      // vendor: vm.vendorUpdate,
+      // numberOnHand: vm.numberOnHandUpdate,
+      // comments: vm.commentsUpdate,
+      // reorderAlertNumber: vm.reorderAlertNumberUpdate
+    }
+    console.log(updatedProperty);
+    InventoryService.updateProperties(index, updatedProperty).then(function() {
+      swal({
+        type: 'success',
+        title: 'Item Updated!',
+        timer: 2000
+      }).then(
+        function() {},
+        // handling the promise rejection
+        function(dismiss) {
+          if (dismiss === 'timer') {
+            console.log('I was closed by the timer');
+          }
+        })
+    });
+    vm.reload();
+  }
   vm.deleteItem = function(index) {
     console.log(index);
     swal({
@@ -107,7 +125,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6 ',
+      confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, cancel!',
@@ -135,5 +153,4 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       }
     })
   }
-
 });
