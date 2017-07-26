@@ -66,6 +66,29 @@ router.post('/', function(req, res) {
     });
 });
 
+// POST /inventory
+router.put('/', function(req, res) {
+  console.log(req.body);
+  var item = req.body.item;
+  var vendor = req.body.vendor;
+  var comments = req.body.comments;
+  var on_hand = req.body.numberOnHand;
+  var low_number = req.body.reorderAlertNumber;
+  // do database query to make a new todo
+  pool.connect()
+    .then(function(client) {
+      client.query('UPDATE inventory (item, vendor_id, number_on_hand, comments, low_number) VALUES($1, $2, $3, $4, $5)', [item, vendor, on_hand, comments, low_number])
+        .then(function() {
+          client.release();
+          res.sendStatus(201); // created
+        });
+    })
+    .catch(function(err) {
+      client.release();
+      res.sendStatus(500); // server error
+    });
+});
+
 router.delete('/:id', function(req, res) {
   console.log('-------------------------++++++++++++++++++++++++');
   console.log(req.params.id);

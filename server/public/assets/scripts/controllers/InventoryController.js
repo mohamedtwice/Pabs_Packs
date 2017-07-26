@@ -100,6 +100,34 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
 
   } // end postInventoryItem
 
+  vm.updateProperties = function(index) {
+    console.log('in updateProperties');
+    console.log(index);
+    var updatedProperty = {
+      item: vm.itemUpdate,
+      vendor: vm.vendorUpdate,
+      numberOnHand: vm.numberOnHandUpdate,
+      comments: vm.commentsUpdate,
+      reorderAlertNumber: vm.reorderAlertNumberUpdate
+    }
+    console.log(updatedProperty);
+    InventoryService.updateProperties(index, updatedProperty).then(function() {
+      swal({
+        type: 'success',
+        title: 'Item Updated!',
+        timer: 2000
+      }).then(
+        function() {},
+        // handling the promise rejection
+        function(dismiss) {
+          if (dismiss === 'timer') {
+            console.log('I was closed by the timer');
+          }
+        })
+    });
+    vm.reload();
+  }
+
   vm.deleteItem = function(index) {
     console.log(index);
     swal({
