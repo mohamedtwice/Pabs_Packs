@@ -3,6 +3,13 @@ var router = express.Router();
 var passport = require('passport');
 var bodyParser = require('body-parser')
 var path = require('path');
+var bodyParser = require('body-parser');
+
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
+router.use(bodyParser.json());
+
 
 // module with db
 router.use(bodyParser.urlencoded({extended: true}));

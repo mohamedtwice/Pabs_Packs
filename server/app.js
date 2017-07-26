@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var inventory = require('./routes/inventory');
+var events = require('./routes/events');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -40,6 +41,7 @@ app.use(passport.session());
 app.use('/register', register);
 app.use('/user', user);
 app.use('/inventory', inventory);
+app.use('/events', events);
 app.use('/*', index);
 
 
