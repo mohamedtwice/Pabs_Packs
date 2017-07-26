@@ -22,22 +22,22 @@ myApp.service('InventoryService', function($http) {
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
     });
-  }
+  };
 
-  sv.updateProperties = function(index, updatedProperty) {
+  sv.updateProperties = function(id, updatedProperty) {
     console.log(updatedProperty);
-    console.log(index);
+    console.log(id);
     return $http({
       method: 'PUT',
       url: '/inventory',
       data: updatedProperty,
       params: {
-        id: index
+        id: id
       }
     }).then(function(response) {
       console.log('back from updatedProperty:', response);
     });
-  }
+  };
 
   sv.deleteItem = function(id) {
     console.log(id);

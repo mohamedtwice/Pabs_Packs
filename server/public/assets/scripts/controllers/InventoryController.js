@@ -91,19 +91,18 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     }
   }; // end postInventoryItem
 
-  vm.updateProperties = function(index) {
+  vm.updateProperties = function(id) {
     console.log('in updateProperties');
-    console.log(index);
+    console.log(id);
     var updatedProperty = {
       item: vm.itemUpdate,
-      id: vm.inventory.id
-      // vendor: vm.vendorUpdate,
-      // numberOnHand: vm.numberOnHandUpdate,
-      // comments: vm.commentsUpdate,
-      // reorderAlertNumber: vm.reorderAlertNumberUpdate
-    }
+      vendor: vm.vendorUpdate,
+      numberOnHand: vm.numberOnHandUpdate,
+      comments: vm.commentsUpdate,
+      reorderAlertNumber: vm.reorderAlertNumberUpdate
+    };
     console.log(updatedProperty);
-    InventoryService.updateProperties(index, updatedProperty).then(function() {
+    InventoryService.updateProperties(id, updatedProperty).then(function() {
       swal({
         type: 'success',
         title: 'Item Updated!',
