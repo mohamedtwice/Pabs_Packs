@@ -50,6 +50,7 @@ router.get('/', function(req, res) {
 
 // POST /inventory
 router.post('/', function(req, res) {
+  console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
   var item = req.body.item;
   var vendor = req.body.vendor;

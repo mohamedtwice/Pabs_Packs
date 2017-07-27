@@ -155,8 +155,12 @@
   <!-- modal -->
   <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
+      <div class='btn-toolbar pull-right'>
+        <div class='btn-group'>
+          <button class="btn btn-warning" ng-click="mc.cancel()"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+      </div>
       <h3 class="modal-title">New Item</h3>
-      <button class="btn btn-warning" ng-click="ic.cancel()">Cancel</button>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -165,28 +169,28 @@
           <form>
             <div class="form-group">
               <label>Item:</label for="item">
-                <input type="text" class="modalInput form-control" placeholder="Type your item here" id="item" ng-model="ic.item">
+                <input type="text" class="modalInput form-control" placeholder="Type your item here" id="item" ng-model="mc.item">
             </div>
             <div class="form-group">
               <label>Vendor:</label for="vendor">
-                <input type="text" class="modalInput form-control" placeholder="Vendor" id="vendor" ng-model="ic.vendor">
+                <input type="text" class="modalInput form-control" placeholder="Vendor" id="vendor" ng-model="mc.vendor">
             </div>
             <div class="form-group">
               <label>Quantity on hand:</label for="numberOnHand">
-                <input type="number" class="modalInput form-control" placeholder="Number currently on hand" id="numberOnHand" ng-model="ic.numberOnHand">
+                <input type="number" class="modalInput form-control" placeholder="Number currently on hand" id="numberOnHand" ng-model="mc.numberOnHand">
             </div>
             <div class="form-group">
               <label>Comments:</label for="comments">
-                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ic.comments">
+                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="mc.comments">
             </div>
             <div class="form-group">
               <label>Reorder Alert Amount:</label for="reorderAlertNumber">
-                <input type="number" class="modalInput form-control" placeholder="Reorder alert number" id="reorderAlertNumber" ng-model="ic.reorderAlertNumber">
+                <input type="number" class="modalInput form-control" placeholder="Reorder alert number" id="reorderAlertNumber" ng-model="mc.reorderAlertNumber">
             </div>
             <!-- radio buttons -->
             <div class="form-group">
               <label>Type:</label for="reorderAlertNumber">
-              <select label="-- Select option --" class="form-control input-lg" ng-model="ic.type">
+              <select label="-- Select option --" class="form-control input-lg" ng-model="mc.type">
                 <option value="" selected disabled><span class="selectlabel">What kind of item?</span></option>
                 <option class="form-control input-lg input100" value="backpack">Backpack</option>
                 <option class="form-control input-lg input100" value="merchandise">Merchandise</option>
@@ -200,7 +204,7 @@
 </div>
 <!-- post button -->
       <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ic.postInventoryItem()">Post</button>
+        <button class="btn btn-primary" ng-click="mc.postInventoryItem()">Post</button>
       </div>
     </script>
 <!-- end modal -->

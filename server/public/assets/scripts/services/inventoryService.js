@@ -17,7 +17,7 @@ myApp.service('InventoryService', function($http) {
     console.log(newItem);
     return $http({
       method: 'POST',
-      url: '/',
+      url: '/inventory',
       data: newItem
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
