@@ -9,7 +9,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.type = 'backpack';
   vm.reload = function() {
     $route.reload();
-  } //  reloads page after new item has been added to show immediately
+  }; //  reloads page after new item has been added to show immediately
   vm.animationsEnabled = true;
   vm.open = function(size) {
     var modalInstance = $modal.open({
@@ -18,7 +18,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       controller: 'InventoryController as ic',
       size: size
     });
-  }
+  };
   // called on header click
   vm.sortColumn = function(col) {
     vm.column = col;
@@ -41,14 +41,14 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     } else {
       return '';
     }
-  }
+  };
   vm.getInventory = function() {
     console.log('Getting the inventory');
     InventoryService.getInventory().then(function() {
       vm.inventory = InventoryService.inventoryData;
       console.log(vm.inventory);
     });
-  } // end getInventory
+  }; // end getInventory
   vm.postInventoryItem = function() {
     var newItem = {
       item: vm.item,
@@ -57,7 +57,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       comments: vm.comments,
       reorderAlertNumber: vm.reorderAlertNumber,
       type: vm.type
-    }
+    };
     console.log(newItem);
     if (newItem.item === undefined) {
       swal({
@@ -71,7 +71,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           if (dismiss === 'timer') {
             console.log('I was closed by the timer');
           }
-        })
+        });
     } else {
       InventoryService.postInventoryItem(newItem).then(function() {
         swal({
@@ -85,7 +85,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
             if (dismiss === 'timer') {
               console.log('I was closed by the timer');
             }
-          })
+          });
       });
       vm.reload();
     }
@@ -101,7 +101,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       // numberOnHand: vm.numberOnHandUpdate,
       // comments: vm.commentsUpdate,
       // reorderAlertNumber: vm.reorderAlertNumberUpdate
-    }
+    };
     console.log(updatedProperty);
     InventoryService.updateProperties(index, updatedProperty).then(function() {
       swal({
@@ -115,10 +115,10 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           if (dismiss === 'timer') {
             console.log('I was closed by the timer');
           }
-        })
+        });
     });
     vm.reload();
-  }
+  };
   vm.deleteItem = function(index) {
     console.log(index);
     swal({
@@ -141,7 +141,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
         'Deleted!',
         'Your item has been deleted.',
         'success'
-      )
+      );
     }, function(dismiss) {
       // dismiss can be 'cancel', 'overlay',
       // 'close', and 'timer'
@@ -150,8 +150,8 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           'Cancelled',
           'Your imaginary file is safe :)',
           'error'
-        )
+        );
       }
-    })
-  }
+    });
+  };
 });
