@@ -32,7 +32,7 @@ myApp.service('eventService', function($http) {
     console.log(id);
     return $http({
       method: 'DELETE',
-      url: '/events/' + id,
+      url: '/events/',
       params: {
         id: id
       }
@@ -42,30 +42,20 @@ myApp.service('eventService', function($http) {
   };
 
 
+  sv.updateEvents = function(id, updatedEvent) {
+    console.log(updatedEvent);
+    console.log(id);
+    return $http({
+      method: 'PUT',
+      url: '/events/' + id,
+      data: updatedEvent
+      // params: {
+      //   id: id
+      // }
+    }).then(function(response) {
+      console.log('back from updatedEvent:', response);
+    }); // end of update event
+  };
+
 
 });
-//
-// self.deleteAdmins = function(ev, id) {
-//   var confirm = $mdDialog.confirm()
-//     .title('Would you like to delete this user from the system?')
-//     .ariaLabel('Delete admin')
-//     .targetEvent(ev)
-//     .ok('Delete Admin User')
-//     .cancel('Cancel');
-//
-//   $mdDialog.show(confirm).then(function() {
-//     self.status = 'Admin User is deleted';
-//     $http({
-//       method: 'DELETE',
-//       url: '/private/deleteAdmins',
-//       params: {
-//         id: id
-//       }
-//     }).then(function(response) {
-//       self.getAdmins();
-//     }); //end then
-//   }, function() {
-//     self.status = 'user was not deleted, Thank you.';
-//   }); // end confirm dialogue
-// }; //end showconfirm
-// showconfirm
