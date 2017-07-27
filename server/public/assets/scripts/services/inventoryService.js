@@ -22,7 +22,7 @@ myApp.service('InventoryService', function($http) {
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
     });
-  }
+  };
 
   sv.updateProperties = function(updatedProperty) {
     console.log(updatedProperty);

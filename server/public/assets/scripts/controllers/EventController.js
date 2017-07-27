@@ -1,8 +1,5 @@
 myApp.controller('EventController', function(eventService, $modal, $route) {
 
-  // myApp.controller('EventController', ['$http', '$location', function($http, $location) {
-  // myApp.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
   console.log('in event controller');
   var vm = this;
 
