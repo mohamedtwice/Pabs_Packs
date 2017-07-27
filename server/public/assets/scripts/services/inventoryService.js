@@ -24,19 +24,15 @@ myApp.service('InventoryService', function($http) {
     });
   }
 
-  sv.updateProperties = function(index, updatedProperty) {
+  sv.updateProperties = function(updatedProperty) {
     console.log(updatedProperty);
-    console.log(index);
     return $http({
       method: 'PUT',
-      url: '/inventory',
-      data: updatedProperty,
-      params: {
-        id: index
-      }
+      url: '/inventory/' + updatedProperty.id,
+      data: updatedProperty
     }).then(function(response) {
-      console.log('back from updatedProperty:', response);
-    });
+      console.log('back from updateProperties:', response);
+    }); // update properties
   }
 
   sv.deleteItem = function(id) {

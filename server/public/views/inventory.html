@@ -1,11 +1,6 @@
 <div class="container" ng-init="ic.getInventory()">
 
   <h2>Inventory</h2>
-  <span>
-  <button class="btn btn-success pull-right" ng-click="toggle = !toggle">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-  <!-- <button ng-click="ic.updateProperties(ic.inventory.id)" ng-show="toggle" class="btn btn-default pull-right">Update</button> -->
-
-  </span>
 
   <!-- beginning of tabs -->
   <tabset>
@@ -46,37 +41,41 @@
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
               </th>
+              <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
           <!-- repeat items with hide/show inputs to show upon clicking edit button -->
           <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='backpack'">
             <td>
-              <thing ng-hide="toggle">{{items.item}}</thing>
-              <thing ng-show="toggle"><input type="text" ng-model="ic.itemUpdate[items.id]" placeholder="{{items.item}}" value="{{items.item}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.item}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.itemUpdate" placeholder="{{items.item}}" value="{{items.item}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle">{{items.vendor_id}}</thing>
-              <thing ng-show="toggle"><input type="text" ng-model="ic.vendorUpdate[items.id]" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.vendor_id}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.vendorUpdate" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle">{{items.number_on_hand}}</thing>
-              <thing ng-show="toggle"><input type="text" ng-model="ic.numberOnHandUpdate[items.id]" placeholder="{{items.number_on_hand}}" value="{{items.number_on_hand}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.number_on_hand}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.numberOnHandUpdate" placeholder="{{items.number_on_hand}}" value="{{items.number_on_hand}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle">{{items.comments}}</thing>
-              <thing ng-show="toggle"><input type="text" ng-model="ic.commetnsUpdate[items.id]" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.comments}}</thing>
+              <thing ng-show="toggle"><input type="text" ng-model="ic.commentsUpdate" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle">{{items.low_number}}</thing>
-              <thing ng-show="toggle"><input type="text" ng-model="ic.lowNumberUpdate[items.id]" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.low_number}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
+            </td>
+            <td>
+              <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button ng-click="ic.updateProperties(items.id)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
             </td>
             <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
           </tr>
         </table>
       </div>
     </tab>
-    <button ng-click="ic.updateProperties(items.id)" ng-show="toggle" class="btn btn-default pull-right">Update</button>
 
     <!-- merchandise section -->
     <tab heading="Merchandise" select="ic.getInventory()">
@@ -116,32 +115,37 @@
                 </a>
               </th>
               <th>Delete</th>
+              <th>Edit</th>
             </tr>
           </thead>
-          <!-- repeat items with hide/show inputs to show upon clicking edit button -->
-          <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}"   ng-if="items.type==='merchandise'">
-            <td>
-              <thing ng-hide="toggle">{{items.item}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.item}}"></thing>
-            </td>
-            <td>
-              <thing ng-hide="toggle">{{items.vendor_id}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.vendor_id}}"></thing>
-            </td>
 
+          <!-- repeat items with hide/show inputs to show upon clicking edit button -->
+          <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='merchandise'">
             <td>
-              <thing ng-hide="toggle">{{items.number_on_hand}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.number_on_hand}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.item}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.itemUpdate" placeholder="{{items.item}}" value="{{items.item}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle">{{items.comments}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.comments}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.vendor_id}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.vendorUpdate" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle">{{items.low_number}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.low_number}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.number_on_hand}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.numberOnHandUpdate" placeholder="{{items.number_on_hand}}" value="{{items.number_on_hand}}"></thing>
+            </td>
+            <td>
+              <thing ng-hide="toggle[items.id]">{{items.comments}}</thing>
+              <thing ng-show="toggle"><input type="text" ng-model="ic.commentsUpdate" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
+            </td>
+            <td>
+              <thing ng-hide="toggle[items.id]">{{items.low_number}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
             </td>
             <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+            <td>
+              <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button ng-click="ic.updateProperties(items.id)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
+            </td>
           </tr>
         </table>
       </div>
@@ -152,6 +156,7 @@
   <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
       <h3 class="modal-title">New Item</h3>
+      <button class="btn btn-warning" ng-click="ic.cancel()">Cancel</button>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -200,7 +205,7 @@
     </script>
 <!-- end modal -->
 
-  <button class="btn btn-info" ng-click="ic.open()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+  <button class="btn btn-info" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 
 <!-- add new row functionality -->
 

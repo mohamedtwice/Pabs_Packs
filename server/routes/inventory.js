@@ -10,7 +10,6 @@ router.use(bodyParser.urlencoded({
 }));
 router.use(bodyParser.json());
 
-
 // module with db
 router.use(bodyParser.urlencoded({extended: true}));
 router.use(bodyParser.json());
@@ -74,19 +73,20 @@ router.post('/', function(req, res) {
 });
 
 // POST /inventory
-router.put('/', function(req, res) {
-  console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}');
-  var id = req.params.id;
+router.put('/:id', function(req, res) {
+  console.log('{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
+  var id = req.body.id;
   var item = req.body.itemUpdate;
   var vendor = req.body.vendorUpdate;
   var comments = req.body.commentsUpdate;
   var on_hand = req.body.numberOnHandUpdate;
   var low_number = req.body.reorderAlertNumberUpdate;
-  // do database query to make a new todo
+  console.log(id);
+  console.log(item);
+  // updates specified field
   pool.connect()
     .then(function(client) {
-      // client.query("UPDATE inventory SET item='" + item + "' WHERE id='" + id + "'")
-      client.query("UPDATE inventory SET item='" + item + "' WHERE id='db32fc38-6c84-479f-ad8f-be67cfcf73c1'")
+      client.query("UPDATE inventory SET item=$1, vendor_id=$2, number_on_hand=$3, comments=$4, low_number=$5 WHERE id = $6;", [item, vendor, on_hand, comments, low_number, id])
         .then(function() {
           client.release();
           res.sendStatus(201); // created
