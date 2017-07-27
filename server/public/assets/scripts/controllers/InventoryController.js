@@ -17,7 +17,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'InventoryController as ic',
+      controller: 'ModalController as mc',
       size: size
     });
   }
@@ -51,52 +51,10 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       console.log(vm.inventory);
     });
   } // end getInventory
-  vm.postInventoryItem = function() {
-    var newItem = {
-      item: vm.item,
-      vendor: vm.vendor,
-      numberOnHand: vm.numberOnHand,
-      comments: vm.comments,
-      reorderAlertNumber: vm.reorderAlertNumber,
-      type: vm.type
-    }
-    console.log(newItem);
-    if (newItem.item === undefined) {
-      swal({
-        type: 'warning',
-        title: 'Item was not entered!',
-        timer: 2000
-      }).then(
-        function() {},
-        // handling the promise rejection
-        function(dismiss) {
-          if (dismiss === 'timer') {
-            console.log('I was closed by the timer');
-          }
-        })
-    } else {
-      InventoryService.postInventoryItem(newItem).then(function() {
-        swal({
-          type: 'success',
-          title: 'New item added!',
-          timer: 2000
-        }).then(
-          function() {},
-          // handling the promise rejection
-          function(dismiss) {
-            if (dismiss === 'timer') {
-              console.log('I was closed by the timer');
-            }
-          })
-      });
-      vm.reload();
-    }
-  }; // end postInventoryItem
 
   vm.updateProperties = function(id) {
     console.log('in updateProperties');
     console.log(id);
-
     var updatedProperty = {
       id: id,
       itemUpdate: vm.itemUpdate,
