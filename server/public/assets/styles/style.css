@@ -12,6 +12,10 @@ body {
   background-attachment: fixed;
 }
 
+.container {
+  background-color: white;
+}
+
 .wrapper {
   /*padding-top: 2px;*/
   background: #e7e9dd;
@@ -33,13 +37,6 @@ section {
 img {
   height: 5rem;
 }
-/*
-body {
-  background: url('../../images/pattern.jpg')
-}
-.container {
-  background-color: white;
-}*/
 
 h2 {
   margin-top: 9rem;

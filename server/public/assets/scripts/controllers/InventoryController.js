@@ -7,11 +7,13 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.orderByField = 'item';
   vm.reverseSort = false;
   vm.type = 'backpack';
+  vm.animationsEnabled = true;
+
   vm.reload = function() {
     $route.reload();
   } //  reloads page after new item has been added to show immediately
-  vm.animationsEnabled = true;
-  vm.open = function(size) {
+
+  vm.openAddNew = function(size) {
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
@@ -91,19 +93,20 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     }
   }; // end postInventoryItem
 
-  vm.updateProperties = function(index) {
+  vm.updateProperties = function(id) {
     console.log('in updateProperties');
-    console.log(index);
+    console.log(id);
+
     var updatedProperty = {
-      item: vm.itemUpdate,
-      id: vm.inventory.id
-      // vendor: vm.vendorUpdate,
-      // numberOnHand: vm.numberOnHandUpdate,
-      // comments: vm.commentsUpdate,
-      // reorderAlertNumber: vm.reorderAlertNumberUpdate
+      id: id,
+      itemUpdate: vm.itemUpdate,
+      vendorUpdate: vm.vendorUpdate,
+      numberOnHandUpdate: vm.numberOnHandUpdate,
+      commentsUpdate: vm.commentsUpdate,
+      reorderAlertNumberUpdate: vm.reorderAlertNumberUpdate
     }
     console.log(updatedProperty);
-    InventoryService.updateProperties(index, updatedProperty).then(function() {
+    InventoryService.updateProperties(updatedProperty).then(function() {
       swal({
         type: 'success',
         title: 'Item Updated!',
