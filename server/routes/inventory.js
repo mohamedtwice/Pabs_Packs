@@ -5,7 +5,9 @@ var bodyParser = require('body-parser')
 var path = require('path');
 
 // module with db
-router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 router.use(bodyParser.json());
 
 var connection = require('../modules/connection');
@@ -67,7 +69,7 @@ router.post('/', function(req, res) {
 });
 
 // POST /inventory
-router.put('/:id', function(req, res) {
+router.put('/', function(req, res) {
   console.log('{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
   var id = req.body.id;
   var item = req.body.itemUpdate;

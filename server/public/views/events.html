@@ -1,56 +1,90 @@
 <div class="container" ng-init="ec.getEvents()">
   <div class="bg">
 
-
-
-    <div class="col-sm-12">
-      <div class="background">
-
         <h2>Event Tracker</h2>
         <div class="rows">
           <!-- beginning of tabs -->
           <tabset>
             <!-- packs tab -->
-            <tab heading="Donation Events">
+            <tab heading="Donation Events" ng-init="ec.getEvents()">
               <div class="table-responsive">
 
                 <table class="table table-bordered table-hover">
+                  <!-- header with sort -->
                   <thead>
                     <tr>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Event</th>
-                      <th>Packs Promised</th>
-                      <th>Packs Needed</th>
-                      <th>Notes</th>
-                      <!-- header with sort -->
-                      <!-- <thead>
-                      <tr>
-                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                          Item <span ng-show="ic.orderByField == 'item'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='vendor'; ic.reverseSort = !ic.reverseSort">
-                          Vendor <span ng-show="ic.orderByField == 'vendor'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='numberOnHand'; ic.reverseSort = !ic.reverseSort">
-                          Number On Hand <span ng-show="orderByField == 'ic.numberOnHand'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='item'; ic.reverseSort = !ic.reverseSort">
-                          Comments <span ng-show="ic.orderByField == 'dateOrdered'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th><a ng-click="ic.orderByField='reorderAlertNumber'; ic.reverseSort = !ic.reverseSort">
-                          Reorder Alert Amount <span ng-show="ic.orderByField == 'reorderAlertNumber'"><span ng-show="!ic.reverseSort"><i class="fa fa-sort-asc" aria-hidden="true"></i></span><span ng-show="ic.reverseSort"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></span></a></th>
-                        <th>Delete</th> -->
+                      <th>
+                        <a ng-click='ec.sortColumn("event_date"); arrow = !arrow' ng-class='ec.sortClass("event_date")'>Date
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("event_time"); arrow = !arrow' ng-class='ec.sortClass("event_time")'>Time
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("partner_id"); arrow = !arrow' ng-class='ec.sortClass("partner_id")'>Event Partner
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("packs_promised"); arrow = !arrow' ng-class='ec.sortClass("packs_promised")'>Packs Promised
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("packs_needed"); arrow = !arrow' ng-class='ec.sortClass("packs_needed")'>Packs Needed
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                        </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("comments"); arrow = !arrow' ng-class='ec.sortClass("comments")'>Comments
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        Edit / Delete
+                      </th>
                     </tr>
                   </thead>
                   <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Donation'">
-                    <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
-                    <td>{{events.event_date | date:"MM/dd/yyyy"}}</td>
-                    <td>{{events.event_time}}</td>
-                    <td>{{events.partner_id}}</td>
-                    <td>{{events.packs_promised}}</td>
-                    <td></td>
-                    <td>{{events.comments}}</td>
                     <td>
-                      <button class="btn btn-success" ng-click="toggle = !toggle">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                      <button ng-click="ic.updateProperties(items.id)" ng-show="toggle" class="btn btn-default">Update</button>
-                      <button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button></td>
+                      <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:"MM/dd/yyyy"}}" value="{{events.event_date | date:"MM/dd/yyyy"}}"></thing>
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.event_time}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.partner_id}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_idUpdate" placeholder="{{events.partner_id}}" value="{{events.partner_id}}"></thing>
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.packs_promised}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.packs_promisedUpdate" placeholder="{{events.packs_promised}}" value="{{events.packs_promised}}"></thing>
+                    </td>
+                    <td>
+                      <thing>{{events.packs_needed}}</thing>
+                      <!-- <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.packs_neededUpdate" placeholder="{{events.packs_needed}}" value="{{events.packs_needed}}"></thing> -->
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.comments}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.commentsUpdate" placeholder="{{events.comments}}" value="{{events.comments}}"></thing>
+                    </td>
+                    <td>
+                      <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                      <button ng-click="ec.updateDonationEvents(events.id)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
+                      <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button>
+                    </td>
                     <!-- //mc.deleteOrder(x._id) -->
                   </tr>
                 </table>
@@ -65,65 +99,74 @@
                 <table class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Event</th>
-                      <th>Packs Made</th>
-                      <th>Notes</th>
-                      <!-- header with sort -->
-                      <thead>
-                        <tr>
-                          <th>
-                            <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Date
-                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                          </a>
-                          </th>
-                          <th>
-                            <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>time
-                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                          </a>
-                          </th>
-                          <th>
-                            <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Partner
-                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                          </a>
-                          </th>
-                          <th>
-                            <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Packs Made
-                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                          </a>
-                          </th>
-                          <th>
-                            <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Comments
-                            <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                            <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                          </a>
-                          </th>
-                          <th>Delete</th>
-                        </tr>
-                      </thead>
-                      <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
-                        <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
-                        <td>{{events.event_date | date:"MM/dd/yyyy"}}</td>
-                        <td>{{events.event_time}}</td>
-                        <td>{{events.partner_id}}</td>
-                        <td>{{events.packs_made}}</td>
-                        <td>{{events.comments}}</td>
-                        <td><button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button></td>
-                      </tr>
+                      <th>
+                        <a ng-click='ec.sortColumn("event_date"); arrow = !arrow' ng-class='ec.sortClass("event_date")'>Date
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("event_time"); arrow = !arrow' ng-class='ec.sortClass("event_time")'>Time
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("partner_id"); arrow = !arrow' ng-class='ec.sortClass("partner_id")'>Event Partner
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("packs_promised"); arrow = !arrow' ng-class='ec.sortClass("packs_promised")'>Packs Promised
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("packs_needed"); arrow = !arrow' ng-class='ec.sortClass("packs_needed")'>Packs Needed
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                        </th>
+                      <th>
+                        <a ng-click='ec.sortColumn("comments"); arrow = !arrow' ng-class='ec.sortClass("comments")'>Comments
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        Edit / Delete
+                      </th>
+                    </tr>
                   </thead>
                   <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
-                    <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
-                    <td>{{events.event_date | date:"MM/dd/yyyy"}}</td>
-                    <td>{{events.event_time}}</td>
-                    <td>{{events.partner_id}}</td>
-                    <td>{{events.packs_made}}</td>
-                    <td>{{events.comments}}</td>
-                    <td><button class="btn btn-warning" ng-click="ic.deleteItem(items.id)">X</button></td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:"MM/dd/yyyy"}}" value="{{events.event_date | date:"MM/dd/yyyy"}}"></thing>
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.event_time}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.partner_id}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_idUpdate" placeholder="{{events.partner_id}}" value="{{events.partner_id}}"></thing>
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.packs_made}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.packs_madeUpdate" placeholder="{{events.packs_made}}" value="{{events.packs_made}}"></thing>
+                    </td>
+                    <td>
+                      <thing ng-hide="toggle[events.id]">{{events.comments}}</thing>
+                      <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.commentsUpdate" placeholder="{{events.comments}}" value="{{events.comments}}"></thing>
+                    </td>
+                    <td>
+                      <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                      <button ng-click="ec.updatePackEvents(events.id)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
+                      <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button>
+                    </td>
                   </tr>
                 </table>
               </div>
