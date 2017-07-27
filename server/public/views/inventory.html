@@ -1,51 +1,87 @@
-<div class="container" ng-init="ic.getInventory()">
+<div ng-controller="InventoryController as ic" class="container">
+  <!-- <div class="container">
+  <div class="row seven-cols">
+    <div class="col-md-1">Item</div>
+    <div class="col-md-1">Vendor</div>
+    <div class="col-md-1">Quantity on Hand</div>
+    <div class="col-md-1">Date Ordered</div>
+    <div class="col-md-1">Next Shipment Date</div>
+    <div class="col-md-1">Cost</div>
+    <div class="col-md-1">Reorder Alert Number</div>
+  </div>
+</div> -->
 
   <div class="bg">
-  <h2>Inventory</h2>
-  <span>
+    <h2>Inventory</h2>
+    <span>
   <button class="btn btn-success pull-right" ng-click="toggle = !toggle">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
   <!-- <button ng-click="ic.updateProperties(ic.inventory.id)" ng-show="toggle" class="btn btn-default pull-right">Update</button> -->
   </span>
-  <!-- beginning of tabs -->
-  <tabset>
-    <!-- packs tab -->
-    <tab heading="Packs" select="ic.getInventory()">
-      <div class="table-responsive" ng-model="ic.packs">
-        <table class="table table-bordered table-hover">
-          <!-- header with sort -->
-          <thead>
-            <tr>
-              <th>
-                <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item
+    <!-- beginning of tabs -->
+    <tabset>
+      <!-- packs tab -->
+      <tab heading="Packs" select="ic.getInventory()">
+        <div class="table-responsive" ng-model="ic.packs">
+          <table class="table table-bordered table-hover">
+            <!-- header with sort -->
+            <thead>
+              <tr>
+                <th>
+                  <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
-              </th>
-              <th>Delete</th>
+                </th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <!-- repeat items with hide/show inputs to show upon clicking edit button -->
+            <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='backpack'">
+              <td>
+                <thing ng-hide="toggle">{{items.item}}</thing>
+                <thing ng-show="toggle"><input type="text" ng-model="ic.itemUpdate[items.id]" placeholder="{{items.item}}" value="{{items.item}}"></thing>
+              </td>
+              <td>
+                <thing ng-hide="toggle">{{items.vendor_id}}</thing>
+                <thing ng-show="toggle"><input type="text" ng-model="ic.vendorUpdate[items.id]" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
+              </td>
+              <td>
+                <thing ng-hide="toggle">{{items.number_on_hand}}</thing>
+                <thing ng-show="toggle"><input type="text" ng-model="ic.numberOnHandUpdate[items.id]" placeholder="{{items.number_on_hand}}" value="{{items.number_on_hand}}"></thing>
+              </td>
+              <td>
+                <thing ng-hide="toggle">{{items.comments}}</thing>
+                <thing ng-show="toggle"><input type="text" ng-model="ic.commetnsUpdate[items.id]" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
+              </td>
+              <td>
+                <thing ng-hide="toggle">{{items.low_number}}</thing>
+                <thing ng-show="toggle"><input type="text" ng-model="ic.lowNumberUpdate[items.id]" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
+              </td>
+              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
             </tr>
           </thead>
           <!-- repeat items with hide/show inputs to show upon clicking edit button -->
@@ -76,87 +112,89 @@
       </div>
     </tab>
     <button ng-click="ic.updateProperties(items.id)" ng-show="toggle" class="btn btn-default pull-right">Update</button>
-    <!-- merchandise section -->
-    <tab heading="Merchandise" select="ic.getInventory()">
-      <div class="table-responsive" ng-model="ic.packs">
-        <table class="table table-bordered table-hover">
-          <!-- header with sort -->
-          <thead>
-            <tr>
-              <th>
-                <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-              </th>
-              <th>
-                <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-              </th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <!-- repeat items with hide/show inputs to show upon clicking edit button -->
-          <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}"   ng-if="items.type==='merchandise'">
-            <td>
-              <thing ng-hide="toggle">{{items.item}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.item}}"></thing>
-            </td>
-            <td>
-              <thing ng-hide="toggle">{{items.vendor_id}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.vendor_id}}"></thing>
-            </td>
 
-            <td>
-              <thing ng-hide="toggle">{{items.number_on_hand}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.number_on_hand}}"></thing>
-            </td>
-            <td>
-              <thing ng-hide="toggle">{{items.comments}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.comments}}"></thing>
-            </td>
-            <td>
-              <thing ng-hide="toggle">{{items.low_number}}</thing>
-              <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.low_number}}"></thing>
-            </td>
-            <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
-          </tr>
-        </table>
+    <!-- merchandise section -->
+      <tab heading="Merchandise" select="ic.getInventory()">
+        <div class="table-responsive" ng-model="ic.packs">
+          <table class="table table-bordered table-hover">
+            <!-- header with sort -->
+            <thead>
+              <tr>
+                <th>
+                  <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item
+
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+                </th>
+                <th>
+                  <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+                </th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <!-- repeat items with hide/show inputs to show upon clicking edit button -->
+            <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='merchandise'">
+              <td>
+                <thing ng-hide="toggle">{{items.item}}</thing>
+                <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.item}}"></thing>
+              </td>
+              <td>
+                <thing ng-hide="toggle">{{items.vendor_id}}</thing>
+                <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.vendor_id}}"></thing>
+              </td>
+
+              <td>
+                <thing ng-hide="toggle">{{items.number_on_hand}}</thing>
+                <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.number_on_hand}}"></thing>
+              </td>
+              <td>
+                <thing ng-hide="toggle">{{items.comments}}</thing>
+                <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.comments}}"></thing>
+              </td>
+              <td>
+                <thing ng-hide="toggle">{{items.low_number}}</thing>
+                <thing ng-show="toggle"><input type="text" id="item" ng-model="ic.item" placeholder="{{items.low_number}}"></thing>
+              </td>
+              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+            </tr>
+          </table>
+        </div>
+      </tab>
+    </tabset>
+    <!-- modal -->
+    <script type="text/ng-template" id="myModalContent.html">
+      <div class="modal-header">
+        <h3 class="modal-title">New Item</h3>
       </div>
-    </tab>
-  </tabset>
-  <!-- modal -->
-  <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-      <h3 class="modal-title">New Item</h3>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- input forms -->
-          <form>
-            <div class="form-group">
-              <label>Item:</label for="item">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- input forms -->
+            <form>
+              <div class="form-group">
+                <label>Item:</label for="item">
                 <input type="text" class="modalInput form-control" placeholder="Type your item here" id="item" ng-model="ic.item">
             </div>
             <div class="form-group">
