@@ -79,6 +79,8 @@ router.post('/', function(req, res) {
     });
 });
 
+// ---
+
 router.delete('/:id', function(req, res, next) {
   console.log("delete router connected to database");
 
@@ -98,6 +100,52 @@ router.delete('/:id', function(req, res, next) {
       res.send(result);
     });
   });
+});
+
+
+// ---
+
+router.put('/:id', function(req, res, next) {
+  console.log('in put db');
+  var id = req.params.id;
+  console.log(id);
+  console.log(req.body);
+  var event_date = req.body.date;
+  var event_time = req.body.time;
+  var partner_id = req.body.partner_id;
+  var packs_made = req.body.packs_made;
+  var packs_promised = req.body.packs_promised;
+  var comments = req.body.comments;
+  console.log(packs_promised);
+
+  // updates specified field
+  pool.connect(function(err, client, done) {
+    var id = req.params.id;
+
+    console.log(id);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("UPDATE events SET event_date=$1, event_time=$2, partner_id=$3, packs_made=$4, packs_promised=$5, comments=$6 WHERE id = $7;", [event_date, event_time, partner_id, packs_made, packs_promised, comments, id], function(err, result) {
+      console.log(id);
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      console.log(result);
+      res.send(result);
+    });
+  });
+  //     .then(function() {
+  //       client.release();
+  //       res.sendStatus(201); // created
+  //     });
+  // })
+  // .catch(function(err) {
+  //   client.release();
+  //   res.sendStatus(500); // server error
+  // });
+
 });
 
 

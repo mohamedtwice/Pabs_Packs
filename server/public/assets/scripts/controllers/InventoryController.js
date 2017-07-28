@@ -1,7 +1,6 @@
 myApp.controller('InventoryController', function(InventoryService, $modal, $route) {
   console.log('in inventory controller');
   var vm = this;
-
   vm.column = 'item';
   // sort ordering (Ascending or Descending). Set true for desending
   vm.reverse = false;
@@ -29,7 +28,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       size: size
     });
   }
-
   // called on header click
   vm.sortColumn = function(col) {
     vm.column = col;
@@ -41,7 +39,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vm.reverseclass = 'arrow-down';
     }
   };
-
   // remove and change class
   vm.sortClass = function(col) {
     if (vm.column == col) {
@@ -54,7 +51,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       return '';
     }
   }
-
   vm.getInventory = function() {
     console.log('Getting the inventory');
     InventoryService.getInventory().then(function() {
@@ -123,7 +119,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     });
     vm.reload();
   }
-
   vm.deleteItem = function(index) {
     console.log(index);
     swal({
@@ -131,7 +126,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6 ',
+      confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, cancel!',

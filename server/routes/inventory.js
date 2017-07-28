@@ -5,7 +5,9 @@ var bodyParser = require('body-parser')
 var path = require('path');
 
 // module with db
-router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 router.use(bodyParser.json());
 
 var connection = require('../modules/connection');
@@ -44,6 +46,7 @@ router.get('/', function(req, res) {
 
 // POST /inventory
 router.post('/', function(req, res) {
+  // implement passport here (req.isAuthenticated)
   console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
   var item = req.body.item;
@@ -68,7 +71,7 @@ router.post('/', function(req, res) {
 });
 
 // POST /inventory
-router.put('/:id', function(req, res) {
+router.put('/', function(req, res) {
   console.log('{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
   var id = req.body.id;
   var item = req.body.itemUpdate;
@@ -115,17 +118,17 @@ router.delete('/:id', function(req, res) {
   console.log('-------------------------++++++++++++++++++++++++');
   console.log(req.params.id);
   pool.connect(function(err, connection, done) {
-      console.log('Post hit');
-      var id = req.params.id;
-      if (err) {
-        console.log('error in connection', err);
-        done();
-        res.send(400);
-      } else {
-        connection.query("DELETE FROM inventory WHERE id = '" + id + "';");
-        res.send('deleted');
-      }
-    });
+    console.log('Post hit');
+    var id = req.params.id;
+    if (err) {
+      console.log('error in connection', err);
+      done();
+      res.send(400);
+    } else {
+      connection.query("DELETE FROM inventory WHERE id = '" + id + "';");
+      res.send('deleted');
+    }
+  });
 });
 
 module.exports = router;
