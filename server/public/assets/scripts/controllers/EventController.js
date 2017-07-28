@@ -83,7 +83,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
   vm.updateDonationEvents = function(id) {
     console.log('in updateDonationEvents');
     console.log(id);
-
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,

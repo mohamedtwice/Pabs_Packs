@@ -23,6 +23,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/events.html',
       controller: "EventController as ec",
     })
+    .when('/admin', {
+      templateUrl: '/views/admin.html',
+      controller: "AdminController as ac",
+    })
     .otherwise({
       redirectTo: 'home'
     });
