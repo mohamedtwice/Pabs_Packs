@@ -9,6 +9,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.reverseSort = false;
   vm.type = 'backpack';
   vm.animationsEnabled = true;
+  vm.inventory = [];
 
   vm.reload = function() {
     $route.reload();
@@ -57,8 +58,24 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   } // end getInventory
 
   vm.updateProperties = function(id) {
-    console.log('in updateProperties');
     console.log(id);
+    console.log('in updateProperties');
+    console.log(vm.inventory);
+    // for (var i = 0; i < vm.inventory.length; i++) {
+    //   vm.inventory[i] = id;
+    // }
+    if(vm.itemUpdate === undefined) {
+      vm.itemUpdate = vm.inventory.item;
+    } else if(vm.vendorUpdate === undefined) {
+      vm.vendorUpdate = vm.inventory.vendor_id;
+    } else if(vm.numberOnHandUpdate === undefined) {
+      vm.numberOnHandUpdate = vm.inventory.number_on_hand;
+    } else if(vm.commentsUpdate === undefined) {
+      vm.commentsUpdate = vm.inventory.comments;
+    } else if(vm.reorderAlertNumberUpdate === undefined) {
+      vm.reorderAlertNumberUpdate = vm.inventory.low_number;
+    }
+    console.log(vm.itemUpdate);
     var updatedProperty = {
       id: id,
       itemUpdate: vm.itemUpdate,

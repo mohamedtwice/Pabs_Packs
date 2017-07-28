@@ -24,7 +24,6 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
     console.log('id is:', id);
   }; // end delete
 
-
   vm.createEvent = function() {
     console.log('in createEvent');
     if (vm_event_type == '' | partner_id === '') {
