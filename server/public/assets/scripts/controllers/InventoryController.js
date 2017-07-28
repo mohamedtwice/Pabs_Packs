@@ -9,17 +9,23 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.reverseSort = false;
   vm.type = 'backpack';
   vm.animationsEnabled = true;
-  vm.inventory = [];
+  vm.selectedButton = false;
 
   vm.reload = function() {
     $route.reload();
   } //  reloads page after new item has been added to show immediately
 
+  vm.selectButton = function(id) {
+
+    vm.selectedButton = !vm.selectedButton;
+    console.log(vm.selectedButton);
+  }
+
   vm.openAddNew = function(size) {
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'ModalController as mc',
+      controller: 'InventoryModalController as mc',
       size: size
     });
   }
@@ -57,27 +63,43 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     });
   } // end getInventory
 
-  vm.updateProperties = function(id) {
-    console.log(id);
+  vm.updateProperties = function(items) {
+    console.log(items);
     console.log('in updateProperties');
-    console.log(vm.inventory);
-    // for (var i = 0; i < vm.inventory.length; i++) {
-    //   vm.inventory[i] = id;
-    // }
-    if(vm.itemUpdate === undefined) {
-      vm.itemUpdate = vm.inventory.item;
-    } else if(vm.vendorUpdate === undefined) {
-      vm.vendorUpdate = vm.inventory.vendor_id;
-    } else if(vm.numberOnHandUpdate === undefined) {
-      vm.numberOnHandUpdate = vm.inventory.number_on_hand;
-    } else if(vm.commentsUpdate === undefined) {
-      vm.commentsUpdate = vm.inventory.comments;
-    } else if(vm.reorderAlertNumberUpdate === undefined) {
-      vm.reorderAlertNumberUpdate = vm.inventory.low_number;
+    if (vm.itemUpdate !== items.item) {
+      if (vm.itemUpdate === undefined) {
+        vm.itemUpdate = items.item;
+      } else {
+        vm.itemUpdate = vm.itemUpdate;
+      }
+    } if (vm.vendorUpdate !== items.vendor_id) {
+      if (vm.vendorUpdate === undefined) {
+        vm.vendorUpdate = items.vendor_id;
+      } else {
+        vm.vendorUpdate = vm.vendorUpdate;
+      }
+    } if (vm.numberOnHandUpdate !== items.number_on_hand) {
+      if (vm.numberOnHandUpdate === undefined) {
+        vm.numberOnHandUpdate = items.number_on_hand;
+      } else {
+        vm.numberOnHandUpdate = vm.numberOnHandUpdate;
+      }
+    } if (vm.commentsUpdate !== items.comments) {
+      if (vm.commentsUpdate === undefined) {
+        vm.commentsUpdate = items.comments;
+      } else {
+        vm.commentsUpdate = vm.commentsUpdate;
+      }
+    } if (vm.reorderAlertNumberUpdate !== items.low_number) {
+      if (vm.reorderAlertNumberUpdate === undefined) {
+        vm.reorderAlertNumberUpdate = items.low_number;
+      } else {
+        vm.reorderAlertNumberUpdate = vm.reorderAlertNumberUpdate;
+      }
     }
-    console.log(vm.itemUpdate);
+    console.log(vm.vendorUpdate);
     var updatedProperty = {
-      id: id,
+      id: items.id,
       itemUpdate: vm.itemUpdate,
       vendorUpdate: vm.vendorUpdate,
       numberOnHandUpdate: vm.numberOnHandUpdate,

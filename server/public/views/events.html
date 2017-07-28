@@ -99,174 +99,67 @@
 
     </div>
 
-    <section>
-      <div class="container">
-        <div class="col-sm-6 col-sm-offset-3 text-center">
+  </div>
 
-          <form ng-submit="ec.createEvent()">
-            <div>
-              <input type="text" ng-model="ecevent_date" class="input100" placeholder="Date" />
+  <!-- modal -->
+  <script type="text/ng-template" id="eventModal.html">
+    <div class="modal-header">
+      <div class='btn-toolbar pull-right'>
+        <div class='btn-group'>
+          <button class="btn btn-warning" ng-click="ec.cancel()"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <h3 class="modal-title">New Item</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- input forms -->
+          <form>
+            <div class="form-group">
+              <label>Date:</label for="date">
+                <input type="date" class="modalInput form-control input-lg" placeholder="Type your date here" id="date" ng-model="ec.event_date">
             </div>
-            <div>
-              <input type="text" ng-model="ec.event_time" class="input100" placeholder="Time" />
+            <div class="form-group">
+              <label>Time:</label for="time">
+                <input type="text" class="modalInput form-control input-lg" placeholder="Time" id="time" ng-model="ec.event_time">
             </div>
-            <div>
-              <input type="number" ng-model="ec.partner_id" class="input100" placeholder="Partner" />
+            <div class="form-group">
+              <label>Partner Id:</label for="numberOnHand">
+                <input type="number" class="modalInput form-control input-lg" placeholder="Partner Id" id="numberOnHand" ng-model="ec.partner_id">
             </div>
-            <div>
-              <select label="-- Select option --" class="form-control input-lg input100" ng-model="ec.event_type" placeholder="What type of event?">
-                <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
-                <option class="form-control input-lg input100" value="Donation">Donation Event</option>
-                <option class="form-control input-lg input100" value="Packing">Packing Event</option>
-              </select>
+            <div class="form-group">
+              <label>Comments:</label for="comments">
+                <input type="text" class="modalInput form-control input-lg" placeholder="Comments" id="comments" ng-model="ec.comments">
+            </div>
+            <div class="form-group">
+              <label>Packs Made:</label for="packsMade">
+                <input type="number" class="modalInput form-control input-lg" placeholder="Packs Made" id="packsMade" ng-model="ec.packs_made">
+            </div>
+            <div class="form-group">
+              <label>Packs Promised:</label for="packsPromised">
+                <input type="number" class="modalInput form-control input-lg" placeholder="Packs Promised" id="packsPromised" ng-model="ec.packs_promised">
+            </div>
+            <!-- radio buttons -->
+            <div class="form-group">
+              <label>Type of Event:</label for="eventType">
+                <select label="-- Select option --" class="form-control input-lg input100" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
+                  <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
+                  <option class="form-control input-lg input100" value="Donation">Donation Event</option>
+                  <option class="form-control input-lg input100" value="Packing">Packing Event</option>
+                </select>
+            </div>
 
-              <input class="form-control input-lg input100" ng-model="ec.packs_promised" ng-show="ec.event_type=='Donation'" placeholder="How many Packs promised?" type="text">
-              <input class="form-control input-lg input100" ng-model="ec.packs_made" ng-show="ec.event_type=='Packing'" placeholder="How many Packs made?" type="text">
-            </div>
-            <input class="btn btn-default input100" type="submit" name="submit" value="Create" />
-            <!-- <button class="btn btn-default input100" ng-click="ec.createEvent()">Create Event</button> -->
           </form>
         </div>
       </div>
-
-    </section>
-
-  </div>
-
-  <section <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <h1 id="welcome" class="lead">Welcome, {{userName}}!</h1>
-        <hr>
-        <button class="btn btn-default" ng-click="logout()">Log Out</button>
-      </div>
     </div>
 </div>
-</section>
-
-<div ng-controller="EventsController as ec" class="container">
-
-  <section>
-    <div class="dropdown" class="btn-group dropdown dropdown-notifications sw-open">
-      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <i data-count="3" class="glyphicon glyphicon-bell notification-icon"></i>
-    <span class="caret"></span>
-  </button>
-
-      <div class="dropdown-container">
-        <div class="dropdown-toolbar">
-          <div class="dropdown-toolbar-actions">
-            <a href="#"><i class="glyphicon glyphicon-search"></i> View All</a>
-          </div>
-          <h3 class="dropdown-toolbar-title">Recent Notifications  (3)</h3>
-        </div>
-        <!-- /dropdown-toolbar -->
-
-        <ul class="dropdown-menu notifications">
-          ...
-        </ul>
+<!-- post button -->
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ec.createEvent()">Create</button>
       </div>
-    </div>
-  </section>
+    </script>
+<!-- end modal -->
 
-  <section>
-    <h3>Pack Totals</h3>
-    <div class="col-md-3" id="packTotals">
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Needed Packs</th>
-            <th>Packs Currently Packed</th>
-            <th>CTD Annual Donated Packs</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-
-  <section>
-    <h3>Event Schedule and Pack Inventory</h3>
-    <h6>View Events For
-      <input type="date" id="date" value="Select Month" ng-model="ec.dateInput">
-      <button type="button" id="eventsButton" class="btn btn-primary btn-sm pull-right">Print</button>
-      <button type="button" id="eventsButton" class="btn btn-primary btn-sm pull-right">Edit</button>
-      <button type="button" id="eventsButton" class="btn btn-primary btn-sm pull-right">Add New</button>
-    </h6>
-
-    <div class="col-md-6" id="eventColumns">
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Event</th>
-            <th>Packs Promised</th>
-            <th>Packs Needed</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-</div>
-</section>
+<button class="btn btn-info" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>

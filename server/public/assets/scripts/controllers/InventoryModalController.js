@@ -1,4 +1,4 @@
-myApp.controller('ModalController', function(InventoryService, $modalInstance, $route) {
+myApp.controller('InventoryModalController', function(InventoryService, $modalInstance, $route) {
   console.log('in ModalController');
   var vm = this;
 
@@ -52,5 +52,5 @@ myApp.controller('ModalController', function(InventoryService, $modalInstance, $
     }
 
   } // end postInventoryItem
-  
+
 })

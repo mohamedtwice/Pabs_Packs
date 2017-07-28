@@ -14,6 +14,16 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
     });
   }; // end getInventory
 
+  vm.openAddNew = function(size) {
+    console.log('in add new');
+    var modalInstance = $modal.open({
+      animation: vm.animationsEnabled,
+      templateUrl: 'eventModal.html',
+      controller: 'EventModalController as ec',
+      size: size
+    });
+  }
+
   vm.deleteEvent = function(id) {
     console.log('in deleteEvent');
     console.log(id);
@@ -24,25 +34,7 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
     console.log('id is:', id);
   }; // end delete
 
-  vm.createEvent = function() {
-    console.log('in createEvent');
-    if (vm_event_type == '' | partner_id === '') {
 
-    }
-    var newEvent = {
-      date: vm.event_date,
-      time: vm.event_time,
-      partner_id: vm.partner_id,
-      event_type: vm.event_type,
-      packs_made: vm.packs_made,
-      packs_promised: vm.packs_promised,
-      comments: vm.comments
-    };
-
-    console.log(newEvent);
-    eventService.postEvent(newEvent).then(function() {});
-    $route.reload();
-  }; // end postInventoryItem
 
 
 }); // end createEvent

@@ -3,7 +3,7 @@ myApp.service('eventService', function($http) {
   console.log('in event service');
   var sv = this;
 
-  sv.getEvents = function() {
+  sv.createEvent = function() {
     console.log('in getEvents service');
     return $http({
       method: 'GET',
@@ -14,7 +14,6 @@ myApp.service('eventService', function($http) {
       console.log(sv.eventsData);
     }); //
   };
-
 
   sv.postEvent = function(newEvent) {
     console.log(newEvent);
@@ -40,8 +39,6 @@ myApp.service('eventService', function($http) {
       return response;
     });
   };
-
-
 
 });
 //
