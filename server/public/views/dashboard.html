@@ -16,7 +16,8 @@
 <section>
 <div class="container" id="pie">
   <h3>Annual Goal for Pack Donations</h3>
-  <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions"></canvas>
+  <canvas id="pie" class="chart chart-pie" data-ng-init="dc.getPieChart()"></canvas>
+  <!-- chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" -->
 </div>
 </section>
 

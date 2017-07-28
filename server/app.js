@@ -8,10 +8,12 @@ var session = require('express-session');
 
 // Route includes
 var index = require('./routes/index');
+var dashboard = require('./routes/dashboard');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var inventory = require('./routes/inventory');
 var events = require('./routes/events');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -40,6 +42,7 @@ app.use(passport.session());
 // Routes
 app.use('/register', register);
 app.use('/user', user);
+app.use('/dashboard', dashboard);
 app.use('/inventory', inventory);
 app.use('/events', events);
 app.use('/*', index);

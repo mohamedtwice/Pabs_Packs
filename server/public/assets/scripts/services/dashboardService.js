@@ -1,16 +1,17 @@
 /**** Dashboard Service ****/
 
-myApp.service('DashboardService', function($http) {
+myApp.service('dashboardService', function($http) {
   console.log('in dashboard service');
   var sv = this;
 
-  sv.postPieChart = function(data){
+  // getPieChart function
+  sv.getPieChart = function(chart){
     return $http({
-      method: 'POST',
-      url: '/dashboard',
-      data: data
+      method: 'GET',
+      url: '/dashboard/donationData',
     }).then(function(response){
-      console.log('back from postPieChart post:', response);
+      sv.pieChartData = response.data;
+      console.log(sv.pieChartData);
     });
   }; // end getPieChart
 

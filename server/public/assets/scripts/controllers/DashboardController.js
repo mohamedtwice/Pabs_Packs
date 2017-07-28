@@ -1,30 +1,30 @@
-myApp.controller('DashboardController', ['DashboardService', '$scope', '$http', '$location', function(DashboardService, $scope, $http, $location) {
+myApp.controller('DashboardController', ['dashboardService', '$http', '$location', function(dashboardService, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
+  var vm = this;
   console.log('checking user');
   $http.get('/user').then(function(response) {
     if (response.data.username) {
       // user has a curret session on the server
-      $scope.userName = response.data.username;
-      console.log('User Data: ', $scope.userName);
+      vm.userName = response.data.username;
+      console.log('User Data: ', vm.userName);
     } else {
       // user has no session, bounce them back to the login page
       $location.path("/home");
     }
   });
 
-  $scope.logout = function() {
+  vm.logout = function() {
     $http.get('/user/logout').then(function(response) {
       console.log('logged out');
       $location.path("/home");
     });
-  }; // end $scope.logout
+  }; // end vm.logout
 
-
-  var vm = this;
-
+vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
+vm.pieOptions = {legend: {display: true}};
   // pie chart post function
-  vm.postPieChart = function() {
-    console.log('in controller, postPieChart');
+  vm.getPieChart = function() {
+    console.log('in controller, getPieChart');
     // pie piece labels
     vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
     // legend
@@ -33,32 +33,34 @@ myApp.controller('DashboardController', ['DashboardService', '$scope', '$http', 
     vm.pieData = [];
     // pie object
     var pieObject = {
-      labels: vm.pieLabels,
-      options: vm.pieOptions,
+      // labels: vm.pieLabels,
+      // options: vm.pieOptions,
       data: vm.pieData
     }; // end pieObject
-    DashboardService.postPieChart().then(function() {
-      vm.pieChart = DashboardService.data;
+    dashboardService.getPieChart(pieObject).then(function() {
+      vm.pieChart = dashboardService.pieChartData;
+      console.log(dashboardService.pieChartData);
       console.log('back in controller with:', vm.pieChart);
     });
-  }; // end postPieChart
-
-  // pie chart get function
-  vm.getPieChart = function() {
-    console.log('in controller, getPieChart');
   }; // end getPieChart
 
 
 
-
-
-
-
   // horizontal bar chart
-  vm.barLabels = ['Gray Backpacks', 'Blankets', 'Journals', 'Bracelets', 'Heart Stress Relievers', 'Organza Bags', 'Pabby the Penguin', 'Lip Care', 'Lotion', 'Postcards', 'Stamps', 'Handwritten Notes', 'PAB\'S PACKS Story Cards'];
-  vm.barSeries = ['Series A', 'Series B'];
-
-  vm.barData = [
+  vm.getBarChart = function() {
+    console.log('in controller, getBarChart');
+    // bar labels
+    vm.barLabels = ['Gray Backpacks', 'Blankets', 'Journals', 'Bracelets', 'Heart Stress Relievers', 'Organza Bags', 'Pabby the Penguin', 'Lip Care', 'Lotion', 'Postcards', 'Stamps', 'Handwritten Notes', 'PAB\'S PACKS Story Cards'];
+    // vm.barSeries = ['Series A', 'Series B'];
+    // bar data
+    vm.barData = [
     [500, 500, 500, 300, 300, 300, 500,500, 500, 250, 100, 250, 250],
-  ];
+  ]; // end barData
+    // bar object
+    var barObject = {
+      labels: vm.barLabels,
+      data: vm.barData
+    }; // end barObject
+}; // end getBarChart
+
 }]); // end controller
