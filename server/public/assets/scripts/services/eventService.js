@@ -1,4 +1,4 @@
-myApp.service('eventService', function($http) {
+myApp.service('EventService', function($http) {
 
   console.log('in event service');
   var sv = this;
@@ -12,8 +12,20 @@ myApp.service('eventService', function($http) {
       console.log(response);
       sv.eventsData = response.data;
       console.log(sv.eventsData);
-    }); //
-  };
+    }); 
+  }; // end createEvent
+
+  sv.getEvents = function() {
+    console.log('in getEvents service');
+    return $http({
+      method: 'GET',
+      url: '/events'
+    }).then(function(response) {
+      console.log(response);
+      sv.eventsData = response.data;
+      console.log(sv.eventsData);
+    });
+  }; // end getEvents
 
   sv.postEvent = function(newEvent) {
     console.log(newEvent);
@@ -24,7 +36,7 @@ myApp.service('eventService', function($http) {
     }).then(function(response) {
       console.log('back from postEvent:', response);
     });
-  };
+  }; // end postEvent
 
   sv.deleteEvent = function(id) {
     console.log('in deleteEvent');
@@ -38,31 +50,6 @@ myApp.service('eventService', function($http) {
     }).then(function(response) {
       return response;
     });
-  };
+  }; //end deleteEvent
 
 });
-//
-// self.deleteAdmins = function(ev, id) {
-//   var confirm = $mdDialog.confirm()
-//     .title('Would you like to delete this user from the system?')
-//     .ariaLabel('Delete admin')
-//     .targetEvent(ev)
-//     .ok('Delete Admin User')
-//     .cancel('Cancel');
-//
-//   $mdDialog.show(confirm).then(function() {
-//     self.status = 'Admin User is deleted';
-//     $http({
-//       method: 'DELETE',
-//       url: '/private/deleteAdmins',
-//       params: {
-//         id: id
-//       }
-//     }).then(function(response) {
-//       self.getAdmins();
-//     }); //end then
-//   }, function() {
-//     self.status = 'user was not deleted, Thank you.';
-//   }); // end confirm dialogue
-// }; //end showconfirm
-// showconfirm

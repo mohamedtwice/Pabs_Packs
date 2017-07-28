@@ -12,6 +12,8 @@ var user = require('./routes/user');
 var register = require('./routes/register');
 var inventory = require('./routes/inventory');
 var events = require('./routes/events');
+// var backpack = require('./routes/backpack');
+// var partners = require('./routes/partners');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -42,6 +44,8 @@ app.use('/register', register);
 app.use('/user', user);
 app.use('/inventory', inventory);
 app.use('/events', events);
+// app.use('/backpack', backpack);
+// app.use('/partners', partners);
 app.use('/*', index);
 
 

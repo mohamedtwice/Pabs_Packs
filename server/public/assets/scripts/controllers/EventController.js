@@ -1,15 +1,11 @@
-myApp.controller('EventController', function(eventService, $modal, $route) {
-
-  // myApp.controller('EventController', ['$http', '$location', function($http, $location) {
-  // myApp.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
+myApp.controller('EventController', function(EventService, $modal, $route) {
   console.log('in event controller');
   var vm = this;
 
   vm.getEvents = function() {
     console.log('in getEvents');
-    eventService.getEvents().then(function() {
-      vm.events = eventService.eventsData;
+    EventService.getEvents().then(function() {
+      vm.events = EventService.eventsData;
       console.log(vm.events);
     });
   }; // end getInventory
@@ -27,14 +23,11 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
   vm.deleteEvent = function(id) {
     console.log('in deleteEvent');
     console.log(id);
-    eventService.deleteEvent(id).then(function(data) {
+    EventService.deleteEvent(id).then(function(data) {
       console.log('data is:', data);
     });
     $route.reload();
     console.log('id is:', id);
   }; // end delete
-
-
-
 
 }); // end createEvent

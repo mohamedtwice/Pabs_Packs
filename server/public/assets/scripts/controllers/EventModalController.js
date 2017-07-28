@@ -1,10 +1,10 @@
-myApp.controller('EventModalController', function(eventService, $modalInstance, $route) {
+myApp.controller('EventModalController', function(EventService, $modalInstance, $route) {
   console.log('in EventModalController');
   var vm = this;
 
   vm.cancel = function() {
     $modalInstance.dismiss('cancel');
-  };
+  }; // close modal button
 
   vm.reload = function() {
     $route.reload();
@@ -20,7 +20,7 @@ myApp.controller('EventModalController', function(eventService, $modalInstance, 
       packs_made: vm.packs_made,
       packs_promised: vm.packs_promised,
       comments: vm.comments
-    };
+    }
     console.log(newEvent);
     if (vm.event_date === undefined) {
       swal({
@@ -36,7 +36,7 @@ myApp.controller('EventModalController', function(eventService, $modalInstance, 
           }
         })
     } else {
-      eventService.createEvent(newEvent).then(function() {
+      EventService.createEvent(newEvent).then(function() {
         swal({
           type: 'success',
           title: 'New event added!',
