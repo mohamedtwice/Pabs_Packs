@@ -6,6 +6,13 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', function($s
   };
   $scope.message = '';
 
+  $scope.logout = function() {
+    $http.get('/user/logout').then(function(response) {
+      console.log('logged out');
+      $location.path("/home");
+    });
+  }; // end $scope.logout
+
   $scope.login = function() {
     if ($scope.user.username == '' || $scope.user.password == '') {
       $scope.message = "Enter your username and password!";
