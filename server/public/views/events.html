@@ -15,37 +15,37 @@
               <thead>
                 <tr>
                   <th>
-                    <a ng-click='ec.sortColumn("event_date"); arrow = !arrow' ng-class='ec.sortClass("event_date")'>Date
+                    <a ng-click='ec.sortColumn1("event_date"); arrow = !arrow' ng-class='ec.sortClass1("event_date")'>Date
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("event_time"); arrow = !arrow' ng-class='ec.sortClass("event_time")'>Time
+                    <a ng-click='ec.sortColumn1("event_time"); arrow = !arrow' ng-class='ec.sortClass1("event_time")'>Time
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("partner_id"); arrow = !arrow' ng-class='ec.sortClass("partner_id")'>Event Partner
+                    <a ng-click='ec.sortColumn1("partner_id"); arrow = !arrow' ng-class='ec.sortClass1("partner_id")'>Event Partner
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("packs_promised"); arrow = !arrow' ng-class='ec.sortClass("packs_promised")'>Packs Promised
+                    <a ng-click='ec.sortColumn1("packs_promised"); arrow = !arrow' ng-class='ec.sortClass1("packs_promised")'>Packs Promised
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("packs_needed"); arrow = !arrow' ng-class='ec.sortClass("packs_needed")'>Packs Needed
+                    <a ng-click='ec.sortColumn1("packs_needed"); arrow = !arrow' ng-class='ec.sortClass1("packs_needed")'>Packs Needed
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("comments"); arrow = !arrow' ng-class='ec.sortClass("comments")'>Comments
+                    <a ng-click='ec.sortColumn1("comments"); arrow = !arrow' ng-class='ec.sortClass1("comments")'>Comments
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
@@ -99,37 +99,37 @@
               <thead>
                 <tr>
                   <th>
-                    <a ng-click='ec.sortColumn("event_date"); arrow = !arrow' ng-class='ec.sortClass("event_date")'>Date
+                    <a ng-click='ec.sortColumn2("event_date"); arrow = !arrow' ng-class='ec.sortClass2("event_date")'>Date
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("event_time"); arrow = !arrow' ng-class='ec.sortClass("event_time")'>Time
+                    <a ng-click='ec.sortColumn2("event_time"); arrow = !arrow' ng-class='ec.sortClass2("event_time")'>Time
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("partner_id"); arrow = !arrow' ng-class='ec.sortClass("partner_id")'>Event Partner
+                    <a ng-click='ec.sortColumn2("partner_id"); arrow = !arrow' ng-class='ec.sortClass2("partner_id")'>Event Partner
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("packs_promised"); arrow = !arrow' ng-class='ec.sortClass("packs_promised")'>Packs Promised
+                    <a ng-click='ec.sortColumn2("packs_promised"); arrow = !arrow' ng-class='ec.sortClass2("packs_promised")'>Packs Promised
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("packs_needed"); arrow = !arrow' ng-class='ec.sortClass("packs_needed")'>Packs Needed
+                    <a ng-click='ec.sortColumn2("packs_needed"); arrow = !arrow' ng-class='ec.sortClass2("packs_needed")'>Packs Needed
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn("comments"); arrow = !arrow' ng-class='ec.sortClass("comments")'>Comments
+                    <a ng-click='ec.sortColumn2("comments"); arrow = !arrow' ng-class='ec.sortClass2("comments")'>Comments
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
@@ -138,7 +138,6 @@
                 </tr>
               </thead>
               <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
-                <!-- | filter:items.type==='merchandise' | orderBy: 'dateOrdered'  -->
                 <td>{{events.event_date | date:"MM/dd/yyyy"}}</td>
                 <td>{{events.event_time}}</td>
                 <td>{{events.partner_id}}</td>
