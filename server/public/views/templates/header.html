@@ -38,9 +38,10 @@
         </div>
 
 
-        <ul class="navbar-text pull-right">
-          <p>Welcome, {{userName}}!
-            <button class="btn btn-default btn-xs" ng-click="logout()">Log Out</button></p>
+        <ul class="nav navbar-nav navbar-text pull-right">
+            <li role="presentation"><a href="#">Welcome, {{userName}}!</a></li>
+            <li role="presentation"><a href="#admin">ADMIN</a></li>
+            <li role="presentation"><a class="btn btn-default btn-xs" ng-click="logout()">Log Out</a></li>
         </ul>
 
       </div>

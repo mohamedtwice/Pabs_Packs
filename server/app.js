@@ -12,6 +12,8 @@ var user = require('./routes/user');
 var register = require('./routes/register');
 var inventory = require('./routes/inventory');
 var events = require('./routes/events');
+var vendor = require('./routes/vendor');
+var annualgoal = require('./routes/annualgoal');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -42,6 +44,8 @@ app.use('/register', register);
 app.use('/user', user);
 app.use('/inventory', inventory);
 app.use('/events', events);
+app.use('/vendor', vendor);
+app.use('/annualgoal', annualgoal);
 app.use('/*', index);
 
 

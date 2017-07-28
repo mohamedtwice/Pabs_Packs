@@ -2,6 +2,15 @@
   font-family: Raleway, sans-serif;
 }
 
+.adminbox {
+  background: #f5f6f7;
+  padding: 20px;
+  margin: 20px;
+  overflow: hidden;
+  width: 100%;
+  display: inline-block;
+}
+
 .bg {
   background: #f5f6f7;
 }

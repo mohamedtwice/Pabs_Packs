@@ -22,7 +22,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/events', {
       templateUrl: '/views/events.html',
       controller: "EventController as ec",
-      css: "events.css"
+    })
+    .when('/admin', {
+      templateUrl: '/views/admin.html',
+      controller: "AdminController as ac",
     })
     .otherwise({
       redirectTo: 'home'

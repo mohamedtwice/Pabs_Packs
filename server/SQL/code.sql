@@ -21,7 +21,7 @@ CREATE TABLE backpack_goal (
   annual_goal varchar(80),
   year varchar(80)
   );
-  
+
 INSERT INTO backpack_goal (annual_goal, year)
 VALUES ('500', '2015'),
 ('1500', '2016'),
@@ -70,8 +70,8 @@ CREATE TABLE vendor (
   vendor_email varchar(80),
   vendor_address varchar(80)
   );
-  
-  INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
+
+INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
 VALUES ('Vendor 1', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125'),
 ('Vendor 2', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125')
 
