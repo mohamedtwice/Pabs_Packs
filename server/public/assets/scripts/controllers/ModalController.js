@@ -46,9 +46,9 @@ myApp.controller('ModalController', function(InventoryService, $modalInstance, $
             if (dismiss === 'timer') {
               console.log('I was closed by the timer');
             }
+            vm.reload();
           })
       });
-      vm.reload();
     }
 
   } // end postInventoryItem

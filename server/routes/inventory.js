@@ -44,6 +44,7 @@ router.get('/', function(req, res) {
 
 // POST /inventory
 router.post('/', function(req, res) {
+  // implement passport here (req.isAuthenticated)
   console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
   var item = req.body.item;
