@@ -12,11 +12,11 @@
 }
 
 .bg {
-  background: #f5f6f7;
+  /*background: #f5f6f7;*/
 }
 
 body {
-  background-image: url("/images/pattern.jpg");
+  /*background-image: url("/images/pattern.jpg");*/
   background-repeat: repeat-x;
   background-attachment: fixed;
 }
@@ -27,7 +27,7 @@ body {
 
 .wrapper {
   /*padding-top: 2px;*/
-  background: #e7e9dd;
+  /*background: #e7e9dd;*/
 }
 
 .container {
@@ -68,6 +68,10 @@ label {
   float: left;
 }
 
+#top {
+  margin-top: 5%;
+}
+
 #editBtn {
   float: right;
 }
@@ -75,14 +79,15 @@ label {
 .boxsignup {
   padding: 25px;
   background: #f5f6f7;
-  margin: 50px 0px;
+  margin: 0 auto;
+  width: 40%;
+  border-radius: 8px;
 }
 
 .input100 {
   font-size: 1.65rem;
   width: 100%;
   padding: 10px 20px;
-  margin: 5px 0px;
 }
 
 .input50 {

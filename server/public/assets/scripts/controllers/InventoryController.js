@@ -8,16 +8,23 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.reverseSort = false;
   vm.type = 'backpack';
   vm.animationsEnabled = true;
+  vm.selectedButton = false;
 
   vm.reload = function() {
     $route.reload();
   } //  reloads page after new item has been added to show immediately
 
+  vm.selectButton = function(id) {
+
+    vm.selectedButton = !vm.selectedButton;
+    console.log(vm.selectedButton);
+  }
+
   vm.openAddNew = function(size) {
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'InventoryController as ic',
+      controller: 'InventoryModalController as mc',
       size: size
     });
   }
@@ -51,54 +58,44 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       console.log(vm.inventory);
     });
   } // end getInventory
-  vm.postInventoryItem = function() {
-    var newItem = {
-      item: vm.item,
-      vendor: vm.vendor,
-      numberOnHand: vm.numberOnHand,
-      comments: vm.comments,
-      reorderAlertNumber: vm.reorderAlertNumber,
-      type: vm.type
-    }
-    console.log(newItem);
-    if (newItem.item === undefined) {
-      swal({
-        type: 'warning',
-        title: 'Item was not entered!',
-        timer: 2000
-      }).then(
-        function() {},
-        // handling the promise rejection
-        function(dismiss) {
-          if (dismiss === 'timer') {
-            console.log('I was closed by the timer');
-          }
-        })
-    } else {
-      InventoryService.postInventoryItem(newItem).then(function() {
-        swal({
-          type: 'success',
-          title: 'New item added!',
-          timer: 2000
-        }).then(
-          function() {},
-          // handling the promise rejection
-          function(dismiss) {
-            if (dismiss === 'timer') {
-              console.log('I was closed by the timer');
-            }
-          })
-      });
-      vm.reload();
-    }
-  }; // end postInventoryItem
 
-  vm.updateProperties = function(id) {
+  vm.updateProperties = function(items) {
+    console.log(items);
     console.log('in updateProperties');
-    console.log(id);
-
+    if (vm.itemUpdate !== items.item) {
+      if (vm.itemUpdate === undefined) {
+        vm.itemUpdate = items.item;
+      } else {
+        vm.itemUpdate = vm.itemUpdate;
+      }
+    } if (vm.vendorUpdate !== items.vendor_id) {
+      if (vm.vendorUpdate === undefined) {
+        vm.vendorUpdate = items.vendor_id;
+      } else {
+        vm.vendorUpdate = vm.vendorUpdate;
+      }
+    } if (vm.numberOnHandUpdate !== items.number_on_hand) {
+      if (vm.numberOnHandUpdate === undefined) {
+        vm.numberOnHandUpdate = items.number_on_hand;
+      } else {
+        vm.numberOnHandUpdate = vm.numberOnHandUpdate;
+      }
+    } if (vm.commentsUpdate !== items.comments) {
+      if (vm.commentsUpdate === undefined) {
+        vm.commentsUpdate = items.comments;
+      } else {
+        vm.commentsUpdate = vm.commentsUpdate;
+      }
+    } if (vm.reorderAlertNumberUpdate !== items.low_number) {
+      if (vm.reorderAlertNumberUpdate === undefined) {
+        vm.reorderAlertNumberUpdate = items.low_number;
+      } else {
+        vm.reorderAlertNumberUpdate = vm.reorderAlertNumberUpdate;
+      }
+    }
+    console.log(vm.vendorUpdate);
     var updatedProperty = {
-      id: id,
+      id: items.id,
       itemUpdate: vm.itemUpdate,
       vendorUpdate: vm.vendorUpdate,
       numberOnHandUpdate: vm.numberOnHandUpdate,

@@ -1,8 +1,4 @@
-myApp.controller('EventController', function(eventService, $modal, $route) {
-
-  // myApp.controller('EventController', ['$http', '$location', function($http, $location) {
-  // myApp.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
+myApp.controller('EventController', function(EventService, $modal, $route) {
   console.log('in event controller');
   var vm = this;
 
@@ -14,7 +10,7 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
   vm.animationsEnabled = true;
 
   // called on header click
-  vm.sortColumn = function(col) {
+  vm.sortColumn1 = function(col) {
     vm.column = col;
     if (vm.reverse) {
       vm.reverse = false;
@@ -24,8 +20,32 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
       vm.reverseclass = 'arrow-down';
     }
   };
+
+  vm.sortColumn2 = function(col) {
+    vm.column = col;
+    if (vm.reverse) {
+      vm.reverse = false;
+      vm.reverseclass = 'arrow-up';
+    } else {
+      vm.reverse = true;
+      vm.reverseclass = 'arrow-down';
+    }
+  };
+
   // remove and change class
-  vm.sortClass = function(col) {
+  vm.sortClass1 = function(col) {
+    if (vm.column == col) {
+      if (vm.reverse) {
+        return 'arrow-down';
+      } else {
+        return 'arrow-up';
+      }
+    } else {
+      return '';
+    }
+  };
+
+  vm.sortClass2 = function(col) {
     if (vm.column == col) {
       if (vm.reverse) {
         return 'arrow-down';
@@ -39,22 +59,31 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
 
   vm.getEvents = function() {
     console.log('in getEvents');
-    eventService.getEvents().then(function() {
-      vm.events = eventService.eventsData;
+    EventService.getEvents().then(function() {
+      vm.events = EventService.eventsData;
       console.log(vm.events);
     });
   }; // end getInventory
 
+  vm.openAddNew = function(size) {
+    console.log('in add new');
+    var modalInstance = $modal.open({
+      animation: vm.animationsEnabled,
+      templateUrl: 'eventModal.html',
+      controller: 'EventModalController as ec',
+      size: size
+    });
+  }
+
   vm.deleteEvent = function(id) {
     console.log('in deleteEvent');
     console.log(id);
-    eventService.deleteEvent(id).then(function(data) {
+    EventService.deleteEvent(id).then(function(data) {
       console.log('data is:', data);
     });
     $route.reload();
     console.log('id is:', id);
   }; // end delete
-
 
   vm.createEvent = function() {
     console.log('in createEvent');
@@ -70,7 +99,7 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
     };
 
     console.log(newEvent);
-    eventService.postEvent(newEvent).then(function() {});
+    EventService.postEvent(newEvent).then(function() {});
     $route.reload();
   }; // end postInventoryItem
 
@@ -85,7 +114,7 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
       comments: vm.commentsUpdate
     };
     console.log(updatedEvent);
-    eventService.updateEvents(id, updatedEvent).then(function() {
+    EventService.updateEvents(id, updatedEvent).then(function() {
       swal({
         type: 'success',
         title: 'Event Updated!',
@@ -114,7 +143,7 @@ myApp.controller('EventController', function(eventService, $modal, $route) {
       comments: vm.commentsUpdate
     };
     console.log(updatedEvent);
-    eventService.updateEvents(id, updatedEvent).then(function() {
+    EventService.updateEvents(id, updatedEvent).then(function() {
       swal({
         type: 'success',
         title: 'Event Updated!',
