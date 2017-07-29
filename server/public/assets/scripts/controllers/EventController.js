@@ -1,5 +1,4 @@
 myApp.controller('EventController', function(EventService, $modal, $route) {
-
   console.log('in event controller');
   var vm = this;
 
@@ -11,7 +10,7 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
   vm.animationsEnabled = true;
 
   // called on header click
-  vm.sortColumn = function(col) {
+  vm.sortColumn1 = function(col) {
     vm.column = col;
     if (vm.reverse) {
       vm.reverse = false;
@@ -21,8 +20,32 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
       vm.reverseclass = 'arrow-down';
     }
   };
+
+  vm.sortColumn2 = function(col) {
+    vm.column = col;
+    if (vm.reverse) {
+      vm.reverse = false;
+      vm.reverseclass = 'arrow-up';
+    } else {
+      vm.reverse = true;
+      vm.reverseclass = 'arrow-down';
+    }
+  };
+
   // remove and change class
-  vm.sortClass = function(col) {
+  vm.sortClass1 = function(col) {
+    if (vm.column == col) {
+      if (vm.reverse) {
+        return 'arrow-down';
+      } else {
+        return 'arrow-up';
+      }
+    } else {
+      return '';
+    }
+  };
+
+  vm.sortClass2 = function(col) {
     if (vm.column == col) {
       if (vm.reverse) {
         return 'arrow-down';
