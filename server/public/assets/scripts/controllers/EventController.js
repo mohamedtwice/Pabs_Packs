@@ -10,12 +10,15 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
   vm.animationsEnabled = true;
   vm.now = '';
   vm.bigCurrentPage = 1;
-  vm.maxSize = 5;
 
   vm.getDate = function() {
     vm.now = new Date();
     console.log(vm.now);
   }
+
+  vm.pageChanged = function() {
+    console.log('Page changed to: ' + vm.bigCurrentPage);
+  };
 
   // called on header click
   vm.sortColumn1 = function(col) {

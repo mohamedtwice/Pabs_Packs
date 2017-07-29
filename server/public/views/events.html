@@ -7,9 +7,8 @@
         <h5 class="pull-right">View Events For
           <input type="date" id="date" value="Select Month" ng-model="ec.dateInput" class="pull-right"></h5>
         <!-- packs tab -->
-        <tab heading="Donation Events" ng-init="ec.getEvents()">
-          <div class="table-responsive">
-
+        <tab heading="Donation Events">
+          <div class="table-responsive" ng-init="ec.getDate(ec.events)">
             <table class="table table-bordered table-hover">
               <!-- header with sort -->
               <thead>
@@ -54,7 +53,7 @@
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Donation'">
+              <tr ng-repeat="events in ec.events" ng-if="events.event_date > ec.now && events.event_type=='Donation'">
                 <td>
                   <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                   <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -88,10 +87,10 @@
                 </td>
               </tr>
             </table>
+            <!-- pagination -->
+            <pagination total-items="ec.events.length" ng-model="ec.bigCurrentPage" items-per-page="5" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
           </div>
 
-          <!-- pagination -->
-          <pagination total-items="ec.inventory" ng-model="ec.bigCurrentPage" max-size="4" class="pagination-sm"></pagination>
 
         </tab>
         <!-- end donation events -->
@@ -143,7 +142,7 @@
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
+              <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_date > ec.now && events.event_type=='Packing'">
                 <td>
                   <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                   <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -175,7 +174,6 @@
                 <td>
                   <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
                 </td>
-                <!-- //mc.deleteOrder(x._id) -->
               </tr>
             </table>
           </div>
@@ -184,7 +182,7 @@
         <!-- end packing events tab -->
 
         <!-- past events tab -->
-        <tab heading="Past Events" ng-init="ec.getDate(ec.events)">
+        <tab heading="Past Events" ng-click="ec.getDate(ec.events)">
           <div class="table-responsive">
 
             <table class="table table-bordered table-hover">
@@ -265,8 +263,11 @@
                 </td>
               </tr>
             </table>
-          </div>
 
+            <!-- pagination -->
+            <pagination total-items="ec.events.length" ng-model="ec.bigCurrentPage" items-per-page="5" class="pagination-sm"></pagination>
+
+          </div>
         </tab>
     </div>
   </div>

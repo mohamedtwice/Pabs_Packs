@@ -1,4 +1,4 @@
-<div class="bg">
+<div class="container">
   <h2>Inventory</h2>
 
   <!-- beginning of tabs -->
@@ -150,6 +150,9 @@
     </tab>
   </tabset>
 
+  <button class="btn btn-info" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+  </div><!-- end bg class -->
+
   <!-- modal -->
   <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
@@ -204,7 +207,3 @@
   <button class="btn btn-primary" ng-click="mc.postInventoryItem()">Post</button>
 </div>
 </script> <!-- end modal -->
-<button class="btn btn-info" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-</div><!-- end bg class -->
-
-<!-- add new row functionality -->
