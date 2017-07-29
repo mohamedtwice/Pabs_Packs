@@ -12,32 +12,23 @@ myApp.service('EventService', function($http) {
       console.log(response);
       sv.eventsData = response.data;
       console.log(sv.eventsData);
-    }); 
+    });
   }; // end createEvent
 
   sv.getEvents = function() {
+    var dateArray = [];
     console.log('in getEvents service');
     return $http({
       method: 'GET',
       url: '/events'
     }).then(function(response) {
-      console.log(response);
       sv.eventsData = response.data;
+      sv.eventsData.forEach(function(obj) {
+        obj.event_date = new Date(obj.event_date)
+      })
       console.log(sv.eventsData);
     });
   }; // end getEvents
-
-  sv.getEvents = function() {
-   console.log('in getEvents service');
-   return $http({
-     method: 'GET',
-     url: '/events'
-   }).then(function(response) {
-     console.log(response);
-     sv.eventsData = response.data;
-     console.log(sv.eventsData);
-   }); //
- };
 
   sv.postEvent = function(newEvent) {
     console.log(newEvent);

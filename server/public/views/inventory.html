@@ -73,8 +73,8 @@
             <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
           </tr>
         </table>
-      </div>
-    </tab>
+      </div> <!-- end responsive table -->
+    </tab> <!-- end packs tab -->
 
     <!-- merchandise section -->
     <tab heading="Merchandise" select="ic.getInventory()">
@@ -117,7 +117,6 @@
               <th>Edit</th>
             </tr>
           </thead>
-
           <!-- repeat items with hide/show inputs to show upon clicking edit button -->
           <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='merchandise'">
             <td>
@@ -186,7 +185,7 @@
               <label>Reorder Alert Amount:</label for="reorderAlertNumber">
                 <input type="number" class="modalInput form-control input-lg" placeholder="Reorder alert number" id="reorderAlertNumber" ng-model="mc.reorderAlertNumber">
             </div>
-            <!-- radio buttons -->
+            <!-- dropdown -->
             <div class="form-group">
               <label>Type:</label for="reorderAlertNumber">
               <select label="-- Select option --" class="form-control input-lg" ng-model="mc.type">
@@ -200,14 +199,12 @@
       </div> <!-- end row -->
     </div> <!-- end modal body -->
 
-
 <!-- post button -->
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="mc.postInventoryItem()">Post</button>
 </div>
-</script>
-<!-- end modal -->
+</script> <!-- end modal -->
 <button class="btn btn-info" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-  </div>
+</div><!-- end bg class -->
 
 <!-- add new row functionality -->

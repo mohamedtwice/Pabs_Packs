@@ -15,7 +15,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   } //  reloads page after new item has been added to show immediately
 
   vm.selectButton = function(id) {
-
     vm.selectedButton = !vm.selectedButton;
     console.log(vm.selectedButton);
   }
@@ -27,7 +26,8 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       controller: 'InventoryModalController as mc',
       size: size
     });
-  }
+  } //opens modal to add new item
+
   // called on header click
   vm.sortColumn = function(col) {
     vm.column = col;
@@ -38,8 +38,8 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vm.reverse = true;
       vm.reverseclass = 'arrow-down';
     }
-  };
-  // remove and change class
+  }; // toogles type of sorting(ascending or descending)
+
   vm.sortClass = function(col) {
     if (vm.column == col) {
       if (vm.reverse) {
@@ -51,6 +51,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       return '';
     }
   }
+
   vm.getInventory = function() {
     console.log('Getting the inventory');
     InventoryService.getInventory().then(function() {
@@ -62,6 +63,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.updateProperties = function(items) {
     console.log(items);
     console.log('in updateProperties');
+    // if item is undefined, send original ng-model
     if (vm.itemUpdate !== items.item) {
       if (vm.itemUpdate === undefined) {
         vm.itemUpdate = items.item;
@@ -104,7 +106,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     }
     console.log(updatedProperty);
     InventoryService.updateProperties(updatedProperty).then(function() {
-      swal({
+      swal({ //sweet alert
         type: 'success',
         title: 'Item Updated!',
         timer: 2000
@@ -118,7 +120,8 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
         })
     });
     vm.reload();
-  }
+  } // end updateProperties
+
   vm.deleteItem = function(index) {
     console.log(index);
     swal({
@@ -148,10 +151,11 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       if (dismiss === 'cancel') {
         swal(
           'Cancelled',
-          'Your imaginary file is safe :)',
+          'Your file is safe :)',
           'error'
         )
       }
     })
-  }
+  } //end deleteItem
+
 });

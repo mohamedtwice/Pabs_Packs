@@ -8,6 +8,14 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
   vm.orderByField = 'event';
   vm.reverseSort = false;
   vm.animationsEnabled = true;
+  vm.now = '';
+  vm.bigCurrentPage = 1;
+  vm.maxSize = 5;
+
+  vm.getDate = function() {
+    vm.now = new Date();
+    console.log(vm.now);
+  }
 
   // called on header click
   vm.sortColumn1 = function(col) {
@@ -85,10 +93,8 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
     console.log('id is:', id);
   }; // end delete
 
-
   vm.createEvent = function() {
     console.log('in createEvent');
-
     var newEvent = {
       date: vm.event_date,
       time: vm.event_time,
@@ -98,16 +104,14 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
       packs_promised: vm.packs_promised,
       comments: vm.comments
     };
-
     console.log(newEvent);
     EventService.postEvent(newEvent).then(function() {});
     $route.reload();
-  }; // end postInventoryItem
+  }; // end createEvent
 
   vm.updateDonationEvents = function(id) {
     console.log('in updateDonationEvents');
     console.log(id);
-
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
@@ -131,12 +135,11 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         });
     });
     $route.reload();
-  };
+  }; // end updateDonationEvents
 
   vm.updatePackEvents = function(id) {
     console.log('in updatePackEvents');
     console.log(id);
-
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
@@ -158,8 +161,8 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
             console.log('I was closed by the timer');
           }
         });
-    });
+    }); // end call to service
     $route.reload();
-  };
+  }; // updatePackEvents
 
 }); // end
