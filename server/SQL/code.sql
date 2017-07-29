@@ -37,56 +37,28 @@ CREATE TABLE events (
   packs_made int,
   comments text
 );
-
-CREATE TABLE inventory (
-  id uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
-  item text NOT NULL,
-  vendor_id text NOT NULL,
-  number_on_hand integer NOT NULL,
-  comments text NOT NULL,
-  low_number integer NOT NULL ,
-  type text NOT NULL
-);
-
-UPDATE inventory SET item='duuuuuuuuuude' WHERE id='db32fc38-6c84-479f-ad8f-be67cfcf73c1';
-
-SELECT * FROM inventory;
-
-DROP TABLE users;
-
-CREATE TABLE vendor (
-  id SERIAL PRIMARY KEY,
-  vendor_name varchar(80),
-  vendor_phone varchar(80),
-  vendor_email varchar(80),
-  vendor_address varchar(80)
-  );
-
-INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
-VALUES ('Vendor 1', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125'),
-('Vendor 2', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125')
-
-DROP TABLE inventory;
-
-INSERT INTO inventory (item, vendor_id, number_on_hand, comments, low_number, type) VALUES
-    ('jkdsfjkd', 12, 110, 'Good stuff man', 1, 'merchandise'),
-    ('fsdf', 1, 110, 'whoooa', 23, 'backpack');
+--
+INSERT INTO events (event_date, event_time, event_type, partner_id, packs_promised, packs_made, type, comments)
+VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1')
 
 CREATE TABLE partners (
-  id uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
-  name text NOT NULL,
-  address VARCHAR(120) NOT NULL,
-  phone_number varchar(120) NOT NULL,
-  comments text NOT NULL,
-  contact_name text NOT NULL
- );
+  id SERIAL PRIMARY KEY,
+  partner_name varchar(80),
+  partner_address text,
+  partner_phone varchar(80),
+  partner_contact varchar(80)
+);
 
- SELECT * FROM partners;
+INSERT INTO partners (partner_name, partner_address, partner_phone, partner_contact)
+VALUES ('Gillete', '123 Main St. Minneapolis, MN 55125', '612-123-1234', 'Joe Schmoe'),
+('Childrens Hospital', '123 Main St. Minneapolis, MN 55125', '612-123-1234', 'Joe Schmoe')
 
- CREATE TABLE backpack_goal (
-  id uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
-  goal integer NOT NULL,
-  year integer NOT NULL
- );
+CREATE TABLE event_type (
+  id SERIAL PRIMARY KEY,
+  event_type_name varchar(80)
+  );
 
- SELECT * FROM backpack_goal;
+INSERT INTO event_type (event_type_name)
+VALUES ('Packing'),
+('Donation'),
+('Donation')
