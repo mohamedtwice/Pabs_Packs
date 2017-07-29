@@ -103,16 +103,64 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
     $route.reload();
   }; // end postInventoryItem
 
-  vm.updateDonationEvents = function(id) {
+
+  // update Donation Events
+  vm.updateDonationEvents = function(events) {
     console.log('in updateDonationEvents');
-    console.log(id);
+    console.log(events);
+
+    if (vm.event_dateUpdate !== events.event_date) {
+      if (vm.event_dateUpdate === undefined) {
+        vm.event_dateUpdate = events.event_date;
+      } else {
+        vm.event_dateUpdate = vm.event_dateUpdate;
+      }
+    }
+
+    if (vm.event_timeUpdate !== events.event_time) {
+      if (vm.event_timeUpdate === undefined) {
+        vm.event_timeUpdate = events.event_time;
+      } else {
+        vm.event_timeUpdate = vm.event_timeUpdate;
+      }
+    }
+
+    if (vm.partner_idUpdate !== events.partner_id) {
+      if (vm.partner_idUpdate === undefined) {
+        vm.partner_idUpdate = events.partner_id;
+      } else {
+        vm.partner_idUpdate = vm.partner_idUpdate;
+      }
+    }
+
+    if (vm.packs_madeUpdate !== events.packs_promised) {
+      if (vm.packs_madeUpdate === undefined) {
+        vm.packs_madeUpdate = events.packs_promised;
+      } else {
+        vm.packs_madeUpdate = vm.packs_madeUpdate;
+      }
+    }
+
+    if (vm.commentsUpdate !== events.comments) {
+      if (vm.commentsUpdate === undefined) {
+        vm.commentsUpdate = events.comments;
+      } else {
+        vm.commentsUpdate = vm.commentsUpdate;
+      }
+    }
+
+
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
       partner_id: vm.partner_idUpdate,
-      packs_promised: vm.packs_promisedUpdate,
+      packs_promised: vm.packs_madeUpdate,
       comments: vm.commentsUpdate
     };
+
+    var id = events;
+    console.log(id);
+
     console.log(updatedEvent);
     EventService.updateEvents(id, updatedEvent).then(function() {
       swal({
@@ -127,13 +175,53 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
             console.log('I was closed by the timer');
           }
         });
+      $route.reload();
     });
-    $route.reload();
   };
 
-  vm.updatePackEvents = function(id) {
+  vm.updatePackEvents = function(events) {
     console.log('in updatePackEvents');
-    console.log(id);
+    console.log(events);
+
+    if (vm.event_dateUpdate !== events.event_date) {
+      if (vm.event_dateUpdate === undefined) {
+        vm.event_dateUpdate = events.event_date;
+      } else {
+        vm.event_dateUpdate = vm.event_dateUpdate;
+      }
+    }
+
+    if (vm.event_timeUpdate !== events.event_time) {
+      if (vm.event_timeUpdate === undefined) {
+        vm.event_timeUpdate = events.event_time;
+      } else {
+        vm.event_timeUpdate = vm.event_timeUpdate;
+      }
+    }
+
+    if (vm.partner_idUpdate !== events.partner_id) {
+      if (vm.partner_idUpdate === undefined) {
+        vm.partner_idUpdate = events.partner_id;
+      } else {
+        vm.partner_idUpdate = vm.partner_idUpdate;
+      }
+    }
+
+    if (vm.packs_madeUpdate !== events.packs_made) {
+      if (vm.packs_madeUpdate === undefined) {
+        vm.packs_madeUpdate = events.packs_made;
+      } else {
+        vm.packs_madeUpdate = vm.packs_madeUpdate;
+      }
+    }
+
+    if (vm.commentsUpdate !== events.comments) {
+      if (vm.commentsUpdate === undefined) {
+        vm.commentsUpdate = events.comments;
+      } else {
+        vm.commentsUpdate = vm.commentsUpdate;
+      }
+    }
 
     var updatedEvent = {
       date: vm.event_dateUpdate,
@@ -142,6 +230,11 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
       packs_made: vm.packs_madeUpdate,
       comments: vm.commentsUpdate
     };
+
+
+    var id = events;
+    console.log(id);
+
     console.log(updatedEvent);
     EventService.updateEvents(id, updatedEvent).then(function() {
       swal({
@@ -156,8 +249,8 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
             console.log('I was closed by the timer');
           }
         });
+      $route.reload();
     });
-    $route.reload();
-  };
+  }; // end of Donation update
 
 }); // end

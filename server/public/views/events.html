@@ -82,7 +82,6 @@
                   <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   <button ng-click="ec.updateDonationEvents(events.id)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
                   <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                  <button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button>
                 </td>
                 <!-- //mc.deleteOrder(x._id) -->
               </tr>
@@ -117,13 +116,7 @@
                     </a>
                   </th>
                   <th>
-                    <a ng-click='ec.sortColumn2("packs_promised"); arrow = !arrow' ng-class='ec.sortClass2("packs_promised")'>Packs Promised
-                      <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                      <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                    </a>
-                  </th>
-                  <th>
-                    <a ng-click='ec.sortColumn2("packs_needed"); arrow = !arrow' ng-class='ec.sortClass2("packs_needed")'>Packs Needed
+                    <a ng-click='ec.sortColumn2("packs_made"); arrow = !arrow' ng-class='ec.sortClass2("packs_made")'>Packs Made
                       <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
@@ -143,7 +136,11 @@
                 <td>{{events.partner_id}}</td>
                 <td>{{events.packs_made}}</td>
                 <td>{{events.comments}}</td>
-                <td><button class="btn btn-warning" ng-click="ic.deleteItem(items.id)">X</button></td>
+                <td>
+                  <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button ng-click="ec.updatePackEvents(events.id)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
+                  <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </td>
               </tr>
             </table>
           </div>

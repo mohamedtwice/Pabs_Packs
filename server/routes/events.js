@@ -104,7 +104,7 @@ router.delete('/:id', function(req, res, next) {
 
 // ---
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', function(req, res) {
   console.log('in put db');
   var id = req.params.id;
   console.log(id);
