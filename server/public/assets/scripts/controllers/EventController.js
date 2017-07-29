@@ -8,6 +8,17 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
   vm.orderByField = 'event';
   vm.reverseSort = false;
   vm.animationsEnabled = true;
+  vm.now = '';
+  vm.bigCurrentPage = 1;
+
+  vm.getDate = function() {
+    vm.now = new Date();
+    console.log(vm.now);
+  }
+
+  vm.pageChanged = function() {
+    console.log('Page changed to: ' + vm.bigCurrentPage);
+  };
 
   // called on header click
   vm.sortColumn1 = function(col) {
@@ -87,7 +98,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
 
   vm.createEvent = function() {
     console.log('in createEvent');
-
     var newEvent = {
       date: vm.event_date,
       time: vm.event_time,
@@ -97,16 +107,16 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
       packs_promised: vm.packs_promised,
       comments: vm.comments
     };
-
     console.log(newEvent);
     EventService.postEvent(newEvent).then(function() {});
     $route.reload();
-  }; // end postInventoryItem
+  }; // end createEvent
 
 
   // update Donation Events
   vm.updateDonationEvents = function(events) {
     console.log('in updateDonationEvents');
+<<<<<<< HEAD
     console.log(events);
 
     if (vm.event_dateUpdate !== events.event_date) {
@@ -150,6 +160,9 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
     }
 
 
+=======
+    console.log(id);
+>>>>>>> carl
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
@@ -177,10 +190,16 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         });
       $route.reload();
     });
+<<<<<<< HEAD
   };
+=======
+    $route.reload();
+  }; // end updateDonationEvents
+>>>>>>> carl
 
   vm.updatePackEvents = function(events) {
     console.log('in updatePackEvents');
+<<<<<<< HEAD
     console.log(events);
 
     if (vm.event_dateUpdate !== events.event_date) {
@@ -223,6 +242,9 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
       }
     }
 
+=======
+    console.log(id);
+>>>>>>> carl
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
@@ -249,8 +271,14 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
             console.log('I was closed by the timer');
           }
         });
+<<<<<<< HEAD
       $route.reload();
     });
   }; // end of Donation update
+=======
+    }); // end call to service
+    $route.reload();
+  }; // updatePackEvents
+>>>>>>> carl
 
 }); // end

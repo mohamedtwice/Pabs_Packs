@@ -12,20 +12,23 @@ myApp.service('EventService', function($http) {
       console.log(response);
       sv.eventsData = response.data;
       console.log(sv.eventsData);
-    }); //
-  };
+    });
+  }; // end createEvent
 
   sv.getEvents = function() {
-   console.log('in getEvents service');
-   return $http({
-     method: 'GET',
-     url: '/events'
-   }).then(function(response) {
-     console.log(response);
-     sv.eventsData = response.data;
-     console.log(sv.eventsData);
-   }); //
- };
+    var dateArray = [];
+    console.log('in getEvents service');
+    return $http({
+      method: 'GET',
+      url: '/events'
+    }).then(function(response) {
+      sv.eventsData = response.data;
+      sv.eventsData.forEach(function(obj) {
+        obj.event_date = new Date(obj.event_date)
+      })
+      console.log(sv.eventsData);
+    });
+  }; // end getEvents
 
   sv.postEvent = function(newEvent) {
     console.log(newEvent);
@@ -36,7 +39,7 @@ myApp.service('EventService', function($http) {
     }).then(function(response) {
       console.log('back from postEvent:', response);
     });
-  };
+  }; // end postEvent
 
   sv.deleteEvent = function(id) {
     console.log('in deleteEvent');
@@ -50,7 +53,7 @@ myApp.service('EventService', function($http) {
     }).then(function(response) {
       return response;
     });
-  };
+  }; //end deleteEvent
 
   sv.updateEvents = function(id, updatedEvent) {
     console.log(updatedEvent);

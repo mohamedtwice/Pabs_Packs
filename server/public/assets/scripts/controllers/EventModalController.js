@@ -20,7 +20,7 @@ myApp.controller('EventModalController', function(EventService, $modalInstance, 
       packs_made: vm.packs_made,
       packs_promised: vm.packs_promised,
       comments: vm.comments
-    };
+    }
     console.log(newEvent);
     if (vm.event_date === undefined) {
       swal({
