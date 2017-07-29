@@ -2,6 +2,12 @@
   font-family: Raleway, sans-serif;
 }
 
+.totals {
+  margin: 20px 0;
+  background: #f5f6f7;
+  padding: 20px;
+}
+
 .adminbox {
   background: #f5f6f7;
   padding: 20px;
@@ -161,6 +167,7 @@ label {
 
 .logo {
   display: inline-block;
+  margin: 15px;
 }
 
 
@@ -223,4 +230,7 @@ label {
 .col-md-6 {
   margin: 0;
   padding: 0;
+}
+
+
 }

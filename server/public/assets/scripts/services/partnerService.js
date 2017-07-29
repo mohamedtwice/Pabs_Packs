@@ -1,9 +1,8 @@
 myApp.service('PartnerService', function($http) {
   console.log('in partner service');
-
   var sv = this;
 
-  sv.getPartner = function(item) {
+  sv.getPartner = function() {
     return $http({
       method: 'GET',
       url: '/partners'
@@ -35,4 +34,4 @@ myApp.service('PartnerService', function($http) {
     }); // update properties
   }
 
-}
+});

@@ -1,4 +1,4 @@
-myApp.controller('AdminController', function(vendorService, annualgoalService, $modal, $route) {
+myApp.controller('AdminController', function(PartnerService, vendorService, annualgoalService, $modal, $route) {
 
   console.log('in vendor controller');
   var vm = this;
@@ -10,6 +10,7 @@ myApp.controller('AdminController', function(vendorService, annualgoalService, $
     console.log('in getInfo');
     vm.getVendors();
     vm.getAnnualgoal();
+    vm.getPartners();
   }; // end getInfo
 
 
@@ -28,6 +29,15 @@ myApp.controller('AdminController', function(vendorService, annualgoalService, $
       console.log(vm.vendors);
     });
   }; // end getVendors
+
+  vm.getPartners = function() {
+    console.log('in getPartners');
+    PartnerService.getPartner().then(function() {
+      vm.partners = PartnerService.partnerData;
+      console.log(vm.vendors);
+    });
+  }; // end getPartner
+
 
 
   /// ALL EDITS

@@ -14,6 +14,7 @@ var inventory = require('./routes/inventory');
 var events = require('./routes/events');
 var vendor = require('./routes/vendor');
 var annualgoal = require('./routes/annualgoal');
+var partners = require('./routes/partners');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -46,6 +47,7 @@ app.use('/inventory', inventory);
 app.use('/events', events);
 app.use('/vendor', vendor);
 app.use('/annualgoal', annualgoal);
+app.use('/partners', partners);
 app.use('/*', index);
 
 

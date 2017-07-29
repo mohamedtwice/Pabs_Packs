@@ -4,10 +4,13 @@ var passport = require('passport');
 var bodyParser = require('body-parser')
 var path = require('path');
 
-// module with db
-router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 router.use(bodyParser.json());
 
+
+// module with db
 var connection = require('../modules/connection');
 var pg = require('pg');
 
@@ -19,9 +22,11 @@ var config = {
 };
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
+
+
 // GET /inventory
 router.get('/', function(req, res) {
-  console.log('get hit');
+  console.log('get partners hit');
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -91,3 +96,11 @@ router.put('/:id', function(req, res) {
       res.sendStatus(500); // server error
     });
 });
+
+
+
+
+
+
+
+module.exports = router;

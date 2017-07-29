@@ -1,6 +1,9 @@
 <div class="bg" ng-init="ec.getEvents()">
   <div class="wrapper">
-    <h2>Event Tracker</h2>
+    <div class="container">
+      <div class="col-md-8">
+<div class="event-tracker">
+            <h2>Event Tracker</h2>
     <div class="rows">
       <!-- beginning of tabs -->
       <tabset>
@@ -148,60 +151,34 @@
         </tab>
     </div>
   </div>
+</div>
 
-  <section>
-    <div class="wrapper">
-      <h3>Pack Totals</h3>
+<div class="col-md-4">
+<div class="totals">
+
+  <h2>TOTALS</h2>
+
       <div class="table-responsive">
-
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th>
-                <a ng-click='ec.sortColumn("event_date"); arrow = !arrow' ng-class='ec.sortClass("event_date")'>Needed Packs
-                        <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                        <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                      </a>
-              </th>
-              <th>
-                <a ng-click='ec.sortColumn("event_time"); arrow = !arrow' ng-class='ec.sortClass("event_time")'>Packs Currently Made
-                        <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                        <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                      </a>
-              </th>
-              <th>
-                <a ng-click='ec.sortColumn("partner_id"); arrow = !arrow' ng-class='ec.sortClass("partner_id")'>CTD Annual Packs Donated
-                        <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                        <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                      </a>
-              </th>
-              <th>Edit / Delete</th>
+              <th>Packs On-Hand</th>
+              <th>Packs Needed</th>
+              <th>Total Donated</th>
             </tr>
           </thead>
-          <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
-            <td>
-              <thing ng-hide="toggle[events.id]">{{events.needed_packs}}</thing>
-              <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_neededPacksUpdate" placeholder="{{events.needed_packs }}" value="{{events.needed_packs}}"></thing>
-            </td>
-            <td>
-              <thing ng-hide="toggle[events.id]">{{events.event_time}}</thing>
-              <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
-            </td>
-            <td>
-              <thing ng-hide="toggle[events.id]">{{events.partner_id}}</thing>
-              <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_idUpdate" placeholder="{{events.partner_id}}" value="{{events.partner_id}}"></thing>
-            </td>
-            <td>
-              <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button ng-click="ec.updatePackEvents(events.id)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
-              <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
-              <button class="btn btn-warning" ng-click="ec.deleteEvent(events.id)">X</button>
-            </td>
+          <tr>
+            <td><h3 class="text-center">100</h3></td>
+            <td><h3 class="text-center">40</h3></td>
+            <td><h3 class="text-center">300</h3></td>
           </tr>
         </table>
       </div>
       </tab>
     </div>
+  </div>
+  </div>
+  </div>
   </section>
 
 
@@ -267,4 +244,5 @@
 
 <button class="btn btn-info" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 
+</div>
 </div>

@@ -77,17 +77,22 @@
         <th>Name</th>
         <th>Contact</th>
         <th>Phone</th>
-        <th>Email</th>
         <th>Address</th>
       </tr>
     </thead>
     <tbody>
+      <tr ng-repeat="partners in ac.partners">
+        <td>{{partners.partner_name}}</td>
+        <td>{{partners.partner_contact}}</td>
+        <td>{{partners.partner_phone}}</td>
+        <td>{{partners.partner_address}}</td>
+      </tr>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="{{vendors.partner_name}}" value="{{current.partner_name}}"></td>
+        <td><input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="{{vendors.partner_contact}}" value="{{current.partner_contact}}"></td>
+        <td><input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="{{vendors.partner_phone}}" value="{{current.partner_phone}}"></td>
+        <td><input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="{{vendors.partner_address}}" value="{{current.partner_address}}"></td>
+        <td><button type="button" name="button" ng-click="ac.addnewpartner()">Add</button></td>
       </tr>
     </tbody>
   </table>
