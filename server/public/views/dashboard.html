@@ -16,8 +16,8 @@
 <section>
 <div class="container" id="pie">
   <h3>Annual Goal for Pack Donations</h3>
-  <canvas id="pie" class="chart chart-pie" data-ng-init="dc.getPieChart()"></canvas>
-  <!-- chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" -->
+  <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()" ></canvas>
+
 </div>
 </section>
 
@@ -65,7 +65,7 @@
 <section>
   <div class="container" id="itemsRunningLow">
     <h3>Items Running Low</h3>
-    <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels"></canvas>
+    <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
   </div>
 </section>
 

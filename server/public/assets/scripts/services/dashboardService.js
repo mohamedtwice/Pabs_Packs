@@ -5,7 +5,7 @@ myApp.service('dashboardService', function($http) {
   var sv = this;
 
   // getPieChart function
-  sv.getPieChart = function(chart){
+  sv.getPieChart = function(){
     return $http({
       method: 'GET',
       url: '/dashboard/donationData',
@@ -14,6 +14,17 @@ myApp.service('dashboardService', function($http) {
       console.log(sv.pieChartData);
     });
   }; // end getPieChart
+
+  // getBarChart function
+  sv.getBarChart = function(){
+    return $http({
+      method: 'GET',
+      url: '/dashboard/inventoryData',
+    }).then(function(response){
+      sv.barChartData = response;
+      console.log(sv.barChartData);
+    });
+  }; // end getBarChart
 
 
 }); // end service
