@@ -12,7 +12,7 @@
           <input type="date" id="date" value="Select Month" ng-model="ec.dateInput" class="pull-right"></h5>
         <!-- packs tab -->
         <tab heading="Donation Events">
-          <div class="table-responsive" ng-init="ec.getDate(ec.events)">
+          <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <!-- header with sort -->
               <thead>
@@ -99,7 +99,7 @@
         <!-- end donation events -->
 
         <!-- begin packing events -->
-        <tab heading="Packing Events" ng-click="ec.getDate(ec.events)">
+        <tab heading="Packing Events" select="ec.getPacks()">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <!-- header with sort -->
@@ -182,7 +182,7 @@
         <!-- end packing events tab -->
 
         <!-- past events tab -->
-        <tab heading="Past Events" ng-click="ec.getDate(ec.events)">
+        <tab heading="Past Events" select="ec.getPast()">
           <div class="table-responsive">
 
             <table class="table table-bordered table-hover">

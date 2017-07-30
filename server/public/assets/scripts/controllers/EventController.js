@@ -15,11 +15,6 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   vm.pastList = [];
   vm.packList = [];
 
-  vm.getDate = function() {
-    vm.now = new Date();
-    console.log(vm.now);
-  }
-
   vm.pageChanged = function() {
     console.log('Page changed to: ' + vm.currentPage);
   };
@@ -102,7 +97,57 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       console.log(vm.pastList);
       console.log(vm.donationList);
     });
-  }; // end getInventory
+  }; // end getEvents
+
+  // vm.getEvents = function() {
+  //   console.log('in getEvents');
+  //   EventService.getEvents().then(function() {
+  //     vm.events = EventService.eventsData;
+  //     console.log(vm.events);
+  //     var currentTime = new Date();
+  //     var currentList2 = vm.events.filter(function(e) {
+  //       return e.event_date > currentTime;
+  //     });
+  //     var updatedList = currentList2.filter(function(d) {
+  //       return d.event_type=='Donation';
+  //     });
+  //     vm.donationList = updatedList;
+  //     console.log(vm.donationList);
+  //   });
+  // }; // end getEvents
+  //
+  // vm.getPacks = function() {
+  //   EventService.getEvents().then(function() {
+  //     vm.events = EventService.eventsData;
+  //     console.log(vm.events);
+  //     var currentTime = new Date();
+  //     var currentList1 = vm.events.filter(function(a) {
+  //       return a.event_date > currentTime;
+  //     });
+  //     var packedList = currentList1.filter(function(b) {
+  //       return b.event_type=='Packing';
+  //     });
+  //     vm.packList = packedList;
+  //     console.log(vm.packList);
+  //   });
+  // } // end getPacks
+  //
+  // vm.getPast = function() {
+  //   console.log('in getEvents');
+  //   EventService.getEvents().then(function() {
+  //     vm.events = EventService.eventsData;
+  //     console.log(vm.events);
+  //     var currentTime = new Date();
+  //     var currentList1 = vm.events.filter(function(a) {
+  //       return a.event_date > currentTime;
+  //     });
+  //     var oldList = vm.events.filter(function(c) {
+  //       return c.event_date < currentTime;
+  //     });
+  //     vm.pastList = oldList;
+  //     console.log(vm.pastList);
+  //   });
+  // }; // end getPast
 
   vm.openAddNew = function(size) {
     console.log('in add new');
@@ -112,7 +157,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       controller: 'EventModalController as ec',
       size: size
     });
-  }
+  } // end openAddNew
 
   vm.deleteEvent = function(id) {
     console.log('in deleteEvent');
