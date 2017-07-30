@@ -21,13 +21,8 @@
   color: black;
 }
 
-.btn-md {
-  vertical-align: middle;
-
-}
-
 .navbar-inverse .navbar-nav>li>a:hover {
-  color: #363636;
+  color: #808080;
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
