@@ -31,7 +31,7 @@ vm.pieOptions = {legend: {display: true}};
     // legend
     vm.pieOptions = {legend: {display: true}};
     // dummy data:  [200, 300, 500]
-    vm.pieData = [200, 300, 500];
+    // vm.pieData = [200, 300, 500];
     // pie object
     var pieObject = {
       labels: vm.pieLabels,
@@ -41,7 +41,7 @@ vm.pieOptions = {legend: {display: true}};
     dashboardService.getPieChart(pieObject).then(function() {
       vm.pieData = dashboardService.pieChartData;
       console.log(dashboardService.pieChartData);
-      console.log('back in controller with:', vm.pieChart);
+      console.log('back in controller with:', vm.pieData); // log returns:  undefined
     }); // end dashboardService.getPieChart
   }; // end getPieChart
 
