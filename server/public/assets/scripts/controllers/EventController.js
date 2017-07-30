@@ -13,6 +13,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   vm.currentPage = 1;
   vm.donationList = [];
   vm.pastList = [];
+  vm.packList = [];
 
   vm.getDate = function() {
     vm.now = new Date();
@@ -79,17 +80,25 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       console.log(vm.events);
       var list = vm.events;
       var currentTime = new Date();
-      var currentList = vm.events.filter(function(e) {
+      var currentList1 = vm.events.filter(function(a) {
+        return a.event_date > currentTime;
+      });
+      var currentList2 = vm.events.filter(function(e) {
         return e.event_date > currentTime;
       });
-      var oldList = vm.events.filter(function(a) {
-        return a.event_date < currentTime;
+      var packedList = currentList1.filter(function(b) {
+        return b.event_type=='Packing';
       });
-      var updatedList = currentList.filter(function(f) {
-        return f.event_type=='Donation';
+      var oldList = vm.events.filter(function(c) {
+        return c.event_date < currentTime;
+      });
+      var updatedList = currentList2.filter(function(d) {
+        return d.event_type=='Donation';
       });
       vm.pastList = oldList;
+      vm.packList = packedList;
       vm.donationList = updatedList;
+      console.log(vm.packList);
       console.log(vm.pastList);
       console.log(vm.donationList);
     });

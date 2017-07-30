@@ -1,3 +1,4 @@
+<header ng-include="'/views/templates/header.html'"></header>
 <div class="container bg" ng-init="ec.getEvents()">
   <div class="wrapper">
     <div class="container">
@@ -98,7 +99,7 @@
         <!-- end donation events -->
 
         <!-- begin packing events -->
-        <tab heading="Packing Events">
+        <tab heading="Packing Events" ng-click="ec.getDate(ec.events)">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <!-- header with sort -->
@@ -138,7 +139,8 @@
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_date > ec.now && events.event_type=='Packing'">
+              <tr ng-repeat="events in ec.packList | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
+                 <!-- ng-if="events.event_date > ec.now && events.event_type=='Packing'" -->
                 <td>
                   <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                   <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -172,6 +174,8 @@
                 </td>
               </tr>
             </table>
+            <!-- pagination -->
+            <pagination total-items="ec.packList.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
           </div>
 
         </tab>

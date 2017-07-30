@@ -2,7 +2,6 @@ var myApp = angular.module('myApp', ['ngRoute', 'chart.js', 'ui.bootstrap']);
 /// Routes ///
 
 myApp.config(['$routeProvider', function($routeProvider) {
-  // paginationTemplateProvider.setPath('views/templates/dirPagination.tpl.html');
   $routeProvider
     .when('/home', {
       templateUrl: '/views/home.html',
