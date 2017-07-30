@@ -15,6 +15,7 @@ var events = require('./routes/events');
 var vendor = require('./routes/vendor');
 var annualgoal = require('./routes/annualgoal');
 var partners = require('./routes/partners');
+var eventtype = require('./routes/eventtype');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -48,6 +49,7 @@ app.use('/events', events);
 app.use('/vendor', vendor);
 app.use('/annualgoal', annualgoal);
 app.use('/partners', partners);
+app.use('/eventtype', eventtype);
 app.use('/*', index);
 
 
