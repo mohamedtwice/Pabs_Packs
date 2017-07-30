@@ -70,25 +70,29 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       } else {
         vm.itemUpdate = vm.itemUpdate;
       }
-    } if (vm.vendorUpdate !== items.vendor_id) {
+    }
+    if (vm.vendorUpdate !== items.vendor_id) {
       if (vm.vendorUpdate === undefined) {
         vm.vendorUpdate = items.vendor_id;
       } else {
         vm.vendorUpdate = vm.vendorUpdate;
       }
-    } if (vm.numberOnHandUpdate !== items.number_on_hand) {
+    }
+    if (vm.numberOnHandUpdate !== items.number_on_hand) {
       if (vm.numberOnHandUpdate === undefined) {
         vm.numberOnHandUpdate = items.number_on_hand;
       } else {
         vm.numberOnHandUpdate = vm.numberOnHandUpdate;
       }
-    } if (vm.commentsUpdate !== items.comments) {
+    }
+    if (vm.commentsUpdate !== items.comments) {
       if (vm.commentsUpdate === undefined) {
         vm.commentsUpdate = items.comments;
       } else {
         vm.commentsUpdate = vm.commentsUpdate;
       }
-    } if (vm.reorderAlertNumberUpdate !== items.low_number) {
+    }
+    if (vm.reorderAlertNumberUpdate !== items.low_number) {
       if (vm.reorderAlertNumberUpdate === undefined) {
         vm.reorderAlertNumberUpdate = items.low_number;
       } else {
@@ -118,7 +122,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
             console.log('I was closed by the timer');
           }
         })
-    });
+    }); // end then
     vm.reload();
   } // end updateProperties
 

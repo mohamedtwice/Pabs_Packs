@@ -9,15 +9,23 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
   vm.reverseSort = false;
   vm.animationsEnabled = true;
   vm.now = '';
-  vm.bigCurrentPage = 1;
+  vm.numPerPage = 10;
+  vm.currentPage = 1;
+  vm.list = [];
 
   vm.getDate = function() {
     vm.now = new Date();
     console.log(vm.now);
   }
 
+  vm.listLength = function(events) {
+    console.log(events);
+    vm.list.push(events);
+    console.log(vm.list);
+  }
+
   vm.pageChanged = function() {
-    console.log('Page changed to: ' + vm.bigCurrentPage);
+    console.log('Page changed to: ' + vm.currentPage);
   };
 
   // called on header click
@@ -112,13 +120,10 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
     $route.reload();
   }; // end createEvent
 
-
   // update Donation Events
   vm.updateDonationEvents = function(events) {
     console.log('in updateDonationEvents');
-<<<<<<< HEAD
     console.log(events);
-
     if (vm.event_dateUpdate !== events.event_date) {
       if (vm.event_dateUpdate === undefined) {
         vm.event_dateUpdate = events.event_date;
@@ -126,15 +131,13 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.event_dateUpdate = vm.event_dateUpdate;
       }
     }
-
     if (vm.event_timeUpdate !== events.event_time) {
       if (vm.event_timeUpdate === undefined) {
         vm.event_timeUpdate = events.event_time;
-      } else {
-        vm.event_timeUpdate = vm.event_timeUpdate;
       }
+    } else {
+      vm.event_timeUpdate = vm.event_timeUpdate;
     }
-
     if (vm.partner_idUpdate !== events.partner_id) {
       if (vm.partner_idUpdate === undefined) {
         vm.partner_idUpdate = events.partner_id;
@@ -142,7 +145,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.partner_idUpdate = vm.partner_idUpdate;
       }
     }
-
     if (vm.packs_madeUpdate !== events.packs_promised) {
       if (vm.packs_madeUpdate === undefined) {
         vm.packs_madeUpdate = events.packs_promised;
@@ -150,7 +152,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.packs_madeUpdate = vm.packs_madeUpdate;
       }
     }
-
     if (vm.commentsUpdate !== events.comments) {
       if (vm.commentsUpdate === undefined) {
         vm.commentsUpdate = events.comments;
@@ -158,11 +159,7 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.commentsUpdate = vm.commentsUpdate;
       }
     }
-
-
-=======
     console.log(id);
->>>>>>> carl
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
@@ -170,10 +167,8 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
       packs_promised: vm.packs_madeUpdate,
       comments: vm.commentsUpdate
     };
-
     var id = events;
     console.log(id);
-
     console.log(updatedEvent);
     EventService.updateEvents(id, updatedEvent).then(function() {
       swal({
@@ -190,18 +185,11 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         });
       $route.reload();
     });
-<<<<<<< HEAD
-  };
-=======
-    $route.reload();
-  }; // end updateDonationEvents
->>>>>>> carl
+  } // end updateDonationEvents
 
   vm.updatePackEvents = function(events) {
     console.log('in updatePackEvents');
-<<<<<<< HEAD
     console.log(events);
-
     if (vm.event_dateUpdate !== events.event_date) {
       if (vm.event_dateUpdate === undefined) {
         vm.event_dateUpdate = events.event_date;
@@ -209,7 +197,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.event_dateUpdate = vm.event_dateUpdate;
       }
     }
-
     if (vm.event_timeUpdate !== events.event_time) {
       if (vm.event_timeUpdate === undefined) {
         vm.event_timeUpdate = events.event_time;
@@ -217,7 +204,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.event_timeUpdate = vm.event_timeUpdate;
       }
     }
-
     if (vm.partner_idUpdate !== events.partner_id) {
       if (vm.partner_idUpdate === undefined) {
         vm.partner_idUpdate = events.partner_id;
@@ -225,7 +211,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.partner_idUpdate = vm.partner_idUpdate;
       }
     }
-
     if (vm.packs_madeUpdate !== events.packs_made) {
       if (vm.packs_madeUpdate === undefined) {
         vm.packs_madeUpdate = events.packs_made;
@@ -233,7 +218,6 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.packs_madeUpdate = vm.packs_madeUpdate;
       }
     }
-
     if (vm.commentsUpdate !== events.comments) {
       if (vm.commentsUpdate === undefined) {
         vm.commentsUpdate = events.comments;
@@ -241,10 +225,7 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
         vm.commentsUpdate = vm.commentsUpdate;
       }
     }
-
-=======
     console.log(id);
->>>>>>> carl
     var updatedEvent = {
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
@@ -252,11 +233,8 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
       packs_made: vm.packs_madeUpdate,
       comments: vm.commentsUpdate
     };
-
-
     var id = events;
     console.log(id);
-
     console.log(updatedEvent);
     EventService.updateEvents(id, updatedEvent).then(function() {
       swal({
@@ -271,14 +249,8 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
             console.log('I was closed by the timer');
           }
         });
-<<<<<<< HEAD
-      $route.reload();
-    });
-  }; // end of Donation update
-=======
     }); // end call to service
     $route.reload();
-  }; // updatePackEvents
->>>>>>> carl
+  }; // end updatePackEvents
 
-}); // end
+});

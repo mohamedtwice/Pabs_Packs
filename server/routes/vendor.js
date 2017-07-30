@@ -4,9 +4,7 @@ var passport = require('passport');
 var path = require('path');
 var bodyParser = require('body-parser');
 
-router.use(bodyParser.urlencoded({
-  extended: true
-}));
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 
@@ -21,7 +19,6 @@ var config = {
   max: 12
 };
 var pool = new pg.Pool(config); // DO NOT MODIFY
-
 
 // GET vendors
 router.get('/', function(req, res) {
@@ -45,9 +42,6 @@ router.get('/', function(req, res) {
     });
   });
 });
-
-
-
 
 // POST newVendor
 router.post('/', function(req, res) {
@@ -73,6 +67,5 @@ router.post('/', function(req, res) {
       res.sendStatus(500); // server error
     });
 });
-
 
 module.exports = router;

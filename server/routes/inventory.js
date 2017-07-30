@@ -5,9 +5,7 @@ var bodyParser = require('body-parser')
 var path = require('path');
 
 // module with db
-router.use(bodyParser.urlencoded({
-  extended: true
-}));
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 var connection = require('../modules/connection');
@@ -47,7 +45,6 @@ router.get('/', function(req, res) {
 // POST /inventory
 router.post('/', function(req, res) {
   // implement passport here (req.isAuthenticated)
-  console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
   var item = req.body.item;
   var vendor = req.body.vendor;
@@ -72,7 +69,6 @@ router.post('/', function(req, res) {
 
 // POST /inventory
 router.put('/', function(req, res) {
-  console.log('{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
   var id = req.body.id;
   var item = req.body.itemUpdate;
   var vendor = req.body.vendorUpdate;
@@ -83,24 +79,6 @@ router.put('/', function(req, res) {
   console.log(item);
   // updates specified field
   pool.connect()
-    // .then(function(client) {
-    //     for (var prop in req.body) {
-    //       if (object.hasOwnProperty(prop)) {
-    //         if (re.body[prop] != null) {
-    //           // client.query("UPDATE inventory SET item=$1, vendor_id=$2, number_on_hand=$3, comments=$4, low_number=$5 WHERE id = $6;", [item, vendor, on_hand, comments, low_number, id])
-    //           client.query("UPDATE inventory SET $1=$2 WHERE id = $3;", [prop, req.body[prop], id])
-    //             .then(function() {
-    //               client.release();
-    //               res.sendStatus(201); // created
-    //             })
-    //           }
-    //         })
-    //       .catch(function(err) {
-    //         client.release();
-    //         res.sendStatus(500); // server error
-    //       }); //end catch error
-    //     }
-    //   }
     .then(function(client) {
       client.query("UPDATE inventory SET item=$1, vendor_id=$2, number_on_hand=$3, comments=$4, low_number=$5 WHERE id = $6;", [item, vendor, on_hand, comments, low_number, id])
         .then(function() {
@@ -115,7 +93,6 @@ router.put('/', function(req, res) {
 });
 
 router.delete('/:id', function(req, res) {
-  console.log('-------------------------++++++++++++++++++++++++');
   console.log(req.params.id);
   pool.connect(function(err, connection, done) {
     console.log('Post hit');

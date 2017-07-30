@@ -56,7 +56,7 @@
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events" ng-if="events.event_date > ec.now && events.event_type=='Donation'">
+              <tr ng-repeat="events in ec.events | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage" ng-if="events.event_date > ec.now && events.event_type=='Donation'" ng-init="ec.listLength(events)">
                 <td>
                   <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                   <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -91,9 +91,8 @@
               </tr>
             </table>
             <!-- pagination -->
-            <pagination total-items="ec.events.length" ng-model="ec.bigCurrentPage" items-per-page="5" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
+            <pagination total-items="ec.events.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
           </div>
-
 
         </tab>
         <!-- end donation events -->
@@ -226,7 +225,7 @@
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events" ng-if="events.event_date < ec.now">
+              <tr ng-repeat="events in ec.events | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage" ng-if="events.event_date < ec.now">
                 <td>
                   <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                   <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -260,12 +259,13 @@
                 </td>
               </tr>
             </table>
-
             <!-- pagination -->
-            <pagination total-items="ec.events.length" ng-model="ec.bigCurrentPage" items-per-page="5" class="pagination-sm"></pagination>
+            <pagination total-items="ec.events.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
 
           </div>
         </tab>
+      </tabset>
+
     </div>
   </div>
 </div>
@@ -348,32 +348,32 @@
           <form>
             <div class="form-group">
               <label>Date:</label for="date">
-                <input type="date" class="modalInput form-control input-lg" placeholder="Type your date here" id="date" ng-model="ec.event_date">
+                <input type="date" class="modalInput form-control" placeholder="Type your date here" id="date" ng-model="ec.event_date">
             </div>
             <div class="form-group">
               <label>Time:</label for="time">
-                <input type="text" class="modalInput form-control input-lg" placeholder="Time" id="time" ng-model="ec.event_time">
+                <input type="text" class="modalInput form-control" placeholder="Time" id="time" ng-model="ec.event_time">
             </div>
             <div class="form-group">
               <label>Partner Id:</label for="numberOnHand">
-                <input type="number" class="modalInput form-control input-lg" placeholder="Partner Id" id="numberOnHand" ng-model="ec.partner_id">
+                <input type="number" class="modalInput form-control" placeholder="Partner Id" id="numberOnHand" ng-model="ec.partner_id">
             </div>
             <div class="form-group">
               <label>Comments:</label for="comments">
-                <input type="text" class="modalInput form-control input-lg" placeholder="Comments" id="comments" ng-model="ec.comments">
+                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ec.comments">
             </div>
             <div class="form-group">
-              <label>Packs Made:</label for="packsMade">
-                <input type="number" class="modalInput form-control input-lg" placeholder="Packs Made" id="packsMade" ng-model="ec.packs_made">
+              <label>Packs Needed:</label for="packsNeeded">
+                <input type="number" class="modalInput form-control" placeholder="Packs Needed" id="packsNeeded" ng-model="ec.packs_needed">
             </div>
             <div class="form-group">
               <label>Packs Promised:</label for="packsPromised">
-                <input type="number" class="modalInput form-control input-lg" placeholder="Packs Promised" id="packsPromised" ng-model="ec.packs_promised">
+                <input type="number" class="modalInput form-control" placeholder="Packs Promised" id="packsPromised" ng-model="ec.packs_promised">
             </div>
             <!-- radio buttons -->
             <div class="form-group">
               <label>Type of Event:</label for="eventType">
-                <select label="-- Select option --" class="form-control input-lg input100" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
+                <select label="-- Select option --" class="form-control input100" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
                   <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
                   <option class="form-control input-lg input100" value="Donation">Donation Event</option>
                   <option class="form-control input-lg input100" value="Packing">Packing Event</option>
@@ -393,5 +393,4 @@
 
 <button class="btn btn-info" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 
-</div>
 </div>

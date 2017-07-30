@@ -8,6 +8,33 @@
   padding: 20px;
 }
 
+.navbar-inverse .navbar-nav>li>a {
+  color: black;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus{
+  color: black;
+}
+
+.btn-md {
+  vertical-align: middle;
+
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: #363636;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
 .adminbox {
   background: #f5f6f7;
   padding: 20px;
@@ -159,6 +186,10 @@ label {
 
 .btn-danger {
   margin-left: 10px;
+}
+
+.modal-footer .btn-primary {
+  text-align: center;
 }
 
 .navmenu {
