@@ -17,6 +17,18 @@
   font-weight: 400;
 }
 
+th {
+  color: black;
+}
+
+th a {
+  color: black;
+}
+
+th a:hover {
+  color: black;
+}
+
 .navbar-inverse .navbar-nav>li>a:focus{
   color: black;
 }
