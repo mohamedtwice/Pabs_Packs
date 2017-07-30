@@ -56,7 +56,7 @@
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage" ng-if="events.event_date > ec.now && events.event_type=='Donation'" ng-init="ec.listLength(events)">
+              <tr ng-repeat="events in ec.donationList | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
                 <td>
                   <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                   <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -91,7 +91,7 @@
               </tr>
             </table>
             <!-- pagination -->
-            <pagination total-items="ec.events.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
+            <pagination total-items="ec.donationList.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
           </div>
 
         </tab>
@@ -225,7 +225,7 @@
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage" ng-if="events.event_date < ec.now">
+              <tr ng-repeat="events in ec.pastList | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
                 <td>
                   <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                   <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -260,7 +260,7 @@
               </tr>
             </table>
             <!-- pagination -->
-            <pagination total-items="ec.events.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
+            <pagination total-items="ec.pastList.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
 
           </div>
         </tab>

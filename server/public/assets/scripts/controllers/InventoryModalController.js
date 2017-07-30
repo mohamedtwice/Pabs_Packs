@@ -18,7 +18,7 @@ myApp.controller('InventoryModalController', function(InventoryService, $modalIn
     });
   } // end getInventory
 
-  vm.getInventory();
+  // vm.getInventory();
 
   vm.postInventoryItem = function() {
     var newItem = {

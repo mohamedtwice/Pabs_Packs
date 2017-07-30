@@ -1,4 +1,4 @@
-myApp.controller('EventController', function(EventService, $modal, $route) {
+myApp.controller('EventController', function(EventService, $filter, $modal, $route) {
   console.log('in event controller');
   var vm = this;
 
@@ -11,17 +11,12 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
   vm.now = '';
   vm.numPerPage = 10;
   vm.currentPage = 1;
-  vm.list = [];
+  vm.donationList = [];
+  vm.pastList = [];
 
   vm.getDate = function() {
     vm.now = new Date();
     console.log(vm.now);
-  }
-
-  vm.listLength = function(events) {
-    console.log(events);
-    vm.list.push(events);
-    console.log(vm.list);
   }
 
   vm.pageChanged = function() {
@@ -78,9 +73,25 @@ myApp.controller('EventController', function(EventService, $modal, $route) {
 
   vm.getEvents = function() {
     console.log('in getEvents');
+    // var filteredList = [];
     EventService.getEvents().then(function() {
       vm.events = EventService.eventsData;
       console.log(vm.events);
+      var list = vm.events;
+      var currentTime = new Date();
+      var currentList = vm.events.filter(function(e) {
+        return e.event_date > currentTime;
+      });
+      var oldList = vm.events.filter(function(a) {
+        return a.event_date < currentTime;
+      });
+      var updatedList = currentList.filter(function(f) {
+        return f.event_type=='Donation';
+      });
+      vm.pastList = oldList;
+      vm.donationList = updatedList;
+      console.log(vm.pastList);
+      console.log(vm.donationList);
     });
   }; // end getInventory
 

@@ -29,6 +29,9 @@ myApp.service('InventoryService', function($http) {
     return $http({
       method: 'PUT',
       url: '/inventory/' + updatedProperty.id,
+      params: {
+        id: updatedProperty.id
+      },
       data: updatedProperty
     }).then(function(response) {
       console.log('back from updateProperties:', response);

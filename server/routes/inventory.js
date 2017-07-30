@@ -68,7 +68,7 @@ router.post('/', function(req, res) {
 });
 
 // POST /inventory
-router.put('/', function(req, res) {
+router.put('/:id', function(req, res) {
   var id = req.body.id;
   var item = req.body.itemUpdate;
   var vendor = req.body.vendorUpdate;
