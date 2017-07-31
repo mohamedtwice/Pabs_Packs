@@ -20,6 +20,7 @@ myApp.controller('DashboardController', ['dashboardService', 'EventService', '$h
     });
   }; // end vm.logout
 
+
 // vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
 // vm.pieOptions = {legend: {display: true}};
 
@@ -46,6 +47,13 @@ myApp.controller('DashboardController', ['dashboardService', 'EventService', '$h
   }; // end getPieChart
 
 
+  vm.getEvents = function() {
+    console.log('in getEvents');
+    EventService.getEvents().then(function() {
+      vm.events = EventService.eventsData;
+      console.log(vm.events);
+    });
+  }; // end getEvents
 
   // horizontal bar chart
   vm.getBarChart = function() {

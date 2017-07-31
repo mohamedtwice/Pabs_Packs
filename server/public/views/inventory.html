@@ -180,10 +180,6 @@
             <div class="form-group">
               <label>Vendor:</label for="vendor">
                 <input type="text" ng-model="mc.vendor" typeahead="vendors.vendor_id for vendors in mc.inventory2  | filter:$viewValue | limitTo:10" placeholder="Vendor" id="vendor" class="modalInput form-control">
-                <!-- <select label="-- Select option --" class="form-control" ng-model="mc.vendor">
-                  <option selected disabled value="" placeholder="Vendor"><span class="selectlabel">Vendor</span></option>
-                  <option ng-repeat="vendors in mc.inventory2" class="form-control input100" value="{{vendors.vendor_id}}">{{vendors.vendor_id}}</option>
-                </select> -->
             </div>
             <div class="form-group">
               <label>Quantity on hand:</label for="numberOnHand">

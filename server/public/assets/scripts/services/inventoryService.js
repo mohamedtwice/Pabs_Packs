@@ -10,8 +10,8 @@ myApp.service('InventoryService', function($http) {
     }).then(function(response) {
       sv.inventoryData = response.data;
       console.log(sv.inventoryData);
-    }); // get the inventory
-  }
+    });
+  } // end getInventory
 
   sv.postInventoryItem = function(newItem) {
     console.log(newItem);
@@ -22,7 +22,7 @@ myApp.service('InventoryService', function($http) {
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
     });
-  };
+  }; // end postInventoryItem
 
   sv.updateProperties = function(updatedProperty) {
     console.log(updatedProperty);
@@ -35,8 +35,8 @@ myApp.service('InventoryService', function($http) {
       data: updatedProperty
     }).then(function(response) {
       console.log('back from updateProperties:', response);
-    }); // update properties
-  }
+    });
+  }  // end update properties
 
   sv.deleteItem = function(id) {
     console.log(id);
@@ -49,6 +49,6 @@ myApp.service('InventoryService', function($http) {
     }).then(function() {
       console.log('item deleted');
     });
-  }
+  } //end deleteItem
 
 });
