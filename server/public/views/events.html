@@ -5,9 +5,6 @@
           <h2>Event Tracker</h2>
             <!-- beginning of tabs -->
             <tabset>
-              <!-- <h5 class="pull-right">View Events For
-                <input type="date" id="date" value="Select Month" ng-model="ec.dateInput" class="pull-right">
-              </h5> -->
               <!-- packs tab -->
               <tab heading="Donation Events">
                 <div class="table-responsive">
@@ -138,7 +135,6 @@
                       </tr>
                     </thead>
                     <tr ng-repeat="events in ec.packList | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
-                      <!-- ng-if="events.event_date > ec.now && events.event_type=='Packing'" -->
                       <td>
                         <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                         <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
