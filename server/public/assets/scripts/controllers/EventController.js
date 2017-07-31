@@ -82,13 +82,13 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
         return e.event_date > currentTime;
       });
       var packedList = currentList1.filter(function(b) {
-        return b.event_type=='Packing';
+        return b.event_type == 'Packing';
       });
       var oldList = vm.events.filter(function(c) {
         return c.event_date < currentTime;
       });
       var updatedList = currentList2.filter(function(d) {
-        return d.event_type=='Donation';
+        return d.event_type == 'Donation';
       });
       vm.pastList = oldList;
       vm.packList = packedList;

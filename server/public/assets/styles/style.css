@@ -8,6 +8,10 @@
   padding: 20px;
 }
 
+.fa-lg:hover {
+  color: grey;
+}
+
 .navbar-inverse .navbar-nav>li>a {
   color: black;
   font-size: 1.25rem;
@@ -15,6 +19,10 @@
   text-decoration: none;
   letter-spacing: 3px;
   font-weight: 400;
+}
+
+.nav-tabs>li>a {
+  color: #333;
 }
 
 th {
