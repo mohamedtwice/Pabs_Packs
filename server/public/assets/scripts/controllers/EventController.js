@@ -17,7 +17,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
 
   vm.pageChanged = function() {
     console.log('Page changed to: ' + vm.currentPage);
-  };
+  }; // logs in the console that pagination has occurred
 
   // called on header click
   vm.sortColumn1 = function(col) {
@@ -29,7 +29,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       vm.reverse = true;
       vm.reverseclass = 'arrow-down';
     }
-  };
+  }; // sorts event tracker
 
   vm.sortColumn2 = function(col) {
     vm.column = col;
@@ -40,7 +40,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       vm.reverse = true;
       vm.reverseclass = 'arrow-down';
     }
-  };
+  }; // sorts totals
 
   // remove and change class
   vm.sortClass1 = function(col) {
@@ -69,11 +69,9 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
 
   vm.getEvents = function() {
     console.log('in getEvents');
-    // var filteredList = [];
     EventService.getEvents().then(function() {
       vm.events = EventService.eventsData;
       console.log(vm.events);
-      var list = vm.events;
       var currentTime = new Date();
       var currentList1 = vm.events.filter(function(a) {
         return a.event_date > currentTime;
@@ -115,7 +113,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   //     console.log(vm.donationList);
   //   });
   // }; // end getEvents
-  
+
   // vm.getPacks = function() {
   //   EventService.getEvents().then(function() {
   //     vm.events = EventService.eventsData;
@@ -131,7 +129,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   //     console.log(vm.packList);
   //   });
   // } // end getPacks
-  
+
   // vm.getPast = function() {
   //   console.log('in getEvents');
   //   EventService.getEvents().then(function() {

@@ -73,8 +73,8 @@
                         <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.packs_promisedUpdate" placeholder="{{events.packs_promised}}" value="{{events.packs_promised}}"></thing>
                       </td>
                       <td>
-                        <thing ng-hide="toggle[events.id]">{{events.packs_needed}}</thing>
-                        <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.packs_neededUpdate" placeholder="{{events.packs_needed}}" value="{{events.packs_needed}}"></thing>
+                        <thing ng-hide="toggle[events.id]">{{events.packs_made}}</thing>
+                        <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.packs_neededUpdate" placeholder="{{events.packs_made}}" value="{{events.packs_made}}"></thing>
                       </td>
                       <td>
                         <thing ng-hide="toggle[events.id]">{{events.comments}}</thing>
@@ -90,7 +90,7 @@
                     </tr>
                   </table>
                   <!-- pagination -->
-                  <pagination total-items="ec.donationList.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
+                  <pagination total-items="ec.donationList.length" ng-model="ec.currentPage" class="pagination-sm centered" ng-change="ec.pageChanged()"></pagination>
                 </div>
 
               </tab>
@@ -347,11 +347,11 @@
           <form>
             <div class="form-group">
               <label>Date:</label for="date">
-                <input type="date" class="modalInput form-control" placeholder="Type your date here" id="date" ng-model="ec.event_date">
+                <input type="date" class="modalInput form-control" id="date" ng-model="ec.event_date">
             </div>
             <div class="form-group">
               <label>Time:</label for="time">
-                <input type="time" class="modalInput form-control" placeholder="Time" id="time" ng-model="ec.event_time">
+                <input type="text" class="modalInput form-control" placeholder="Time" id="time" ng-model="ec.event_time">
             </div>
             <div class="form-group">
               <label>Partner Id:</label for="numberOnHand">
@@ -362,8 +362,8 @@
                 <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ec.comments">
             </div>
             <div class="form-group">
-              <label>Packs Needed:</label for="packsNeeded">
-                <input type="number" class="modalInput form-control" placeholder="Packs Needed" id="packsNeeded" ng-model="ec.packs_needed">
+              <label>Packs Made:</label for="packsMade">
+                <input type="number" class="modalInput form-control" placeholder="Packs Made" id="packsMade" ng-model="ec.packs_made">
             </div>
             <div class="form-group">
               <label>Packs Promised:</label for="packsPromised">
@@ -385,7 +385,7 @@
     </div>
 <!-- post button -->
       <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ec.createEvent()">Create</button>
+        <button class="btn btn-primary" ng-click="ec.postEvent()">Create</button>
       </div>
     </script>
 <!-- end modal -->

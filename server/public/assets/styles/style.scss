@@ -25,19 +25,23 @@
   color: #333;
 }
 
-
-
 th {
   color: black;
+  a {
+    color: black;
+  }
+  a:hover {
+    color: black;
+  }
 }
 
-th a {
-  color: black;
-}
-
-th a:hover {
-  color: black;
-}
+// th a {
+//   color: black;
+// }
+//
+// th a:hover {
+//   color: black;
+// }
 
 .navbar-inverse .navbar-nav>li>a:focus{
   color: black;
@@ -247,7 +251,6 @@ label {
   /*margin-bottom: 0px;*/
 }
 
-
 /**** INVENTORY ****/
 
 @media (min-width: 768px) {
@@ -278,7 +281,4 @@ label {
 .col-md-6 {
   margin: 0;
   padding: 0;
-}
-
-
 }
