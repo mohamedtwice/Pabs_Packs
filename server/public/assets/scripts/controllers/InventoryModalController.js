@@ -11,14 +11,14 @@ myApp.controller('InventoryModalController', function(InventoryService, $modalIn
   } //  reloads page after new item has been added to show immediately
 
   vm.getInventory = function() {
-    console.log('Getting the inventory');
+    console.log('Getting inventory2');
     InventoryService.getInventory().then(function() {
       vm.inventory2 = InventoryService.inventoryData;
       console.log(vm.inventory2);
     });
   } // end getInventory
 
-  // vm.getInventory();
+  vm.getInventory();
 
   vm.postInventoryItem = function() {
     var newItem = {
