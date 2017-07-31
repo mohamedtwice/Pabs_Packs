@@ -80,8 +80,10 @@ myApp.controller('DashboardController', ['dashboardService', 'eventService', '$h
       event2: '',
       event3: ''
     }; // end eventsObject
-    eventService.getUpcommingEvents(eventsObject).then(function() {
+    eventService.getUpcomingEvents(eventsObject).then(function() {
       vm.upcomingEvents = eventService.upcomingEventsGET;
+      console.log(eventService.upcomingEventsGET);
+      console.log(vm.upcomingEvents);
     });
   }; // end getUpcomingEvents
 

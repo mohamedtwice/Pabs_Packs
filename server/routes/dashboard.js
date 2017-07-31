@@ -130,14 +130,22 @@ router.get('/inventoryData', function(req, res) {
 
 router.get('/upcomingEvents', function(req, res) {
   console.log('dashboard.js /upcomingEvents hit');
-  poo.connect(function(err, client, done) {
+  pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connection to the DB for /upcomingEvents', err);
       done();
       return;
     }
-    client.query("SELECT * FROM events WHERE event_date >= (current_date) ORDER BY event_date FETCH FIRST 3 ROWS ONLY;");
-  });
+    client.query("SELECT * FROM events WHERE event_date >= (current_date) ORDER BY event_date FETCH FIRST 3 ROWS ONLY;", function(err, result) {
+      done();
+      if (err) {
+        console.log('Error querying the DB for upcoming events', err);
+        return;
+      }
+      console.log('Got upcoming events from the DB:', result.rows);
+      res.send(result.rows);
+    }); // end client.query
+  }); // end pool.connect
 }); // end router.get for /upcomingEvents
 
 module.exports = router;
