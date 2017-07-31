@@ -24,7 +24,7 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 
 
 router.get('/donationData', function(req, res) {
-  console.log('dashboard.js get hit');
+  console.log('dashboard.js /donationData hit');
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -79,14 +79,14 @@ router.get('/donationData', function(req, res) {
       } // end else for 1st client.query
     }); // end 1st client.query
   }); // end pool.connect
-}); // end router.get for donationData
+}); // end router.get for /donationData
 
 
 
 
 
 router.get('/inventoryData', function(req, res) {
-  console.log('dashboard.js get hit');
+  console.log('dashboard.js /inventoryData hit');
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -123,6 +123,21 @@ router.get('/inventoryData', function(req, res) {
       } // end else
     }); // end 1st client.query for barLabels
   }); // end pool.connect
-}); // end router.get for inventoryData
+}); // end router.get for /inventoryData
+
+
+
+
+router.get('/upcomingEvents', function(req, res) {
+  console.log('dashboard.js /upcomingEvents hit');
+  poo.connect(function(err, client, done) {
+    if (err) {
+      console.log('Error connection to the DB for /upcomingEvents', err);
+      done();
+      return;
+    }
+    client.query("SELECT * FROM events WHERE event_date >= (current_date) ORDER BY event_date FETCH FIRST 3 ROWS ONLY;");
+  });
+}); // end router.get for /upcomingEvents
 
 module.exports = router;

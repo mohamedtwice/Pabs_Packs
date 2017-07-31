@@ -1,4 +1,4 @@
-myApp.controller('DashboardController', ['dashboardService', '$http', '$location', function(dashboardService, $http, $location) {
+myApp.controller('DashboardController', ['dashboardService', 'eventService', '$http', '$location', function(dashboardService, eventService, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
   var vm = this;
   console.log('checking user');
@@ -20,8 +20,8 @@ myApp.controller('DashboardController', ['dashboardService', '$http', '$location
     });
   }; // end vm.logout
 
-vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
-vm.pieOptions = {legend: {display: true}};
+// vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
+// vm.pieOptions = {legend: {display: true}};
 
   // pie chart post function
   vm.getPieChart = function() {
@@ -31,7 +31,7 @@ vm.pieOptions = {legend: {display: true}};
     // legend
     vm.pieOptions = {legend: {display: true}};
     // dummy data:  [200, 300, 500]
-    // vm.pieData = [200, 300, 500];
+    vm.pieData = [];
     // pie object
     var pieObject = {
       labels: vm.pieLabels,
@@ -41,7 +41,7 @@ vm.pieOptions = {legend: {display: true}};
     dashboardService.getPieChart(pieObject).then(function() {
       vm.pieData = dashboardService.pieChartData;
       console.log(dashboardService.pieChartData);
-      console.log('back in controller with:', vm.pieData); // log returns:  undefined
+      console.log('back in controller with:', vm.pieData); // log returns:  3 arrays containing 1 object each
     }); // end dashboardService.getPieChart
   }; // end getPieChart
 
@@ -68,5 +68,21 @@ vm.pieOptions = {legend: {display: true}};
       console.log(vm.barChart);
     }); // end dashboardService.getBarChart
 }; // end getBarChart
+
+
+
+  // upcoming events
+  vm.getUpcomingEvents = function() {
+    console.log('in controller, getUpcomingEvents');
+
+    var eventsObject = {
+      event1: '',
+      event2: '',
+      event3: ''
+    }; // end eventsObject
+    eventService.getUpcommingEvents(eventsObject).then(function() {
+      vm.upcomingEvents = eventService.upcomingEventsGET;
+    });
+  }; // end getUpcomingEvents
 
 }]); // end controller
