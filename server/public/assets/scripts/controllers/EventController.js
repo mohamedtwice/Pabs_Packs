@@ -115,7 +115,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   //     console.log(vm.donationList);
   //   });
   // }; // end getEvents
-  //
+  
   // vm.getPacks = function() {
   //   EventService.getEvents().then(function() {
   //     vm.events = EventService.eventsData;
@@ -131,7 +131,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   //     console.log(vm.packList);
   //   });
   // } // end getPacks
-  //
+  
   // vm.getPast = function() {
   //   console.log('in getEvents');
   //   EventService.getEvents().then(function() {
