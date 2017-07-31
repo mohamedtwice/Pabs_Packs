@@ -42,7 +42,7 @@ myApp.controller('DashboardController', ['dashboardService', 'eventService', '$h
   // horizontal bar chart
   vm.getBarChart = function() {
     console.log('in controller, getBarChart');
-  
+
     // vm.barLabels = ['Gray Backpacks', 'Blankets', 'Journals', 'Bracelets', 'Heart Stress Relievers', 'Organza Bags', 'Pabby the Penguin', 'Lip Care', 'Lotion', 'Postcards', 'Stamps', 'Handwritten Notes', 'PAB\'S PACKS Story Cards'];
     vm.barLabels = [];
 
@@ -50,8 +50,8 @@ myApp.controller('DashboardController', ['dashboardService', 'eventService', '$h
 
     dashboardService.getBarChart().then(function() {
       var dashData = dashboardService.barChartData;
-      vm.barLabels = [dashData.items.rows[0], dashData.items.rows[1]];
-      vm.barData = [dashData.numbers.rows[0], dashData.numbers.rows[1]];
+      vm.barLabels = [dashData.items.rows[0].item, dashData.items.rows[1].item, dashData.items.rows[2].item, dashData.items.rows[3].item, dashData.items.rows[4].item];
+      vm.barData = [dashData.numbers.rows[0].number_on_hand, dashData.numbers.rows[1].number_on_hand, dashData.numbers.rows[2].number_on_hand, dashData.numbers.rows[3].number_on_hand, dashData.numbers.rows[4].number_on_hand];
       console.log('back in controller with:', vm.barLabels, vm.barData);
     }); // end dashboardService.getBarChart
 }; // end getBarChart
