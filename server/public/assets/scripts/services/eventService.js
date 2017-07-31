@@ -24,8 +24,8 @@ myApp.service('EventService', function($http) {
     }).then(function(response) {
       sv.eventsData = response.data;
       sv.eventsData.forEach(function(obj) {
-        obj.event_date = new Date(obj.event_date)
-      })
+        obj.event_date = new Date(obj.event_date);
+      });
       console.log(sv.eventsData);
     });
   }; // end getEvents
@@ -53,21 +53,17 @@ myApp.service('EventService', function($http) {
     }).then(function(response) {
       return response;
     });
-  }; //end deleteEvent
-
-  sv.updateEvents = function(id, updatedEvent) {
-    console.log(updatedEvent);
-    console.log(id);
-    return $http({
-      method: 'PUT',
-      url: '/events/' + id,
-      data: updatedEvent
-      // params: {
-      //   id: id
-      // }
-    }).then(function(response) {
-      console.log('back from updatedEvent:', response);
-    }); // end of update event
   };
 
-});
+  // service get call for DashboardController getUpcomingEvents function
+   sv.getUpcomingEvents = function() {
+     console.log('in eventService getUpcomingEvents function');
+     return $http({
+      method: 'GET',
+      url: '/dashboard/upcomingEvents'
+     }).then(function(response) {
+       sv.upcomingEventsGET = response.data;
+     });
+   }; // end getUpcoimingEvents
+
+}); // end myApp.service

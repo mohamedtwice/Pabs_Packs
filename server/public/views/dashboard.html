@@ -1,11 +1,14 @@
-<<<<<<< HEAD
-<!-- <section> -->
-=======
-<header ng-include="'/views/templates/header.html'"></header>
-<section>
->>>>>>> bb1e3f0c45b95b6a57b38eda4912386d1c640898
+<<<<<<< HEAD <!-- <section> --> =======
+  <header ng-include="'/views/templates/header.html'"></header>
+  <<<<<<< HEAD <section>
+    >>>>>>> bb1e3f0c45b95b6a57b38eda4912386d1c640898
 
-<!-- <div class="container">
+    <!-- <div class="container">
+=======
+
+<!-- <section>
+  <div class="container">
+>>>>>>> 302e3e4762c5ec1ca0f61e676eee2839c3675e05
     <div class="row">
       <div class="col-xs-12 col-md-6 col-md-offset-3">
         <h1 id="welcome" class="lead">Welcome, {{userName}}!</h1>
@@ -16,17 +19,15 @@
   </div>
 </section> -->
 
-<div ng-controller="DashboardController as dc">
-  <div class="form-inline">
     <section>
       <div class="container" id="pie">
         <h3>Annual Goal for Pack Donations</h3>
-        <canvas id="pie" class="chart chart-pie pull-right" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions"></canvas>
+        <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions"></canvas>
       </div>
     </section>
 
     <section>
-      <div class="container pull-left" id="upcomingEvents">
+      <div class="container" id="upcomingEvents">
         <h3>Upcoming Events</h3>
 
         <div class="col-md-3" id="upcomingEventsColumns">
@@ -34,30 +35,17 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>#</th>
+                <!-- <th>#</th> -->
                 <th>Date</th>
                 <th>Time</th>
-                <th>Event</th>
+                <!-- <th>Event</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>3</th>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr ng-repeat="events in dc.events | limitTo:5">
+                <td>{{events.event_date | date:"MM/dd/yyyy"}}</td>
+                <td>{{events.event_time}}</td>
+                <!-- <td>{{events.}}</td> -->
               </tr>
             </tbody>
           </table>
@@ -69,9 +57,9 @@
     <section>
       <div class="container" id="itemsRunningLow">
         <h3>Items Running Low</h3>
-        <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels"></canvas>
+        <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
       </div>
     </section>
 
-  </div>
-</div>
+
+    </div>

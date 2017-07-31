@@ -8,6 +8,7 @@ var session = require('express-session');
 
 // Route includes
 var index = require('./routes/index');
+var dashboard = require('./routes/dashboard');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var inventory = require('./routes/inventory');
@@ -15,7 +16,8 @@ var events = require('./routes/events');
 var vendor = require('./routes/vendor');
 var annualgoal = require('./routes/annualgoal');
 var partners = require('./routes/partners');
-// var backpack = require('./routes/backpack');
+var eventtype = require('./routes/eventtype');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -44,12 +46,13 @@ app.use(passport.session());
 // Routes
 app.use('/register', register);
 app.use('/user', user);
+app.use('/dashboard', dashboard);
 app.use('/inventory', inventory);
 app.use('/events', events);
 app.use('/vendor', vendor);
 app.use('/annualgoal', annualgoal);
-// app.use('/backpack', backpack);
-// app.use('/partners', partners);
+app.use('/partners', partners);
+app.use('/eventtype', eventtype);
 app.use('/*', index);
 
 

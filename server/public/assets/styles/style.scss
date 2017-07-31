@@ -25,21 +25,25 @@
   color: #333;
 }
 
-
-
 th {
   color: black;
+  a {
+    color: black;
+  }
+  a:hover {
+    color: black;
+  }
 }
 
-th a {
-  color: black;
-}
+// th a {
+//   color: black;
+// }
+//
+// th a:hover {
+//   color: black;
+// }
 
-th a:hover {
-  color: black;
-}
-
-.navbar-inverse .navbar-nav>li>a:focus {
+.navbar-inverse .navbar-nav>li>a:focus{
   color: black;
 }
 
@@ -72,8 +76,7 @@ body {
 }
 
 .container {
-  background-color: #e7e9dd;
-  width: 100%;
+  background-color: white;
 }
 
 .wrapper {
@@ -130,10 +133,9 @@ label {
 .boxsignup {
   padding: 25px;
   background: #f5f6f7;
-  margin: 50px 0px;
-  text-align: center;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin: 0 auto;
+  width: 40%;
+  border-radius: 8px;
 }
 
 .input100 {
@@ -249,7 +251,6 @@ label {
   /*margin-bottom: 0px;*/
 }
 
-
 /**** INVENTORY ****/
 
 @media (min-width: 768px) {
@@ -280,7 +281,4 @@ label {
 .col-md-6 {
   margin: 0;
   padding: 0;
-}
-
-
 }
