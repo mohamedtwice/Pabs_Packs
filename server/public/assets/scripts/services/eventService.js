@@ -1,4 +1,4 @@
-myApp.service('eventService', function($http) {
+myApp.service('EventService', function($http) {
 
   console.log('in event service');
   var sv = this;

@@ -1,4 +1,4 @@
-myApp.controller('DashboardController', ['dashboardService', 'eventService', '$http', '$location', function(dashboardService, eventService, $http, $location) {
+myApp.controller('DashboardController', ['dashboardService', 'EventService', '$http', '$location', function(dashboardService, EventService, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
   var vm = this;
   console.log('checking user');
@@ -80,9 +80,9 @@ myApp.controller('DashboardController', ['dashboardService', 'eventService', '$h
       event2: '',
       event3: ''
     }; // end eventsObject
-    eventService.getUpcomingEvents(eventsObject).then(function() {
-      vm.upcomingEvents = eventService.upcomingEventsGET;
-      console.log(eventService.upcomingEventsGET);
+    EventService.getUpcomingEvents(eventsObject).then(function() {
+      vm.upcomingEvents = EventService.upcomingEventsGET;
+      console.log(EventService.upcomingEventsGET);
       console.log(vm.upcomingEvents);
     });
   }; // end getUpcomingEvents
