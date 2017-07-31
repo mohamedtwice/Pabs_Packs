@@ -24,7 +24,7 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 
 
 
-// GET /inventory
+// GET /partners
 router.get('/', function(req, res) {
   console.log('get partners hit');
   pool.connect(function(err, client, done) {
@@ -47,19 +47,18 @@ router.get('/', function(req, res) {
   });
 });
 
-// POST /inventory
+// POST /partners
 router.post('/', function(req, res) {
   console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
-  var name = req.body.name;
-  var address = req.body.address;
-  var phone_number = req.body.phoneNumber;
-  var comments = req.body.comments;
-  var contact = req.body.contact;
+  var partner_name = req.body.partner_name;
+  var partner_contact = req.body.partner_contact;
+  var partner_phone = req.body.partner_phone;
+  var partner_address = req.body.partner_address;
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
-      client.query('INSERT INTO partners (name, address, phone_number, comments, contact_name) VALUES($1, $2, $3, $4, $5)', [name, address, phone_number, comments, contact_name])
+      client.query('INSERT INTO partners (partner_name, partner_contact, partner_phone, partner_address) VALUES($1, $2, $3, $4)', [partner_name, partner_contact, partner_phone, partner_address])
         .then(function() {
           client.release();
           res.sendStatus(201); // created
@@ -71,21 +70,20 @@ router.post('/', function(req, res) {
     });
 });
 
-// POST /inventory
+// POST /partners
 router.put('/:id', function(req, res) {
   console.log('{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
   var id = req.body.id;
-  var item = req.body.itemUpdate;
-  var vendor = req.body.vendorUpdate;
-  var comments = req.body.commentsUpdate;
-  var on_hand = req.body.numberOnHandUpdate;
-  var low_number = req.body.reorderAlertNumberUpdate;
+  var partner_name = req.body.partner_name;
+  var partner_contact = req.body.partner_contact;
+  var partner_phone = req.body.partner_phone;
+  var partner_address = req.body.partner_address;
   console.log(id);
-  console.log(item);
+  console.log(partners);
   // updates specified field
   pool.connect()
     .then(function(client) {
-      client.query("UPDATE inventory SET item=$1, vendor_id=$2, number_on_hand=$3, comments=$4, low_number=$5 WHERE id = $6;", [item, vendor, on_hand, comments, low_number, id])
+      client.query("UPDATE partners SET partner_name=$1, partner_contact=$2, partner_phone=$3, partner_address=$4, WHERE id = $5;", [partner_name, partner_contact, partner_phone, partner_address])
         .then(function() {
           client.release();
           res.sendStatus(201); // created
@@ -98,7 +96,22 @@ router.put('/:id', function(req, res) {
 });
 
 
-
+router.delete('/:id', function(req, res) {
+  console.log('-------------------------++++++++++++++++++++++++');
+  console.log(req.params.id);
+  pool.connect(function(err, connection, done) {
+    console.log('Post hit');
+    var id = req.params.id;
+    if (err) {
+      console.log('error in connection', err);
+      done();
+      res.send(400);
+    } else {
+      connection.query("DELETE FROM partners WHERE id = '" + id + "';");
+      res.send('deleted');
+    }
+  });
+});
 
 
 

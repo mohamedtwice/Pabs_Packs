@@ -4,6 +4,8 @@
 
   <!-- beginning of tabs -->
   <tabset>
+    <button class="btn btn-info pull-right" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+
     <!-- packs tab -->
     <tab heading="Packs" select="ic.getInventory()">
       <div class="table-responsive" ng-model="ic.packs">
@@ -153,7 +155,6 @@
     </tab>
   </tabset>
 
-  <button class="btn btn-info" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 </div>
 <!-- end bg class -->
 
