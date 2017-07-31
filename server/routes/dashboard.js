@@ -47,7 +47,7 @@ router.get('/donationData', function(req, res) {
         done(); // exit out of DB pool
         res.sendStatus(500);
       } else {
-        dashboardData.packsDonated = result.rows;
+        dashboardData.packsDonated = parseInt(result.rows[0].sum);
         console.log('dashboardData.packsDonated:', dashboardData.packsDonated);
         console.log('Got pie chart packs already donated *1* from the DB:', result.rows); // log returns: [ anonymous { sum: '105'} ]
 
@@ -58,7 +58,7 @@ router.get('/donationData', function(req, res) {
             done(); // exit out of DB pool
             res.sendStatus(500);
           } else {
-            dashboardData.leftToDonate = result1.rows;
+            dashboardData.leftToDonate = parseInt(result1.rows[0].left_to_donate);
             console.log('Got pie chart packs left to donate *2* from the DB:', result1.rows); // log returns: [ anonymous { left_to_donate: '1895'} ]
 
             // SCHEDULED PACK DONATIONS QUERY   ********   3   ********
@@ -68,7 +68,7 @@ router.get('/donationData', function(req, res) {
                 done(); // exit out of DB pool
                 res.sendStatus(500);
               } else {
-                dashboardData.scheduledDonations = result2.rows;
+                dashboardData.scheduledDonations = parseInt(result2.rows[0].sum);
                 console.log('Got pie chart scheduled pack donations *3* from the DB:', result2.rows); // log returns: [ anonymous { sum: '600'} ]
               } // end second if statement
               res.send(dashboardData);

@@ -32,15 +32,10 @@ myApp.controller('DashboardController', ['dashboardService', 'eventService', '$h
     vm.pieOptions = {legend: {display: true}};
     // dummy data:  [200, 300, 500]
     vm.pieData = [];
-    // pie object
-    var pieObject = {
-      labels: vm.pieLabels,
-      options: vm.pieOptions,
-      data: vm.pieData
-    }; // end pieObject
-    dashboardService.getPieChart(pieObject).then(function() {
-      vm.pieData = dashboardService.pieChartData;
-      console.log(dashboardService.pieChartData);
+
+    dashboardService.getPieChart().then(function() {
+      var dashData = dashboardService.pieChartData;
+      vm.pieData = [dashData.packsDonated, dashData.leftToDonate, dashData.scheduledDonations];
       console.log('back in controller with:', vm.pieData); // log returns:  3 arrays containing 1 object each
     }); // end dashboardService.getPieChart
   }; // end getPieChart
