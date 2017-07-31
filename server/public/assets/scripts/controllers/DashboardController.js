@@ -20,8 +20,6 @@ myApp.controller('DashboardController', ['dashboardService', 'eventService', '$h
     });
   }; // end vm.logout
 
-// vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
-// vm.pieOptions = {legend: {display: true}};
 
   // pie chart post function
   vm.getPieChart = function() {
@@ -30,37 +28,31 @@ myApp.controller('DashboardController', ['dashboardService', 'eventService', '$h
     vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
     // legend
     vm.pieOptions = {legend: {display: true}};
-    // dummy data:  [200, 300, 500]
+    // pie data
     vm.pieData = [];
 
     dashboardService.getPieChart().then(function() {
       var dashData = dashboardService.pieChartData;
       vm.pieData = [dashData.packsDonated, dashData.leftToDonate, dashData.scheduledDonations];
-      console.log('back in controller with:', vm.pieData); // log returns:  3 arrays containing 1 object each
+      console.log('back in controller with:', vm.pieData);
     }); // end dashboardService.getPieChart
   }; // end getPieChart
-
 
 
   // horizontal bar chart
   vm.getBarChart = function() {
     console.log('in controller, getBarChart');
-    // bar labels
+  
     // vm.barLabels = ['Gray Backpacks', 'Blankets', 'Journals', 'Bracelets', 'Heart Stress Relievers', 'Organza Bags', 'Pabby the Penguin', 'Lip Care', 'Lotion', 'Postcards', 'Stamps', 'Handwritten Notes', 'PAB\'S PACKS Story Cards'];
     vm.barLabels = [];
-    // vm.barSeries = ['Series A', 'Series B'];
-    // bar data
-    // vm.barData = [[500, 500, 500, 300, 300, 300, 500,500, 500, 250, 100, 250, 250],];
+
     vm.barData = [];
-    // bar object
-    var barObject = {
-      labels: vm.barLabels,
-      data: vm.barData
-    }; // end barObject
-    dashboardService.getBarChart(barObject).then(function() {
-      vm.barChart = dashboardService.barChartData;
-      console.log(dashboardService.barChartData);
-      console.log(vm.barChart);
+
+    dashboardService.getBarChart().then(function() {
+      var dashData = dashboardService.barChartData;
+      vm.barLabels = [dashData.items.rows[0], dashData.items.rows[1]];
+      vm.barData = [dashData.numbers.rows[0], dashData.numbers.rows[1]];
+      console.log('back in controller with:', vm.barLabels, vm.barData);
     }); // end dashboardService.getBarChart
 }; // end getBarChart
 

@@ -49,7 +49,7 @@ router.get('/donationData', function(req, res) {
       } else {
         dashboardData.packsDonated = parseInt(result.rows[0].sum);
         console.log('dashboardData.packsDonated:', dashboardData.packsDonated);
-        console.log('Got pie chart packs already donated *1* from the DB:', result.rows); // log returns: [ anonymous { sum: '105'} ]
+        console.log('Got pie chart packs already donated *1* from the DB:', result.rows[0].sum);
 
         // PACKS LEFT TO DONATE QUERY   ********   2   ********
         client.query("SELECT (bg.annual_goal::int - pp.packs_promised) left_to_donate FROM backpack_goal bg,(SELECT SUM (packs_promised) packs_promised,to_char(event_date,'YYYY') event_date FROM events WHERE event_date >= date_trunc('year',current_date) AND event_date < (current_date) GROUP BY to_char(event_date,'YYYY')) pp WHERE bg.year = pp.event_date;", function(err1, result1) {
@@ -58,9 +58,8 @@ router.get('/donationData', function(req, res) {
             done(); // exit out of DB pool
             res.sendStatus(500);
           } else {
-            dashboardData.leftToDonate = parseInt(result1.rows[0].left_to_donate);
-            console.log('Got pie chart packs left to donate *2* from the DB:', result1.rows); // log returns: [ anonymous { left_to_donate: '1895'} ]
-
+            dashboardData.leftToDonate = parseInt(result1.rows[0].left_to_donate); // using .left_to_donate due to the SQL query
+            console.log('Got pie chart packs left to donate *2* from the DB:', result1.rows[0].left_to_donate);
             // SCHEDULED PACK DONATIONS QUERY   ********   3   ********
             client.query("SELECT SUM (packs_promised) FROM events WHERE event_date >=  NOW();", function(err2, result2) {
               if (err1) {
@@ -69,10 +68,10 @@ router.get('/donationData', function(req, res) {
                 res.sendStatus(500);
               } else {
                 dashboardData.scheduledDonations = parseInt(result2.rows[0].sum);
-                console.log('Got pie chart scheduled pack donations *3* from the DB:', result2.rows); // log returns: [ anonymous { sum: '600'} ]
-              } // end second if statement
+                console.log('Got pie chart scheduled pack donations *3* from the DB:', result2.rows[0].sum);
+              } // end else statement
               res.send(dashboardData);
-              console.log('dashboardData:', dashboardData); // log returns:  { packsDonated: [ anonymous { sum: '105' } ], leftToDonat: [ anonymous { left_to_donate: '1895'}], scheduledDonations: [ anonymous { sum: '600'} ] }
+              console.log('dashboardData:', dashboardData);
             }); // end 3rd client.query
           } // end else statement for 2nd query
         }); // end 2nd client.query
@@ -99,8 +98,8 @@ router.get('/inventoryData', function(req, res) {
     client.query('SELECT item FROM inventory WHERE low_number >= number_on_hand;', function(err, result) {
 
       var inventoryData = {
-        items: [],
-        numbers: []
+        items: '',
+        numbers: ''
       }; // end inventory Data object
 
       if (err) {
@@ -108,17 +107,18 @@ router.get('/inventoryData', function(req, res) {
         done(); // exit out of DB pool
       } else {
         inventoryData.items = result;
-        console.log('Got bar chart inventory barLabels *1* from the DB:', result.rows); // log returns: [ anonymout { item: 'Gray Backpacks'}, ....]
+        console.log('Got bar chart inventory barLabels *1* from the DB:', result.rows[0].items);
 
         // ITEMS RUNNING LOW - NUMBERS QUERY   ********   2   ********
         client.query('SELECT number_on_hand FROM inventory WHERE low_number >= number_on_hand;', function(err1, result1) {
           if (err) {
             console.log('Error querying the DB for bar chart numbers running low', err);
             done(); // exit out of DB pool
-          } // end second if statement
+          } // end if statement
           inventoryData.numbers = result1;
-          console.log('Got bar chart inventory barData *2* from the DB:', result1.rows); // log returns: [ anonymous { number_on_hand: 200}, ....]
-          res.send(result.rows);
+          console.log('Got bar chart inventory barData *2* from the DB:', result1.rows[0].numbers);
+          res.send(inventoryData);
+          console.log('inventoryData:', inventoryData);
         }); // end 2nd client.query for barData
       } // end else
     }); // end 1st client.query for barLabels
