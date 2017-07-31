@@ -25,35 +25,27 @@
   <div class="container" id="upcomingEvents">
     <h3>Upcoming Events</h3>
 
-    <div class="col-md-3" id="upcomingEventsColumns" ng-init="dc.getUpcomingEvents()">
+    <div class="col-md-3" ng-init="dc.getUpcomingEvents()">
 
-    <table class="table table-striped" ng-repeat="data in dc.upcomingEvents">
+    <table class="table table-bordered">
       <thead>
         <tr>
-          <th>#</th>
           <th>Date</th>
           <th>Time</th>
-          <th>Event</th>
+          <th>Event Type</th>
+          <th>Packs Promised</th>
+          <th>Comments</th>
+          <th>Packs Made</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>1</th>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr  ng-repeat="data in dc.upcomingEvents">
+          <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
+          <td>{{ data.event_time }}</td>
+          <td>{{ data.event_type }}</td>
+          <td>{{ data.packs_promised }}</td>
+          <td>{{ data.comments }}</td>
+          <td>{{ data.packs_made }}</td>
         </tr>
       </tbody>
     </table>
