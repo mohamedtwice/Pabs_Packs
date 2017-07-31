@@ -45,21 +45,20 @@ router.get('/', function(req, res) {
   });
 });
 
-
 // -------
-
 
 // POST /inventory
 router.post('/', function(req, res) {
+  console.log('++++++++++++++++{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
-  var event_date = req.body.event_date;
-  var event_time = req.body.event_time;
+  var event_date = req.body.date
+  var event_time = req.body.time;
   var partner_id = req.body.partner_id;
   var event_type = req.body.event_type;
   var packs_promised = req.body.packs_promised;
   var packs_made = req.body.packs_made;
   var comments = req.body.comments;
-
+  console.log(event_date);
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
