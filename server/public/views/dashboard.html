@@ -1,6 +1,6 @@
-<section>
+<!-- <section> -->
 
-  <div class="container">
+<!-- <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-6 col-md-offset-3">
         <h1 id="welcome" class="lead">Welcome, {{userName}}!</h1>
@@ -9,63 +9,64 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
-<div ng-controller="DashboardController as dc" class="container">
+<div ng-controller="DashboardController as dc">
+  <div class="form-inline">
+    <section>
+      <div class="container" id="pie">
+        <h3>Annual Goal for Pack Donations</h3>
+        <canvas id="pie" class="chart chart-pie pull-right" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions"></canvas>
+      </div>
+    </section>
 
-<section>
-<div class="container" id="pie">
-  <h3>Annual Goal for Pack Donations</h3>
-  <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions"></canvas>
-</div>
-</section>
+    <section>
+      <div class="container pull-left" id="upcomingEvents">
+        <h3>Upcoming Events</h3>
 
-<section>
-  <div class="container" id="upcomingEvents">
-    <h3>Upcoming Events</h3>
+        <div class="col-md-3" id="upcomingEventsColumns">
 
-    <div class="col-md-3" id="upcomingEventsColumns">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Event</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>1</th>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+        </div>
+      </div>
+    </section>
 
-    </div>
-    </div>
-</section>
+    <section>
+      <div class="container" id="itemsRunningLow">
+        <h3>Items Running Low</h3>
+        <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels"></canvas>
+      </div>
+    </section>
 
-<section>
-  <div class="container" id="itemsRunningLow">
-    <h3>Items Running Low</h3>
-    <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels"></canvas>
   </div>
-</section>
-
 </div>

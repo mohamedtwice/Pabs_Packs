@@ -1,4 +1,4 @@
-<div class="bg">
+<div class="wrapper">
   <h2>Inventory</h2>
 
   <!-- beginning of tabs -->
@@ -15,31 +15,32 @@
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
               </th>
+              <th>
+                <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <!-- Need edit/delete functionality -->
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -88,33 +89,34 @@
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
-                </th>
-                <th>
-                  <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
               </th>
-              <th>Delete</th>
+              <th>
+                <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <th>
+                <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                </a>
+              </th>
+              <!-- need edit/delete functionality -->
               <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
 
