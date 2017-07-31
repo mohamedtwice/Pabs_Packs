@@ -17,11 +17,25 @@ myApp.service('InventoryService', function($http) {
     console.log(newItem);
     return $http({
       method: 'POST',
-      url: '/',
+      url: '/inventory',
       data: newItem
     }).then(function(response) {
       console.log('back from postInventoryItem:', response);
     });
+  };
+
+  sv.updateProperties = function(updatedProperty) {
+    console.log(updatedProperty);
+    return $http({
+      method: 'PUT',
+      url: '/inventory/' + updatedProperty.id,
+      params: {
+        id: updatedProperty.id
+      },
+      data: updatedProperty
+    }).then(function(response) {
+      console.log('back from updateProperties:', response);
+    }); // update properties
   }
 
   sv.deleteItem = function(id) {
@@ -29,6 +43,9 @@ myApp.service('InventoryService', function($http) {
     return $http({
       method: 'DELETE',
       url: '/inventory/' + id,
+      params: {
+        id: id
+      }
     }).then(function() {
       console.log('item deleted');
     });

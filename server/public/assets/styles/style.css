@@ -2,20 +2,85 @@
   font-family: Raleway, sans-serif;
 }
 
+.totals {
+  margin: 20px 0;
+  background: #f5f6f7;
+  padding: 20px;
+}
+
+.fa-lg:hover {
+  color: grey;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: black;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+.nav-tabs>li>a {
+  color: #333;
+}
+
+th {
+  color: black;
+}
+
+th a {
+  color: black;
+}
+
+th a:hover {
+  color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus{
+  color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: #808080;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+.adminbox {
+  background: #f5f6f7;
+  padding: 20px;
+  margin: 20px;
+  overflow: hidden;
+  width: 100%;
+  display: inline-block;
+}
+
+.bg {
+  /*background: #f5f6f7;*/
+}
+
 body {
-  background-image: url("/images/pattern.jpg");
+  /*background-image: url("/images/pattern.jpg");*/
   background-repeat: repeat-x;
   background-attachment: fixed;
 }
 
+.container {
+  background-color: white;
+}
+
 .wrapper {
   /*padding-top: 2px;*/
-  background: #e7e9dd;
+  /*background: #e7e9dd;*/
 }
 
 .container {
   margin-top: 5px;
-  width: 100%;
+  width: 90%;
 }
 
 .header-container {
@@ -34,6 +99,27 @@ h2 {
   margin-top: 9rem;
 }
 
+label {
+  margin-top: 10px;
+}
+
+.btn-success {
+  margin-left: 1.5rem;
+}
+
+.modalInput {
+  width: 100%;
+  float: right;
+}
+
+#inventoryTitle {
+  float: left;
+}
+
+#top {
+  margin-top: 5%;
+}
+
 #editBtn {
   float: right;
 }
@@ -41,14 +127,15 @@ h2 {
 .boxsignup {
   padding: 25px;
   background: #f5f6f7;
-  margin: 50px 0px;
+  margin: 0 auto;
+  width: 40%;
+  border-radius: 8px;
 }
 
 .input100 {
   font-size: 1.65rem;
   width: 100%;
   padding: 10px 20px;
-  margin: 5px 0px;
 }
 
 .input50 {
@@ -116,12 +203,17 @@ h2 {
   margin-left: 10px;
 }
 
+.modal-footer .btn-primary {
+  text-align: center;
+}
+
 .navmenu {
   padding: 15px 10px;
 }
 
 .logo {
   display: inline-block;
+  margin: 15px;
 }
 
 
@@ -184,4 +276,7 @@ h2 {
 .col-md-6 {
   margin: 0;
   padding: 0;
+}
+
+
 }

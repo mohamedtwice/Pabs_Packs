@@ -1,9 +1,9 @@
-myApp.service('eventService', function($http) {
+myApp.service('EventService', function($http) {
 
   console.log('in event service');
   var sv = this;
 
-  sv.getEvents = function() {
+  sv.createEvent = function() {
     console.log('in getEvents service');
     return $http({
       method: 'GET',
@@ -12,9 +12,23 @@ myApp.service('eventService', function($http) {
       console.log(response);
       sv.eventsData = response.data;
       console.log(sv.eventsData);
-    }); //
-  };
+    });
+  }; // end createEvent
 
+  sv.getEvents = function() {
+    var dateArray = [];
+    console.log('in getEvents service');
+    return $http({
+      method: 'GET',
+      url: '/events'
+    }).then(function(response) {
+      sv.eventsData = response.data;
+      sv.eventsData.forEach(function(obj) {
+        obj.event_date = new Date(obj.event_date);
+      });
+      console.log(sv.eventsData);
+    });
+  }; // end getEvents
 
   sv.postEvent = function(newEvent) {
     console.log(newEvent);
@@ -25,14 +39,14 @@ myApp.service('eventService', function($http) {
     }).then(function(response) {
       console.log('back from postEvent:', response);
     });
-  };
+  }; // end postEvent
 
   sv.deleteEvent = function(id) {
     console.log('in deleteEvent');
     console.log(id);
     return $http({
       method: 'DELETE',
-      url: '/events/' + id,
+      url: '/events/',
       params: {
         id: id
       }
@@ -41,40 +55,4 @@ myApp.service('eventService', function($http) {
     });
   };
 
-  // service get call for DashboardController getUpcomingEvents function
-  sv.getUpcomingEvents = function() {
-    console.log('in eventService getUpcomingEvents function');
-    return $http({
-      method: 'GET',
-      url: '/dashboard/upcomingEvents'
-    }).then(function(response) {
-      sv.upcomingEventsGET = response.data;
-    });
-  }; // end getUpcoimingEvents
-
 }); // end myApp.service
-//
-// self.deleteAdmins = function(ev, id) {
-//   var confirm = $mdDialog.confirm()
-//     .title('Would you like to delete this user from the system?')
-//     .ariaLabel('Delete admin')
-//     .targetEvent(ev)
-//     .ok('Delete Admin User')
-//     .cancel('Cancel');
-//
-//   $mdDialog.show(confirm).then(function() {
-//     self.status = 'Admin User is deleted';
-//     $http({
-//       method: 'DELETE',
-//       url: '/private/deleteAdmins',
-//       params: {
-//         id: id
-//       }
-//     }).then(function(response) {
-//       self.getAdmins();
-//     }); //end then
-//   }, function() {
-//     self.status = 'user was not deleted, Thank you.';
-//   }); // end confirm dialogue
-// }; //end showconfirm
-// showconfirm

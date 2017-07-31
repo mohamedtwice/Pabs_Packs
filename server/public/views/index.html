@@ -8,13 +8,7 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/vendors/sweetalert2.min.css">
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
   <link rel="stylesheet" href="/vendors/bootstrap-notifications.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
   <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -23,32 +17,31 @@
   <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
   <script type="text/javascript" src="/assets/scripts/clientapp.js"></script>
   <script type="text/javascript" src="/vendors/bootstrap.min.js"></script>
-  <script data-require="ui-bootstrap@*" data-semver="0.13.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
+  <script src="/vendors/angular-bootstrap.min.js"></script>
   <script type="text/javascript" src="vendors/angular-bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/DashboardController.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/InventoryController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/InventoryModalController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/EventModalController.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/loginController.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/EventController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/AdminController.js"></script>
+  <script type="text/javascript" src="/assets/scripts/services/annualgoalService.js"></script>
+  <script type="text/javascript" src="/assets/scripts/services/vendorService.js"></script>
   <script type="text/javascript" src="/assets/scripts/services/accessService.js"></script>
   <script type="text/javascript" src="/assets/scripts/services/inventoryService.js"></script>
+  <script type="text/javascript" src="/assets/scripts/services/partnerService.js"></script>
   <script type="text/javascript" src="/assets/scripts/services/dashboardService.js"></script>
   <script type="text/javascript" src="/assets/scripts/services/eventService.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
   <script type="text/javascript" src="/vendors/Chart.js" charset="utf-8"></script>
   <script type="text/javascript" src="/vendors/angular-chart.js" charset="utf-8"></script>
-    </head>
-
 </head>
 
 <body ng-app="myApp">
 
-  <header ng-include="'/views/templates/header.html'"></header>
+  <div ng-view></div>
 
-  <div class="container theme-showcase" role="main">
-
-    <div ng-view></div>
-
-  </div>
 </body>
 
 </html>

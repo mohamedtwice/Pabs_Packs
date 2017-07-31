@@ -1,14 +1,13 @@
-# SQL Strategy Branch
-Branched from `master`. The main difference is it now uses `/strategies/user_sql.js` and all of the MongoDB code has been refactored to us `pg`, as we are using PostGRES as the database.
+# Pab's Packs App
+A simple, easy to use fullstack application that allows users at Pab's Packs to easily track their inventory and store DB information.
 
-The `bcrypt` functionality remains intact but now runs synchronously and is not tied to the database model at all.
+## What is Pab's Packs?
+Pab's Packs is a non-profit created by two teenagers (Abbie and Pia) after they were hospitalized in their youth. PP's mission is to create backpacks for hospitalized teens and youth to give them the things they may not have regular access to in the hospital - warm blankets, lotion, stress balls, a journal, lotions, lip balm, and a stuffed penguin. PP runs packing events where volunteers can come pack the packs, and then those packs are delivered to the hospitalized youths.
 
+## What problem are we trying to solve?
+Steph Fedor, the Chief Champion Officer at Pab's Packs, approached us with a need to convert her many excel spreadsheets into an easy to use website to track inventory and keep track of upcoming and past events.
 
-## Getting Started
-Download and run `npm install`
+## What technologies did we use?
++ HTML, CSS, Bootstrap, AngularJS, ChartsJS, PostgresSQL, Angular Material, SweetAlert2, Angular Animate, jQuery, javascript
 
-1. See `/modules/connection.js` to set your PostGRES DB connection string.
-  - You will find a basic `CREATE TABLE` query commented out in the strategy file.
-2. You'll need the `pg` module as well (just run `npm install`)
-3. Strategy file is now `/strategies/user_sql.js`. You can ignore `/strategies/user.js`
-4. `/models/user.js` is no longer needed at all.
+##
