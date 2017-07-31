@@ -22,8 +22,7 @@ var config = {
 };
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
-// GET /inventory
-// Only modify IF you are doing Eye of the Tiger
+// GET events
 router.get('/', function(req, res) {
   console.log('getEvents route hit');
   pool.connect(function(err, client, done) {
@@ -105,7 +104,7 @@ router.delete('/:id', function(req, res, next) {
 
 // ---
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', function(req, res) {
   console.log('in put db');
   var id = req.params.id;
   console.log(id);

@@ -8,19 +8,26 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.reverseSort = false;
   vm.type = 'backpack';
   vm.animationsEnabled = true;
+  vm.selectedButton = false;
 
   vm.reload = function() {
     $route.reload();
   } //  reloads page after new item has been added to show immediately
 
+  vm.selectButton = function(id) {
+    vm.selectedButton = !vm.selectedButton;
+    console.log(vm.selectedButton);
+  }
+
   vm.openAddNew = function(size) {
     var modalInstance = $modal.open({
       animation: vm.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'ModalController as mc',
+      controller: 'InventoryModalController as mc',
       size: size
     });
-  }
+  } //opens modal to add new item
+
   // called on header click
   vm.sortColumn = function(col) {
     vm.column = col;
@@ -31,8 +38,8 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vm.reverse = true;
       vm.reverseclass = 'arrow-down';
     }
-  };
-  // remove and change class
+  }; // toogles type of sorting(ascending or descending)
+
   vm.sortClass = function(col) {
     if (vm.column == col) {
       if (vm.reverse) {
@@ -44,6 +51,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       return '';
     }
   }
+
   vm.getInventory = function() {
     console.log('Getting the inventory');
     InventoryService.getInventory().then(function() {
@@ -52,11 +60,48 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     });
   } // end getInventory
 
-  vm.updateProperties = function(id) {
+  vm.updateProperties = function(items) {
+    console.log(items);
     console.log('in updateProperties');
-    console.log(id);
+    // if item is undefined, send original ng-model
+    if (vm.itemUpdate !== items.item) {
+      if (vm.itemUpdate === undefined) {
+        vm.itemUpdate = items.item;
+      } else {
+        vm.itemUpdate = vm.itemUpdate;
+      }
+    }
+    if (vm.vendorUpdate !== items.vendor_id) {
+      if (vm.vendorUpdate === undefined) {
+        vm.vendorUpdate = items.vendor_id;
+      } else {
+        vm.vendorUpdate = vm.vendorUpdate;
+      }
+    }
+    if (vm.numberOnHandUpdate !== items.number_on_hand) {
+      if (vm.numberOnHandUpdate === undefined) {
+        vm.numberOnHandUpdate = items.number_on_hand;
+      } else {
+        vm.numberOnHandUpdate = vm.numberOnHandUpdate;
+      }
+    }
+    if (vm.commentsUpdate !== items.comments) {
+      if (vm.commentsUpdate === undefined) {
+        vm.commentsUpdate = items.comments;
+      } else {
+        vm.commentsUpdate = vm.commentsUpdate;
+      }
+    }
+    if (vm.reorderAlertNumberUpdate !== items.low_number) {
+      if (vm.reorderAlertNumberUpdate === undefined) {
+        vm.reorderAlertNumberUpdate = items.low_number;
+      } else {
+        vm.reorderAlertNumberUpdate = vm.reorderAlertNumberUpdate;
+      }
+    }
+    console.log(vm.vendorUpdate);
     var updatedProperty = {
-      id: id,
+      id: items.id,
       itemUpdate: vm.itemUpdate,
       vendorUpdate: vm.vendorUpdate,
       numberOnHandUpdate: vm.numberOnHandUpdate,
@@ -65,7 +110,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     }
     console.log(updatedProperty);
     InventoryService.updateProperties(updatedProperty).then(function() {
-      swal({
+      swal({ //sweet alert
         type: 'success',
         title: 'Item Updated!',
         timer: 2000
@@ -77,9 +122,10 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
             console.log('I was closed by the timer');
           }
         })
-    });
+    }); // end then
     vm.reload();
-  }
+  } // end updateProperties
+
   vm.deleteItem = function(index) {
     console.log(index);
     swal({
@@ -109,10 +155,11 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       if (dismiss === 'cancel') {
         swal(
           'Cancelled',
-          'Your imaginary file is safe :)',
+          'Your file is safe :)',
           'error'
         )
       }
     })
-  }
+  } //end deleteItem
+
 });

@@ -4,10 +4,13 @@ var passport = require('passport');
 var bodyParser = require('body-parser')
 var path = require('path');
 
-// module with db
-router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 router.use(bodyParser.json());
 
+
+// module with db
 var connection = require('../modules/connection');
 var pg = require('pg');
 
@@ -19,9 +22,11 @@ var config = {
 };
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
+
+
 // GET /inventory
 router.get('/', function(req, res) {
-  console.log('get hit');
+  console.log('get partners hit');
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -29,7 +34,7 @@ router.get('/', function(req, res) {
       done();
       return;
     }
-    client.query('SELECT * FROM inventory;', function(err, result) {
+    client.query('SELECT * FROM partners;', function(err, result) {
       done();
       if (err) {
         console.log('Error querying the DB', err);
@@ -44,18 +49,17 @@ router.get('/', function(req, res) {
 
 // POST /inventory
 router.post('/', function(req, res) {
-  // implement passport here (req.isAuthenticated)
+  console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
-  var item = req.body.item;
-  var vendor = req.body.vendor;
+  var name = req.body.name;
+  var address = req.body.address;
+  var phone_number = req.body.phoneNumber;
   var comments = req.body.comments;
-  var on_hand = req.body.numberOnHand;
-  var low_number = req.body.reorderAlertNumber;
-  var type = req.body.type;
+  var contact = req.body.contact;
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
-      client.query('INSERT INTO inventory (item, vendor_id, number_on_hand, comments, low_number, type) VALUES($1, $2, $3, $4, $5, $6)', [item, vendor, on_hand, comments, low_number, type])
+      client.query('INSERT INTO partners (name, address, phone_number, comments, contact_name) VALUES($1, $2, $3, $4, $5)', [name, address, phone_number, comments, contact_name])
         .then(function() {
           client.release();
           res.sendStatus(201); // created
@@ -69,6 +73,7 @@ router.post('/', function(req, res) {
 
 // POST /inventory
 router.put('/:id', function(req, res) {
+  console.log('{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
   var id = req.body.id;
   var item = req.body.itemUpdate;
   var vendor = req.body.vendorUpdate;
@@ -92,20 +97,10 @@ router.put('/:id', function(req, res) {
     });
 });
 
-router.delete('/:id', function(req, res) {
-  console.log(req.params.id);
-  pool.connect(function(err, connection, done) {
-    console.log('Post hit');
-    var id = req.params.id;
-    if (err) {
-      console.log('error in connection', err);
-      done();
-      res.send(400);
-    } else {
-      connection.query("DELETE FROM inventory WHERE id = '" + id + "';");
-      res.send('deleted');
-    }
-  });
-});
+
+
+
+
+
 
 module.exports = router;

@@ -1,4 +1,7 @@
+<header ng-include="'/views/templates/header.html'">
+</header>
 <div class="wrapper">
+
   <h2>Inventory</h2>
 
   <!-- beginning of tabs -->
@@ -68,14 +71,16 @@
               <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
             </td>
             <td>
-              <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button ng-click="ic.updateProperties(items.id)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
+              <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
             </td>
             <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
           </tr>
         </table>
       </div>
+      <!-- end responsive table -->
     </tab>
+    <!-- end packs tab -->
 
     <!-- merchandise section -->
     <tab heading="Merchandise" select="ic.getInventory()">
@@ -119,8 +124,7 @@
               <th>Delete</th>
             </tr>
           </thead>
-
-          <!-- repeat items with hide/show inputs to show upon clicking edit button -->
+          <!-- Repeat items with hide/show inputs. Will appear after clicking edit button. -->
           <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='merchandise'">
             <td>
               <thing ng-hide="toggle[items.id]">{{items.item}}</thing>
@@ -142,39 +146,47 @@
               <thing ng-hide="toggle[items.id]">{{items.low_number}}</thing>
               <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
             </td>
-            <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
             <td>
-              <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button ng-click="ic.updateProperties(items.id)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
+              <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
             </td>
+            <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
           </tr>
         </table>
       </div>
     </tab>
   </tabset>
 
-  <!-- modal -->
-  <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-      <div class='btn-toolbar pull-right'>
-        <div class='btn-group'>
-          <button class="btn btn-warning" ng-click="mc.cancel()"><i class="fa fa-times" aria-hidden="true"></i></button>
-        </div>
+  <button class="btn btn-info" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+</div>
+<!-- end bg class -->
+
+<!-- modal -->
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <div class='btn-toolbar pull-right'>
+      <div class='btn-group'>
+        <button class="btn" style="background-color:transparent;" ng-click="mc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
       </div>
-      <h3 class="modal-title">New Item</h3>
     </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- input forms -->
-          <form>
-            <div class="form-group">
-              <label>Item:</label for="item">
+    <h3 class="modal-title">New Item</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input forms -->
+        <form>
+          <div class="form-group">
+            <label>Item:</label for="item">
                 <input type="text" class="modalInput form-control" placeholder="Type your item here" id="item" ng-model="mc.item">
             </div>
             <div class="form-group">
               <label>Vendor:</label for="vendor">
-                <input type="text" class="modalInput form-control" placeholder="Vendor" id="vendor" ng-model="mc.vendor">
+                <input type="text" ng-model="mc.vendor" typeahead="vendors.vendor_id for vendors in mc.inventory2  | filter:$viewValue | limitTo:10" placeholder="Vendor" id="vendor" class="modalInput form-control">
+                <!-- <select label="-- Select option --" class="form-control" ng-model="mc.vendor">
+                  <option selected disabled value="" placeholder="Vendor"><span class="selectlabel">Vendor</span></option>
+                  <option ng-repeat="vendors in mc.inventory2" class="form-control input100" value="{{vendors.vendor_id}}">{{vendors.vendor_id}}</option>
+                </select> -->
             </div>
             <div class="form-group">
               <label>Quantity on hand:</label for="numberOnHand">
@@ -188,30 +200,23 @@
               <label>Reorder Alert Amount:</label for="reorderAlertNumber">
                 <input type="number" class="modalInput form-control" placeholder="Reorder alert number" id="reorderAlertNumber" ng-model="mc.reorderAlertNumber">
             </div>
-            <!-- radio buttons -->
+            <!-- dropdown -->
             <div class="form-group">
               <label>Type:</label for="reorderAlertNumber">
-              <select label="-- Select option --" class="form-control input-lg" ng-model="mc.type">
+              <select label="-- Select option --" class="form-control" ng-model="mc.type">
                 <option value="" selected disabled><span class="selectlabel">What kind of item?</span></option>
                 <option class="form-control input-lg input100" value="backpack">Backpack</option>
                 <option class="form-control input-lg input100" value="merchandise">Merchandise</option>
               </select>
             </div>
-        </form>
-      </div>
-    </div>
-</div>
+          </form>
+        </div> <!-- end col-md-12 -->
+      </div> <!-- end row -->
+    </div> <!-- end modal body -->
 
 <!-- post button -->
-      <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="mc.postInventoryItem()">Post</button>
-      </div>
-    </script>
-<!-- end modal -->
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="mc.postInventoryItem()">Post</button>
+</div>
 
-  <button class="btn btn-info" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-
-<!-- add new row functionality -->
-</div>
-</div>
-</div>
+</script> <!-- end modal -->

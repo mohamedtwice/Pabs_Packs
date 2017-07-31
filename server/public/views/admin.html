@@ -1,0 +1,131 @@
+<header ng-include="'/views/templates/header.html'"></header>
+<div class="container" ng-init="ac.getInfo()">
+  <div class="">
+
+    <h2>Admin Page</h2>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="adminbox">
+          <h3>Vendors</h3>
+          <table class="table table-responsive table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="vendors in ac.vendors">
+                <td>{{vendors.vendor_name}}</td>
+                <td>{{vendors.vendor_phone}}</td>
+                <td>{{vendors.vendor_email}}</td>
+                <td>{{vendors.vendor_address}}</td>
+              </tr>
+              <tr>
+                <td><input type="text" name="vendor_name" ng-model="ac.vendor_name" placeholder="{{vendors.vendor_name}}" value="{{current.vendor_name}}"></td>
+                <td><input type="text" name="vendor_phone" ng-model="ac.vendor_phone" placeholder="{{vendors.vendor_phone}}" value="{{current.vendor_phone}}"></td>
+                <td><input type="text" name="vendor_email" ng-model="ac.vendor_email" placeholder="{{vendors.vendor_email}}" value="{{current.vendor_email}}"></td>
+                <td><input type="text" name="vendor_address" ng-model="ac.vendor_address" placeholder="{{vendors.vendor_address}}" value="{{current.vendor_address}}"></td>
+                <td><button class="btn btn-info" type="button" name="button" ng-click="ac.addnewvendor()">Add</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+      <div class="col-md-4">
+        <div class="adminbox">
+          <h3>Annual Goal</h3>
+          <table class=" table-responsive table-striped">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Goal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="goal in ac.annualgoal">
+                <td>{{goal.year}}</td>
+                <td>{{goal.annual_goal}}</td>
+                <td><button type="button" name="button" ng-click="ac.editgoals(goal)">Edit</button></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="year" ng-model="ac.year" placeholder="{{goal.year}}" value="{{current.year}}"></td>
+                <td><input type="text" name="annual_goal" ng-model="ac.annual_goal" placeholder="{{goal.annual_goal}}" value="{{current.annual_goal}}"></td>
+                <td><button type="button" class="btn btn-info" name="button" ng-click="ac.addnewgoal()">Add</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-md-8">
+        <div class="adminbox">
+          <h3>Partners</h3>
+          <table class="table table-responsive table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Phone</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="partners in ac.partners">
+                <td>{{partners.partner_name}}</td>
+                <td>{{partners.partner_contact}}</td>
+                <td>{{partners.partner_phone}}</td>
+                <td>{{partners.partner_address}}</td>
+              </tr>
+              <tr>
+                <td><input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="{{vendors.partner_name}}" value="{{current.partner_name}}"></td>
+                <td><input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="{{vendors.partner_contact}}" value="{{current.partner_contact}}"></td>
+                <td><input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="{{vendors.partner_phone}}" value="{{current.partner_phone}}"></td>
+                <td><input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="{{vendors.partner_address}}" value="{{current.partner_address}}"></td>
+                <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewpartner()">Add</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="adminbox">
+          <h3>Event Types</h3>
+          <table class=" table-responsive table-striped">
+            <thead>
+              <tr>
+                <th>Event Type</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="goal in ac.annualgoal">
+                <td>{{goal.year}}</td>
+                <td><button type="button" class="btn btn-info" name="button" ng-click="ac.editeventtype(goal)">Edit</button></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="" value=""></td>
+                <td><button type="button" class="btn btn-info" name="button" ng-click="ac.editeventtype(goal)">Add</button></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
