@@ -136,7 +136,7 @@ router.get('/upcomingEvents', function(req, res) {
       done();
       return;
     }
-    client.query("SELECT * FROM events WHERE event_date >= (current_date) ORDER BY event_date FETCH FIRST 3 ROWS ONLY;", function(err, result) {
+    client.query("SELECT * FROM events WHERE event_date >= (current_date) ORDER BY event_date FETCH FIRST 5 ROWS ONLY;", function(err, result) {
       done();
       if (err) {
         console.log('Error querying the DB for upcoming events', err);
