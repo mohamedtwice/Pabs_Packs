@@ -12,26 +12,39 @@ myApp.service('PartnerService', function($http) {
     }); // get the partner
   }
 
-  sv.postPartner = function(newItem) {
-    console.log(newItem);
+  sv.postPartner = function(newPartner) {
+    console.log(newPartner);
     return $http({
       method: 'POST',
       url: '/partners',
-      data: newItem
+      data: newPartner
     }).then(function(response) {
       console.log('back from postPartner:', response);
     });
   }
 
-  sv.updatePartner = function(updatedProperty) {
-    console.log(updatedProperty);
+  sv.updatePartner = function(updatedPartner) {
+    console.log(updatedPartner);
     return $http({
       method: 'PUT',
-      url: '/partners/' + updatedProperty.id,
-      data: updatedProperty
+      url: '/partners/' + updatedPartner.id,
+      data: updatedPartner
     }).then(function(response) {
       console.log('back from updatePartner:', response);
     }); // update properties
+  }
+
+  sv.deletePartner = function(id) {
+    console.log(id);
+    return $http({
+      method: 'DELETE',
+      url: '/partners/',
+      params: {
+        id: id
+      }
+    }).then(function() {
+      console.log('partner deleted');
+    });
   }
 
 });
