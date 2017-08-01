@@ -63,7 +63,7 @@ VALUES ('Packing'),
 ('Donation'),
 ('Donation')
 
-CREATE TABLE vendor (
+CREATE TABLE vendors (
   id SERIAL PRIMARY KEY,
   vendor_name varchar(80),
   vendor_phone varchar(80),
@@ -71,6 +71,6 @@ CREATE TABLE vendor (
   vendor_address varchar(80)
   );
 
-INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
+INSERT INTO vendors (vendor_name, vendor_phone, vendor_email, vendor_address)
 VALUES ('Vendor 1', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125'),
 ('Vendor 2', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125')

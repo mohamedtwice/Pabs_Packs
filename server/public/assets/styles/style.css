@@ -3,9 +3,9 @@
 }
 
 .totals {
-  margin: 20px 0;
-  background: #f5f6f7;
-  padding: 20px;
+    margin: -3px 10px;
+    background: #f5f6f7;
+    padding: 10px;
 }
 
 .fa-lg:hover {

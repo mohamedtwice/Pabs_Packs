@@ -1,7 +1,7 @@
 myApp.controller('InventoryController', function(InventoryService, $modal, $route) {
   console.log('in inventory controller');
   var vm = this;
-  
+
   vm.column = 'item';
   // sort ordering (Ascending or Descending). Set true for desending
   vm.reverse = false;
@@ -39,7 +39,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       vm.reverse = true;
       vm.reverseclass = 'arrow-down';
     }
-  }; // toogles type of sorting(ascending or descending)
+  } // toogles type of sorting(ascending or descending)
 
   vm.sortClass = function(col) {
     if (vm.column == col) {
