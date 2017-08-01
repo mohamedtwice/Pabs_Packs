@@ -116,7 +116,7 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
             console.log('I was closed by the timer');
           }
         });
-      $route.reload();
+      vm.getPartners();
     });
 
 
@@ -229,7 +229,6 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
     }).then(function() {
       console.log('in remove');
       PartnerService.deletePartner(id);
-      vm.getPartners();
       swal(
         'Deleted!',
         'Your item has been deleted.',
@@ -246,6 +245,8 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
         )
       }
     })
+    vm.getPartners();
+
   }; // delete partner
 
 });

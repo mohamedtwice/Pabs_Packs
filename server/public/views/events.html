@@ -1,5 +1,5 @@
 <header ng-include="'/views/templates/header.html'"></header>
-<div class="container" ng-init="ec.getEvents()">
+<div class="container" ng-init="ec.loadPage()">
   <div class="col-md-8">
         <div class="event-tracker">
           <h2>Event Tracker</h2>
@@ -275,7 +275,7 @@
       </div>
 
       <div class="col-md-4">
-        <div class="totals">
+        <div class="totals" >
 
           <h2>TOTALS</h2>
 
@@ -301,29 +301,18 @@
                 <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
               </a>
                   </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
+              <tr>
                 <td>
-                  <thing ng-hide="toggle[events.id]">{{events.needed_packs}}</thing>
-                  <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_neededPacksUpdate" placeholder="{{events.needed_packs }}" value="{{events.needed_packs}}"></thing>
+
                 </td>
                 <td>
-                  <thing ng-hide="toggle[events.id]">{{events.event_time}}</thing>
-                  <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
+
                 </td>
                 <td>
-                  <thing ng-hide="toggle[events.id]">{{events.partner_id}}</thing>
-                  <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_idUpdate" placeholder="{{events.partner_id}}" value="{{events.partner_id}}"></thing>
-                </td>
-                <td>
-                  <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                  <button ng-click="ec.updatePackEvents(events.id)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
-                </td>
-                <td>
-                  <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+
                 </td>
               </tr>
             </table>

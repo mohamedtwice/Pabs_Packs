@@ -70,4 +70,16 @@ myApp.service('EventService', function($http) {
     }); // end of update event
   };
 
+  sv.getTotalPacks = function() {
+    // var dateArray = [];
+    console.log('in getTotalPacks service');
+    return $http({
+      method: 'GET',
+      url: '/events'
+    }).then(function(response) {
+      sv.eventsData = response.data;
+      console.log(sv.eventsData);
+    });
+  }; // end getEvents
+
 });
