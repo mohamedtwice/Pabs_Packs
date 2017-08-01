@@ -88,6 +88,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   //     vm.invoiceTotal += event.total;
   //   }
   // }
+  
   vm.getEvents = function() {
     console.log('in getEvents');
     EventService.getEvents().then(function() {
