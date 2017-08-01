@@ -12,6 +12,14 @@
   color: grey;
 }
 
+#vendorBtn {
+  margin-top: .5rem;
+}
+
+#vendorInputs {
+  margin-top: .5rem;
+}
+
 .navbar-inverse .navbar-nav>li>a {
   color: black;
   font-size: 1.25rem;
@@ -24,8 +32,6 @@
 .nav-tabs>li>a {
   color: #333;
 }
-
-
 
 th {
   color: black;

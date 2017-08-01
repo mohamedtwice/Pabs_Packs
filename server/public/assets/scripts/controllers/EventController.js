@@ -3,9 +3,9 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   var vm = this;
 
   // sort ordering (Ascending or Descending). Set true for desending
-  vm.column = 'event';
+  vm.column = 'event_date';
   vm.reverse = false;
-  vm.orderByField = 'event';
+  vm.orderByField = 'event_date';
   vm.reverseSort = false;
   vm.animationsEnabled = true;
   vm.now = '';
@@ -256,6 +256,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     }
     console.log(id);
     var updatedEvent = {
+      id: events.id,
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
       partner_id: vm.partner_idUpdate,
@@ -265,7 +266,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     var id = events;
     console.log(id);
     console.log(updatedEvent);
-    EventService.updateEvents(id, updatedEvent).then(function() {
+    EventService.updateDonationEvents(id, updatedEvent).then(function() {
       swal({
         type: 'success',
         title: 'Event Updated!',
