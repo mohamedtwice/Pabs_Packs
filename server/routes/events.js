@@ -91,7 +91,8 @@ router.post('/', function(req, res) {
         .then(function() {
           console.log('in then post db');
           client.release();
-          res.sendStatus(201); // created
+          res.sendStatus(201); // create
+          done();
         });
     })
     .catch(function(err) {
