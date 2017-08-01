@@ -65,7 +65,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
             if (dismiss === 'timer') {
               console.log('I was closed by the timer');
             }
-            vm.reload();
+            $route.reload();
           })
       }); // end sweetAlert
     // } // end else
