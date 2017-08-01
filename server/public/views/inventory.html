@@ -1,5 +1,7 @@
-<header ng-include="'/views/templates/header.html'"></header>
-<div class="container">
+<header ng-include="'/views/templates/header.html'">
+</header>
+<div class="wrapper">
+
   <h2>Inventory</h2>
 
   <!-- beginning of tabs -->
@@ -43,6 +45,7 @@
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
               </th>
+              <!-- Need edit/delete functionality -->
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -118,8 +121,9 @@
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
               </th>
-              <th>Delete</th>
+              <!-- need edit/delete functionality -->
               <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <!-- Repeat items with hide/show inputs. Will appear after clicking edit button. -->

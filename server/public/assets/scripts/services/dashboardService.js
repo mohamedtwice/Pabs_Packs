@@ -1,7 +1,7 @@
 /**** Dashboard Service ****/
 
-myApp.service('dashboardService', function($http) {
-  console.log('in dashboard service');
+myApp.service('DashboardService', function($http) {
+  console.log('in DashboardService');
   var sv = this;
 
   // getPieChart function
@@ -22,8 +22,7 @@ myApp.service('dashboardService', function($http) {
       url: '/dashboard/inventoryData',
     }).then(function(response){
       sv.barChartData = response.data;
-      console.log(response.data); // this log returns an array of 5 objects
-      console.log(sv.barChartData); // this log returns the same array of 5 objects
+      console.log(sv.barChartData);
     });
   }; // end getBarChart
 

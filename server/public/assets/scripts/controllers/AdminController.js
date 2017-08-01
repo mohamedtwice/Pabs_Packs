@@ -1,4 +1,4 @@
-myApp.controller('AdminController', function(eventtypeService, PartnerService, vendorService, annualgoalService, $modal, $route) {
+myApp.controller('AdminController', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route) {
 
   console.log('in vendor controller');
   var vm = this;
@@ -19,16 +19,16 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
 
   vm.getAnnualgoal = function() {
     console.log('in getAnnualgoal');
-    annualgoalService.getAnnualgoal().then(function() {
-      vm.annualgoal = annualgoalService.annualgoalData;
+    AnnualgoalService.getAnnualgoal().then(function() {
+      vm.annualgoal = AnnualgoalService.annualgoalData;
       console.log(vm.annualgoal);
     });
   }; // end getAnnualgoal
 
   vm.getVendors = function() {
     console.log('in getVendors');
-    vendorService.getVendors().then(function() {
-      vm.vendors = vendorService.vendorsData;
+    VendorService.getVendors().then(function() {
+      vm.vendors = VendorService.vendorsData;
       console.log(vm.vendors);
     });
   }; // end getVendors
@@ -43,8 +43,8 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
 
   vm.getEventType = function() {
     console.log('in getPartners');
-    eventtypeService.getEventType().then(function() {
-      vm.eventtype = eventtypeService.eventtypeData;
+    EventtypeService.getEventType().then(function() {
+      vm.eventtype = EventtypeService.eventtypeData;
       console.log(vm.eventtype);
     });
   }; // end getPartner
@@ -116,7 +116,7 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
             console.log('I was closed by the timer');
           }
         });
-      $route.reload();
+      vm.getPartners();
     });
 
 
@@ -148,7 +148,7 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
       };
 
       console.log(newVendor);
-      vendorService.addnewvendor(newVendor).then(function() {
+      VendorService.addnewvendor(newVendor).then(function() {
         vm.getVendors();
       });
     }; // end addnewgoal
@@ -176,7 +176,7 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
         annual_goal: vm.annual_goal
       };
       console.log(newGoal);
-      annualgoalService.addnewgoal(newGoal).then(function() {
+      AnnualgoalService.addnewgoal(newGoal).then(function() {
         vm.getAnnualgoal();
       });
     }; // end addnewgoal
@@ -188,7 +188,7 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
         event_type_name: vm.event_type_name,
       };
       console.log(newEventType);
-      eventtypeService.addnewEventType(newEventType).then(function() {
+      EventtypeService.addnewEventType(newEventType).then(function() {
         vm.getEventType();
       });
     }; // end addnewgoal
@@ -229,7 +229,6 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
     }).then(function() {
       console.log('in remove');
       PartnerService.deletePartner(id);
-      vm.getPartners();
       swal(
         'Deleted!',
         'Your item has been deleted.',
@@ -246,6 +245,8 @@ myApp.controller('AdminController', function(eventtypeService, PartnerService, v
         )
       }
     })
+    vm.getPartners();
+
   }; // delete partner
 
 });

@@ -1,9 +1,9 @@
-myApp.service('annualgoalService', function($http) {
-  console.log('in annualgoal service');
+myApp.service('AnnualgoalService', function($http) {
+  console.log('in AnnualgoalService');
   var sv = this;
 
   sv.getAnnualgoal = function() {
-    console.log('in getAnnualgoal service');
+    console.log('in AnnualgoalService');
     return $http({
       method: 'GET',
       url: '/annualgoal'

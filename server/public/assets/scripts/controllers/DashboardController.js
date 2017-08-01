@@ -1,4 +1,4 @@
-myApp.controller('DashboardController', ['dashboardService', 'EventService', '$http', '$location', function(dashboardService, EventService, $http, $location) {
+myApp.controller('DashboardController', ['DashboardService', 'EventService', '$http', '$location', function(DashboardService, EventService, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
   var vm = this;
   console.log('checking user');
@@ -21,9 +21,6 @@ myApp.controller('DashboardController', ['dashboardService', 'EventService', '$h
   }; // end vm.logout
 
 
-// vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
-// vm.pieOptions = {legend: {display: true}};
-
   // pie chart post function
   vm.getPieChart = function() {
     console.log('in controller, getPieChart');
@@ -31,50 +28,32 @@ myApp.controller('DashboardController', ['dashboardService', 'EventService', '$h
     vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
     // legend
     vm.pieOptions = {legend: {display: true}};
-    // dummy data:  [200, 300, 500]
+    // pie data
     vm.pieData = [];
-    // pie object
-    var pieObject = {
-      labels: vm.pieLabels,
-      options: vm.pieOptions,
-      data: vm.pieData
-    }; // end pieObject
-    dashboardService.getPieChart(pieObject).then(function() {
-      vm.pieData = dashboardService.pieChartData;
-      console.log(dashboardService.pieChartData);
-      console.log('back in controller with:', vm.pieData); // log returns:  3 arrays containing 1 object each
-    }); // end dashboardService.getPieChart
+
+    DashboardService.getPieChart().then(function() {
+      var dashData = DashboardService.pieChartData;
+      vm.pieData = [dashData.packsDonated, dashData.leftToDonate, dashData.scheduledDonations];
+      console.log('back in controller with:', vm.pieData);
+    }); // end DashboardService.getPieChart
   }; // end getPieChart
 
-
-  vm.getEvents = function() {
-    console.log('in getEvents');
-    EventService.getEvents().then(function() {
-      vm.events = EventService.eventsData;
-      console.log(vm.events);
-    });
-  }; // end getEvents
 
   // horizontal bar chart
   vm.getBarChart = function() {
     console.log('in controller, getBarChart');
-    // bar labels
+
     // vm.barLabels = ['Gray Backpacks', 'Blankets', 'Journals', 'Bracelets', 'Heart Stress Relievers', 'Organza Bags', 'Pabby the Penguin', 'Lip Care', 'Lotion', 'Postcards', 'Stamps', 'Handwritten Notes', 'PAB\'S PACKS Story Cards'];
     vm.barLabels = [];
-    // vm.barSeries = ['Series A', 'Series B'];
-    // bar data
-    // vm.barData = [[500, 500, 500, 300, 300, 300, 500,500, 500, 250, 100, 250, 250],];
+
     vm.barData = [];
-    // bar object
-    var barObject = {
-      labels: vm.barLabels,
-      data: vm.barData
-    }; // end barObject
-    dashboardService.getBarChart(barObject).then(function() {
-      vm.barChart = dashboardService.barChartData;
-      console.log(dashboardService.barChartData);
-      console.log(vm.barChart);
-    }); // end dashboardService.getBarChart
+
+    DashboardService.getBarChart().then(function() {
+      var dashData = DashboardService.barChartData;
+      vm.barLabels = [dashData.items.rows[0].item, dashData.items.rows[1].item, dashData.items.rows[2].item, dashData.items.rows[3].item, dashData.items.rows[4].item];
+      vm.barData = [dashData.numbers.rows[0].number_on_hand, dashData.numbers.rows[1].number_on_hand, dashData.numbers.rows[2].number_on_hand, dashData.numbers.rows[3].number_on_hand, dashData.numbers.rows[4].number_on_hand];
+      console.log('back in controller with:', vm.barLabels, vm.barData);
+    }); // end DashboardService.getBarChart
 }; // end getBarChart
 
 

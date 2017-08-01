@@ -45,7 +45,7 @@ th a:hover {
   color: black;
 }
 
-.navbar-inverse .navbar-nav>li>a:focus{
+.navbar-inverse .navbar-nav>li>a:focus {
   color: black;
 }
 
@@ -59,9 +59,7 @@ th a:hover {
 }
 
 .adminbox {
-  background: #f5f6f7;
   padding: 20px;
-  margin: 20px;
   overflow: hidden;
   width: 100%;
   display: inline-block;
@@ -78,7 +76,8 @@ body {
 }
 
 .container {
-  background-color: white;
+  background-color: #e7e9dd;
+  width: 100%;
 }
 
 .wrapper {
@@ -135,9 +134,10 @@ label {
 .boxsignup {
   padding: 25px;
   background: #f5f6f7;
-  margin: 0 auto;
-  width: 40%;
-  border-radius: 8px;
+  margin: 50px 0px;
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .input100 {
