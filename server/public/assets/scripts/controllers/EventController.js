@@ -126,7 +126,6 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     });
   }; // end getEvents
 
-<<<<<<< HEAD
   // vm.getEvents = function() {
   //   console.log('in getEvents');
   //   EventService.getEvents().then(function() {
@@ -176,9 +175,6 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   //     console.log(vm.pastList);
   //   });
   // }; // end getPast
-=======
-
->>>>>>> Mo7
 
   vm.openAddNew = function(size) {
     console.log('in add new');
