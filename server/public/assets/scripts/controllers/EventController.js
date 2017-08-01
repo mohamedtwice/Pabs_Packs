@@ -20,7 +20,8 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   }; // logs in the console that pagination has occurred
 
   // called on header click
-  vm.sortColumn1 = function(col) {
+  vm.sortColumn = function(col) {
+    console.log('In sortColumn');
     vm.column = col;
     if (vm.reverse) {
       vm.reverse = false;
@@ -29,21 +30,10 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       vm.reverse = true;
       vm.reverseclass = 'arrow-down';
     }
-  }; // sorts event tracker
-
-  vm.sortColumn2 = function(col) {
-    vm.column = col;
-    if (vm.reverse) {
-      vm.reverse = false;
-      vm.reverseclass = 'arrow-up';
-    } else {
-      vm.reverse = true;
-      vm.reverseclass = 'arrow-down';
-    }
-  }; // sorts totals
+  } // sorts event tracker
 
   // remove and change class
-  vm.sortClass1 = function(col) {
+  vm.sortClass = function(col) {
     if (vm.column == col) {
       if (vm.reverse) {
         return 'arrow-down';
@@ -53,19 +43,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     } else {
       return '';
     }
-  };
-
-  vm.sortClass2 = function(col) {
-    if (vm.column == col) {
-      if (vm.reverse) {
-        return 'arrow-down';
-      } else {
-        return 'arrow-up';
-      }
-    } else {
-      return '';
-    }
-  };
+  }
 
   vm.getEvents = function() {
     console.log('in getEvents');
@@ -96,56 +74,6 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       console.log(vm.donationList);
     });
   }; // end getEvents
-
-  // vm.getEvents = function() {
-  //   console.log('in getEvents');
-  //   EventService.getEvents().then(function() {
-  //     vm.events = EventService.eventsData;
-  //     console.log(vm.events);
-  //     var currentTime = new Date();
-  //     var currentList2 = vm.events.filter(function(e) {
-  //       return e.event_date > currentTime;
-  //     });
-  //     var updatedList = currentList2.filter(function(d) {
-  //       return d.event_type=='Donation';
-  //     });
-  //     vm.donationList = updatedList;
-  //     console.log(vm.donationList);
-  //   });
-  // }; // end getEvents
-
-  // vm.getPacks = function() {
-  //   EventService.getEvents().then(function() {
-  //     vm.events = EventService.eventsData;
-  //     console.log(vm.events);
-  //     var currentTime = new Date();
-  //     var currentList1 = vm.events.filter(function(a) {
-  //       return a.event_date > currentTime;
-  //     });
-  //     var packedList = currentList1.filter(function(b) {
-  //       return b.event_type=='Packing';
-  //     });
-  //     vm.packList = packedList;
-  //     console.log(vm.packList);
-  //   });
-  // } // end getPacks
-
-  // vm.getPast = function() {
-  //   console.log('in getEvents');
-  //   EventService.getEvents().then(function() {
-  //     vm.events = EventService.eventsData;
-  //     console.log(vm.events);
-  //     var currentTime = new Date();
-  //     var currentList1 = vm.events.filter(function(a) {
-  //       return a.event_date > currentTime;
-  //     });
-  //     var oldList = vm.events.filter(function(c) {
-  //       return c.event_date < currentTime;
-  //     });
-  //     vm.pastList = oldList;
-  //     console.log(vm.pastList);
-  //   });
-  // }; // end getPast
 
   vm.openAddNew = function(size) {
     console.log('in add new');
