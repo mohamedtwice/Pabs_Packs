@@ -1,4 +1,4 @@
-myApp.service('eventService', function($http) {
+myApp.service('EventService', function($http) {
 
   console.log('in event service');
   var sv = this;
@@ -57,7 +57,7 @@ myApp.service('eventService', function($http) {
 
   // service get call for DashboardController getUpcomingEvents function
    sv.getUpcomingEvents = function() {
-     console.log('in eventService getUpcomingEvents function');
+     console.log('in EventService getUpcomingEvents function');
      return $http({
       method: 'GET',
       url: '/dashboard/upcomingEvents'

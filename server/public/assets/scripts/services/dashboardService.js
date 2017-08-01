@@ -1,7 +1,7 @@
 /**** Dashboard Service ****/
 
-myApp.service('dashboardService', function($http) {
-  console.log('in dashboard service');
+myApp.service('DashboardService', function($http) {
+  console.log('in DashboardService');
   var sv = this;
 
   // getPieChart function
