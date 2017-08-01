@@ -63,7 +63,7 @@
             </td>
             <td>
               <thing ng-hide="toggle[items.id]">{{items.comments}}</thing>
-              <thing ng-show="toggle"><input type="text" ng-model="ic.commentsUpdate" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.commentsUpdate" placeholder="{{items.comments}}" value="{{items.comments}}"></thing>
             </td>
             <td>
               <thing ng-hide="toggle[items.id]">{{items.low_number}}</thing>
@@ -173,21 +173,36 @@
       <div class="col-md-12">
         <!-- input forms -->
         <form>
-          <div class="form-group">
-            <label>Item:</label for="item">
+            <div class="form-group">
+              <label>Item:</label for="item">
                 <input type="text" class="modalInput form-control" placeholder="Type your item here" id="item" ng-model="mc.item">
             </div>
             <div class="form-group">
               <label>Vendor:</label for="vendor">
-                <input type="text" ng-model="mc.vendor" typeahead="vendors.vendor_id for vendors in mc.inventory2  | filter:$viewValue | limitTo:10" placeholder="Vendor" id="vendor" class="modalInput form-control">
+                <!-- vendor dropdown -->
+                <div>
+                <thing ng-hide="vendorToggle">
+                  <select label="-- Select option --" class="form-control" ng-model="mc.vendor">
+                    <option value="" selected disabled><span class="selectlabel">Previously Used Vendor</span></option>
+                    <option ng-repeat="vendors in mc.inventory2 | unique: 'vendor_id'" class="form-control input-lg input100" value="{{vendors.vendor_id}}">{{vendors.vendor_id}}</option>
+                  </select>
+                </thing>
+                <!-- toggle add vendor -->
+                <button class="btn btn-default btn-sm" id="vendorBtn" ng-click="mc.isCollapsed = !mc.isCollapsed; vendorToggle = !vendorToggle">
+                  <thing ng-show="vendorToggle">Previous Vendors <i class="fa fa-chevron-left" aria-hidden="true"></i></thing>
+                  <thing ng-hide="vendorToggle">New Vendor <i class="fa fa-plus" aria-hidden="true"></i></thing>
+                </button>
+	              <div collapse="mc.isCollapsed">
+                  <input type="text" id="vendorInputs" class="modalInput form-control" placeholder="Vendor name" ng-model="mc.name">
+                  <input type="text" id="vendorInputs" class="modalInput form-control" placeholder="Vendor phone number" ng-model="mc.phone">
+                  <input type="email" id="vendorInputs" class="modalInput form-control" placeholder="Vendor email" ng-model="mc.email">
+                  <input type="text" id="vendorInputs" class="modalInput form-control" placeholder="Vendor address" ng-model="mc.address">
+	              </div>
+                </div>
             </div>
             <div class="form-group">
               <label>Quantity on hand:</label for="numberOnHand">
                 <input type="number" class="modalInput form-control" placeholder="Number currently on hand" id="numberOnHand" ng-model="mc.numberOnHand">
-            </div>
-            <div class="form-group">
-              <label>Comments:</label for="comments">
-                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="mc.comments">
             </div>
             <div class="form-group">
               <label>Reorder Alert Amount:</label for="reorderAlertNumber">
@@ -202,6 +217,10 @@
                 <option class="form-control input-lg input100" value="merchandise">Merchandise</option>
               </select>
             </div>
+            <div class="form-group">
+              <label>Comments:</label for="comments">
+                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="mc.comments">
+            </div>
           </form>
         </div> <!-- end col-md-12 -->
       </div> <!-- end row -->
@@ -209,7 +228,7 @@
 
 <!-- post button -->
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="mc.postInventoryItem()">Post</button>
+  <button class="btn btn-primary" ng-click="mc.postInventoryItem(); mc.postVendor()">Post</button>
 </div>
 
 </script> <!-- end modal -->

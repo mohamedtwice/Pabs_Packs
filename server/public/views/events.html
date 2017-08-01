@@ -273,54 +273,21 @@
       <div class="col-md-4">
         <div class="totals">
 
-          <h2>TOTALS</h2>
+          <h2>Totals</h2>
 
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>
-                    <a ng-click='ec.sortColumn("event_date"); arrow = !arrow' ng-class='ec.sortClass("event_date")'>Needed Packs
-                <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-              </a>
-                  </th>
-                  <th>
-                    <a ng-click='ec.sortColumn("event_time"); arrow = !arrow' ng-class='ec.sortClass("event_time")'>Packs Currently Made
-                <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-              </a>
-                  </th>
-                  <th>
-                    <a ng-click='ec.sortColumn("partner_id"); arrow = !arrow' ng-class='ec.sortClass("partner_id")'>CTD Annual Packs Donated
-                <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-              </a>
-                  </th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Needed Packs</th>
+                  <th>Packs Currently Made</th>
+                  <th>CTD Annual Packs Donated</th>
                 </tr>
               </thead>
-              <tr ng-repeat="events in ec.events track by $index" ng-if="events.event_type=='Packing'">
-                <td>
-                  <thing ng-hide="toggle[events.id]">{{events.needed_packs}}</thing>
-                  <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_neededPacksUpdate" placeholder="{{events.needed_packs }}" value="{{events.needed_packs}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[events.id]">{{events.event_time}}</thing>
-                  <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[events.id]">{{events.partner_id}}</thing>
-                  <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_idUpdate" placeholder="{{events.partner_id}}" value="{{events.partner_id}}"></thing>
-                </td>
-                <td>
-                  <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                  <button ng-click="ec.updatePackEvents(events.id)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
-                </td>
-                <td>
-                  <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </td>
+              <tr>
+                <td><h3>50</h3></td>
+                <td><h3>50</h3></td>
+                <td><h3>50</h3></td>
               </tr>
             </table>
           </div>
@@ -357,10 +324,6 @@
                 <input type="number" class="modalInput form-control" placeholder="Partner Id" id="numberOnHand" ng-model="ec.partner_id">
             </div>
             <div class="form-group">
-              <label>Comments:</label for="comments">
-                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ec.comments">
-            </div>
-            <div class="form-group">
               <label>Packs Made:</label for="packsMade">
                 <input type="number" class="modalInput form-control" placeholder="Packs Made" id="packsMade" ng-model="ec.packs_made">
             </div>
@@ -377,7 +340,10 @@
                   <option class="form-control input-lg input100" value="Packing">Packing Event</option>
                 </select>
             </div>
-
+            <div class="form-group">
+              <label>Comments:</label for="comments">
+                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ec.comments">
+            </div>
           </form>
         </div>
       </div>
