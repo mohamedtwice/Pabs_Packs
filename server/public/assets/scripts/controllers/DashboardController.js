@@ -1,4 +1,4 @@
-myApp.controller('DashboardController', ['dashboardService', 'EventService', '$http', '$location', function(dashboardService, EventService, $http, $location) {
+myApp.controller('DashboardController', ['DashboardService', 'EventService', '$http', '$location', function(DashboardService, EventService, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
   var vm = this;
   console.log('checking user');
@@ -31,11 +31,11 @@ myApp.controller('DashboardController', ['dashboardService', 'EventService', '$h
     // pie data
     vm.pieData = [];
 
-    dashboardService.getPieChart().then(function() {
-      var dashData = dashboardService.pieChartData;
+    DashboardService.getPieChart().then(function() {
+      var dashData = DashboardService.pieChartData;
       vm.pieData = [dashData.packsDonated, dashData.leftToDonate, dashData.scheduledDonations];
       console.log('back in controller with:', vm.pieData);
-    }); // end dashboardService.getPieChart
+    }); // end DashboardService.getPieChart
   }; // end getPieChart
 
 
@@ -48,12 +48,12 @@ myApp.controller('DashboardController', ['dashboardService', 'EventService', '$h
 
     vm.barData = [];
 
-    dashboardService.getBarChart().then(function() {
-      var dashData = dashboardService.barChartData;
+    DashboardService.getBarChart().then(function() {
+      var dashData = DashboardService.barChartData;
       vm.barLabels = [dashData.items.rows[0].item, dashData.items.rows[1].item, dashData.items.rows[2].item, dashData.items.rows[3].item, dashData.items.rows[4].item];
       vm.barData = [dashData.numbers.rows[0].number_on_hand, dashData.numbers.rows[1].number_on_hand, dashData.numbers.rows[2].number_on_hand, dashData.numbers.rows[3].number_on_hand, dashData.numbers.rows[4].number_on_hand];
       console.log('back in controller with:', vm.barLabels, vm.barData);
-    }); // end dashboardService.getBarChart
+    }); // end DashboardService.getBarChart
 }; // end getBarChart
 
 
