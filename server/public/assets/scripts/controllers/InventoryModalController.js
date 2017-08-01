@@ -3,6 +3,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
   var vm = this;
 
   vm.isCollapsed = true;
+  vm.itemsPerPage = 10;
 
   vm.cancel = function() {
     $modalInstance.dismiss('cancel');

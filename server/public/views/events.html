@@ -58,10 +58,10 @@
                     <tr ng-repeat="events in ec.donationList | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
                       <td>
                         <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
-                        <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
+                        <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:'MM/dd/yyyy'}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
                       </td>
                       <td>
-                        <thing ng-hide="toggle[events.id]">{{events.event_time}}</thing>
+                        <thing ng-hide="toggle[events.id]">{{events.event_time | date: "HH:mm"}}</thing>
                         <thing ng-show="toggle[events.id]"><input type="time" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
                       </td>
                       <td>
@@ -262,11 +262,21 @@
                   </table>
                   <!-- pagination -->
                   <pagination total-items="ec.pastList.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
+                  <!-- <p>View
+                    <select ng-model="ec.viewBy" ng-change="ec.setItemsPerPage(ec.viewBy)">
+                      <option>10</option>
+                      <option>20</option>
+                      <option>30</option>
+                      <option>40</option>
+                      <option>50</option>
+                    </select>
+                  items at a time.</p>
+                </div>
+                <pagination total-items="ec.pastList.length" ng-model="ec.currentPage" items-per-page="ec.itemsPerPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>-->
 
                 </div>
               </tab>
             </tabset>
-
         </div>
       </div>
 
@@ -317,7 +327,17 @@
             </div>
             <div class="form-group">
               <label>Time:</label for="time">
-                <input type="text" class="modalInput form-control" placeholder="Time" id="time" ng-model="ec.event_time">
+                <div>
+                  <input type="time" id="exampleInput" name="input" ng-model="ec.event_time" placeholder="HH:mm:ss" required />
+                </div>
+            </div>
+            <div class="form-group">
+              <label>Type of Event:</label for="eventType">
+                <select label="-- Select option --" class="form-control input100" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
+                  <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
+                  <option class="form-control input-lg input100" value="Donation">Donation Event</option>
+                  <option class="form-control input-lg input100" value="Packing">Packing Event</option>
+                </select>
             </div>
             <div class="form-group">
               <label>Partner Id:</label for="numberOnHand">
@@ -333,16 +353,8 @@
             </div>
             <!-- radio buttons -->
             <div class="form-group">
-              <label>Type of Event:</label for="eventType">
-                <select label="-- Select option --" class="form-control input100" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
-                  <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
-                  <option class="form-control input-lg input100" value="Donation">Donation Event</option>
-                  <option class="form-control input-lg input100" value="Packing">Packing Event</option>
-                </select>
-            </div>
-            <div class="form-group">
               <label>Comments:</label for="comments">
-                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ec.comments">
+                <textarea type="text" rows="3" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ec.comments"></textarea>
             </div>
           </form>
         </div>
@@ -354,6 +366,5 @@
       </div>
     </script>
 <!-- end modal -->
-
 
 </div>

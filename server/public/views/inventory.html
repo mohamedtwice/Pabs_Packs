@@ -177,10 +177,19 @@
               <label>Item:</label for="item">
                 <input type="text" class="modalInput form-control" placeholder="Type your item here" id="item" ng-model="mc.item">
             </div>
+            <!-- dropdown -->
+            <div class="form-group">
+              <label>Type:</label for="reorderAlertNumber">
+              <select label="-- Select option --" class="form-control" ng-model="mc.type">
+                <option value="" selected disabled><span class="selectlabel">What kind of item?</span></option>
+                <option class="form-control input-lg input100" value="backpack">Backpack</option>
+                <option class="form-control input-lg input100" value="merchandise">Merchandise</option>
+              </select>
+            </div>
             <div class="form-group">
               <label>Vendor:</label for="vendor">
                 <!-- vendor dropdown -->
-                <div>
+              <div> <!-- to avoid button from being inline with label -->
                 <thing ng-hide="vendorToggle">
                   <select label="-- Select option --" class="form-control" ng-model="mc.vendor">
                     <option value="" selected disabled><span class="selectlabel">Previously Used Vendor</span></option>
@@ -198,7 +207,7 @@
                   <input type="email" id="vendorInputs" class="modalInput form-control" placeholder="Vendor email" ng-model="mc.email">
                   <input type="text" id="vendorInputs" class="modalInput form-control" placeholder="Vendor address" ng-model="mc.address">
 	              </div>
-                </div>
+              </div>
             </div>
             <div class="form-group">
               <label>Quantity on hand:</label for="numberOnHand">
@@ -208,18 +217,9 @@
               <label>Reorder Alert Amount:</label for="reorderAlertNumber">
                 <input type="number" class="modalInput form-control" placeholder="Reorder alert number" id="reorderAlertNumber" ng-model="mc.reorderAlertNumber">
             </div>
-            <!-- dropdown -->
-            <div class="form-group">
-              <label>Type:</label for="reorderAlertNumber">
-              <select label="-- Select option --" class="form-control" ng-model="mc.type">
-                <option value="" selected disabled><span class="selectlabel">What kind of item?</span></option>
-                <option class="form-control input-lg input100" value="backpack">Backpack</option>
-                <option class="form-control input-lg input100" value="merchandise">Merchandise</option>
-              </select>
-            </div>
             <div class="form-group">
               <label>Comments:</label for="comments">
-                <input type="text" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="mc.comments">
+                <textarea type="text" rows="3" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="mc.comments"></textarea>
             </div>
           </form>
         </div> <!-- end col-md-12 -->

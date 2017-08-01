@@ -105,9 +105,10 @@ router.delete('/:id', function(req, res, next) {
 
 router.put('/:id', function(req, res) {
   console.log('in put db');
-  var id = req.params.id;
+  var id = req.body.id;
   console.log(id);
   console.log(req.body);
+  var id = req.params.id;
   var event_date = req.body.date;
   var event_time = req.body.time;
   var partner_id = req.body.partner_id;
@@ -118,8 +119,6 @@ router.put('/:id', function(req, res) {
 
   // updates specified field
   pool.connect(function(err, client, done) {
-    var id = req.params.id;
-
     console.log(id);
     if (err) {
       return console.error('error fetching client from pool', err);
