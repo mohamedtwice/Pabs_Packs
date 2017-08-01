@@ -1,9 +1,9 @@
-myApp.service('eventtypeService', function($http) {
-  console.log('in eventtype service');
+myApp.service('EventtypeService', function($http) {
+  console.log('in EventtypeService');
   var sv = this;
 
   sv.getEventType = function() {
-    console.log('in getEventType service');
+    console.log('in EventtypeService');
     return $http({
       method: 'GET',
       url: '/eventtype'

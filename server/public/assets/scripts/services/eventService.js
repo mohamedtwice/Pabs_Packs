@@ -56,14 +56,14 @@ myApp.service('EventService', function($http) {
   };
 
   // service get call for DashboardController getUpcomingEvents function
-   sv.getUpcomingEvents = function() {
-     console.log('in eventService getUpcomingEvents function');
-     return $http({
+  sv.getUpcomingEvents = function() {
+    console.log('in eventService getUpcomingEvents function');
+    return $http({
       method: 'GET',
       url: '/dashboard/upcomingEvents'
-     }).then(function(response) {
-       sv.upcomingEventsGET = response.data;
-     });
-   }; // end getUpcoimingEvents
+    }).then(function(response) {
+      sv.upcomingEventsGET = response.data;
+    });
+  }; // end getUpcoimingEvents
 
 }); // end myApp.service

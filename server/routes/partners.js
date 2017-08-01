@@ -72,8 +72,8 @@ router.post('/', function(req, res) {
 
 // POST /partners
 router.put('/:id', function(req, res) {
-  console.log('{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
-  var id = req.body.id;
+  console.log('{{{{{{{{{{{{{{{{{{{ PUT PUT PUT PUT PUT  }}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
+  var id = req.params.id;
   var partner_name = req.body.partner_name;
   var partner_contact = req.body.partner_contact;
   var partner_phone = req.body.partner_phone;
@@ -97,7 +97,7 @@ router.put('/:id', function(req, res) {
 
 
 router.delete('/:id', function(req, res) {
-  console.log('-------------------------++++++++++++++++++++++++');
+  console.log('-------------------------++++++++++++  ++++++++++++');
   console.log(req.params.id);
   pool.connect(function(err, connection, done) {
     console.log('Post hit');
@@ -105,6 +105,7 @@ router.delete('/:id', function(req, res) {
     if (err) {
       console.log('error in connection', err);
       done();
+      s
       res.send(400);
     } else {
       connection.query("DELETE FROM partners WHERE id = '" + id + "';");

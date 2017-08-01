@@ -1,4 +1,4 @@
-myApp.service('vendorService', function($http) {
+myApp.service('VendorService', function($http) {
   console.log('in vendor service');
   var sv = this;
 

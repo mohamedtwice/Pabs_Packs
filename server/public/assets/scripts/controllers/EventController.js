@@ -67,6 +67,27 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     }
   };
 
+  vm.loadPage = function() {
+    console.log('in loadPage');
+    vm.getEvents();
+    vm.getTotalPacks();
+  }
+
+  vm.getTotalPacks = function() {
+    console.log('in getTotalPacks');
+    EventService.getEvents().then(function() {
+      vm.events = EventService.eventsData;
+    });
+    vm.getEvents();
+  }; // end getTotalPacks
+
+  // vm.getTotals = function(event) {
+  //   if (events) {
+  //     event.packs_needed = event.packs_made * event.packs_promised;
+  //     vm.invoiceCount += event.quantity;
+  //     vm.invoiceTotal += event.total;
+  //   }
+  // }
   vm.getEvents = function() {
     console.log('in getEvents');
     EventService.getEvents().then(function() {
@@ -94,9 +115,18 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       console.log(vm.packList);
       console.log(vm.pastList);
       console.log(vm.donationList);
+
+      vm.getTotals = function(event) {
+        console.log(event);
+        if (events) {
+          event.packs_needed = event.packs_made * event.packs_promised;
+          console.log(event.packs_needed);
+        }
+      };
     });
   }; // end getEvents
 
+<<<<<<< HEAD
   // vm.getEvents = function() {
   //   console.log('in getEvents');
   //   EventService.getEvents().then(function() {
@@ -146,6 +176,9 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   //     console.log(vm.pastList);
   //   });
   // }; // end getPast
+=======
+
+>>>>>>> Mo7
 
   vm.openAddNew = function(size) {
     console.log('in add new');
@@ -163,7 +196,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     EventService.deleteEvent(id).then(function(data) {
       console.log('data is:', data);
     });
-    $route.reload();
+    vm.getEvents();
     console.log('id is:', id);
   }; // end delete
 
@@ -183,7 +216,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     };
     console.log(newEvent);
     EventService.postEvent(newEvent).then(function() {});
-    $route.reload();
+    vm.getEvents();
   }; // end createEvent
 
   // update Donation Events
@@ -249,7 +282,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
             console.log('I was closed by the timer');
           }
         });
-      $route.reload();
+      vm.getEvents();
     });
   } // end updateDonationEvents
 
@@ -316,7 +349,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
           }
         });
     }); // end call to service
-    $route.reload();
+    vm.getEvents();
   }; // end updatePackEvents
 
 });

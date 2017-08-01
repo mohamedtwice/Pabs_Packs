@@ -27,7 +27,10 @@ myApp.service('PartnerService', function($http) {
     console.log(updatedPartner);
     return $http({
       method: 'PUT',
-      url: '/partners/' + updatedPartner.id,
+      url: '/partners/: ' + updatedPartner.id,
+      // params: {
+      //   id: updatedPartner.id
+      // },
       data: updatedPartner
     }).then(function(response) {
       console.log('back from updatePartner:', response);
@@ -38,7 +41,7 @@ myApp.service('PartnerService', function($http) {
     console.log(id);
     return $http({
       method: 'DELETE',
-      url: '/partners/',
+      url: '/partners/' + id,
       params: {
         id: id
       }

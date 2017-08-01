@@ -45,6 +45,30 @@ router.get('/', function(req, res) {
   });
 });
 
+
+// GET events
+router.get('/', function(req, res) {
+  console.log('GET SUM route hit');
+  pool.connect(function(err, client, done) {
+    if (err) {
+      console.log('Error connecting to the DB', err);
+      res.sendStatus(500);
+      done();
+      return;
+    }
+    client.query('SELECT sum(packs_made) FROM events;', function(err, result) {
+      done();
+      if (err) {
+        console.log('Error querying the DB', err);
+        res.sendStatus(500);
+        return;
+      }
+      console.log('Got rows from the DB:', result.rows);
+      res.send(result.rows);
+    });
+  });
+});
+
 // -------
 
 // POST /inventory
@@ -134,15 +158,7 @@ router.put('/:id', function(req, res) {
       res.send(result);
     });
   });
-  //     .then(function() {
-  //       client.release();
-  //       res.sendStatus(201); // created
-  //     });
-  // })
-  // .catch(function(err) {
-  //   client.release();
-  //   res.sendStatus(500); // server error
-  // });
+
 
 });
 
