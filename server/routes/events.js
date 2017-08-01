@@ -81,10 +81,10 @@ router.post('/', function(req, res) {
 
 router.delete('/:id', function(req, res, next) {
   console.log("delete router connected to database");
-
+  console.log(req.params.id);
   pool.connect(function(err, client, done) {
     var id = req.params.id;
-    console.log(id);
+    console.log('post hit', id);
     if (err) {
       return console.error('error fetching client from pool', err);
     }

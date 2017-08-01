@@ -160,18 +160,42 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   vm.deleteEvent = function(id) {
     console.log('in deleteEvent');
     console.log(id);
-    EventService.deleteEvent(id).then(function(data) {
-      console.log('data is:', data);
-    });
-    $route.reload();
-    console.log('id is:', id);
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then(function() {
+      console.log('in remove');
+      EventService.deleteEvent(id);
+      $route.reload();
+      swal(
+        'Deleted!',
+        'Your item has been deleted.',
+        'success'
+      )
+    }, function(dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
+        swal(
+          'Cancelled',
+          'Your file is safe :)',
+          'error'
+        )
+      }
+    }) // edn sweet alert
   }; // end delete
 
   vm.createEvent = function() {
     console.log('in createEvent');
-    if (vm.event_type == '' | partner_id === '') {
-
-    }
     var newEvent = {
       date: vm.event_date,
       time: vm.event_time,
@@ -188,8 +212,8 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
 
   // update Donation Events
   vm.updateDonationEvents = function(events) {
+    var id = events.id;
     console.log('in updateDonationEvents');
-    console.log(events);
     if (vm.event_dateUpdate !== events.event_date) {
       if (vm.event_dateUpdate === undefined) {
         vm.event_dateUpdate = events.event_date;
@@ -227,17 +251,16 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     }
     console.log(id);
     var updatedEvent = {
-      id: events.id,
+      id: id,
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
       partner_id: vm.partner_idUpdate,
-      packs_promised: vm.packs_madeUpdate,
+      packs_made: vm.packs_madeUpdate,
+      packs_promised: vm.packs_promisedUpdate,
       comments: vm.commentsUpdate
     };
-    var id = events;
-    console.log(id);
     console.log(updatedEvent);
-    EventService.updateDonationEvents(id, updatedEvent).then(function() {
+    EventService.updateDonationEvents(updatedEvent).then(function() {
       swal({
         type: 'success',
         title: 'Event Updated!',
@@ -255,6 +278,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   } // end updateDonationEvents
 
   vm.updatePackEvents = function(events) {
+    var id = events.id;
     console.log('in updatePackEvents');
     console.log(events);
     if (vm.event_dateUpdate !== events.event_date) {
@@ -294,16 +318,16 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     }
     console.log(id);
     var updatedEvent = {
+      id: id,
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
       partner_id: vm.partner_idUpdate,
       packs_made: vm.packs_madeUpdate,
+      packs_promised: vm.packs_promisedUpdate,
       comments: vm.commentsUpdate
     };
-    var id = events;
-    console.log(id);
     console.log(updatedEvent);
-    EventService.updateEvents(id, updatedEvent).then(function() {
+    EventService.updatePackEvents(updatedEvent).then(function() {
       swal({
         type: 'success',
         title: 'Event Updated!',

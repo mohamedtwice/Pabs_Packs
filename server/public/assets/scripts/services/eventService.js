@@ -55,12 +55,26 @@ myApp.service('EventService', function($http) {
     });
   }  // end update properties
 
+  sv.updatePackEvents = function(updatedProperty) {
+    console.log(updatedProperty);
+    return $http({
+      method: 'PUT',
+      url: '/events/' + updatedProperty.id,
+      params: {
+        id: updatedProperty.id
+      },
+      data: updatedProperty
+    }).then(function(response) {
+      console.log('back from updatePackEvents:', response);
+    });
+  }  // end update properties
+
   sv.deleteEvent = function(id) {
     console.log('in deleteEvent');
     console.log(id);
     return $http({
       method: 'DELETE',
-      url: '/events/',
+      url: '/events/' + id,
       params: {
         id: id
       }
