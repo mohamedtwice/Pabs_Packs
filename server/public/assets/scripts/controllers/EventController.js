@@ -45,6 +45,11 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     }
   }
 
+  vm.selectButton = function(id) {
+    vm.selectedButton = !vm.selectedButton;
+    console.log(vm.selectedButton);
+  }
+
   vm.loadPage = function() {
     console.log('in loadPage');
     vm.getEvents();

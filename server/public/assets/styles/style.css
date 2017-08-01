@@ -76,18 +76,15 @@ body {
 }
 
 .container {
-  background-color: #e7e9dd;
+  /*background-color: #e7e9dd;*/
   width: 100%;
+  margin-top: 5px;
+  width: 90%;
 }
 
 .wrapper {
   /*padding-top: 2px;*/
   /*background: #e7e9dd;*/
-}
-
-.container {
-  margin-top: 5px;
-  width: 90%;
 }
 
 .header-container {
