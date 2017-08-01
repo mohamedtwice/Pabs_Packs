@@ -49,6 +49,6 @@ myApp.service('InventoryService', function($http) {
     }).then(function() {
       console.log('item deleted');
     });
-  } //end deleteItem
+  } // end deleteItem
 
 });

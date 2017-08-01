@@ -6,27 +6,23 @@ myApp.service('VendorService', function($http) {
     console.log('in getVendors service');
     return $http({
       method: 'GET',
-      url: '/vendor'
+      url: '/vendors'
     }).then(function(response) {
       console.log(response);
-      sv.vendorsData = response.data;
-      console.log(sv.vendorsData);
-    }); //
+      sv.vendorData = response.data;
+      console.log(sv.vendorData);
+    });
   }; // end getVendors
 
-
-
-  sv.addnewvendor = function(newVendor) {
+  sv.postVendor = function(newVendor) {
     console.log(newVendor);
     return $http({
       method: 'POST',
-      url: '/vendor',
+      url: '/vendors',
       data: newVendor
     }).then(function(response) {
-      console.log('back from addnewvendor:', response);
+      console.log('back from postVendor:', response);
     });
-  };
-
-
+  }; // end postVendor
 
 }); // end of service
