@@ -321,4 +321,12 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     vm.getEvents();
   }; // end updatePackEvents
 
+  // Needed Packs function
+  vm.getNeededPacks = function() {
+    console.log('in getNeededPacks');
+    EventService.getNeededPacks().then(function() {
+      vm.neededPacks = EventService.neededPacksGET;
+    }); // end EVentService.getNeededPacks
+  }; // end neededPacks
+
 });

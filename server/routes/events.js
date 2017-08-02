@@ -149,6 +149,28 @@ router.put('/:id', function(req, res) {
       res.send(result);
     });
   });
-}); // end put
+
+
+});
+
+// router.get for getNeededPacks
+router.get('/neededPacks', function(req, res) {
+  console.log('event.js /neededPacks hit');
+  pool.connect(function(err, client, done) {
+    if (err) {
+      console.log('Error connecting to the DB', err);
+      done();
+      return;
+    } // end if statement
+    client.query('SELECT * FROM events '); {
+      if (err) {
+        console.log('Error querying the DB for Needed Packs');
+        done();
+      } // end if statement
+      console.log(result);
+      res.send(result);
+    }
+  });
+}); // end router.get for /neededPacks
 
 module.exports = router;
