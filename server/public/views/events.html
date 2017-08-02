@@ -13,9 +13,15 @@
             </tr>
           </thead>
           <tr>
+            <div ng-init="ec.getNeededPacks()" ng-repeat="data in ec.neededPacks">
+            <td><h3>{{ data.neededPacks }}</h3></td>
+            </div>
+            <div class="">
             <td><h3>50</h3></td>
+            </div>
+            <div class="">
             <td><h3>50</h3></td>
-            <td><h3>50</h3></td>
+            </div>
           </tr>
         </table>
       </div>

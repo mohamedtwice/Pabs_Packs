@@ -94,4 +94,15 @@ myApp.service('EventService', function($http) {
     });
   }; // end getUpcoimingEvents
 
+  // service get call for EventController getNeededPacks function
+  sv.getNeededPacks = function() {
+    console.log('in EventService getNeededPacks function');
+    return $http({
+      method: 'GET',
+      url: '/events/neededTotals'
+    }).then(function(response) {
+      sv.neededPacksGET = response.data;
+    });
+  }; // end getNeededPacks
+
 }); // end myApp.service
