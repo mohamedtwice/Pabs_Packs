@@ -31,7 +31,7 @@ router.get('/', function(req, res) {
       done();
       return;
     }
-    client.query('SELECT * FROM vendors;', function(err, result) {
+    client.query('SELECT * FROM vendor;', function(err, result) {
       done();
       if (err) {
         console.log('Error querying the DB', err);
