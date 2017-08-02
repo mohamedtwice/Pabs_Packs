@@ -11,10 +11,6 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.animationsEnabled = true;
   vm.selectedButton = false;
 
-  vm.reload = function() {
-    $route.reload();
-  } //  reloads page after new item has been added to show immediately
-
   vm.selectButton = function(id) {
     vm.selectedButton = !vm.selectedButton;
     console.log(vm.selectedButton);
@@ -72,9 +68,9 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
         vm.itemUpdate = vm.itemUpdate;
       }
     }
-    if (vm.vendorUpdate !== items.vendor_id) {
+    if (vm.vendorUpdate !== items.vendor_name) {
       if (vm.vendorUpdate === undefined) {
-        vm.vendorUpdate = items.vendor_id;
+        vm.vendorUpdate = items.vendor_name;
       } else {
         vm.vendorUpdate = vm.vendorUpdate;
       }
@@ -124,7 +120,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           }
         })
     }); // end then
-    vm.reload();
+    $route.reload();
   } // end updateProperties
 
   vm.deleteItem = function(index) {
@@ -144,7 +140,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     }).then(function() {
       console.log('in remove');
       InventoryService.deleteItem(index);
-      vm.reload();
+      $route.reload();
       swal(
         'Deleted!',
         'Your item has been deleted.',

@@ -22,7 +22,7 @@
                 </a>
               </th>
               <th>
-                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
+                <a ng-click='ic.sortColumn("vendor_name"); arrow = !arrow' ng-class='ic.sortClass("vendor_name")'>Vendor
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
@@ -57,8 +57,8 @@
               <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.itemUpdate" placeholder="{{items.item}}" value="{{items.item}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle[items.id]">{{items.vendor_id}}</thing>
-              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.vendorUpdate" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.vendor_name}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.vendorUpdate" placeholder="{{items.vendor_name}}" value="{{items.vendor_name}}"></thing>
             </td>
             <td>
               <thing ng-hide="toggle[items.id]">{{items.number_on_hand}}</thing>
@@ -98,7 +98,7 @@
                 </a>
               </th>
               <th>
-                <a ng-click='ic.sortColumn("vendor_id"); arrow = !arrow' ng-class='ic.sortClass("vendor_id")'>Vendor
+                <a ng-click='ic.sortColumn("vendor_name"); arrow = !arrow' ng-class='ic.sortClass("vendor_name")'>Vendor
                   <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
                   <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                 </a>
@@ -133,8 +133,8 @@
               <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.itemUpdate" placeholder="{{items.item}}" value="{{items.item}}"></thing>
             </td>
             <td>
-              <thing ng-hide="toggle[items.id]">{{items.vendor_id}}</thing>
-              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.vendorUpdate" placeholder="{{items.vendor_id}}" value="{{items.vendor_id}}"></thing>
+              <thing ng-hide="toggle[items.id]">{{items.vendor_name}}</thing>
+              <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.vendorUpdate" placeholder="{{items.vendor_name}}" value="{{items.vendor_name}}"></thing>
             </td>
             <td>
               <thing ng-hide="toggle[items.id]">{{items.number_on_hand}}</thing>
@@ -160,8 +160,6 @@
   </tabset>
 
 </div>
-<!-- </div> -->
-<!-- end bg class -->
 
 <!-- modal -->
 <script type="text/ng-template" id="myModalContent.html">
@@ -198,7 +196,7 @@
                 <thing ng-hide="vendorToggle">
                   <select label="-- Select option --" class="form-control" ng-model="mc.vendor">
                     <option value="" selected disabled><span class="selectlabel">Previously Used Vendor</span></option>
-                    <option ng-repeat="vendors in mc.inventory2 | unique: 'vendor_id'" class="form-control input-lg input100" value="{{vendors.vendor_id}}">{{vendors.vendor_id}}</option>
+                    <option ng-repeat="vendors in mc.inventory2 | unique: 'vendor_name'" class="form-control input-lg input100" value="{{vendors.vendor_name}}">{{vendors.vendor_name}}</option>
                   </select>
                 </thing>
                 <!-- toggle add vendor -->
