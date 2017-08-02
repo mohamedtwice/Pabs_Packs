@@ -68,9 +68,9 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
         vm.itemUpdate = vm.itemUpdate;
       }
     }
-    if (vm.vendorUpdate !== items.vendor_id) {
+    if (vm.vendorUpdate !== items.vendor_name) {
       if (vm.vendorUpdate === undefined) {
-        vm.vendorUpdate = items.vendor_id;
+        vm.vendorUpdate = items.vendor_name;
       } else {
         vm.vendorUpdate = vm.vendorUpdate;
       }
