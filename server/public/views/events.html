@@ -1,8 +1,34 @@
 <header ng-include="'/views/templates/header.html'"></header>
-
 <div class="container" ng-init="ec.getEvents()">
+  <div class="row">
+  <div class="col-md-4">
+    <div class="totals">
+      <h2>Totals</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Needed Packs</th>
+              <th>Packs Currently Made</th>
+              <th>CTD Annual Packs Donated</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              <h3>50</h3></td>
+            <td>
+              <h3>50</h3></td>
+            <td>
+              <h3>50</h3></td>
+          </tr>
+        </table>
+      </div>
+      </tab>
+    </div>
+  </div>
+  </div>
+
   <!-- events -->
-    <div class="event-tracker">
       <h2>Event Tracker</h2>
         <!-- beginning of tabs -->
         <tabset>
@@ -10,6 +36,7 @@
           <button class="btn btn-info pull-right" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
           <!-- <div class="pull-right totals">Needed Packs: <b>50</b> | Packs Currently Made: <b>50</b> | CTD Annual Packs Donated: <b>50</b></div> -->
 
+        <tabset>
           <tab heading="Donation Events">
             <div class="table-responsive">
               <table class="table table-bordered table-hover">
@@ -298,7 +325,6 @@
             </div> <!-- end table responsive -->
           </tab>
         </tabset>
-    </div> <!-- end event tracker class -->
 
   <!-- modal -->
   <script type="text/ng-template" id="eventModal.html">
@@ -322,7 +348,7 @@
             <div class="form-group">
               <label>Time:</label for="time">
                 <div>
-                  <input type="time" id="exampleInput" name="input" ng-model="ec.event_time" placeholder="HH:mm:ss"/>
+                  <input type="time" id="exampleInput" name="input" ng-model="ec.event_time" placeholder="HH:mm:ss" required /><p>e.g. 05:00 pm</p>
                 </div>
             </div>
             <div class="form-group">
@@ -357,16 +383,16 @@
             </div>
             <div class="form-group">
               <label>Packs Made:</label for="packsMade">
-                <input type="number" class="modalInput form-control" placeholder="Packs Made" id="packsMade" ng-model="ec.packs_made">
+                <input type="number" class="modalInput form-control" placeholder="e.g. 50" id="packsMade" ng-model="ec.packs_made">
             </div>
             <div class="form-group">
               <label>Packs Promised:</label for="packsPromised">
-                <input type="number" class="modalInput form-control" placeholder="Packs Promised" id="packsPromised" ng-model="ec.packs_promised">
+                <input type="number" class="modalInput form-control" placeholder="e.g. 250" id="packsPromised" ng-model="ec.packs_promised">
             </div>
             <!-- radio buttons -->
             <div class="form-group">
               <label>Comments:</label for="comments">
-                <textarea type="text" rows="3" class="modalInput form-control" placeholder="Comments" id="comments" ng-model="ec.comments"></textarea>
+                <textarea type="text" rows="3" class="modalInput form-control" placeholder="Any extra notes you'd like to leave?" id="comments" ng-model="ec.comments"></textarea>
             </div>
           </form>
         </div>

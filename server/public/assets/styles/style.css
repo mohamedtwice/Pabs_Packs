@@ -70,11 +70,11 @@ th a:hover {
 }
 
 .bg {
-  /*background: #f5f6f7;*/
+  background: #f5f6f7;
 }
 
 body {
-  /*background-image: url("/images/pattern.jpg");*/
+  background-image: url("/images/pattern.jpg");
   background-repeat: repeat-x;
   background-attachment: fixed;
 }
@@ -87,8 +87,8 @@ body {
 }
 
 .wrapper {
-  /*padding-top: 2px;*/
-  /*background: #e7e9dd;*/
+  padding-top: 2px;
+  background: #e7e9dd;
 }
 
 .header-container {
@@ -242,16 +242,16 @@ label {
   float: left;
   width: 620px;
   margin: 15px auto;
-  /*top: 10px;*/
-  /*left: 10px;*/
-  /*margin-bottom: 100px;*/
+  top: 10px;
+  left: 10px;
+  margin-bottom: 100px;
 }
 
 #itemsRunningLow {
   float: left;
   width: 620px;
   margin: 15px auto;
-  /*margin-bottom: 0px;*/
+  margin-bottom: 0px;
 }
 
 
