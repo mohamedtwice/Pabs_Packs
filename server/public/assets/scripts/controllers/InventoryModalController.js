@@ -72,7 +72,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
   } // end postInventoryItem
 
   vm.getVendors = function() {
-    console.log('Getting inventory2');
+    console.log('Getting vendors');
     vm.vendorNames = [];
     VendorService.getVendors().then(function() {
       vm.vendors = VendorService.vendorData;

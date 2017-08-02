@@ -1,14 +1,14 @@
 CREATE TABLE inventory (
   id SERIAL PRIMARY KEY,
   item varchar(80),
-  vendor_id int,
+  vendor_name text,
   number_on_hand int,
   low_number int,
   type varchar(80),
   comments text
 );
 
-INSERT INTO inventory (item, vendor_id, number_on_hand, low_number, type, comments)
+INSERT INTO inventory (item, vendor_name, number_on_hand, low_number, type, comments)
 VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1'),
 ('Item 2', 1, 30, 20, 'Merch', 'comments for 2'),
 ('Item 3', 1, 50, 10, 'Pack', 'comments for 3'),
@@ -38,7 +38,7 @@ CREATE TABLE events (
   comments text
 );
 --
-INSERT INTO events (event_date, event_time, event_type, partner_id, packs_promised, packs_made, type, comments)
+INSERT INTO events (event_date, event_time, event_type, partner_name, packs_promised, packs_made, type, comments)
 VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1')
 
 CREATE TABLE partners (
@@ -63,7 +63,7 @@ VALUES ('Packing'),
 ('Donation'),
 ('Donation')
 
-CREATE TABLE vendors (
+CREATE TABLE vendor (
   id SERIAL PRIMARY KEY,
   vendor_name varchar(80),
   vendor_phone varchar(80),
@@ -71,6 +71,6 @@ CREATE TABLE vendors (
   vendor_address varchar(80)
   );
 
-INSERT INTO vendors (vendor_name, vendor_phone, vendor_email, vendor_address)
+INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
 VALUES ('Vendor 1', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125'),
 ('Vendor 2', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125')

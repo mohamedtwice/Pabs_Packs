@@ -22,8 +22,6 @@ var config = {
 };
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
-
-
 // GET /partners
 router.get('/', function(req, res) {
   console.log('get partners hit');
@@ -94,7 +92,6 @@ router.put('/:id', function(req, res) {
       res.sendStatus(500); // server error
     });
 });
-
 
 router.delete('/:id', function(req, res) {
   console.log('-------------------------++++++++++++  ++++++++++++');
