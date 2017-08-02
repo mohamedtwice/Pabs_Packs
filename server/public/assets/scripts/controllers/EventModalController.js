@@ -8,10 +8,6 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
     $modalInstance.dismiss('cancel');
   }; // close modal button
 
-  vm.reload = function() {
-    $route.reload();
-  } //  reloads page after new item has been added to show immediately
-
   vm.getEvents = function() {
     console.log('in getEvents');
     EventService.getEvents().then(function() {
@@ -38,25 +34,11 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
       comments: vm.comments
     }
     console.log(newEvent);
-    if (vm.event_date === undefined) {
-      swal({
-        type: 'warning',
-        title: 'Date was not entered!',
-        timer: 2000
-      }).then(
-        function() {},
-        // handling the promise rejection
-        function(dismiss) {
-          if (dismiss === 'timer') {
-            console.log('I was closed by the timer');
-          }
-        })
-    } else {
       EventService.postEvent(newEvent).then(function() {
         swal({
           type: 'success',
           title: 'New event added!',
-          timer: 2000
+          timer: 2500
         }).then(
           function() {},
           // handling the promise rejection
@@ -66,8 +48,7 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
             }
           })
       });
-      $route.reload();
-    }
+    $route.reload();
   } // end createEvent
 
   vm.postPartner = function() {
@@ -78,31 +59,15 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
       partner_address: vm.partner_address
     }
     console.log(newPartner);
-    // cancels function from running if all fields are empty
+    // stops function from running if all fields are empty
     if (newPartner.partner_name === undefined && newPartner.partner_phone === undefined && newPartner.partner_address === undefined && newPartner.partner_contact === undefined) {
       console.log('{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}');
       return;
     }
-    if (newPartner.partner_name || newPartner.partner_phone || newPartner.partner_address || newPartner.partner_contact === undefined) {
-      swal({
-        type: 'warning',
-        title: "You're missing a vendor category!",
-        timer: 2000
-      }).then(
-        function() {},
-        // handling the promise rejection
-        function(dismiss) {
-          if (dismiss === 'timer') {
-            console.log('I was closed by the timer');
-          }
-        }) // end sweetAlert
-    }
-    // else {
     console.log("I'm here!");
     PartnerService.postPartner(newPartner).then(function() {
 
-    }); // end sweetAlert
-    // }
+    });
   } // end postVendor
 
 }).filter('unique', function() {

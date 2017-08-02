@@ -67,7 +67,7 @@
                   </td>
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.partner_name}}</thing>
-                    <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
+                    <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
                   </td>
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.packs_promised}}</thing>
@@ -83,7 +83,7 @@
                   </td>
                   <td>
                     <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                    <button ng-click="ec.updateDonationEvents(events)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
+                    <button ng-click="ec.updateDonationEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
                   </td>
                   <td>
                     <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -153,7 +153,7 @@
                   </td>
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.partner_name}}</thing>
-                    <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
+                    <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
                   </td>
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.packs_promised}}</thing>
@@ -169,7 +169,7 @@
                   </td>
                   <td>
                     <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                    <button ng-click="ec.updatePackEvents(events)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
+                    <button ng-click="ec.updatePackEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
                   </td>
                   <td>
                     <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -242,7 +242,7 @@
                   </td>
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.partner_name}}</thing>
-                    <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
+                    <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
                   </td>
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.packs_promised}}</thing>
@@ -258,7 +258,7 @@
                   </td>
                   <td>
                     <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                    <button ng-click="ec.updateDonationEvents(events)" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
+                    <button ng-click="ec.updateDonationEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-default">Update</button>
                   </td>
                   <td>
                     <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -311,7 +311,7 @@
             </div>
             <div class="form-group">
               <label>Type of Event:</label for="eventType">
-                <select label="-- Select option --" class="form-control input100" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
+                <select label="-- Select option --" class="form-control" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
                   <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
                   <option class="form-control input-lg input100" value="Donation">Donation Event</option>
                   <option class="form-control input-lg input100" value="Packing">Packing Event</option>
@@ -339,10 +339,6 @@
   	              </div>
                 </div>
             </div>
-            <!-- <div class="form-group">
-              <label>Partner Name:</label for="partner">
-                <input type="text" class="modalInput form-control" placeholder="Partner Name" id="partner" ng-model="ec.partner_name">
-            </div> -->
             <div class="form-group">
               <label>Packs Made:</label for="packsMade">
                 <input type="number" class="modalInput form-control" placeholder="Packs Made" id="packsMade" ng-model="ec.packs_made">

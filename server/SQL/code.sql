@@ -30,11 +30,11 @@ VALUES ('500', '2015'),
 CREATE TABLE events (
   id SERIAL PRIMARY KEY,
   event_date date,
-  event_time time,
-  event_type varchar(80),
-  partner_id int,
-  packs_promised int,
-  packs_made int,
+  event_time varchar(80),
+  event_type text,
+  partner_id integer,
+  packs_promised integer,
+  packs_made integer,
   comments text
 );
 --
@@ -43,10 +43,10 @@ VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1')
 
 CREATE TABLE partners (
   id SERIAL PRIMARY KEY,
-  partner_name varchar(80),
-  partner_address text,
+  partner_name text,
+  partner_address varchar(120),
   partner_phone varchar(80),
-  partner_contact varchar(80)
+  partner_contact text
 );
 
 INSERT INTO partners (partner_name, partner_address, partner_phone, partner_contact)
