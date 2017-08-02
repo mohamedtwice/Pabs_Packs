@@ -27,7 +27,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
 
   vm.setItemsPerPage = function(num) {
     vm.itemsPerPage = num;
-    vm.currentPage = 1; //reset to first paghe
+    vm.currentPage = 1; //reset to first page
   }
 
   // called on header click
