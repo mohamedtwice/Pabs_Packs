@@ -1,8 +1,8 @@
 <header ng-include="'/views/templates/header.html'"></header>
-<div class="container" ng-init="ec.getEvents()">
-  <div class="row">
-  <div class="col-md-4">
-    <div class="totals">
+<div ng-init="ec.getEvents()">
+  <div class="wrapper">
+    <div class="container">
+      <!-- <div class="totals"> -->
       <h2>Totals</h2>
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
@@ -26,15 +26,17 @@
       </tab>
     </div>
   </div>
-  </div>
+  <!-- </div> -->
 
   <!-- events -->
+  <div class="wrapper">
+    <div class="container">
       <h2>Event Tracker</h2>
-        <!-- beginning of tabs -->
-        <tabset>
-          <!-- packs tab -->
-          <button class="btn btn-info pull-right" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-          <!-- <div class="pull-right totals">Needed Packs: <b>50</b> | Packs Currently Made: <b>50</b> | CTD Annual Packs Donated: <b>50</b></div> -->
+      <!-- beginning of tabs -->
+      <tabset>
+        <!-- packs tab -->
+        <button class="btn btn-info pull-right" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+        <!-- <div class="pull-right totals">Needed Packs: <b>50</b> | Packs Currently Made: <b>50</b> | CTD Annual Packs Donated: <b>50</b></div> -->
 
         <tabset>
           <tab heading="Donation Events">
@@ -120,7 +122,8 @@
               <!-- pagination -->
               <pagination total-items="ec.donationList.length" ng-model="ec.currentPage" class="pagination-sm centered" ng-change="ec.pageChanged()"></pagination>
             </div>
-          </tab> <!-- end donation events -->
+          </tab>
+          <!-- end donation events -->
 
           <!-- begin packing events -->
           <tab heading="Packing Events" select="ec.getPacks()">
@@ -306,27 +309,29 @@
             </div>
             <pagination total-items="ec.pastList.length" ng-model="ec.currentPage" items-per-page="ec.itemsPerPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>-->
 
-            </div> <!-- end table responsive -->
+            </div>
+            <!-- end table responsive -->
           </tab>
         </tabset>
 
-  <!-- modal -->
-  <script type="text/ng-template" id="eventModal.html">
-    <div class="modal-header">
-      <div class='btn-toolbar pull-right'>
-        <div class='btn-group'>
-          <button class="btn" style="background-color:transparent;" ng-click="ec.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
-        </div>
-      </div>
-      <h3 class="modal-title">New Item</h3>
     </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- input forms -->
-          <form>
-            <div class="form-group">
-              <label>Date:</label for="date">
+    <!-- modal -->
+    <script type="text/ng-template" id="eventModal.html">
+      <div class="modal-header">
+        <div class='btn-toolbar pull-right'>
+          <div class='btn-group'>
+            <button class="btn" style="background-color:transparent;" ng-click="ec.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <h3 class="modal-title">New Item</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- input forms -->
+            <form>
+              <div class="form-group">
+                <label>Date:</label for="date">
                 <input type="date" class="modalInput form-control" id="date" ng-model="ec.event_date">
             </div>
             <div class="form-group">
@@ -387,6 +392,7 @@
       <button class="btn btn-primary" ng-click="ec.postEvent(); ec.postPartner()">Create</button>
     </div>
   </script>
+    </div>
 <!-- end modal -->
 
 </div>
