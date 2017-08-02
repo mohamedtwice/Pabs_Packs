@@ -9,15 +9,26 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   vm.reverseSort = false;
   vm.animationsEnabled = true;
   vm.now = '';
+  vm.viewBy = 10;
+  vm.itemsPerPage = vm.viewBy;
   vm.numPerPage = 10;
   vm.currentPage = 1;
   vm.donationList = [];
   vm.pastList = [];
   vm.packList = [];
 
+  vm.setPage = function(pageNo) {
+    vm.currentPage = pageNo;
+  };
+
   vm.pageChanged = function() {
     console.log('Page changed to: ' + vm.currentPage);
   }; // logs in the console that pagination has occurred
+
+  vm.setItemsPerPage = function(num) {
+    vm.itemsPerPage = num;
+    vm.currentPage = 1; //reset to first page
+  }
 
   // called on header click
   vm.sortColumn = function(col) {

@@ -34,7 +34,7 @@
         <tabset>
           <!-- packs tab -->
           <button class="btn btn-info pull-right" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-          <!-- <div class="pull-right totals">Needed Packs: <b>50</b> | Packs Currently Made: <b>50</b> | CTD Annual Packs Donated: <b>50</b></div> -->
+          <div class="pull-right totals">Needed Packs: <b>50</b> | Packs Currently Made: <b>50</b> | CTD Annual Packs Donated: <b>50</b></div>
 
         <tabset>
           <tab heading="Donation Events">
@@ -83,7 +83,7 @@
                     <th>Delete</th>
                   </tr>
                 </thead>
-                <tr ng-repeat="events in ec.donationList | orderBy:ec.column:ec.reverse | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
+                <tr ng-repeat="events in ec.donationList.slice(((ec.currentPage-1)*ec.itemsPerPage), ((ec.currentPage)*ec.itemsPerPage)) | orderBy:ec.column:ec.reverse">
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                     <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:'MM/dd/yyyy'}}" value="{{events.event_date | date:'MM/dd/yyyy'}}"></thing>
@@ -118,7 +118,16 @@
                 </tr>
               </table>
               <!-- pagination -->
-              <pagination total-items="ec.donationList.length" ng-model="ec.currentPage" class="pagination-sm centered" ng-change="ec.pageChanged()"></pagination>
+              <p>Show
+                <select ng-model="ec.viewBy" ng-change="ec.setItemsPerPage(ec.viewBy)">
+                  <option>10</option>
+                  <option>20</option>
+                  <option>30</option>
+                  <option>40</option>
+                  <option>50</option>
+                </select>
+              Rows</p>
+              <pagination total-items="ec.donationList.length" ng-model="ec.currentPage" items-per-page="ec.itemsPerPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
             </div>
           </tab> <!-- end donation events -->
 
@@ -169,7 +178,7 @@
                     <th>Delete</th>
                   </tr>
                 </thead>
-                <tr ng-repeat="events in ec.packList | orderBy:ec.column:ec.reverse | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
+                <tr ng-repeat="events in ec.packList.slice(((ec.currentPage-1)*ec.itemsPerPage), ((ec.currentPage)*ec.itemsPerPage)) | orderBy:ec.column:ec.reverse">
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                     <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:'MM/dd/yyyy'}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -204,7 +213,16 @@
                 </tr>
               </table>
               <!-- pagination -->
-              <pagination total-items="ec.packList.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
+              <p>View
+                <select ng-model="ec.viewBy" ng-change="ec.setItemsPerPage(ec.viewBy)">
+                  <option>10</option>
+                  <option>20</option>
+                  <option>30</option>
+                  <option>40</option>
+                  <option>50</option>
+                </select>
+              items at a time.</p>
+              <pagination total-items="ec.packList.length" ng-model="ec.currentPage" items-per-page="ec.itemsPerPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
             </div>
 
           </tab>
@@ -258,7 +276,8 @@
                     <th>Delete</th>
                   </tr>
                 </thead>
-                <tr ng-repeat="events in ec.pastList | orderBy:ec.column:ec.reverse | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage">
+                <tr ng-repeat="events in ec.pastList.slice(((ec.currentPage-1)*ec.itemsPerPage), ((ec.currentPage)*ec.itemsPerPage)) | orderBy:ec.column:ec.reverse">
+                   <!-- | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage -->
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                     <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -293,8 +312,7 @@
                 </tr>
               </table>
               <!-- pagination -->
-              <pagination total-items="ec.pastList.length" ng-model="ec.currentPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
-              <!-- <p>View
+              <p>View
                 <select ng-model="ec.viewBy" ng-change="ec.setItemsPerPage(ec.viewBy)">
                   <option>10</option>
                   <option>20</option>
@@ -303,9 +321,7 @@
                   <option>50</option>
                 </select>
               items at a time.</p>
-            </div>
-            <pagination total-items="ec.pastList.length" ng-model="ec.currentPage" items-per-page="ec.itemsPerPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>-->
-
+            <pagination total-items="ec.pastList.length" ng-model="ec.currentPage" items-per-page="ec.itemsPerPage" class="pagination-sm" ng-change="ec.pageChanged()"></pagination>
             </div> <!-- end table responsive -->
           </tab>
         </tabset>
