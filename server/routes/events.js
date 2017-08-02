@@ -75,7 +75,7 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   console.log('++++++++++++++++{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
-  var event_date = req.body.date
+  var event_date = req.body.date;
   var event_time = req.body.time;
   var partner_id = req.body.partner_id;
   var event_type = req.body.event_type;
@@ -92,12 +92,14 @@ router.post('/', function(req, res) {
           console.log('in then post db');
           client.release();
           res.sendStatus(201); // created
+          done();
         });
     })
     .catch(function(err) {
       console.log('in err db');
       client.release();
       res.sendStatus(500); // server error
+      done();
     });
 });
 

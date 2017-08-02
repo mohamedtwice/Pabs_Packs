@@ -63,12 +63,14 @@ router.post('/', function(req, res) {
           console.log('in then post annual_goal db');
           client.release();
           res.sendStatus(201); // created
+          done();
         });
     })
     .catch(function(err) {
       console.log('in err db');
       client.release();
       res.sendStatus(500); // server error
+      done();
     });
 });
 

@@ -62,11 +62,13 @@ router.post('/', function(req, res) {
         .then(function() {
           client.release();
           res.sendStatus(201); // created
+          done();
         });
     })
     .catch(function(err) {
       client.release();
       res.sendStatus(500); // server error
+      done();
     });
 });
 
@@ -87,11 +89,13 @@ router.put('/:id', function(req, res) {
         .then(function() {
           client.release();
           res.sendStatus(201); // created
+          done();
         });
     })
     .catch(function(err) {
       client.release();
       res.sendStatus(500); // server error
+      done();
     });
 });
 
