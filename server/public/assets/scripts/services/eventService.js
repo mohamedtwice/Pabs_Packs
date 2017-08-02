@@ -53,7 +53,7 @@ myApp.service('EventService', function($http) {
     }).then(function(response) {
       console.log('back from updateDonationEvents:', response);
     });
-  }  // end update properties
+  }  // end updateDonationEvents
 
   sv.updatePackEvents = function(updatedProperty) {
     console.log(updatedProperty);
@@ -67,7 +67,7 @@ myApp.service('EventService', function($http) {
     }).then(function(response) {
       console.log('back from updatePackEvents:', response);
     });
-  }  // end update properties
+  } // end updatePackEvents
 
   sv.deleteEvent = function(id) {
     console.log('in deleteEvent');

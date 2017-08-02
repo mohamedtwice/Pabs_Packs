@@ -9,10 +9,6 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
     $modalInstance.dismiss('cancel');
   }; // closes modal
 
-  vm.reload = function() {
-    $route.reload();
-  } //  reloads page after new item has been added to show immediately
-
   vm.getInventory = function() {
     console.log('Getting inventory2');
     InventoryService.getInventory().then(function() {
@@ -38,41 +34,25 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
       type: vm.type
     }
     console.log(newItem);
-    // if (newItem.item || newItem.vendor || newItem.numberOnHand || newItem.comments || newItem.type || newItem.reorderAlertNumber === undefined) {
-    //   console.log(newItem);
-    //   swal({
-    //     type: 'warning',
-    //     title: "You're missing a category!",
-    //     timer: 2000
-    //   }).then(
-    //     function() {},
-    //     // handling the promise rejection
-    //     function(dismiss) {
-    //       if (dismiss === 'timer') {
-    //         console.log('I was closed by the timer');
-    //       }
-    //     }) // end sweetAlert
-    // } else {
-      InventoryService.postInventoryItem(newItem).then(function() {
-        swal({
-          type: 'success',
-          title: 'New item added!',
-          timer: 2000
-        }).then(
-          function() {},
-          // handling the promise rejection
-          function(dismiss) {
-            if (dismiss === 'timer') {
-              console.log('I was closed by the timer');
-            }
-            vm.reload();
-          })
-      }); // end sweetAlert
-    // } // end else
+    InventoryService.postInventoryItem(newItem).then(function() {
+      swal({
+        type: 'success',
+        title: 'New item added!',
+        timer: 2500
+      }).then(
+        function() {},
+        // handling the promise rejection
+        function(dismiss) {
+          if (dismiss === 'timer') {
+            console.log('I was closed by the timer');
+          }
+        })
+    }); // end sweetAlert
+    $route.reload();
   } // end postInventoryItem
 
   vm.getVendors = function() {
-    console.log('Getting inventory2');
+    console.log('Getting vendors');
     vm.vendorNames = [];
     VendorService.getVendors().then(function() {
       vm.vendors = VendorService.vendorData;
@@ -91,30 +71,14 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
     }
     console.log(newVendor);
     // cancels function from running if all fields are empty
-    if (newVendor.name  === undefined && newVendor.phone  === undefined && newVendor.address  === undefined && newVendor.email === undefined) {
+    if (newVendor.name === undefined && newVendor.phone === undefined && newVendor.address === undefined && newVendor.email === undefined) {
       console.log('{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}');
       return;
     }
-    if (newVendor.name || newVendor.phone || newVendor.address || newVendor.email === undefined) {
-      swal({
-        type: 'warning',
-        title: "You're missing a vendor category!",
-        timer: 2000
-      }).then(
-        function() {},
-        // handling the promise rejection
-        function(dismiss) {
-          if (dismiss === 'timer') {
-            console.log('I was closed by the timer');
-          }
-        }) // end sweetAlert
-    }
-    // else {
-      console.log("I'm here!");
-      VendorService.postVendor(newVendor).then(function() {
+    console.log("I'm here!");
+    VendorService.postVendor(newVendor).then(function() {
 
-      }); // end sweetAlert
-    // }
+    }); // end sweetAlert
   } // end postVendor
 
 }).filter('unique', function() {

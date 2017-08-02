@@ -55,7 +55,7 @@ router.post('/', function(req, res) {
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
-      client.query('INSERT INTO inventory (item, vendor_id, number_on_hand, comments, low_number, type) VALUES($1, $2, $3, $4, $5, $6)', [item, vendor, on_hand, comments, low_number, type])
+      client.query('INSERT INTO inventory (item, vendor_name, number_on_hand, comments, low_number, type) VALUES($1, $2, $3, $4, $5, $6)', [item, vendor, on_hand, comments, low_number, type])
         .then(function() {
           client.release();
           res.sendStatus(201); // created
@@ -82,7 +82,7 @@ router.put('/:id', function(req, res) {
   // updates specified field
   pool.connect()
     .then(function(client) {
-      client.query("UPDATE inventory SET item=$1, vendor_id=$2, number_on_hand=$3, comments=$4, low_number=$5 WHERE id = $6;", [item, vendor, on_hand, comments, low_number, id])
+      client.query("UPDATE inventory SET item=$1, vendor_name=$2, number_on_hand=$3, comments=$4, low_number=$5 WHERE id = $6;", [item, vendor, on_hand, comments, low_number, id])
         .then(function() {
           client.release();
           res.sendStatus(201); // created

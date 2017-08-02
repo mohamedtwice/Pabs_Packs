@@ -27,38 +27,51 @@
 
     <div class="col-md-3" ng-init="dc.getUpcomingEvents()">
 
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Event Type</th>
-          <th>Packs Promised</th>
-          <th>Comments</th>
-          <th>Packs Made</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr  ng-repeat="data in dc.upcomingEvents">
-          <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
-          <td>{{ data.event_time }}</td>
-          <td>{{ data.event_type }}</td>
-          <td>{{ data.packs_promised }}</td>
-          <td>{{ data.comments }}</td>
-          <td>{{ data.packs_made }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <section>
+      <div class="container" id="pie">
+        <h3>Annual Goal for Pack Donations</h3>
+        <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()"></canvas>
 
-    </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-  <div class="container" id="itemsRunningLow">
-    <h3>Items Running Low</h3>
-    <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
+    <section>
+      <div class="container" id="upcomingEvents">
+        <h3>Upcoming Events</h3>
+
+        <div class="col-md-3" ng-init="dc.getUpcomingEvents()">
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Event Type</th>
+                <th>Packs Promised</th>
+                <th>Comments</th>
+                <th>Packs Made</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="data in dc.upcomingEvents">
+                <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
+                <td>{{ data.event_time }}</td>
+                <td>{{ data.event_type }}</td>
+                <td>{{ data.packs_promised }}</td>
+                <td>{{ data.comments }}</td>
+                <td>{{ data.packs_made }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container" id="itemsRunningLow">
+        <h3>Items Running Low</h3>
+        <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
+      </div>
+    </section>
+
   </div>
-</section>
-
-</div>

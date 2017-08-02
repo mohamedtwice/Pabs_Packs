@@ -45,6 +45,11 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     }
   }
 
+  vm.selectButton = function(id) {
+    vm.selectedButton = !vm.selectedButton;
+    console.log(vm.selectedButton);
+  }
+
   vm.loadPage = function() {
     console.log('in loadPage');
     vm.getEvents();
@@ -157,7 +162,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     var newEvent = {
       date: vm.event_date,
       time: vm.event_time,
-      partner_id: vm.partner_id,
+      partner_name: vm.partner_name,
       event_type: vm.event_type,
       packs_made: vm.packs_made,
       packs_promised: vm.packs_promised,
@@ -186,16 +191,23 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     } else {
       vm.event_timeUpdate = vm.event_timeUpdate;
     }
-    if (vm.partner_idUpdate !== events.partner_id) {
-      if (vm.partner_idUpdate === undefined) {
-        vm.partner_idUpdate = events.partner_id;
+    if (vm.partner_nameUpdate !== events.partner_name) {
+      if (vm.partner_nameUpdate === undefined) {
+        vm.partner_nameUpdate = events.partner_name;
       } else {
-        vm.partner_idUpdate = vm.partner_idUpdate;
+        vm.partner_nameUpdate = vm.partner_nameUpdate;
       }
     }
-    if (vm.packs_madeUpdate !== events.packs_promised) {
+    if (vm.packs_promisedUpdate !== events.packs_promised) {
+      if (vm.packs_promisedUpdate === undefined) {
+        vm.packs_promisedUpdate = events.packs_promised;
+      } else {
+        vm.packs_promisedUpdate = vm.packs_promisedUpdate;
+      }
+    }
+    if (vm.packs_madeUpdate !== events.packs_made) {
       if (vm.packs_madeUpdate === undefined) {
-        vm.packs_madeUpdate = events.packs_promised;
+        vm.packs_madeUpdate = events.packs_made;
       } else {
         vm.packs_madeUpdate = vm.packs_madeUpdate;
       }
@@ -212,7 +224,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       id: id,
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
-      partner_id: vm.partner_idUpdate,
+      partner_name: vm.partner_nameUpdate,
       packs_made: vm.packs_madeUpdate,
       packs_promised: vm.packs_promisedUpdate,
       comments: vm.commentsUpdate
@@ -253,11 +265,18 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
         vm.event_timeUpdate = vm.event_timeUpdate;
       }
     }
-    if (vm.partner_idUpdate !== events.partner_id) {
-      if (vm.partner_idUpdate === undefined) {
-        vm.partner_idUpdate = events.partner_id;
+    if (vm.partner_nameUpdate !== events.partner_name) {
+      if (vm.partner_nameUpdate === undefined) {
+        vm.partner_nameUpdate = events.partner_name;
       } else {
-        vm.partner_idUpdate = vm.partner_idUpdate;
+        vm.partner_nameUpdate = vm.partner_nameUpdate;
+      }
+    }
+    if (vm.packs_promisedUpdate !== events.packs_promised) {
+      if (vm.packs_promisedUpdate === undefined) {
+        vm.packs_promisedUpdate = events.packs_promised;
+      } else {
+        vm.packs_promisedUpdate = vm.packs_promisedUpdate;
       }
     }
     if (vm.packs_madeUpdate !== events.packs_made) {
@@ -279,7 +298,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
       id: id,
       date: vm.event_dateUpdate,
       time: vm.event_timeUpdate,
-      partner_id: vm.partner_idUpdate,
+      partner_name: vm.partner_nameUpdate,
       packs_made: vm.packs_madeUpdate,
       packs_promised: vm.packs_promisedUpdate,
       comments: vm.commentsUpdate
