@@ -4,7 +4,9 @@ var passport = require('passport');
 var path = require('path');
 var bodyParser = require('body-parser');
 
-router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 router.use(bodyParser.json());
 
 // module with db
@@ -53,7 +55,7 @@ router.post('/', function(req, res) {
   pool.connect()
     .then(function(client) {
       console.log('in post db');
-      client.query('INSERT INTO vendors (vendor_name, vendor_phone, vendor_email, vendor_address) VALUES($1, $2, $3, $4)', [name, phone, email, address])
+      client.query('INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address) VALUES($1, $2, $3, $4)', [name, phone, email, address])
         .then(function() {
           console.log('in then post vendors db');
           client.release();
