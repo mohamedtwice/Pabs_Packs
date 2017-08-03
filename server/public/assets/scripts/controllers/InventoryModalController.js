@@ -48,6 +48,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
           }
         })
     }); // end sweetAlert
+    // vm.getInventory();
     $route.reload();
   } // end postInventoryItem
 

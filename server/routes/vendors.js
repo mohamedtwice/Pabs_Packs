@@ -4,7 +4,9 @@ var passport = require('passport');
 var path = require('path');
 var bodyParser = require('body-parser');
 
-router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 router.use(bodyParser.json());
 
 // module with db
@@ -66,5 +68,52 @@ router.post('/', function(req, res) {
       res.sendStatus(500); // server error
     });
 });
+
+router.put('/:id', function(req, res) {
+  console.log('{{{{{{{{{{{{{{{{{{{ PUT PUT PUT PUT PUT  }}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
+  console.log(req.body);
+  var id = req.params.id;
+  var vendor_name = req.body.vendor_name;
+  var vendor_email = req.body.vendor_email;
+  var vendor_phone = req.body.vendor_phone;
+  var vendor_address = req.body.vendor_address;
+  // updates specified field
+  pool.connect(function(err, client, done) {
+    console.log(id);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("UPDATE vendors SET vendor_name=$1, vendor_phone=$2, vendor_email=$3, vendor_address=$4 WHERE id = $5;", [vendor_name, vendor_phone, vendor_email, vendor_address, id], function(err, result) {
+      console.log(id);
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      console.log(result);
+      res.send(result);
+    });
+  });
+});
+
+router.delete('/:id', function(req, res, next) {
+  console.log("delete router connected to database");
+  console.log(req.params.id);
+  pool.connect(function(err, client, done) {
+    var id = req.params.id;
+    console.log('post hit', id);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('DELETE FROM vendors WHERE id = $1', [id], function(err, result) {
+      console.log(id);
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      console.log(result);
+      res.send(result);
+    });
+  });
+}); // end delete
 
 module.exports = router;

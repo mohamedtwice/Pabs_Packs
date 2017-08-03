@@ -6,7 +6,6 @@
     <!-- beginning of tabs -->
     <tabset>
       <!-- packs tab -->
-
       <tab heading="Partners">
         <div class="adminbox">
           <h3>Partners</h3>
@@ -39,23 +38,23 @@
                   <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_addressUpdate" placeholder="{{partners.partner_address}}" value="{{partners.partner_address}}"></thing>
                 </td>
                 <td>
-                  <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                  <button ng-click="ac.updatePartners(partners.id)" ng-show="toggle[partners.id]" class="btn btn-default">Update</button>
+                  <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-default">Update</button>
                   <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="{{vendors.partner_name}}" value="{{current.partner_name}}">
+                  <input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="{{partners.partner_name}}" value="{{current.partner_name}}">
                 </td>
                 <td>
-                  <input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="{{vendors.partner_contact}}" value="{{current.partner_contact}}">
+                  <input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="{{partners.partner_contact}}" value="{{current.partner_contact}}">
                 </td>
                 <td>
-                  <input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="{{vendors.partner_phone}}" value="{{current.partner_phone}}">
+                  <input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="{{partners.partner_phone}}" value="{{current.partner_phone}}">
                 </td>
                 <td>
-                  <input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="{{vendors.partner_address}}" value="{{current.partner_address}}">
+                  <input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="{{partners.partner_address}}" value="{{current.partner_address}}">
                 </td>
                 <td>
                   <button type="button" name="button" class="btn btn-info" ng-click="ac.postPartner()">Add</button>
@@ -63,10 +62,9 @@
               </tr>
             </tbody>
           </table>
-
         </div>
       </tab>
-
+      <!-- vendors tab -->
       <tab heading="Vendors">
         <div class="adminbox">
           <h3>Vendors</h3>
@@ -77,29 +75,61 @@
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Address</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="vendors in ac.vendors">
-                <td>{{vendors.vendor_name}}</td>
-                <td>{{vendors.vendor_phone}}</td>
-                <td>{{vendors.vendor_email}}</td>
-                <td>{{vendors.vendor_address}}</td>
+                <td>
+                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_name}}</thing>
+                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_nameUpdate" placeholder="{{vendors.vendor_name}}" value="{{vendors.vendor_name}}"></thing>
+                </td>
+                <td>
+                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_phone}}</thing>
+                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_phoneUpdate" placeholder="{{vendors.vendor_phone}}" value="{{vendors.vendor_phone}}"></thing>
+                </td>
+                <td>
+                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_email}}</thing>
+                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_emailUpdate" placeholder="{{vendors.vendor_email}}" value="{{vendors.vendor_email}}"></thing>
+                </td>
+                <td>
+                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_address}}</thing>
+                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_addressUpdate" placeholder="{{vendors.vendor_address}}" value="{{vendors.vendor_address}}"></thing>
+                </td>
+                <td>
+                  <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-default">Update</button>
+                </td>
+                <td>
+                  <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </td>
               </tr>
               <tr>
-                <td><input type="text" name="vendor_name" ng-model="ac.vendor_name" placeholder="{{vendors.vendor_name}}" value="{{current.vendor_name}}"></td>
-                <td><input type="text" name="vendor_phone" ng-model="ac.vendor_phone" placeholder="{{vendors.vendor_phone}}" value="{{current.vendor_phone}}"></td>
-                <td><input type="email" name="vendor_email" ng-model="ac.vendor_email" placeholder="{{vendors.vendor_email}}" value="{{current.vendor_email}}"></td>
-                <td><input type="text" name="vendor_address" ng-model="ac.vendor_address" placeholder="{{vendors.vendor_address}}" value="{{current.vendor_address}}"></td>
-                <td><button type="button" name="button" class="btn btn-info" ng-click="ac.postVendor()">Add</button></td>
+                <td>
+                  <input type="text" name="vendor_name" ng-model="ac.vendor_name" placeholder="{{vendors.vendor_name}}" value="{{vendors.vendor_name}}">
+                </td>
+                <td>
+                  <input type="text" name="vendor_email" ng-model="ac.vendor_email" placeholder="{{vendors.vendor_email}}" value="{{vendors.vendor_email}}">
+                </td>
+                <td>
+                  <input type="text" name="vendor_phone" ng-model="ac.vendor_phone" placeholder="{{vendors.vendor_phone}}" value="{{vendors.vendor_phone}}">
+                </td>
+                <td>
+                  <input type="text" name="vendor_address" ng-model="ac.vendor_address" placeholder="{{vendors.vendor_address}}" value="{{vendors.vendor_address}}">
+                </td>
+                <td>
+                  <button type="button" name="button" class="btn btn-info" ng-click="ac.postVendor()">Add</button>
+                </td>
               </tr>
+
             </tbody>
           </table>
         </div>
       </tab>
 
+      <!-- annual goal tab -->
       <tab heading="Annual Goal">
-
         <div class="adminbox">
           <h3>Annual Goal</h3>
           <table class=" table-responsive table-striped">
@@ -124,11 +154,10 @@
             </tbody>
           </table>
         </div>
-
       </tab>
 
+      <!-- event types -->
       <tab heading="Event Types">
-
         <div class="adminbox">
           <h3>Event Types</h3>
           <table class=" table-responsive table-striped">
@@ -150,9 +179,7 @@
             </tbody>
           </table>
         </div>
-
       </tab>
 
   </div>
-</div>
 </div>

@@ -372,11 +372,11 @@
   	              </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-show="ec.event_type=='Packing'">
               <label>Packs Made:</label for="packsMade">
                 <input type="number" class="modalInput form-control" placeholder="e.g. 50" id="packsMade" ng-model="ec.packs_made">
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-show="ec.event_type=='Donation'">
               <label>Packs Promised:</label for="packsPromised">
                 <input type="number" class="modalInput form-control" placeholder="e.g. 250" id="packsPromised" ng-model="ec.packs_promised">
             </div>

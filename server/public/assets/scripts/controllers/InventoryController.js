@@ -14,7 +14,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
   vm.selectButton = function(id) {
     vm.selectedButton = !vm.selectedButton;
     console.log(vm.selectedButton);
-  }
+  } // to disable other edit buttons on click
 
   vm.openAddNew = function(size) {
     var modalInstance = $modal.open({
@@ -23,7 +23,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       controller: 'InventoryModalController as mc',
       size: size
     });
-  } //opens modal to add new item
+  } // opens modal to add new item
 
   // called on header click
   vm.sortColumn = function(col) {
@@ -110,7 +110,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       swal({ //sweet alert
         type: 'success',
         title: 'Item Updated!',
-        timer: 2000
+        timer: 2500
       }).then(
         function() {},
         // handling the promise rejection
@@ -120,7 +120,7 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
           }
         })
     }); // end then
-    $route.reload();
+    vm.getInventory();
   } // end updateProperties
 
   vm.deleteItem = function(index) {
