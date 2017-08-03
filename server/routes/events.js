@@ -71,7 +71,7 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   console.log('++++++++++++++++{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}');
   console.log(req.body);
-  var event_date = req.body.date
+  var event_date = req.body.date;
   var event_time = req.body.time;
   var partner = req.body.partner;
   var event_type = req.body.event_type;
@@ -88,12 +88,14 @@ router.post('/', function(req, res) {
           console.log('in then post db');
           client.release();
           res.sendStatus(201); // created
+          done();
         });
     })
     .catch(function(err) {
       console.log('in err db');
       client.release();
       res.sendStatus(500); // server error
+      done();
     });
 }); // end post
 
@@ -147,6 +149,62 @@ router.put('/:id', function(req, res) {
       res.send(result);
     });
   });
-}); // end put
+
+
+});
+
+// router.get for getPackTotals
+router.get('/neededTotals', function(req, res) {
+  console.log('event.js /neededPacks hit');
+  pool.connect(function(err, client, done) {
+    if (err) {
+      console.log('Error connecting to the DB', err);
+      done();
+      return;
+    } // end first if statements
+
+    // TOTALS - NEEDED PACKS QUERY   ******  1  *****
+    client.query('SELECT (SUM(e.packs_promised) - SUM(e.packs_made)) "packs_needed_total" FROM events e;', function(err, result) {
+
+      var packTotals = {
+        needed: '',
+        made: '',
+        donated: ''
+      }; // end packTotals
+
+      if (err) {
+        console.log('Error querying the DB for Needed Packs');
+        done();
+      } else {
+        packTotals.needed = parseInt(result.rows[0].packs_needed_total);
+        console.log('Got needed packs *1* from the DB:', result.rows[0].needed);
+
+        // TOTALS - PACKS CURRENTLY MADE QUERY   *****  2  *****
+        client.query('SELECT SUM (e.packs_promised) FROM events e;', function(err1, result1) {
+          if (err1) {
+            console.log('Error querying the DB for Packs Currently Made:', result1.made);
+            done(); // exit out of DB pool
+          } else {
+          packTotals.made = parseInt(result1.rows[0].sum);
+          console.log('Got Packs Currently Made *2* from the DB:', result.rows[0].made);
+
+          // TOTALS - CTD ANNUAL PACKS DONATED QUERY   *****  3  *****
+          client.query('SELECT SUM (e.packs_promised) FROM events e WHERE e.event_date <= (current_date);', function(err2, result2) {
+            if (err2) {
+              console.log('Error querying the DB for CTD Annual Packs Donated *3*');
+              done(); // exit out of DB pool
+            } else {
+              packTotals.donated = parseInt(result2.rows[0].sum);
+              console.log('Got CTD Annual Packs Donated *3* from the DB:', result2.rows[0].sum);
+            } // end else statement
+            res.send(packTotals);
+            console.log('packTotals:', packTotals);
+          }); // end client.query for 3rd query
+        } // end else for 2nd query
+      }); // end client.query for 2nd query
+    } // end else for 1st client.query
+  }); // end else for 1st client.query
+}); // end pool.connect
+}); // end router.get for /neededPacks
 
 module.exports = router;

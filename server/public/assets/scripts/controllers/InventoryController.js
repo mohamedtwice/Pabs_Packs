@@ -1,6 +1,17 @@
-myApp.controller('InventoryController', function(InventoryService, $modal, $route) {
+myApp.controller('InventoryController', ['InventoryService', '$modal', '$route', '$http', '$location', function(InventoryService, $modal, $route, $http, $location) {
   console.log('in inventory controller');
   var vm = this;
+  console.log('checking user');
+  $http.get('/user').then(function(response) {
+    if (response.data.username) {
+      // user has a curret session on the server
+      vm.userName = response.data.username;
+      console.log('User Data: ', vm.userName);
+    } else {
+      // user has no session, bounce them back to the login page
+      $location.path("/home");
+    }
+  });
 
   vm.column = 'item';
   // sort ordering (Ascending or Descending). Set true for desending
@@ -48,6 +59,13 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
       return '';
     }
   }
+
+  vm.getPackTotals = function() {
+    InventoryService.getPackTotals().then(function() {
+
+    });
+  } //end getPackTotals
+
 
   vm.getInventory = function() {
     console.log('Getting the inventory');
@@ -159,4 +177,4 @@ myApp.controller('InventoryController', function(InventoryService, $modal, $rout
     })
   } //end deleteItem
 
-});
+}]); // end controller

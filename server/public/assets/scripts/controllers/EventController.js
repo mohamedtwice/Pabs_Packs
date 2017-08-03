@@ -1,6 +1,17 @@
-myApp.controller('EventController', function(EventService, $filter, $modal, $route) {
+myApp.controller('EventController', ['EventService', '$filter', '$modal', '$route', '$http', '$location', function(EventService, $filter, $modal, $route, $http, $location) {
   console.log('in event controller');
   var vm = this;
+  console.log('checking user');
+  $http.get('/user').then(function(response) {
+    if (response.data.username) {
+      // user has a curret session on the server
+      vm.userName = response.data.username;
+      console.log('User Data: ', vm.userName);
+    } else {
+      // user has no session, bounce them back to the login page
+      $location.path("/home");
+    }
+  });
 
   // sort ordering (Ascending or Descending). Set true for desending
   vm.column = 'event_date';
@@ -332,4 +343,32 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
     vm.getEvents();
   }; // end updatePackEvents
 
-});
+  // Needed Packs function
+  vm.getPackTotals = function() {
+    console.log('in getNeededPacks');
+    EventService.getPackTotals().then(function() {
+      vm.packTotals = EventService.packTotalsData;
+      var packsData = EventService.packTotalsData;
+      vm.neededPacks = [packsData.needed];
+      vm.packsMade = [packsData.made];
+      vm.packsDonated = [packsData.donated];
+    }); // end EVentService.getNeededPacks
+  }; // end neededPacks
+  vm.getPackTotals();
+
+}]);
+
+// .filter('unique', function() {
+//   return function(collection, keyname) {
+//     var output = [],
+//       keys = [];
+//     angular.forEach(collection, function(item) {
+//       var key = item[keyname];
+//       if (keys.indexOf(key) === -1) {
+//         keys.push(key);
+//         output.push(item);
+//       }
+//     });
+//     return output;
+//   };
+// }));

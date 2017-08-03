@@ -57,17 +57,10 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
 }; // end getBarChart
 
 
-
   // upcoming events
   vm.getUpcomingEvents = function() {
     console.log('in controller, getUpcomingEvents');
-
-    var eventsObject = {
-      event1: '',
-      event2: '',
-      event3: ''
-    }; // end eventsObject
-    EventService.getUpcomingEvents(eventsObject).then(function() {
+    EventService.getUpcomingEvents().then(function() {
       vm.upcomingEvents = EventService.upcomingEventsGET;
       console.log(EventService.upcomingEventsGET);
       console.log(vm.upcomingEvents);
