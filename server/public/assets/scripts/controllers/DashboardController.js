@@ -5,8 +5,8 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
   $http.get('/user').then(function(response) {
     if (response.data.username) {
       // user has a curret session on the server
-      vm.userName = response.data.username;
-      console.log('User Data: ', vm.userName);
+      vm.username = response.data.username;
+      console.log('User Data: ', vm.username);
     } else {
       // user has no session, bounce them back to the login page
       $location.path("/home");
