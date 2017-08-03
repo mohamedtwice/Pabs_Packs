@@ -1,11 +1,17 @@
-myApp.controller('AdminController', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route) {
+myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'VendorService', 'AnnualgoalService', '$modal', '$route', '$http', '$location', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route, $http, $location) {
 
-  console.log('in vendor controller');
   var vm = this;
-
-
-  /// --------------------------------------------------------------------------------------------------------------
-
+  console.log('checking user');
+  $http.get('/user').then(function(response) {
+    if (response.data.username) {
+      // user has a curret session on the server
+      vm.userName = response.data.username;
+      console.log('User Data: ', vm.userName);
+    } else {
+      // user has no session, bounce them back to the login page
+      $location.path("/home");
+    }
+  });
   //// ALL GETS
 
   vm.getInfo = function() {
@@ -37,7 +43,7 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
     console.log('in getPartners');
     PartnerService.getPartner().then(function() {
       vm.partners = PartnerService.partnerData;
-      console.log(vm.vendors);
+      console.log(vm.partners);
     });
   }; // end getPartner
 
@@ -249,4 +255,4 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
 
   }; // delete partner
 
-});
+}]); // end controller
