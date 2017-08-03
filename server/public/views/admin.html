@@ -1,7 +1,7 @@
 <header ng-include="'/views/templates/header.html'"></header>
 <div ng-init="ac.getInfo()">
   <div class="wrapper">
-    <h2>Admin Page</h2>
+    <h2>ADMIN PAGE</h2>
 
     <div class="row">
       <!-- beginning of tabs -->
@@ -10,8 +10,8 @@
 
         <tab heading="Partners">
           <div class="adminbox">
-            <h3>Partners</h3>
-            <table class="table table-responsive table-striped">
+            <h3 class="lead">PARTNERS</h3>
+            <table class="table table-responsive table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -46,10 +46,10 @@
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="{{vendors.partner_name}}" value="{{current.partner_name}}"></td>
-                  <td><input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="{{vendors.partner_contact}}" value="{{current.partner_contact}}"></td>
-                  <td><input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="{{vendors.partner_phone}}" value="{{current.partner_phone}}"></td>
-                  <td><input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="{{vendors.partner_address}}" value="{{current.partner_address}}"></td>
+                  <td><input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="Partner Name" value="{{current.partner_name}}"></td>
+                  <td><input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="Contact Name" value="{{current.partner_contact}}"></td>
+                  <td><input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="Phone Number" value="{{current.partner_phone}}"></td>
+                  <td><input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="Partner Address" value="{{current.partner_address}}"></td>
                   <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewpartner()">Add</button></td>
                 </tr>
               </tbody>
@@ -60,8 +60,8 @@
 
         <tab heading="Vendors">
           <div class="adminbox">
-            <h3>Vendors</h3>
-            <table class="table table-responsive table-striped">
+            <h3 class="lead">VENDORS</h3>
+            <table class="table table-responsive table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -78,10 +78,10 @@
                   <td>{{vendors.vendor_address}}</td>
                 </tr>
                 <tr>
-                  <td><input type="text" name="vendor_name" ng-model="ac.vendor_name" placeholder="{{vendors.vendor_name}}" value="{{current.vendor_name}}"></td>
-                  <td><input type="text" name="vendor_phone" ng-model="ac.vendor_phone" placeholder="{{vendors.vendor_phone}}" value="{{current.vendor_phone}}"></td>
-                  <td><input type="text" name="vendor_email" ng-model="ac.vendor_email" placeholder="{{vendors.vendor_email}}" value="{{current.vendor_email}}"></td>
-                  <td><input type="text" name="vendor_address" ng-model="ac.vendor_address" placeholder="{{vendors.vendor_address}}" value="{{current.vendor_address}}"></td>
+                  <td><input type="text" name="vendor_name" ng-model="ac.vendor_name" placeholder="Vendor" value="{{current.vendor_name}}"></td>
+                  <td><input type="text" name="vendor_phone" ng-model="ac.vendor_phone" placeholder="Phone Number" value="{{current.vendor_phone}}"></td>
+                  <td><input type="text" name="vendor_email" ng-model="ac.vendor_email" placeholder="Vendor E-mail" value="{{current.vendor_email}}"></td>
+                  <td><input type="text" name="vendor_address" ng-model="ac.vendor_address" placeholder="Vendor Address" value="{{current.vendor_address}}"></td>
                   <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewvendor()">Add</button></td>
                 </tr>
               </tbody>
@@ -93,7 +93,7 @@
         <tab heading="Annual Goal">
 
           <div class="adminbox">
-            <h3>Annual Goal</h3>
+            <h3 class="lead">ANNUAL GOAL</h3>
             <table class=" table-responsive table-striped">
               <thead>
                 <tr>
@@ -122,7 +122,7 @@
 
 
           <div class="adminbox">
-            <h3>Event Types</h3>
+            <h3 class="lead">EVENT TYPES</h3>
             <table class=" table-responsive table-striped">
               <thead>
                 <tr>
