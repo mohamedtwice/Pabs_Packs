@@ -74,7 +74,7 @@ th a:hover {
 }
 
 body {
-  /*background-image: url("/images/pattern.jpg");*/
+  background-image: url("/images/pattern.jpg");
   background-repeat: repeat-x;
   background-attachment: fixed;
 }
