@@ -3,7 +3,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
   console.log('in vendor controller');
   var vm = this;
 
-
   /// --------------------------------------------------------------------------------------------------------------
 
   //// ALL GETS
@@ -16,7 +15,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
     vm.getEventType();
   }; // end getInfo
 
-
   vm.getAnnualgoal = function() {
     console.log('in getAnnualgoal');
     AnnualgoalService.getAnnualgoal().then(function() {
@@ -28,7 +26,7 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
   vm.getVendors = function() {
     console.log('in getVendors');
     VendorService.getVendors().then(function() {
-      vm.vendors = VendorService.vendorsData;
+      vm.vendors = VendorService.vendorData;
       console.log(vm.vendors);
     });
   }; // end getVendors
@@ -48,8 +46,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
       console.log(vm.eventtype);
     });
   }; // end getPartner
-
-
 
   /// --------------------------------------------------------------------------------------------------------------
 
@@ -91,7 +87,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
       }
     }
 
-
     var updatedPartner = {
       date: vm.partner_nameUpdate,
       time: vm.partner_contactUpdate,
@@ -119,9 +114,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
       vm.getPartners();
     });
 
-
-
-
     vm.editgoals = function(goal) {
       console.log('in editgoals');
       vm.current = goal;
@@ -130,31 +122,28 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
 
     vm.current = {};
 
-
-
     /// --------------------------------------------------------------------------------------------------------------
 
 
     /// ALL POSTS
 
-
-    vm.addnewvendor = function() {
-      console.log('in addnewgoal');
+    // vm.new Promise(function(resolve, reject) {
+      vm.postVendor = function() {
+    // }); = function() {
+      console.log('in postVendor');
       var newVendor = {
         vendor_name: vm.vendor_name,
         vendor_phone: vm.vendor_phone,
         vendor_email: vm.vendor_email,
         vendor_address: vm.vendor_address
       };
-
       console.log(newVendor);
-      VendorService.addnewvendor(newVendor).then(function() {
+      VendorService.postVendor(newVendor).then(function() {
         vm.getVendors();
       });
     }; // end addnewgoal
 
-
-    vm.addnewpartner = function() {
+    vm.postPartner = function() {
       console.log('in addnewgoal');
       var newPartner = {
         partner_name: vm.partner_name,
@@ -181,7 +170,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
       });
     }; // end addnewgoal
 
-
     vm.addnewEventType = function() {
       console.log('in addnewEventType');
       var newEventType = {
@@ -193,60 +181,98 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
       });
     }; // end addnewgoal
 
-
     /// --------------------------------------------------------------------------------------------------------------
 
 
     // DELETE FUNCTIONS
 
     vm.deletePartner = function(id) {
-      console.log('in deletePartner');
+      console.log('in deleteEvent');
       console.log(id);
-      PartnerService.deletePartner(id).then(function(data) {
-        console.log('data is:', data);
-      });
-      console.log('id is:', id);
-
-      vm.getPartners();
-    }; // end delete
-    // end vendor controller
-  };
-
-  vm.deletePartner = function(id) {
-    console.log(id);
-    swal({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      buttonsStyling: false
-    }).then(function() {
-      console.log('in remove');
-      PartnerService.deletePartner(id);
-      swal(
-        'Deleted!',
-        'Your item has been deleted.',
-        'success'
-      )
-    }, function(dismiss) {
-      // dismiss can be 'cancel', 'overlay',
-      // 'close', and 'timer'
-      if (dismiss === 'cancel') {
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        buttonsStyling: false
+      }).then(function() {
+        console.log('in remove');
+        PartnerService.deletePartner(id);
+        $route.reload();
         swal(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
+          'Deleted!',
+          'Your item has been deleted.',
+          'success'
         )
-      }
-    })
-    vm.getPartners();
+      }, function(dismiss) {
+        // dismiss can be 'cancel', 'overlay',
+        // 'close', and 'timer'
+        if (dismiss === 'cancel') {
+          swal(
+            'Cancelled',
+            'Your file is safe :)',
+            'error'
+          )
+        }
+      }) // end sweet alert
+    }; // end delete
 
-  }; // delete partner
+  //   vm.deletePartner = function(id) {
+  //     console.log('in deletePartner');
+  //     console.log(id);
+  //     PartnerService.deletePartner(id).then(function(data) {
+  //       console.log('data is:', data);
+  //     });
+  //     console.log('id is:', id);
+  //
+  //     vm.getPartners();
+  //   }; // end delete
+  //   // end vendor controller
+  // };
+  //
+  // vm.deletePartner = function(id) {
+  //   console.log(id);
+  //   swal({
+  //     title: 'Are you sure?',
+  //     text: "You won't be able to revert this!",
+  //     type: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, delete it!',
+  //     cancelButtonText: 'No, cancel!',
+  //     confirmButtonClass: 'btn btn-success',
+  //     cancelButtonClass: 'btn btn-danger',
+  //     buttonsStyling: false
+  //   }).then(function() {
+  //     console.log('in remove');
+  //     PartnerService.deletePartner(id);
+  //     swal(
+  //       'Deleted!',
+  //       'Your item has been deleted.',
+  //       'success'
+  //     )
+  //   }, function(dismiss) {
+  //     // dismiss can be 'cancel', 'overlay',
+  //     // 'close', and 'timer'
+  //     if (dismiss === 'cancel') {
+  //       swal(
+  //         'Cancelled',
+  //         'Your imaginary file is safe :)',
+  //         'error'
+  //       )
+  //     }
+  //   })
+  //   vm.getPartners();
+  //
+  // }; // delete partner
+
+}
 
 });

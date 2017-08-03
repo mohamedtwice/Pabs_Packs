@@ -39,17 +39,27 @@
                   <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_addressUpdate" placeholder="{{partners.partner_address}}" value="{{partners.partner_address}}"></thing>
                 </td>
                 <td>
-                  <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   <button ng-click="ac.updatePartners(partners.id)" ng-show="toggle[partners.id]" class="btn btn-default">Update</button>
                   <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
                 </td>
               </tr>
               <tr>
-                <td><input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="{{vendors.partner_name}}" value="{{current.partner_name}}"></td>
-                <td><input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="{{vendors.partner_contact}}" value="{{current.partner_contact}}"></td>
-                <td><input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="{{vendors.partner_phone}}" value="{{current.partner_phone}}"></td>
-                <td><input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="{{vendors.partner_address}}" value="{{current.partner_address}}"></td>
-                <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewpartner()">Add</button></td>
+                <td>
+                  <input type="text" name="partner_name" ng-model="ac.partner_name" placeholder="{{vendors.partner_name}}" value="{{current.partner_name}}">
+                </td>
+                <td>
+                  <input type="text" name="partner_contact" ng-model="ac.partner_contact" placeholder="{{vendors.partner_contact}}" value="{{current.partner_contact}}">
+                </td>
+                <td>
+                  <input type="text" name="partner_phone" ng-model="ac.partner_phone" placeholder="{{vendors.partner_phone}}" value="{{current.partner_phone}}">
+                </td>
+                <td>
+                  <input type="text" name="partner_address" ng-model="ac.partner_address" placeholder="{{vendors.partner_address}}" value="{{current.partner_address}}">
+                </td>
+                <td>
+                  <button type="button" name="button" class="btn btn-info" ng-click="ac.postPartner()">Add</button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -79,14 +89,13 @@
               <tr>
                 <td><input type="text" name="vendor_name" ng-model="ac.vendor_name" placeholder="{{vendors.vendor_name}}" value="{{current.vendor_name}}"></td>
                 <td><input type="text" name="vendor_phone" ng-model="ac.vendor_phone" placeholder="{{vendors.vendor_phone}}" value="{{current.vendor_phone}}"></td>
-                <td><input type="text" name="vendor_email" ng-model="ac.vendor_email" placeholder="{{vendors.vendor_email}}" value="{{current.vendor_email}}"></td>
+                <td><input type="email" name="vendor_email" ng-model="ac.vendor_email" placeholder="{{vendors.vendor_email}}" value="{{current.vendor_email}}"></td>
                 <td><input type="text" name="vendor_address" ng-model="ac.vendor_address" placeholder="{{vendors.vendor_address}}" value="{{current.vendor_address}}"></td>
-                <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewvendor()">Add</button></td>
+                <td><button type="button" name="button" class="btn btn-info" ng-click="ac.postVendor()">Add</button></td>
               </tr>
             </tbody>
           </table>
         </div>
-
       </tab>
 
       <tab heading="Annual Goal">
@@ -115,10 +124,10 @@
             </tbody>
           </table>
         </div>
+
       </tab>
 
       <tab heading="Event Types">
-
 
         <div class="adminbox">
           <h3>Event Types</h3>
@@ -137,13 +146,12 @@
               <tr>
                 <td><input type="text" name="year" ng-model="ac.event_type_name" placeholder="{{eventtype.event_type_name}}" value="{{eventtype.event_type_name}}"></td>
                 <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewEventType()">Add</button></td>
-
               </tr>
             </tbody>
           </table>
         </div>
-      </tab>
 
+      </tab>
 
   </div>
 </div>
