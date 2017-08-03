@@ -180,7 +180,7 @@ router.get('/neededTotals', function(req, res) {
         console.log('Got needed packs *1* from the DB:', result.rows[0].needed);
 
         // TOTALS - PACKS CURRENTLY MADE QUERY   *****  2  *****
-        client.query('SELECT SUM (e.packs_promised) FROM events e;', function(err1, result1) {
+        client.query('SELECT SUM (e.packs_made) FROM events e;', function(err1, result1) {
           if (err1) {
             console.log('Error querying the DB for Packs Currently Made:', result1.made);
             done(); // exit out of DB pool
