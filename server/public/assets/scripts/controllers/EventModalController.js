@@ -49,6 +49,7 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
           })
       });
     $route.reload();
+    // vm.getEvents();
   } // end createEvent
 
   vm.postPartner = function() {
