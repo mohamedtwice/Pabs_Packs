@@ -1,23 +1,23 @@
 <header ng-include="'/views/templates/header.html'"></header>
-<div ng-init="ec.getEvents()">
+<div class="container" ng-init="ec.getEvents();ec.getPackTotals()">
   <div class="wrapper">
-    <!-- <div class="totals"> -->
-    <h2>Totals</h2>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
-        <thead>
+  <div class="col-md-4">
+    <div class="totals">
+      <h2>Totals</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Needed Packs</th>
+              <th>Packs Currently Made</th>
+              <th>CTD Annual Packs Donated</th>
+            </tr>
+          </thead>
           <tr>
-            <div ng-init="ec.getNeededPacks()" ng-repeat="data in ec.neededPacks">
-              <td>
-                <h3>{{ data.neededPacks }}</h3></td>
-            </div>
-            <div class="">
-              <td>
-                <h3>50</h3></td>
-            </div>
-            <div class="">
-              <td>
-                <h3>50</h3></td>
+            <div  ng-repeat="data in ec.packTotals track by $index">
+            <td><h3>{{ ec.neededPacks[0] }}</h3></td>
+            <td><h3>{{ ec.packsMade[0] }}</h3></td>
+            <td><h3>{{ ec.packsDonated[0] }}</h3></td>
             </div>
           </tr>
         </thead>

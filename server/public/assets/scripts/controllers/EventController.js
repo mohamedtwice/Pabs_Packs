@@ -333,11 +333,29 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
   }; // end updatePackEvents
 
   // Needed Packs function
-  vm.getNeededPacks = function() {
+  vm.getPackTotals = function() {
     console.log('in getNeededPacks');
-    EventService.getNeededPacks().then(function() {
-      vm.neededPacks = EventService.neededPacksGET;
+    EventService.getPackTotals().then(function() {
+      vm.packTotals = EventService.packTotalsData;
+      var packsData = EventService.packTotalsData;
+      vm.neededPacks = [packsData.needed];
+      vm.packsMade = [packsData.made];
+      vm.packsDonated = [packsData.donated];
     }); // end EVentService.getNeededPacks
   }; // end neededPacks
+  vm.getPackTotals();
 
-}]); // end controller
+}].filter('unique', function() {
+  return function(collection, keyname) {
+    var output = [],
+      keys = [];
+    angular.forEach(collection, function(item) {
+      var key = item[keyname];
+      if (keys.indexOf(key) === -1) {
+        keys.push(key);
+        output.push(item);
+      }
+    });
+    return output;
+  };
+}));
