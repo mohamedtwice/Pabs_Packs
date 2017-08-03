@@ -62,7 +62,7 @@ router.get('/donationData', function(req, res) {
             console.log('Got pie chart packs left to donate *2* from the DB:', result1.rows[0].left_to_donate);
             // SCHEDULED PACK DONATIONS QUERY   ********   3   ********
             client.query("SELECT SUM (packs_promised) FROM events WHERE event_date >=  NOW();", function(err2, result2) {
-              if (err1) {
+              if (err2) {
                 console.log('Error querying the DB for scheduled pack donations *3*', err2);
                 done(); // exit out of DB pool
                 res.sendStatus(500);

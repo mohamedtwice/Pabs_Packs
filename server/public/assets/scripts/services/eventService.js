@@ -102,6 +102,7 @@ myApp.service('EventService', function($http) {
       url: '/events/neededTotals'
     }).then(function(response) {
       sv.neededPacksGET = response.data;
+      console.log(sv.neededPacksGET);
     });
   }; // end getNeededPacks
 

@@ -1,5 +1,5 @@
 <header ng-include="'/views/templates/header.html'"></header>
-<div class="container" ng-init="ec.getEvents()">
+<div class="container" ng-init="ec.getEvents();ec.getPackTotals()">
   <div class="row">
   <div class="col-md-4">
     <div class="totals">
@@ -14,7 +14,7 @@
             </tr>
           </thead>
           <tr>
-            <div ng-init="ec.getNeededPacks()" ng-repeat="data in ec.neededPacks">
+            <div  ng-repeat="data in ec.PackTotals track by $index">
             <td><h3>{{ data.neededPacks }}</h3></td>
             </div>
             <div class="">

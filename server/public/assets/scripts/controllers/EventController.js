@@ -322,11 +322,25 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   }; // end updatePackEvents
 
   // Needed Packs function
-  vm.getNeededPacks = function() {
+  vm.getPackTotals = function() {
     console.log('in getNeededPacks');
-    EventService.getNeededPacks().then(function() {
-      vm.neededPacks = EventService.neededPacksGET;
+    EventService.getPackTotals().then(function() {
+      vm.PackTotals = EventService.neededPacksGET;
     }); // end EVentService.getNeededPacks
   }; // end neededPacks
+  vm.getPackTotals();
 
-});
+}).filter('unique', function() {
+  return function(collection, keyname) {
+    var output = [],
+      keys = [];
+    angular.forEach(collection, function(item) {
+      var key = item[keyname];
+      if (keys.indexOf(key) === -1) {
+        keys.push(key);
+        output.push(item);
+      }
+    });
+    return output;
+  };
+});;
