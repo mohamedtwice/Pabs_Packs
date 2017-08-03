@@ -176,16 +176,16 @@ router.get('/neededTotals', function(req, res) {
         console.log('Error querying the DB for Needed Packs');
         done();
       } else {
-        packTotals.needed = result;
+        packTotals.needed = parseInt(result.rows[0].packs_needed_total);
         console.log('Got needed packs *1* from the DB:', result.rows[0].needed);
 
         // TOTALS - PACKS CURRENTLY MADE QUERY   *****  2  *****
         client.query('SELECT SUM (e.packs_promised) FROM events e;', function(err1, result1) {
           if (err1) {
-            console.log('Error querying the DB for Packs Currently Made:', result1.rows[0].made);
+            console.log('Error querying the DB for Packs Currently Made:', result1.made);
             done(); // exit out of DB pool
           } else {
-          packTotals.made = result1;
+          packTotals.made = parseInt(result1.rows[0].sum);
           console.log('Got Packs Currently Made *2* from the DB:', result.rows[0].made);
 
           // TOTALS - CTD ANNUAL PACKS DONATED QUERY   *****  3  *****
@@ -194,7 +194,7 @@ router.get('/neededTotals', function(req, res) {
               console.log('Error querying the DB for CTD Annual Packs Donated *3*');
               done(); // exit out of DB pool
             } else {
-              packTotals.donated = result2.rows[0].sum;
+              packTotals.donated = parseInt(result2.rows[0].sum);
               console.log('Got CTD Annual Packs Donated *3* from the DB:', result2.rows[0].sum);
             } // end else statement
             res.send(packTotals);

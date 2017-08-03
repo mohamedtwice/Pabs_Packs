@@ -14,14 +14,10 @@
             </tr>
           </thead>
           <tr>
-            <div  ng-repeat="data in ec.PackTotals track by $index">
-            <td><h3>{{ data.neededPacks }}</h3></td>
-            </div>
-            <div class="">
-            <td><h3>50</h3></td>
-            </div>
-            <div class="">
-            <td><h3>50</h3></td>
+            <div  ng-repeat="data in ec.packTotals track by $index">
+            <td><h3>{{ ec.neededPacks[0] }}</h3></td>
+            <td><h3>{{ ec.packsMade[0] }}</h3></td>
+            <td><h3>{{ ec.packsDonated[0] }}</h3></td>
             </div>
           </tr>
         </table>

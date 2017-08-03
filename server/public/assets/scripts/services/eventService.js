@@ -95,14 +95,14 @@ myApp.service('EventService', function($http) {
   }; // end getUpcoimingEvents
 
   // service get call for EventController getNeededPacks function
-  sv.getNeededPacks = function() {
+  sv.getPackTotals = function() {
     console.log('in EventService getNeededPacks function');
     return $http({
       method: 'GET',
       url: '/events/neededTotals'
     }).then(function(response) {
-      sv.neededPacksGET = response.data;
-      console.log(sv.neededPacksGET);
+      sv.packTotalsData = response.data;
+      console.log(sv.packTotalsData);
     });
   }; // end getNeededPacks
 

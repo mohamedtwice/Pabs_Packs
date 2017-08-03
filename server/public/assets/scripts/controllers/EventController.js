@@ -325,7 +325,11 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
   vm.getPackTotals = function() {
     console.log('in getNeededPacks');
     EventService.getPackTotals().then(function() {
-      vm.PackTotals = EventService.neededPacksGET;
+      vm.packTotals = EventService.packTotalsData;
+      var packsData = EventService.packTotalsData;
+      vm.neededPacks = [packsData.needed];
+      vm.packsMade = [packsData.made];
+      vm.packsDonated = [packsData.donated];
     }); // end EVentService.getNeededPacks
   }; // end neededPacks
   vm.getPackTotals();
