@@ -8,6 +8,16 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
     $modalInstance.dismiss('cancel');
   }; // close modal button
 
+  vm.selectMade = function() {
+    vm.madeDisabled = !vm.madeDisabled;
+    console.log(vm.madeDisabled);
+  }
+
+  vm.selectPromised = function() {
+    vm.promisedDisabled = !vm.promisedDisabled;
+    console.log(vm.promisedDisabled);
+  }
+
   vm.getEvents = function() {
     console.log('in getEvents');
     EventService.getEvents().then(function() {
@@ -49,6 +59,8 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
           })
       });
     $route.reload();
+    // doesn't post new event to page immediately
+    // vm.getEvents();
   } // end createEvent
 
   vm.postPartner = function() {

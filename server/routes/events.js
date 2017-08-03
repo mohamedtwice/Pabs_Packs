@@ -116,8 +116,8 @@ router.delete('/:id', function(req, res, next) {
       }
       console.log(result);
       res.send(result);
-    });
-  });
+    }); // end query
+  }); // end pool
 }); // end delete
 
 router.put('/:id', function(req, res) {
@@ -147,11 +147,9 @@ router.put('/:id', function(req, res) {
       }
       console.log(result);
       res.send(result);
-    });
-  });
-
-
-});
+    }); // end query
+  }); // end pool
+}); // end put
 
 // router.get for getPackTotals
 router.get('/neededTotals', function(req, res) {
