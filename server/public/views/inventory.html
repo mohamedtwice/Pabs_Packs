@@ -1,15 +1,16 @@
 <header ng-include="'/views/templates/header.html'">
 </header>
 <!-- <div class="wrapper"> -->
+<div class="bg">
 <div class="container">
-  <h2>Inventory</h2>
+  <h2>INVENTORY</h2>
 
   <!-- beginning of tabs -->
   <tabset>
     <button class="btn btn-info pull-right" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 
     <!-- packs tab -->
-    <tab heading="Packs" select="ic.getInventory()">
+    <tab heading="PACKS" select="ic.getInventory()">
       <div class="table-responsive" ng-model="ic.packs">
         <table class="table table-bordered table-hover">
           <!-- header with sort -->
@@ -85,7 +86,7 @@
     <!-- end packs tab -->
 
     <!-- merchandise section -->
-    <tab heading="Merchandise" select="ic.getInventory()">
+    <tab heading="MERCHANDISE" select="ic.getInventory()">
       <div class="table-responsive" ng-model="ic.packs">
         <table class="table table-bordered table-hover">
           <!-- header with sort -->
@@ -160,6 +161,7 @@
   </tabset>
 
 </div>
+</div>
 
 <!-- modal -->
 <script type="text/ng-template" id="myModalContent.html">
@@ -169,7 +171,7 @@
         <button class="btn" style="background-color:transparent;" ng-click="mc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
       </div>
     </div>
-    <h3 class="modal-title">New Item</h3>
+    <h3 class="modal-title">NEW ITEM</h3>
   </div>
   <div class="modal-body">
     <div class="row">

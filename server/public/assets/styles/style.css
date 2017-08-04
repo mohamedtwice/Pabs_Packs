@@ -8,6 +8,12 @@
     padding: 10px;
 }
 
+.bg {
+  background: #f5f6f7;
+  height: 100%
+  /*margin-bottom: 0;*/
+}
+
 .fa-lg:hover {
   color: grey;
 }
@@ -69,12 +75,8 @@ th a:hover {
   display: inline-block;
 }
 
-.bg {
-  background: #f5f6f7;
-}
-
 body {
-  /*background-image: url("/images/pattern.jpg");*/
+  background-image: url("/images/pattern.jpg");
   background-repeat: repeat-x;
   background-attachment: fixed;
 }
@@ -255,7 +257,6 @@ label {
   margin-bottom: 0px;
 }
 
-
 /**** INVENTORY ****/
 
 @media (min-width: 768px) {
@@ -271,7 +272,6 @@ label {
     *width: 14.285714285714285714285714285714%;
   }
 }
-
 
 /**** EVENT SCHEDULER ****/
 

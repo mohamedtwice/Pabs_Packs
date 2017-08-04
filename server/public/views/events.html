@@ -1,4 +1,5 @@
 <header ng-include="'/views/templates/header.html'"></header>
+<div class="bg">
 <div class="container" ng-init="ec.getEvents()">
   <!-- <div class="row">
   <div class="col-md-4">
@@ -29,14 +30,14 @@
   </div> -->
 
   <!-- events -->
-      <h2>Event Tracker</h2>
+      <h2>EVENT TRACKER</h2>
         <!-- beginning of tabs -->
           <!-- packs tab -->
           <button class="btn btn-info pull-right" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
           <!-- <div class="pull-right totals">Needed Packs: <b>50</b> | Packs Currently Made: <b>50</b> | CTD Annual Packs Donated: <b>50</b></div> -->
 
         <tabset>
-          <tab heading="Donation Events">
+          <tab heading="DONATION EVENTS">
             <div class="table-responsive">
               <table class="table table-bordered table-hover">
                 <!-- header with sort -->
@@ -125,7 +126,7 @@
           </tab> <!-- end donation events -->
 
           <!-- begin packing events -->
-          <tab heading="Packing Events" select="ec.getPacks()">
+          <tab heading="PACKING EVENTS" select="ec.getPacks()">
             <div class="table-responsive">
               <table class="table table-bordered table-hover">
                 <!-- header with sort -->
@@ -216,7 +217,7 @@
           <!-- end packing events tab -->
 
           <!-- past events tab -->
-          <tab heading="Past Events" select="ec.getPast()">
+          <tab heading="PAST EVENTS" select="ec.getPast()">
             <div class="table-responsive">
 
               <table class="table table-bordered table-hover">
@@ -324,7 +325,7 @@
           <button class="btn" style="background-color:transparent;" ng-click="ec.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
         </div>
       </div>
-      <h3 class="modal-title">New Event</h3>
+      <h3 class="modal-title">NEW EVENT</h3>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -394,4 +395,5 @@
   </script>
 <!-- end modal -->
 
+</div>
 </div>
