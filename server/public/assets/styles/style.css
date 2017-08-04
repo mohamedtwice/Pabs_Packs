@@ -3,9 +3,9 @@
 }
 
 .totals {
-    margin: -3px 10px;
-    background: #f5f6f7;
-    padding: 10px;
+  margin: -3px 10px;
+  background: #f5f6f7;
+  padding: 10px;
 }
 
 .fa-lg:hover {
@@ -70,11 +70,11 @@ th a:hover {
 }
 
 .bg {
-  background: #f5f6f7;
+  background: #f5f5f5;
 }
 
 body {
-  /*background-image: url("/images/pattern.jpg");*/
+  background-image: url("/images/pattern.jpg");
   background-repeat: repeat-x;
   background-attachment: fixed;
 }
