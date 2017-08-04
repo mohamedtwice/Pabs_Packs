@@ -100,8 +100,8 @@ th a:hover {
 }
 
 body {
-  background-image: url("/images/pattern.jpg");
-  background-repeat: repeat-x;
+  background-image: url("/images/ppbg.png");
+  /*background-repeat: repeat-x;*/
   background-attachment: fixed;
 }
 
@@ -116,6 +116,7 @@ body {
   padding-left: 3rem;
   padding-right: 3rem;
 }
+
 
 /*.wrapper {
   background: #e7e9dd;
@@ -302,6 +303,7 @@ label {
     *width: 14.285714285714285714285714285714%;
   }
 }
+
 
 /**** EVENT SCHEDULER ****/
 
