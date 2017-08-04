@@ -40,17 +40,17 @@ router.get('/', function(req, res) {
       }
       console.log('Got rows from the DB:', result.rows);
       res.send(result.rows);
-    });
-  });
-});
+    }); // end query
+  }); // end connect
+}); // end get
 
 // POST newVendor
 router.post('/', function(req, res) {
   console.log(req.body);
-  var name = req.body.name;
-  var phone = req.body.phone;
-  var email = req.body.email;
-  var address = req.body.address;
+  var name = req.body.vendor_name;
+  var phone = req.body.vendor_phone;
+  var email = req.body.vendor_email;
+  var address = req.body.vendor_address;
   // do database query to create a new vendor
   pool.connect()
     .then(function(client) {
@@ -62,7 +62,7 @@ router.post('/', function(req, res) {
           res.sendStatus(201); // created
           done();
         });
-    })
+    }) // end then
     .catch(function(err) {
       console.log('in err db');
       client.release();
@@ -93,9 +93,9 @@ router.put('/:id', function(req, res) {
       }
       console.log(result);
       res.send(result);
-    });
-  });
-});
+    }); // end query
+  }); // end connect
+}); // end put
 
 router.delete('/:id', function(req, res, next) {
   console.log("delete router connected to database");
@@ -114,8 +114,8 @@ router.delete('/:id', function(req, res, next) {
       }
       console.log(result);
       res.send(result);
-    });
-  });
+    }); // end query
+  }); // end connect
 }); // end delete
 
 module.exports = router;
