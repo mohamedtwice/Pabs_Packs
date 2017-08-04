@@ -20,15 +20,26 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
   vm.reverseSort = false;
   vm.animationsEnabled = true;
   vm.now = '';
+  vm.viewBy = 10;
+  vm.itemsPerPage = vm.viewBy;
   vm.numPerPage = 10;
   vm.currentPage = 1;
   vm.donationList = [];
   vm.pastList = [];
   vm.packList = [];
 
+  vm.setPage = function(pageNo) {
+    vm.currentPage = pageNo;
+  };
+
   vm.pageChanged = function() {
     console.log('Page changed to: ' + vm.currentPage);
   }; // logs in the console that pagination has occurred
+
+  vm.setItemsPerPage = function(num) {
+    vm.itemsPerPage = num;
+    vm.currentPage = 1; //reset to first page
+  }
 
   // called on header click
   vm.sortColumn = function(col) {
@@ -150,6 +161,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
       console.log('in remove');
       EventService.deleteEvent(id);
       $route.reload();
+      // $route.reload();
       swal(
         'Deleted!',
         'Your item has been deleted.',
@@ -254,7 +266,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
             console.log('I was closed by the timer');
           }
         });
-      vm.getEvents();
+      $route.reload();
     });
   } // end updateDonationEvents
 
@@ -329,7 +341,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
           }
         });
     }); // end call to service
-    vm.getEvents();
+    $route.reload();
   }; // end updatePackEvents
 
   // Needed Packs function

@@ -25,4 +25,31 @@ myApp.service('VendorService', function($http) {
     });
   }; // end postVendor
 
+  sv.updateVendor = function(updatedVendor) {
+    console.log(updatedVendor);
+    return $http({
+      method: 'PUT',
+      url: '/vendors/' + updatedVendor.id,
+      params: {
+        id: updatedVendor.id
+      },
+      data: updatedVendor
+    }).then(function(response) {
+      console.log('back from updateVendor:', response);
+    });
+  } // end updateVendor
+
+  sv.deleteVendor = function(id) {
+    console.log(id);
+    return $http({
+      method: 'DELETE',
+      url: '/vendors/' + id,
+      params: {
+        id: id
+      }
+    }).then(function() {
+      console.log('item deleted');
+    });
+  } // end deleteVendor
+
 }); // end of service

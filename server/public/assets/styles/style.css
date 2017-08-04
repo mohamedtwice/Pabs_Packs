@@ -1,5 +1,27 @@
+/*FONTS*/
+
 * {
   font-family: Raleway, sans-serif;
+}
+
+h1, h2, h3 {
+  margin: 1em 0 .5em;
+  color: #8897aa;
+  font-family: "Varela Round";
+}
+
+h1 {
+  font-size: 3em;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lead {
+  margin-top: 2rem;
 }
 
 .totals {
@@ -37,6 +59,10 @@
   color: #333;
 }
 
+.th {
+  color: black;
+}
+
 th {
   color: black;
 }
@@ -70,7 +96,7 @@ th a:hover {
 }
 
 .bg {
-  background: #f5f6f7;
+  background: #f5f5f5;
 }
 
 body {
@@ -85,17 +111,11 @@ body {
 }
 
 .container {
-  margin-top: 5px;
+  padding-top: -40rem;
   width: 100%;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
-
-
-/*.container {
-  margin-top: 2px;
-  width: 90%;
-  padding-top: -20px;
-}*/
-
 
 /*.wrapper {
   background: #e7e9dd;
@@ -121,6 +141,7 @@ h2 {
 
 label {
   margin-top: 10px;
+  text-align: left;
 }
 
 .btn-success {
@@ -242,26 +263,25 @@ label {
 
 #pie {
   float: right;
-  width: 40%;
-  /*width: 300px;*/
+  width: 47%;
   margin: 15px auto;
-  text-align: center;
-  margin-right: 10px;
+  /*text-align: center;*/
+  /*margin-right: 10px;*/
   margin-bottom: 0px;
 }
 
 #upcomingEvents {
   float: left;
-  width: 620px;
+  width: 47%;
   margin: 15px auto;
   top: 10px;
   left: 10px;
-  margin-bottom: 100px;
+  margin-bottom: 1REM;
 }
 
 #itemsRunningLow {
   float: left;
-  width: 620px;
+  width: 47%;
   margin: 15px auto;
   margin-bottom: 0px;
 }
@@ -283,7 +303,6 @@ label {
   }
 }
 
-
 /**** EVENT SCHEDULER ****/
 
 .dropdown {
@@ -297,7 +316,4 @@ label {
 .col-md-6 {
   margin: 0;
   padding: 0;
-}
-
-
 }

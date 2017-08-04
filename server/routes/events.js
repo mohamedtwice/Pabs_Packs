@@ -116,8 +116,8 @@ router.delete('/:id', function(req, res, next) {
       }
       console.log(result);
       res.send(result);
-    });
-  });
+    }); // end query
+  }); // end pool
 }); // end delete
 
 router.put('/:id', function(req, res) {
@@ -147,11 +147,9 @@ router.put('/:id', function(req, res) {
       }
       console.log(result);
       res.send(result);
-    });
-  });
-
-
-});
+    }); // end query
+  }); // end pool
+}); // end put
 
 // router.get for getPackTotals
 router.get('/neededTotals', function(req, res) {
@@ -185,26 +183,26 @@ router.get('/neededTotals', function(req, res) {
             console.log('Error querying the DB for Packs Currently Made:', result1.made);
             done(); // exit out of DB pool
           } else {
-          packTotals.made = parseInt(result1.rows[0].sum);
-          console.log('Got Packs Currently Made *2* from the DB:', result.rows[0].made);
+            packTotals.made = parseInt(result1.rows[0].sum);
+            console.log('Got Packs Currently Made *2* from the DB:', result.rows[0].made);
 
-          // TOTALS - CTD ANNUAL PACKS DONATED QUERY   *****  3  *****
-          client.query('SELECT SUM (e.packs_promised) FROM events e WHERE e.event_date <= (current_date);', function(err2, result2) {
-            if (err2) {
-              console.log('Error querying the DB for CTD Annual Packs Donated *3*');
-              done(); // exit out of DB pool
-            } else {
-              packTotals.donated = parseInt(result2.rows[0].sum);
-              console.log('Got CTD Annual Packs Donated *3* from the DB:', result2.rows[0].sum);
-            } // end else statement
-            res.send(packTotals);
-            console.log('packTotals:', packTotals);
-          }); // end client.query for 3rd query
-        } // end else for 2nd query
-      }); // end client.query for 2nd query
-    } // end else for 1st client.query
-  }); // end else for 1st client.query
-}); // end pool.connect
+            // TOTALS - CTD ANNUAL PACKS DONATED QUERY   *****  3  *****
+            client.query('SELECT SUM (e.packs_promised) FROM events e WHERE e.event_date <= (current_date);', function(err2, result2) {
+              if (err2) {
+                console.log('Error querying the DB for CTD Annual Packs Donated *3*');
+                done(); // exit out of DB pool
+              } else {
+                packTotals.donated = parseInt(result2.rows[0].sum);
+                console.log('Got CTD Annual Packs Donated *3* from the DB:', result2.rows[0].sum);
+              } // end else statement
+              res.send(packTotals);
+              console.log('packTotals:', packTotals);
+            }); // end client.query for 3rd query
+          } // end else for 2nd query
+        }); // end client.query for 2nd query
+      } // end else for 1st client.query
+    }); // end else for 1st client.query
+  }); // end pool.connect
 }); // end router.get for /neededPacks
 
 module.exports = router;
