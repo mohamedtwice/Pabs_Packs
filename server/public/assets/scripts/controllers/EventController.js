@@ -266,7 +266,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
             console.log('I was closed by the timer');
           }
         });
-      vm.getEvents();
+      $route.reload();
     });
   } // end updateDonationEvents
 
@@ -341,7 +341,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
           }
         });
     }); // end call to service
-    vm.getEvents();
+    $route.reload();
   }; // end updatePackEvents
 
   // Needed Packs function
