@@ -106,7 +106,7 @@ router.delete('/:id', function(req, res, next) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('DELETE FROM vendors WHERE id = $1', [id], function(err, result) {
+    client.query('DELETE FROM vendor WHERE id = $1', [id], function(err, result) {
       console.log(id);
       done();
       if (err) {
