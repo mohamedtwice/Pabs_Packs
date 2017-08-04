@@ -9,7 +9,6 @@ router.use(bodyParser.urlencoded({
 }));
 router.use(bodyParser.json());
 
-
 // module with db
 var connection = require('../modules/connection');
 var pg = require('pg');
@@ -60,11 +59,13 @@ router.post('/', function(req, res) {
         .then(function() {
           client.release();
           res.sendStatus(201); // created
+          done();
         });
     })
     .catch(function(err) {
       client.release();
       res.sendStatus(500); // server error
+      done();
     });
 });
 

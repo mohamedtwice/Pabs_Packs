@@ -1,7 +1,17 @@
-myApp.controller('AdminController', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route) {
+myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'VendorService', 'AnnualgoalService', '$modal', '$route', '$http', '$location', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route, $http, $location) {
 
-  console.log('in vendor controller');
   var vm = this;
+  console.log('checking user');
+  $http.get('/user').then(function(response) {
+    if (response.data.username) {
+      // user has a curret session on the server
+      vm.userName = response.data.username;
+      console.log('User Data: ', vm.userName);
+    } else {
+      // user has no session, bounce them back to the login page
+      $location.path("/home");
+    }
+  });
   vm.selectedButton = false;
 
   vm.selectButton = function(id) {
@@ -300,4 +310,4 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
     }) // end sweet alert
   }; // end delete
 
-});
+}]); // end controller

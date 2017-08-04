@@ -5,8 +5,8 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
   $http.get('/user').then(function(response) {
     if (response.data.username) {
       // user has a curret session on the server
-      vm.userName = response.data.username;
-      console.log('User Data: ', vm.userName);
+      vm.username = response.data.username;
+      console.log('User Data: ', vm.username);
     } else {
       // user has no session, bounce them back to the login page
       $location.path("/home");
@@ -57,17 +57,10 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
 }; // end getBarChart
 
 
-
   // upcoming events
   vm.getUpcomingEvents = function() {
     console.log('in controller, getUpcomingEvents');
-
-    var eventsObject = {
-      event1: '',
-      event2: '',
-      event3: ''
-    }; // end eventsObject
-    EventService.getUpcomingEvents(eventsObject).then(function() {
+    EventService.getUpcomingEvents().then(function() {
       vm.upcomingEvents = EventService.upcomingEventsGET;
       console.log(EventService.upcomingEventsGET);
       console.log(vm.upcomingEvents);

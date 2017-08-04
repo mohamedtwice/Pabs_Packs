@@ -60,14 +60,16 @@ router.post('/', function(req, res) {
           console.log('in then post vendors db');
           client.release();
           res.sendStatus(201); // created
+          done();
         });
     }) // end then
     .catch(function(err) {
       console.log('in err db');
       client.release();
       res.sendStatus(500); // server error
-    }); // end catch
-}); // end post
+      done();
+    });
+});
 
 router.put('/:id', function(req, res) {
   console.log('{{{{{{{{{{{{{{{{{{{ PUT PUT PUT PUT PUT  }}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
