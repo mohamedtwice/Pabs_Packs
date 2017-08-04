@@ -24,15 +24,6 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 // GET vendors
 router.get('/', function(req, res) {
   console.log('getVendors route hit');
-  // authenticate route
-  if(req.isAuthenticated()) {
-      // send back user object from database
-      res.send(req.user);
-  } else {
-      // failure best handled on the server. do redirect here.
-      res.send(false);
-  }
-
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -48,6 +39,14 @@ router.get('/', function(req, res) {
         return;
       }
       console.log('Got rows from the DB:', result.rows);
+      // authenticate route
+      if(req.isAuthenticated()) {
+          // send back user object from database
+          res.send(req.user);
+      } else {
+          // failure best handled on the server. do redirect here.
+          res.send(false);
+      }
       res.send(result.rows);
     }); // end query
   }); // end connect
@@ -60,14 +59,6 @@ router.post('/', function(req, res) {
   var phone = req.body.vendor_phone;
   var email = req.body.vendor_email;
   var address = req.body.vendor_address;
-  // authenticate route
-  if(req.isAuthenticated()) {
-      // send back user object from database
-      res.send(req.user);
-  } else {
-      // failure best handled on the server. do redirect here.
-      res.send(false);
-  }
   // do database query to create a new vendor
   pool.connect()
     .then(function(client) {

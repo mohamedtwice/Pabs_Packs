@@ -16,9 +16,6 @@
         <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()"></canvas>
       </div>
     </div>
-
-
-
     <div class="wrapper" id="upcomingEvents">
       <div class="container">
         <h3 class="lead">UPCOMING EVENTS</h3>
@@ -37,7 +34,7 @@
             <tbody>
               <tr ng-repeat="data in dc.upcomingEvents">
                 <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
-                <td>{{ data.event_time }}</td>
+                <td>{{ data.event_time | date:"HH:mm" }}</td>
                 <td>{{ data.event_type }}</td>
                 <td>{{ data.packs_promised }}</td>
                 <td>{{ data.comments }}</td>
