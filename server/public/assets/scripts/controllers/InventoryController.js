@@ -138,7 +138,7 @@ myApp.controller('InventoryController', ['InventoryService', '$modal', '$route',
           }
         })
     }); // end then
-    vm.getInventory();
+    $route.reload();
   } // end updateProperties
 
   vm.deleteItem = function(index) {

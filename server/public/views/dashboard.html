@@ -1,9 +1,9 @@
 <header ng-include="'/views/templates/header.html'"></header>
-<div ng-controller="LoginController as lc">
+<div ng-controller="DashboardController as dc">
 
   <div class="wrapper">
     <div class="container">
-      <h1 id="welcome" class="lead">Welcome, {{ lc.username }}!</h1>
+      <h1 id="welcome" class="lead">Welcome {{ dc.username }}!</h1>
       <hr>
     </div>
   </div>

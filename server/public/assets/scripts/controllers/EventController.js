@@ -160,7 +160,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
     }).then(function() {
       console.log('in remove');
       EventService.deleteEvent(id);
-      vm.getEvents();
+      $route.reload();
       // $route.reload();
       swal(
         'Deleted!',
