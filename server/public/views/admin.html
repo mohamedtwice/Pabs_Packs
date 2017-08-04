@@ -47,7 +47,7 @@
                       <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                       <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-default">Update</button>
                     </td>
-                    <td><button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                    <td><button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                   </tr>
                 </tbody>
               </table>
@@ -95,7 +95,7 @@
                       <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-default">Update</button>
                     </td>
                     <td>
-                      <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     </td>
                   </tr>
                 </tbody>
@@ -174,7 +174,7 @@
   <div class="modal-header">
     <div class='btn-toolbar pull-right'>
       <div class='btn-group'>
-        <button class="btn" style="background-color:transparent;" ng-click="vc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+        <button class="btn" style="background-color:transparent;" ng-click="vc.cancel()"><i class="fa fa-trash" aria-hidden="true"></i></button>
       </div>
     </div>
     <h3 class="modal-title">NEW VENDOR</h3>
@@ -183,10 +183,10 @@
     <div class="row">
       <div class="col-md-12">
         <!-- input forms -->
-        <form>
-          <div class="form-group">
-            <label>Vendor Name:</label for="vendorName">
-              <input type="text" name="vendor_name" id="vendorName" ng-model="vc.vendor_name" placeholder="{{vc.vendors.vendor_name}}" value="{{vc.vendors.vendor_name}}">
+          <form>
+            <div class="form-group">
+              <label>Vendor Name:</label for="vendorName">
+                <input type="text" name="vendor_name" id="vendorName" ng-model="vc.vendor_name" placeholder="{{vc.vendors.vendor_name}}" value="{{vc.vendors.vendor_name}}">
             </div>
             <div class="form-group">
               <label>Phone Number:</label for="vendorPhone">

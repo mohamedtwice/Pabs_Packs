@@ -14,7 +14,7 @@ VALUES ('Item 1', 2, 30, 20, 'Merch', 'comments for 1'),
 ('Item 3', 1, 50, 10, 'Pack', 'comments for 3'),
 ('Item 4', 3, 100, 30, 'Pack', 'comments for 4'),
 ('Item 5', 2, 100, 30, 'Pack', 'comments for 5'),
-('Item 6', 4, 100, 30, 'Pack', 'comments for 6')
+('Item 6', 4, 100, 30, 'Pack', 'comments for 6');
 
 CREATE TABLE backpack_goal (
   id SERIAL PRIMARY KEY,
@@ -61,7 +61,7 @@ CREATE TABLE event_type (
 INSERT INTO event_type (event_type_name)
 VALUES ('Packing'),
 ('Donation'),
-('Donation')
+('Donation');
 
 CREATE TABLE vendor (
   id SERIAL PRIMARY KEY,
@@ -73,4 +73,4 @@ CREATE TABLE vendor (
 
 INSERT INTO vendor (vendor_name, vendor_phone, vendor_email, vendor_address)
 VALUES ('Vendor 1', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125'),
-('Vendor 2', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125')
+('Vendor 2', '612-123-1234', 'vendor2@vendor.com', '123 Main St. Minneapolis, MN 55125');

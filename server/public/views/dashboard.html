@@ -1,27 +1,29 @@
 <header ng-include="'/views/templates/header.html'"></header>
-
-<!-- <section> -->
-<div class="bg">
-  <div class="container" ng-controller="DashboardController as dc">
-    <!-- <div class="row"> -->
-    <!-- <div class="col-md-6"> -->
-    <h1 id="welcome" class="lead">Welcome, {{ dc.username }}!</h1>
-    <hr>
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- </section> -->
-
-    <!-- <div ng-controller="DashboardController as dc" class="container"> -->
-
-    <!-- <section> -->
-    <div class="col-md-12 center-block">
-      <div id="pie">
-        <h3>Annual Goal for Pack Donations</h3>
-        <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()"></canvas>
+<section>
+    <div class="container" ng-controller="DashboardController as dc">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+          <h1 id="welcome" class="lead">Welcome, {{ dc.username }}!</h1>
+          <hr>
+        </div>
       </div>
-      <div id="upcomingEvents" ng-init="dc.getUpcomingEvents()">
-        <h3>Upcoming Events</h3>
+    </div>
+</section>
+
+<div ng-controller="DashboardController as dc" class="container">
+
+  <section>
+    <div class="container" id="pie">
+      <h3>Annual Goal for Pack Donations</h3>
+      <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" id="upcomingEvents">
+      <h3>Upcoming Events</h3>
+      <div class="col-md-3" ng-init="dc.getUpcomingEvents()">
+
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -45,20 +47,12 @@
           </tbody>
         </table>
       </div>
-      <!-- </section> -->
-
-      <!-- <section> -->
-
     </div>
-    <!-- </section> -->
-
-    <!-- <section> -->
-    <div class="col-md-4 center-block" id="itemsRunningLow">
+  </section>
+  <section>
+    <div class="container" id="itemsRunningLow">
       <h3>Items Running Low</h3>
       <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
     </div>
-    <!-- </section> -->
-
-    <!-- </div> -->
-  </div>
+  </section>
 </div>
