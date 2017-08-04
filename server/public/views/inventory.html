@@ -77,7 +77,7 @@
               <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
               <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
             </td>
-            <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+            <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
           </tr>
         </table>
       </div>
@@ -153,7 +153,7 @@
               <button class="btn btn-success pull-right" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
               <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-default pull-right">Update</button>
             </td>
-            <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+            <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
           </tr>
         </table>
       </div>
