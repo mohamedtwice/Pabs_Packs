@@ -3,241 +3,264 @@
   <div class="wrapper">
     <div class="container">
 
-    <h2>ADMIN PAGE</h2>
+      <h2 class="lead">ADMIN PAGE</h2>
 
-  <div class="row">
-    <!-- beginning of tabs -->
+      <div class="row">
+        <!-- beginning of tabs -->
 
-    <tabset>
-      <!-- packs tab -->
-      <tab heading="Partners">
-        <div class="adminbox">
-          <button class="btn btn-info pull-right" ng-click="ac.openPartnerModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-          <h3>PARTNERS</h3>
-          <table class="table table-responsive table-striped">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="partners in ac.partners">
-                <td>
-                  <thing ng-hide="toggle[partners.id]">{{partners.partner_name}}</thing>
-                  <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_nameUpdate" placeholder="{{partners.partner_name}}" value="{{partners.partner_name}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[partners.id]">{{partners.partner_contact}}</thing>
-                  <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_contactUpdate" placeholder="{{partners.partner_contact}}" value="{{partners.partner_contact}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[partners.id]">{{partners.partner_phone}}</thing>
-                  <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_phoneUpdate" placeholder="{{partners.partner_phone}}" value="{{partners.partner_phone}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[partners.id]">{{partners.partner_address}}</thing>
-                  <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_addressUpdate" placeholder="{{partners.partner_address}}" value="{{partners.partner_address}}"></thing>
-                </td>
-                <td>
-                  <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                  <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-default">Update</button>
-                  <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <tabset>
+          <!-- packs tab -->
+          <tab heading="Partners">
+            <button class="btn btn-info pull-right" ng-click="ac.openPartnerModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+            <div class="adminbox">
+              <h3 class="lead">PARTNERS</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Contact</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="partners in ac.partners">
+                      <td>
+                        <thing ng-hide="toggle[partners.id]">{{partners.partner_name}}</thing>
+                        <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_nameUpdate" placeholder="{{partners.partner_name}}" value="{{partners.partner_name}}"></thing>
+                      </td>
+                      <td>
+                        <thing ng-hide="toggle[partners.id]">{{partners.partner_contact}}</thing>
+                        <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_contactUpdate" placeholder="{{partners.partner_contact}}" value="{{partners.partner_contact}}"></thing>
+                      </td>
+                      <td>
+                        <thing ng-hide="toggle[partners.id]">{{partners.partner_phone}}</thing>
+                        <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_phoneUpdate" placeholder="{{partners.partner_phone}}" value="{{partners.partner_phone}}"></thing>
+                      </td>
+                      <td>
+                        <thing ng-hide="toggle[partners.id]">{{partners.partner_address}}</thing>
+                        <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_addressUpdate" placeholder="{{partners.partner_address}}" value="{{partners.partner_address}}"></thing>
+                      </td>
+                      <td>
+                        <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                      </td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </tab>
+          <!-- vendors tab -->
+          <tab heading="Vendors">
+            <button class="btn btn-info pull-right" ng-click="ac.openVendorModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+            <div class="adminbox">
+              <h3 class="lead">VENDORS</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vendors in ac.vendors">
+                      <td>
+                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_name}}</thing>
+                        <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_nameUpdate" placeholder="{{vendors.vendor_name}}" value="{{vendors.vendor_name}}"></thing>
+                      </td>
+                      <td>
+                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_phone}}</thing>
+                        <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_phoneUpdate" placeholder="{{vendors.vendor_phone}}" value="{{vendors.vendor_phone}}"></thing>
+                      </td>
+                      <td>
+                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_email}}</thing>
+                        <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_emailUpdate" placeholder="{{vendors.vendor_email}}" value="{{vendors.vendor_email}}"></thing>
+                      </td>
+                      <td>
+                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_address}}</thing>
+                        <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_addressUpdate" placeholder="{{vendors.vendor_address}}" value="{{vendors.vendor_address}}"></thing>
+                      </td>
+                      <td>
+                        <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                      </td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- end adminbox -->
+          </tab>
+
+          <!-- annual goal tab -->
+          <tab heading="Annual Goal">
+            <div class="adminbox">
+              <h3 class="lead">ANNUAL GOAL</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th>Year</th>
+                      <th>Goal</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="goal in ac.annualgoal">
+                      <td>{{goal.year}}</td>
+                      <td>{{goal.annual_goal}}</td>
+                      <td><button type="button" name="button" ng-click="ac.editgoals(goal)" class="btn btn-success">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" name="year" ng-model="ac.year" placeholder="{{current.year}}" value="{{current.year}}"></td>
+                      <td><input type="text" name="annual_goal" ng-model="ac.annual_goal" placeholder="{{current.annual_goal}}" value="{{current.annual_goal}}"></td>
+                      <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewgoal()">Add</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- end adminbox -->
+          </tab>
+
+          <!-- event types -->
+          <tab heading="Event Types">
+            <div class="adminbox">
+              <h3 class="lead">EVENT TYPES</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th>Event Type</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="eventtype in ac.eventtype">
+                      <td>{{eventtype.event_type_name}}</td>
+                      <td><button type="button" name="button" ng-click="ac.editeventtype(eventtype)" class="btn btn-success">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" name="year" ng-model="ac.event_type_name" placeholder="{{eventtype.event_type_name}}" value="{{eventtype.event_type_name}}"></td>
+                      <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewEventType()">Add</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- end adminbox -->
+          </tab>
+
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+
+    <!-- modal -->
+    <script type="text/ng-template" id="vendorModal.html">
+      <div class="modal-header">
+        <div class='btn-toolbar pull-right'>
+          <div class='btn-group'>
+            <button class="btn" style="background-color:transparent;" ng-click="vc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+          </div>
         </div>
-      </tab>
-      <!-- vendors tab -->
-      <tab heading="Vendors">
-        <div class="adminbox">
-          <button class="btn btn-info pull-right" ng-click="ac.openVendorModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-          <h3>VENDORS</h3>
-          <table class="table table-responsive table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="vendors in ac.vendors">
-                <td>
-                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_name}}</thing>
-                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_nameUpdate" placeholder="{{vendors.vendor_name}}" value="{{vendors.vendor_name}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_phone}}</thing>
-                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_phoneUpdate" placeholder="{{vendors.vendor_phone}}" value="{{vendors.vendor_phone}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_email}}</thing>
-                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_emailUpdate" placeholder="{{vendors.vendor_email}}" value="{{vendors.vendor_email}}"></thing>
-                </td>
-                <td>
-                  <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_address}}</thing>
-                  <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_addressUpdate" placeholder="{{vendors.vendor_address}}" value="{{vendors.vendor_address}}"></thing>
-                </td>
-                <td>
-                  <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                  <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-default">Update</button>
-                </td>
-                <td>
-                  <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div> <!-- end adminbox -->
-      </tab>
-
-      <!-- annual goal tab -->
-      <tab heading="Annual Goal">
-        <div class="adminbox">
-          <h3>ANNUAL GOAL</h3>
-          <table class=" table-responsive table-striped">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Goal</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="goal in ac.annualgoal">
-                <td>{{goal.year}}</td>
-                <td>{{goal.annual_goal}}</td>
-                <td><button type="button" name="button" ng-click="ac.editgoals(goal)">Edit</button></td>
-              </tr>
-              <tr>
-                <td><input type="text" name="year" ng-model="ac.year" placeholder="{{current.year}}" value="{{current.year}}"></td>
-                <td><input type="text" name="annual_goal" ng-model="ac.annual_goal" placeholder="{{current.annual_goal}}" value="{{current.annual_goal}}"></td>
-                <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewgoal()">Add</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div> <!-- end adminbox -->
-      </tab>
-
-      <!-- event types -->
-      <tab heading="Event Types">
-        <div class="adminbox">
-          <h3>EVENT TYPES</h3>
-          <table class=" table-responsive table-striped">
-            <thead>
-              <tr>
-                <th>Event Type</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="eventtype in ac.eventtype">
-                <td>{{eventtype.event_type_name}}</td>
-                <td><button type="button" name="button" ng-click="ac.editeventtype(eventtype)">Edit</button></td>
-              </tr>
-              <tr>
-                <td><input type="text" name="year" ng-model="ac.event_type_name" placeholder="{{eventtype.event_type_name}}" value="{{eventtype.event_type_name}}"></td>
-                <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewEventType()">Add</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div> <!-- end adminbox -->
-      </tab>
-    </tabset>
-  </div> <!-- end row -->
-</div> <!-- end container -->
-
-<!-- modal -->
-<script type="text/ng-template" id="vendorModal.html">
-  <div class="modal-header">
-    <div class='btn-toolbar pull-right'>
-      <div class='btn-group'>
-        <button class="btn" style="background-color:transparent;" ng-click="vc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+        <h3 class="modal-title">Add New Vendor</h3>
       </div>
-    </div>
-    <h3 class="modal-title">New Item</h3>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- input forms -->
+            <form>
+              <div class="form-group">
+                <label for="vendorName">Vendor Name</label>
+                <input type="text" class="form-control" name="vendor_name" id="vendorName" ng-model="vc.vendor_name" placeholder="e.g. The Tee-Shirt Company" value="{{vc.vendors.vendor_name}}">
+              </div>
+              <div class="form-group">
+                <label for="vendorPhone">Phone Number</label>
+                <input type="text" class="form-control" name="vendor_phone" id="vendorPhone" ng-model="vc.vendor_phone" placeholder="e.g. 555-5555" value="{{vc.vendors.vendor_phone}}">
+              </div>
+              <div class="form-group">
+                <label for="vendorEmail">Vendor Email</label>
+                <input type="email" class="form-control" name="vendor_email" id="vendorEmail" ng-model="vc.vendor_email" placeholder="e.g. vendor@theteeshirtcompany.com" value="{{vc.vendors.vendor_email}}">
+              </div>
+              <div class="form-group">
+                <label for="vendorAddress">Vendor Address</label>
+                <input type="text" class="form-control" name="vendor_address" id="vendorAddress" ng-model="vc.vendor_address" placeholder="e.g. 123 Smith Lane" value="{{vc.vendors.vendor_address}}">
+              </div>
+            </form>
+          </div>
+          <!-- end col-md-12 -->
+        </div>
+        <!-- end row -->
+      </div>
   </div>
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- input forms -->
-        <form>
-          <div class="form-group">
-            <label>Vendor Name:</label for="vendorName">
-              <input type="text" name="vendor_name" id="vendorName" ng-model="vc.vendor_name" placeholder="{{vc.vendors.vendor_name}}" value="{{vc.vendors.vendor_name}}">
+
+  <!-- post button -->
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="vc.postVendor()">Create</button>
+  </div>
+
+  </script>
+  <!-- end modal -->
+
+  <!-- modal -->
+  <script type="text/ng-template" id="partnerModal.html">
+    <div class="modal-header">
+      <div class='btn-toolbar pull-right'>
+        <div class='btn-group'>
+          <button class="btn" style="background-color:transparent;" ng-click="pc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <h3 class="modal-title">Add New Partner</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- input forms -->
+          <form>
+            <div class="form-group">
+              <label for="partner">Partner Name</label>
+              <input type="text" class="form-control" name="partner_name" ng-model="pc.partner_name" placeholder="e.g. Smith Hospital" value="{{pc.partners.partner_name}}">
             </div>
             <div class="form-group">
-              <label>Phone Number:</label for="vendorPhone">
-                <input type="text" name="vendor_phone" id="vendorPhone" ng-model="vc.vendor_phone" placeholder="{{vc.vendors.vendor_phone}}" value="{{vc.vendors.vendor_phone}}">
+              <label for="partner">Partner Contact</label>
+              <input type="text" class="form-control" name="partner_phone" ng-model="pc.partner_phone" placeholder="e.g. 555-5555" value="{{pc.partners.partner_phone}}">
             </div>
             <div class="form-group">
-              <label>Vendor Email:</label for="vendorEmail">
-                <input type="email" name="vendor_email" id="vendorEmail" ng-model="vc.vendor_email" placeholder="{{vc.vendors.vendor_email}}" value="{{vc.vendors.vendor_email}}">
+              <label for="partner">Partner Phone</label>
+              <input type="text" class="form-control" name="partner_contact" ng-model="pc.partner_contact" placeholder="e.g. jane@smithhospital.com" value="{{pc.partners.partner_contact}}">
             </div>
             <div class="form-group">
-              <label>Vendor Address:</label for="vendorAddress">
-                <input type="text" name="vendor_address" id="vendorAddress" ng-model="vc.vendor_address" placeholder="{{vc.vendors.vendor_address}}" value="{{vc.vendors.vendor_address}}">
+              <label for="partner">Partner Address</label>
+              <input type="text" class="form-control" name="partner_address" ng-model="pc.partner_address" placeholder="e.g. 123 Smith Lane " value="{{pc.partners.partner_address}}">
             </div>
           </form>
-        </div> <!-- end col-md-12 -->
-      </div>  <!-- end row -->
-    </div>
-  </div>
-
-<!-- post button -->
-<div class="modal-footer">
-  <button class="btn btn-primary" ng-click="vc.postVendor()">Post</button>
-</div>
-
-</script> <!-- end modal -->
-
-<!-- modal -->
-<script type="text/ng-template" id="partnerModal.html">
-  <div class="modal-header">
-    <div class='btn-toolbar pull-right'>
-      <div class='btn-group'>
-        <button class="btn" style="background-color:transparent;" ng-click="pc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+        </div>
+        <!-- end col-md-12 -->
       </div>
+      <!-- end row -->
     </div>
-    <h3 class="modal-title">New Item</h3>
-  </div>
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- input forms -->
-        <form>
-            <div class="form-group">
-            <label>Partner Name:</label for="vendor">
-              <input type="text" name="partner_name" ng-model="pc.partner_name" placeholder="{{pc.partners.partner_name}}" value="{{pc.partners.partner_name}}">
-            </div>
-            <div class="form-group">
-              <label>Partner Contact:</label for="partner">
-                <input type="text" name="partner_phone" ng-model="pc.partner_phone" placeholder="{{pc.partners.partner_phone}}" value="{{pc.partners.partner_phone}}">
-            </div>
-            <div class="form-group">
-              <label>Partner Phone:</label for="partner">
-                <input type="text" name="partner_contact" ng-model="pc.partner_contact" placeholder="{{pc.partners.partner_contact}}" value="{{pc.partners.partner_contact}}">
-            </div>
-            <div class="form-group">
-              <label>Partner Address:</label for="partner">
-                <input type="text" name="partner_address" ng-model="pc.partner_address" placeholder="{{pc.partners.partner_address}}" value="{{pc.partners.partner_address}}">
-            </div>
-          </form>
-        </div> <!-- end col-md-12 -->
-      </div> <!-- end row -->
-    </div> <!-- end modal body -->
+    <!-- end modal body -->
 
-<!-- post button -->
-<div class="modal-footer">
-  <button class="btn btn-primary" ng-click="pc.postPartner()">Post</button>
-</div>
+    <!-- post button -->
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="pc.postPartner()">Create</button>
+    </div>
 
-</script> <!-- end modal -->
+  </script>
+  <!-- end modal -->

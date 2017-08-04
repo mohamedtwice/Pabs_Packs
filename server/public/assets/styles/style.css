@@ -113,9 +113,11 @@ body {
 .container {
   padding-top: -40rem;
   width: 100%;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  padding-bottom: 5rem;
 }
+
 
 /*.wrapper {
   background: #e7e9dd;
@@ -302,6 +304,7 @@ label {
     *width: 14.285714285714285714285714285714%;
   }
 }
+
 
 /**** EVENT SCHEDULER ****/
 
