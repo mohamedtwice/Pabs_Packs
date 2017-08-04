@@ -264,7 +264,6 @@
                   </tr>
                 </thead>
                 <tr ng-repeat="events in ec.pastList.slice(((ec.currentPage-1)*ec.itemsPerPage), ((ec.currentPage)*ec.itemsPerPage)) | orderBy:ec.column:ec.reverse">
-                   <!-- | limitTo:ec.numPerPage:(ec.currentPage - 1) * ec.numPerPage -->
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.event_date | date:"MM/dd/yyyy"}}</thing>
                     <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
@@ -380,7 +379,6 @@
               <label>Packs Promised:</label for="packsPromised">
                 <input type="number" class="modalInput form-control" placeholder="e.g. 250" id="packsPromised" ng-model="ec.packs_promised">
             </div>
-            <!-- radio buttons -->
             <div class="form-group">
               <label>Comments:</label for="comments">
                 <textarea type="text" rows="3" class="modalInput form-control" placeholder="Any extra notes you'd like to leave?" id="comments" ng-model="ec.comments"></textarea>

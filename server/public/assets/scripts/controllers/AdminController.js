@@ -13,6 +13,24 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
 
   //// ALL GETS
 
+  vm.openVendorModal = function(size) {
+    var modalInstance = $modal.open({
+      animation: vm.animationsEnabled,
+      templateUrl: 'vendorModal.html',
+      controller: 'VendorModalController as vc',
+      size: size
+    });
+  } // opens modal to add new item
+
+  vm.openPartnerModal = function(size) {
+    var modalInstance = $modal.open({
+      animation: vm.animationsEnabled,
+      templateUrl: 'partnerModal.html',
+      controller: 'PartnerModalController as pc',
+      size: size
+    });
+  } // opens modal to add new item
+
   vm.getInfo = function() {
     console.log('in getInfo');
     vm.getVendors();
