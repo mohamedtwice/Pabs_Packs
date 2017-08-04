@@ -255,7 +255,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
             console.log('I was closed by the timer');
           }
         });
-      vm.getEvents();
+      $route.reload();
     });
   } // end updateDonationEvents
 
@@ -330,7 +330,7 @@ myApp.controller('EventController', function(EventService, $filter, $modal, $rou
           }
         });
     }); // end call to service
-    vm.getEvents();
+    $route.reload();
   }; // end updatePackEvents
 
 });

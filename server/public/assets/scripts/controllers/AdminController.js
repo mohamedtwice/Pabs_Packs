@@ -78,7 +78,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
   vm.updatePartners = function(partners) {
     console.log('in updatePartners');
     console.log(partners.id);
-
     if (vm.partner_nameUpdate !== partners.partner_name) {
       if (vm.partner_nameUpdate === undefined) {
         vm.partner_nameUpdate = partners.partner_name;
@@ -86,7 +85,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
         vm.partner_nameUpdate = vm.partner_nameUpdate;
       }
     }
-
     if (vm.partner_contactUpdate !== partners.partner_contact) {
       if (vm.partner_contactUpdate === undefined) {
         vm.partner_contactUpdate = partners.partner_contact;
@@ -94,7 +92,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
         vm.partner_contactUpdate = vm.partner_contactUpdate;
       }
     }
-
     if (vm.partner_phoneUpdate !== partners.partner_phone) {
       if (vm.partner_phoneUpdate === undefined) {
         vm.partner_phoneUpdate = partners.partner_phone;
@@ -102,7 +99,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
         vm.partner_phoneUpdate = vm.partner_phoneUpdate;
       }
     }
-
     if (vm.partner_addressUpdate !== partners.partner_address) {
       if (vm.partner_addressUpdate === undefined) {
         vm.partner_addressUpdate = partners.partner_address;
@@ -110,7 +106,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
         vm.partner_addressUpdate = vm.partner_addressUpdate;
       }
     }
-
     var updatedPartner = {
       id: partners.id,
       partner_name: vm.partner_nameUpdate,
@@ -118,7 +113,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
       partner_phone: vm.partner_phoneUpdate,
       partner_address: vm.partner_addressUpdate,
     };
-
     console.log(updatedPartner);
     PartnerService.updatePartner(updatedPartner).then(function() {
       swal({ //sweet alert
@@ -134,7 +128,7 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
           }
         })
     }); // end then
-    vm.getPartners();
+    $route.reload();
   };
 
   vm.updateVendor = function(vendors) {
@@ -190,7 +184,7 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
           }
         })
     }); // end then
-    vm.getVendors();
+    $route.reload();
   };
 
   vm.editgoals = function(goal) {
@@ -204,34 +198,6 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
   /// --------------------------------------------------------------------------------------------------------------
 
   /// ALL POSTS
-
-  vm.postVendor = function() {
-    console.log('in postVendor');
-    var newVendor = {
-      vendor_name: vm.vendor_name,
-      vendor_phone: vm.vendor_phone,
-      vendor_email: vm.vendor_email,
-      vendor_address: vm.vendor_address
-    };
-    console.log(newVendor);
-    VendorService.postVendor(newVendor).then(function() {
-      vm.getVendors();
-    });
-  }; // end postVendor
-
-  vm.postPartner = function() {
-    console.log('in postPartner');
-    var newPartner = {
-      partner_name: vm.partner_name,
-      partner_contact: vm.partner_contact,
-      partner_phone: vm.partner_phone,
-      partner_address: vm.partner_address
-    };
-    console.log(newPartner);
-    PartnerService.postPartner(newPartner).then(function() {
-      vm.getPartners();
-    });
-  }; // end postPartner
 
   vm.addnewgoal = function() {
     console.log('in addnewgoal');
@@ -278,7 +244,7 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
     }).then(function() {
       console.log('in remove');
       PartnerService.deletePartner(id);
-      vm.getPartners();
+      $route.reload();
       swal(
         'Deleted!',
         'Your item has been deleted.',
@@ -315,7 +281,7 @@ myApp.controller('AdminController', function(EventtypeService, PartnerService, V
     }).then(function() {
       console.log('in remove');
       VendorService.deleteVendor(id);
-      vm.getVendors();
+      $route.reload();
       swal(
         'Deleted!',
         'Your item has been deleted.',

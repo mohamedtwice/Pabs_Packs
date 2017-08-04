@@ -37,7 +37,7 @@ myApp.service('VendorService', function($http) {
     }).then(function(response) {
       console.log('back from updateVendor:', response);
     });
-  } // end update properties
+  } // end updateVendor
 
   sv.deleteVendor = function(id) {
     console.log(id);
@@ -50,6 +50,6 @@ myApp.service('VendorService', function($http) {
     }).then(function() {
       console.log('item deleted');
     });
-  } // end deleteItem
+  } // end deleteVendor
 
 }); // end of service
