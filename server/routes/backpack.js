@@ -22,6 +22,15 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 // GET /backpack
 router.get('/', function(req, res) {
   console.log('get hit');
+  // authenticate route
+  console.log('checking user route ');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -49,6 +58,15 @@ router.post('/', function(req, res) {
   console.log(req.body);
   var goal = req.body.goal;
   var year = req.body.year;
+  // authenticate route
+  console.log('checking user route ');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
@@ -74,6 +92,15 @@ router.put('/:id', function(req, res) {
   var year = req.body.yearUpdate;
   console.log(id);
   console.log(goal);
+  // authenticate route
+  console.log('checking user route ');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // updates specified field
   pool.connect()
     .then(function(client) {
@@ -90,3 +117,6 @@ router.put('/:id', function(req, res) {
       done();
     });
 });
+
+
+module.exports = router;

@@ -25,6 +25,13 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 
 router.get('/donationData', function(req, res) {
   console.log('dashboard.js /donationData hit');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -86,6 +93,13 @@ router.get('/donationData', function(req, res) {
 
 router.get('/inventoryData', function(req, res) {
   console.log('dashboard.js /inventoryData hit');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -130,6 +144,13 @@ router.get('/inventoryData', function(req, res) {
 
 router.get('/upcomingEvents', function(req, res) {
   console.log('dashboard.js /upcomingEvents hit');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connection to the DB for /upcomingEvents', err);

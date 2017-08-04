@@ -27,6 +27,13 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 // GET annualgoal
 router.get('/', function(req, res) {
   console.log('getEventType route hit');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -52,7 +59,13 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   console.log(req.body);
   var event_type_name = req.body.event_type_name;
-
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {

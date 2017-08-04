@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var path = require('path');
 
 // module with db
@@ -22,6 +22,15 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 // GET /inventory
 router.get('/', function(req, res) {
   console.log('get hit');
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
+
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -52,6 +61,14 @@ router.post('/', function(req, res) {
   var on_hand = req.body.numberOnHand;
   var low_number = req.body.reorderAlertNumber;
   var type = req.body.type;
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
@@ -79,6 +96,14 @@ router.put('/:id', function(req, res) {
   var low_number = req.body.reorderAlertNumberUpdate;
   console.log(id);
   console.log(item);
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // updates specified field
   pool.connect()
     .then(function(client) {
@@ -96,6 +121,15 @@ router.put('/:id', function(req, res) {
 
 router.delete('/:id', function(req, res) {
   console.log(req.params.id);
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
+
   pool.connect(function(err, connection, done) {
     console.log('Post hit');
     var id = req.params.id;

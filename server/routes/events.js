@@ -24,6 +24,13 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 // GET events
 router.get('/', function(req, res) {
   console.log('getEvents route hit');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -47,6 +54,13 @@ router.get('/', function(req, res) {
 // GET events
 router.get('/', function(req, res) {
   console.log('GET SUM route hit');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -79,6 +93,13 @@ router.post('/', function(req, res) {
   var packs_made = req.body.packs_made;
   var comments = req.body.comments;
   console.log(event_date);
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
@@ -102,6 +123,13 @@ router.post('/', function(req, res) {
 router.delete('/:id', function(req, res, next) {
   console.log("delete router connected to database");
   console.log(req.params.id);
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     var id = req.params.id;
     console.log('post hit', id);
@@ -133,6 +161,13 @@ router.put('/:id', function(req, res) {
   var packs_promised = req.body.packs_promised;
   var comments = req.body.comments;
   console.log(packs_promised);
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // updates specified field
   pool.connect(function(err, client, done) {
     console.log(id);
@@ -154,6 +189,13 @@ router.put('/:id', function(req, res) {
 // router.get for getPackTotals
 router.get('/neededTotals', function(req, res) {
   console.log('event.js /neededPacks hit');
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);

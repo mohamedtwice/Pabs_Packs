@@ -24,6 +24,15 @@ var pool = new pg.Pool(config); // DO NOT MODIFY
 // GET /partners
 router.get('/', function(req, res) {
   console.log('get partners hit');
+  console.log('checking user route ');
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     if (err) {
       console.log('Error connecting to the DB', err);
@@ -52,6 +61,15 @@ router.post('/', function(req, res) {
   var partner_contact = req.body.partner_contact;
   var partner_phone = req.body.partner_phone;
   var partner_address = req.body.partner_address;
+  console.log('checking user route ');
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // do database query to make a new todo
   pool.connect()
     .then(function(client) {
@@ -79,6 +97,15 @@ router.put('/:id', function(req, res) {
   var partner_contact = req.body.partner_contact;
   var partner_phone = req.body.partner_phone;
   var partner_address = req.body.partner_address;
+  console.log('checking user route ');
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   // updates specified field
   pool.connect(function(err, client, done) {
     console.log(id);
@@ -100,6 +127,15 @@ router.put('/:id', function(req, res) {
 router.delete('/:id', function(req, res, next) {
   console.log("delete router connected to database");
   console.log(req.params.id);
+  console.log('checking user route ');
+  // authenticate route
+  if(req.isAuthenticated()) {
+      // send back user object from database
+      res.send(req.user);
+  } else {
+      // failure best handled on the server. do redirect here.
+      res.send(false);
+  }
   pool.connect(function(err, client, done) {
     var id = req.params.id;
     console.log('post hit', id);
