@@ -37,7 +37,7 @@
             <tbody>
               <tr ng-repeat="data in dc.upcomingEvents">
                 <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
-                <td>{{ data.event_time | date:"hh:mm"}}</td>
+                <td>{{ data.event_time | date:"HH:mm"}}</td>
                 <td>{{ data.event_type }}</td>
                 <td>{{ data.packs_promised }}</td>
                 <td>{{ data.comments }}</td>
@@ -96,7 +96,7 @@
                   <tbody>
                     <tr ng-repeat="data in dc.upcomingEvents">
                       <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
-                      <td>{{ data.event_time }}</td>
+                      <td>{{ data.event_time | date: "HH:mm"}}</td>
                       <td>{{ data.event_type }}</td>
                       <td>{{ data.packs_promised }}</td>
                       <td>{{ data.comments }}</td>
