@@ -1,8 +1,9 @@
 myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'VendorService', 'AnnualgoalService', '$modal', '$route', '$http', '$location', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route, $http, $location) {
 
   var vm = this;
-  console.log('checking user');
+
   $http.get('/user').then(function(response) {
+    console.log('checking user');
     if (response.data.username) {
       // user has a curret session on the server
       vm.userName = response.data.username;
@@ -12,6 +13,7 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
       $location.path("/home");
     }
   });
+
   vm.selectedButton = false;
 
   vm.selectButton = function(id) {
@@ -41,12 +43,20 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     });
   } // opens modal to add new item
 
+  vm.openAnnualGoalModal = function(size) {
+    var modalInstance = $modal.open({
+      animation: vm.animationsEnabled,
+      templateUrl: 'annualGoalModal.html',
+      controller: 'AnnualGoalModalController as agc',
+      size: size
+    });
+  } // opens modal to add new item
+
   vm.getInfo = function() {
     console.log('in getInfo');
     vm.getVendors();
     vm.getAnnualgoal();
     vm.getPartners();
-    vm.getEventType();
   }; // end getInfo
 
   vm.getAnnualgoal = function() {
@@ -70,14 +80,6 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     PartnerService.getPartner().then(function() {
       vm.partners = PartnerService.partnerData;
       console.log(vm.partners);
-    });
-  }; // end getPartner
-
-  vm.getEventType = function() {
-    console.log('in getPartners');
-    EventtypeService.getEventType().then(function() {
-      vm.eventtype = EventtypeService.eventtypeData;
-      console.log(vm.eventtype);
     });
   }; // end getPartner
 
@@ -237,50 +239,9 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
         })
     }); // end then
     $route.reload();
-  } // end updateProperties
+  }; // end updateProperties
 
   vm.current = {};
-
-  /// --------------------------------------------------------------------------------------------------------------
-
-  /// ALL POSTS
-
-  vm.addnewgoal = function() {
-    console.log('in addnewgoal');
-    var newGoal = {
-      year: vm.year,
-      annual_goal: vm.annual_goal
-    };
-    console.log(newGoal);
-    AnnualgoalService.addnewgoal(newGoal).then(function() {
-      swal({
-        type: 'success',
-        title: 'New goal added!',
-        timer: 2500
-      }).then(
-        function() {},
-        // handling the promise rejection
-        function(dismiss) {
-          if (dismiss === 'timer') {
-            console.log('I was closed by the timer');
-          }
-        })
-    }); // end sweetAlert
-    vm.getAnnualgoal();
-    vm.year = '';
-    vm.annual_goal = '';
-  }; // end addnewgoal
-
-  vm.addnewEventType = function() {
-    console.log('in addnewEventType');
-    var newEventType = {
-      event_type_name: vm.event_type_name,
-    };
-    console.log(newEventType);
-    EventtypeService.addnewEventType(newEventType).then(function() {
-      vm.getEventType();
-    });
-  }; // end addnewgoal
 
   /// --------------------------------------------------------------------------------------------------------------
 

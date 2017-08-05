@@ -111,6 +111,7 @@
           <!-- annual goal tab -->
           <tab heading="Annual Goal">
             <div class="adminbox">
+              <button class="btn btn-info pull-right" ng-click="ac.openAnnualGoalModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
               <div class="col-md-5">
                 <h3 class="lead">ANNUAL GOAL</h3>
                 <div class="table-responsive">
@@ -137,11 +138,6 @@
                           <button ng-click="ac.updateAnnualGoal(goal); ac.selectButton()" ng-show="toggle[goal.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
                         </td>
                       </tr>
-                      <tr>
-                        <td><input type="text" name="year" ng-model="ac.year" placeholder="{{current.year}}" value="{{current.year}}"></td>
-                        <td><input type="text" name="annual_goal" ng-model="ac.annual_goal" placeholder="{{current.annual_goal}}" value="{{current.annual_goal}}"></td>
-                        <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewgoal()">Add</button></td>
-                      </tr>
                     </tbody>
                   </table>
                 </div> <!-- end table-responsive -->
@@ -152,7 +148,11 @@
       </div> <!-- end row -->
     </div> <!-- end container -->
 
-    <!-- modal -->
+    <!-- end html of page -->
+
+    <!-- modals -->
+
+    <!-- vendor modal -->
     <script type="text/ng-template" id="vendorModal.html">
       <div class="modal-header">
         <div class='btn-toolbar pull-right'>
@@ -197,7 +197,7 @@
   </script>
   <!-- end modal -->
 
-  <!-- modal -->
+  <!-- partner modal -->
   <script type="text/ng-template" id="partnerModal.html">
     <div class="modal-header">
       <div class='btn-toolbar pull-right'>
@@ -236,6 +236,42 @@
     <!-- post button -->
     <div class="modal-footer">
       <button class="btn btn-primary" ng-click="pc.postPartner()">Create</button>
+    </div>
+
+  </script>
+  <!-- end modal -->
+
+  <!-- annual goal modal -->
+  <script type="text/ng-template" id="annualGoalModal.html">
+    <div class="modal-header">
+      <div class='btn-toolbar pull-right'>
+        <div class='btn-group'>
+          <button class="btn" style="background-color:transparent;" ng-click="agc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <h3 class="modal-title">Add New Annual Goal</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- input forms -->
+          <form>
+            <div class="form-group">
+              <label for="partner">Year</label>
+              <input type="text" class="form-control" name="year" ng-model="agc.year" placeholder="e.g. 2015" value="{{agc.annualgoal.year}}">
+            </div>
+            <div class="form-group">
+              <label for="partner">Annual Goal</label>
+              <input type="text" class="form-control" name="annual_goal" ng-model="agc.annual_goal" placeholder="e.g. 2500" value="{{agc.annualgoal.annual_goal}}">
+            </div>
+          </form>
+        </div> <!-- end col-md-12 -->
+      </div> <!-- end row -->
+    </div> <!-- end modal body -->
+
+    <!-- post button -->
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="agc.addnewgoal()">Create</button>
     </div>
 
   </script>
