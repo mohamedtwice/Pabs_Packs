@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 // module with db
-router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 router.use(bodyParser.json());
 
 var connection = require('../modules/connection');

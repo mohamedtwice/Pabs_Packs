@@ -4,6 +4,10 @@
   font-family: Raleway, sans-serif;
 }
 
+.bg {
+  background-color: white;
+}
+
 h1, h2, h3 {
   margin: 1em 0 .5em;
   color: #8897aa;
@@ -107,7 +111,7 @@ body {
 
 .wrapper {
   /*padding-top: 2px;*/
-  background: #e7e9dd;
+  background: white;
 }
 
 .container {
