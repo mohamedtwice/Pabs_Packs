@@ -28,7 +28,7 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
     PartnerService.postPartner(newPartner).then(function() {
       swal({
         type: 'success',
-        title: 'New item added!',
+        title: 'New partner added!',
         timer: 2500
       }).then(
         function() {},

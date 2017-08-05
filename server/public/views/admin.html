@@ -13,7 +13,6 @@
           <tab heading="Partners">
             <div class="adminbox">
               <button class="btn btn-info pull-right" ng-click="ac.openPartnerModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-
               <h3 class="lead">PARTNERS</h3>
               <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
@@ -58,8 +57,10 @@
               </div>
             </div>
           </tab>
+
           <!-- vendors tab -->
           <tab heading="Vendors">
+             <!-- ng-click="ac.selectedButton===" -->
             <div class="adminbox">
               <button class="btn btn-info pull-right" ng-click="ac.openVendorModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
               <h3 class="lead">VENDORS</h3>
@@ -103,74 +104,53 @@
                     </tr>
                   </tbody>
                 </table>
-              </div>
-            </div>
-            <!-- end adminbox -->
-          </tab>
+              </div> <!-- end table-responsive -->
+            </div> <!-- end adminbox -->
+          </tab> <!-- end vendors tab -->
 
           <!-- annual goal tab -->
           <tab heading="Annual Goal">
             <div class="adminbox">
-              <h3 class="lead">ANNUAL GOAL</h3>
-              <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th>Year</th>
-                      <th>Goal</th>
-                      <th>Edit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="goal in ac.annualgoal">
-                      <td>{{goal.year}}</td>
-                      <td>{{goal.annual_goal}}</td>
-                      <td><button type="button" name="button" ng-click="ac.editgoals(goal)" class="btn btn-success">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" name="year" ng-model="ac.year" placeholder="{{current.year}}" value="{{current.year}}"></td>
-                      <td><input type="text" name="annual_goal" ng-model="ac.annual_goal" placeholder="{{current.annual_goal}}" value="{{current.annual_goal}}"></td>
-                      <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewgoal()">Add</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- end adminbox -->
-          </tab>
+              <div class="col-md-5">
+                <h3 class="lead">ANNUAL GOAL</h3>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>Year</th>
+                        <th>Goal</th>
+                        <th>Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="goal in ac.annualgoal | orderBy : 'year'">
+                        <td>
+                          <thing ng-hide="toggle[goal.id]">{{goal.year}}</thing>
+                          <thing ng-show="toggle[goal.id]"><input type="text" ng-model="ac.yearUpdate" placeholder="{{goal.year}}" value="{{goal.year}}"></thing>
+                        </td>
+                        <td>
+                          <thing ng-hide="toggle[goal.id]">{{goal.annual_goal}}</thing>
+                          <thing ng-show="toggle[goal.id]"><input type="text" ng-model="ac.annual_goalUpdate" placeholder="{{goal.annual_goal}}" value="{{goal.annual_goal}}"></thing>
+                        </td>
+                        <td>
+                          <button class="btn btn-success" ng-hide="toggle[goal.id]" ng-click="toggle[goal.id] = !toggle[goal.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <button ng-click="ac.updateAnnualGoal(goal); ac.selectButton()" ng-show="toggle[goal.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" name="year" ng-model="ac.year" placeholder="{{current.year}}" value="{{current.year}}"></td>
+                        <td><input type="text" name="annual_goal" ng-model="ac.annual_goal" placeholder="{{current.annual_goal}}" value="{{current.annual_goal}}"></td>
+                        <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewgoal()">Add</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- end table-responsive -->
+              </div> <!-- end col-md-5 -->
+            </div> <!-- end adminbox -->
+          </tab> <!-- end annual goal tab -->
 
-          <!-- event types -->
-          <tab heading="Event Types">
-            <div class="adminbox">
-              <h3 class="lead">EVENT TYPES</h3>
-              <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th>Event Type</th>
-                      <th>Edit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="eventtype in ac.eventtype">
-                      <td>{{eventtype.event_type_name}}</td>
-                      <td><button type="button" name="button" ng-click="ac.editeventtype(eventtype)" class="btn btn-success">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" name="year" ng-model="ac.event_type_name" placeholder="{{eventtype.event_type_name}}" value="{{eventtype.event_type_name}}"></td>
-                      <td><button type="button" name="button" class="btn btn-info" ng-click="ac.addnewEventType()">Add</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- end adminbox -->
-          </tab>
-
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end container -->
+      </div> <!-- end row -->
+    </div> <!-- end container -->
 
     <!-- modal -->
     <script type="text/ng-template" id="vendorModal.html">
@@ -204,12 +184,10 @@
                 <input type="text" class="form-control" name="vendor_address" id="vendorAddress" ng-model="vc.vendor_address" placeholder="e.g. 123 Smith Lane" value="{{vc.vendors.vendor_address}}">
               </div>
             </form>
-          </div>
-          <!-- end col-md-12 -->
-        </div>
-        <!-- end row -->
-      </div>
-  </div>
+          </div> <!-- end col-md-12 -->
+        </div> <!-- end row -->
+      </div> <!-- end modal body -->
+  </div> <!-- end wrapper -->
 
   <!-- post button -->
   <div class="modal-footer">
@@ -251,12 +229,9 @@
               <input type="text" class="form-control" name="partner_address" ng-model="pc.partner_address" placeholder="e.g. 123 Smith Lane " value="{{pc.partners.partner_address}}">
             </div>
           </form>
-        </div>
-        <!-- end col-md-12 -->
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end modal body -->
+        </div> <!-- end col-md-12 -->
+      </div> <!-- end row -->
+    </div> <!-- end modal body -->
 
     <!-- post button -->
     <div class="modal-footer">

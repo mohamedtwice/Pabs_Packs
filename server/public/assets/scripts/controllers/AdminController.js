@@ -127,7 +127,7 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     PartnerService.updatePartner(updatedPartner).then(function() {
       swal({ //sweet alert
         type: 'success',
-        title: 'Item Updated!',
+        title: 'Partner Updated!',
         timer: 2500
       }).then(
         function() {},
@@ -197,11 +197,47 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     $route.reload();
   };
 
-  vm.editgoals = function(goal) {
-    console.log('in editgoals');
-    vm.current = goal;
-    console.log(goal);
-  }; // end editgoals
+  vm.updateAnnualGoal = function(goals) {
+    console.log(goals);
+    console.log('in updateGoal');
+    // if item is undefined, send original ng-model
+    if (vm.yearUpdate !== goals.year) {
+      if (vm.yearUpdate === undefined) {
+        vm.yearUpdate = goals.year;
+      } else {
+        vm.yearUpdate = vm.yearUpdate;
+      }
+    }
+    if (vm.annual_goalUpdate !== goals.annual_goal) {
+      if (vm.annual_goalUpdate === undefined) {
+        vm.annual_goalUpdate = goals.annual_goal;
+      } else {
+        vm.annual_goalUpdate = vm.annual_goalUpdate;
+      }
+    }
+    console.log(vm.yearUpdate);
+    var updatedGoal = {
+      id: goals.id,
+      yearUpdate: vm.yearUpdate,
+      annual_goalUpdate: vm.annual_goalUpdate,
+    }
+    console.log(updatedGoal);
+    AnnualgoalService.updateAnnualGoal(updatedGoal).then(function() {
+      swal({ //sweet alert
+        type: 'success',
+        title: 'Goal Updated!',
+        timer: 2500
+      }).then(
+        function() {},
+        // handling the promise rejection
+        function(dismiss) {
+          if (dismiss === 'timer') {
+            console.log('I was closed by the timer');
+          }
+        })
+    }); // end then
+    $route.reload();
+  } // end updateProperties
 
   vm.current = {};
 
@@ -217,8 +253,22 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     };
     console.log(newGoal);
     AnnualgoalService.addnewgoal(newGoal).then(function() {
-      vm.getAnnualgoal();
-    });
+      swal({
+        type: 'success',
+        title: 'New goal added!',
+        timer: 2500
+      }).then(
+        function() {},
+        // handling the promise rejection
+        function(dismiss) {
+          if (dismiss === 'timer') {
+            console.log('I was closed by the timer');
+          }
+        })
+    }); // end sweetAlert
+    vm.getAnnualgoal();
+    vm.year = '';
+    vm.annual_goal = '';
   }; // end addnewgoal
 
   vm.addnewEventType = function() {

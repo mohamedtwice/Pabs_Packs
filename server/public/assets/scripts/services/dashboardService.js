@@ -26,5 +26,4 @@ myApp.service('DashboardService', function($http) {
     });
   }; // end getBarChart
 
-
 }); // end service

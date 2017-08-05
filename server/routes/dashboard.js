@@ -21,8 +21,6 @@ var config = {
 };
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
-
-
 router.get('/donationData', function(req, res) {
   console.log('dashboard.js /donationData hit');
   pool.connect(function(err, client, done) {

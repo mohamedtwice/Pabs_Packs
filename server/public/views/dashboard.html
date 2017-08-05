@@ -1,23 +1,23 @@
 <header ng-include="'/views/templates/header.html'"></header>
-<div ng-controller="DashboardController as dc">
+<!-- <div ng-controller="DashboardController as dc"> -->
 
   <div class="wrapper">
     <div class="container">
       <h1 id="welcome" class="lead">Welcome {{ dc.username }}!</h1>
       <hr>
     </div>
-  </div>
+  <!-- </div> -->
 
-  <div ng-controller="DashboardController as dc">
+  <!-- <div ng-controller="DashboardController as dc"> -->
 
-    <div class="wrapper" id="pie">
+    <div id="pie">
       <div class="container">
         <h3 class="lead">ANNUAL GOAL FOR PACK DONATIONS</h3>
         <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()"></canvas>
       </div>
     </div>
 
-    <div class="wrapper" id="upcomingEvents">
+    <div id="upcomingEvents">
       <div class="container">
         <h3 class="lead">UPCOMING EVENTS</h3>
         <div ng-init="dc.getUpcomingEvents()">
@@ -47,12 +47,12 @@
       </div>
     </div>
 
-    <div class="wrapper" id="itemsRunningLow">
+    <div cid="itemsRunningLow">
       <div class="container">
         <h3 class="lead">ITEMS RUNNING LOW</h3>
         <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
       </div>
     </div>
 
-  </div>
+  <!-- </div> -->
 </div>
