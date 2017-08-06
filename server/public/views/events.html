@@ -359,7 +359,7 @@
                   <thing ng-hide="partnerToggle">
                     <select label="-- Select option --" class="form-control" ng-model="ec.partner">
                       <option value="" selected disabled><span class="selectlabel">Previously Used Partner</span></option>
-                      <option ng-repeat="partners in ec.events | unique: 'partner_name'" class="form-control input-lg input100" value="{{partners.partner_name}}">{{partners.partner_name}}</option>
+                      <option ng-repeat="partners in ec.partners | unique: 'partner_name'" class="form-control input-lg input100" value="{{partners.partner_name}}">{{partners.partner_name}}</option>
                     </select>
                   </thing>
                   <!-- toggle add vendor -->

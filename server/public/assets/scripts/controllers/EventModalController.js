@@ -63,6 +63,16 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
     // vm.getEvents();
   } // end createEvent
 
+  vm.getPartners = function() {
+    console.log('Getting partners');
+    PartnerService.getPartners().then(function() {
+      vm.partners = PartnerService.partnerData;
+      console.log(vm.partners);
+    });
+  } // end getInventory
+
+  vm.getPartners();
+
   vm.postPartner = function() {
     var newPartner = {
       partner_name: vm.partner_name,
