@@ -15,6 +15,7 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
   });
 
   vm.selectedButton = false;
+  vm.animationsEnabled = true;
 
   vm.selectButton = function(id) {
     vm.selectedButton = !vm.selectedButton;
