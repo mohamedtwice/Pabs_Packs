@@ -288,6 +288,7 @@ label {
   margin-bottom: 0px;
 }
 
+
 /**** INVENTORY ****/
 
 @media (min-width: 768px) {
@@ -303,6 +304,7 @@ label {
     *width: 14.285714285714285714285714285714%;
   }
 }
+
 
 /**** EVENT SCHEDULER ****/
 
