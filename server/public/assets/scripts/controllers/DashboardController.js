@@ -1,6 +1,7 @@
 myApp.controller('DashboardController', ['DashboardService', 'EventService', '$http', '$location', function(DashboardService, EventService, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
   var vm = this;
+  
   console.log('checking user');
   $http.get('/user').then(function(response) {
     if (response.data.username) {
@@ -19,7 +20,6 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
       $location.path("/home");
     });
   }; // end vm.logout
-
 
   // pie chart post function
   vm.getPieChart = function() {
