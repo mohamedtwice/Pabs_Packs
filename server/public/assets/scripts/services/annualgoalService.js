@@ -11,10 +11,22 @@ myApp.service('AnnualgoalService', function($http) {
       console.log(response);
       sv.annualgoalData = response.data;
       console.log(sv.annualgoalData);
-    }); //
+    });
   }; // end getAnnualgoal
 
-
+  sv.updateAnnualGoal = function(updatedGoal) {
+    console.log(updatedGoal);
+    return $http({
+      method: 'PUT',
+      url: '/annualgoal/' + updatedGoal.id,
+      params: {
+        id: updatedGoal.id
+      },
+      data: updatedGoal
+    }).then(function(response) {
+      console.log('back from updateAnnualGoal:', response);
+    });
+  } // end updatePackEvents
 
   sv.addnewgoal = function(newGoal) {
     console.log(newGoal);
@@ -25,8 +37,6 @@ myApp.service('AnnualgoalService', function($http) {
     }).then(function(response) {
       console.log('back from addnewgoal:', response);
     });
-  };
-
-
+  }; // end addnewgoal
 
 }); // end of service
