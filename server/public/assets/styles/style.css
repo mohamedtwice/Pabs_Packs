@@ -25,13 +25,13 @@ h1 {
 }
 
 .lead {
-  margin-top: 2rem;
+  /*margin-top: 2rem;*/
 }
 
 .totals {
-  margin: -3px 10px;
-  background: #f5f6f7;
-  padding: 10px;
+  /*margin: -3px 10px;*/
+  background: #e7e9dd;
+  /*padding: 10px;*/
 }
 
 .fa-lg:hover {
@@ -109,7 +109,7 @@ body {
 }
 
 .container {
-  padding-top: -40rem;
+  /*padding-top: -40rem;*/
   width: 100%;
   padding-left: 6rem;
   padding-right: 6rem;
@@ -135,7 +135,7 @@ img {
 }
 
 h2 {
-  margin-top: 9rem;
+  /*margin-top: 9rem;*/
 }
 
 label {
@@ -157,7 +157,7 @@ label {
 }
 
 #top {
-  margin-top: 5%;
+  /*margin-top: 5%;*/
 }
 
 #editBtn {
@@ -220,7 +220,7 @@ label {
 }
 
 #container {
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 
 .container p {
