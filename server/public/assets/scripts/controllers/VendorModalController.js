@@ -40,6 +40,7 @@ myApp.controller('VendorModalController', function(VendorService, $modalInstance
         }) // end dismiss
     }); // end sweetAlert
     $route.reload();
+    vm.cancel();
   }; // end postVendor
 
 });

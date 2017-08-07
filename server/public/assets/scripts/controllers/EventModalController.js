@@ -59,6 +59,7 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
           })
       });
     $route.reload();
+    vm.cancel();
     // getEvents doesn't post new event to page immediately
     // vm.getEvents();
   } // end createEvent

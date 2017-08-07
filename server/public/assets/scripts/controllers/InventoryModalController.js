@@ -50,6 +50,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
     }); // end sweetAlert
     // vm.getInventory();
     $route.reload();
+    vm.cancel();
   } // end postInventoryItem
 
   vm.getVendors = function() {

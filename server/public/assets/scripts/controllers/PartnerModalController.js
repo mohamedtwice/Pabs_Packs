@@ -40,6 +40,7 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
         })
     }); // end sweetAlert
     $route.reload();
+    vm.cancel();
   };
   // end postVendor
 
