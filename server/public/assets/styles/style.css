@@ -100,12 +100,12 @@ th a:hover {
 
 body {
   background-image: url("/images/pattern.png");
-  background-repeat: repeat-x;
+  background-repeat: repeat;
   background-attachment: fixed;
 }
 
-.wrapper {
-  background: white;
+.box {
+  background: #e7e9dd;
 }
 
 .container {
@@ -120,6 +120,9 @@ body {
   background: #e7e9dd;
   width: 100%;
   height: 100%;
+  height: auto;
+  overflow: auto;
+  min-height: 83vh;
 }
 
 .header-container {
