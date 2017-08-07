@@ -79,7 +79,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
   }
 
   vm.getTotalPacks = function() {
-    console.log('in getTotalPacks');
+    // console.log('in getTotalPacks');
     EventService.getEvents().then(function() {
       vm.events = EventService.eventsData;
     });
