@@ -105,7 +105,10 @@ body {
 }
 
 .wrapper {
-  background: white;
+  background: #fdfefb;
+  height: auto;
+  overflow: auto;
+  min-height: 90vh;
 }
 
 .container {
