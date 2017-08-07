@@ -20,7 +20,6 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
     });
   }; // end vm.logout
 
-
   // pie chart post function
   vm.getPieChart = function() {
     console.log('in controller, getPieChart');
