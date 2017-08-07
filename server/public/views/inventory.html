@@ -52,7 +52,7 @@
               </tr>
             </thead>
             <!-- repeat items with hide/show inputs to show upon clicking edit button -->
-            <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='backpack'">
+            <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='Backpack'">
               <td>
                 <thing ng-hide="toggle[items.id]">{{items.item}}</thing>
                 <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.itemUpdate" placeholder="{{items.item}}" value="{{items.item}}"></thing>
@@ -128,7 +128,7 @@
               </tr>
             </thead>
             <!-- Repeat items with hide/show inputs. Will appear after clicking edit button. -->
-            <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='merchandise'">
+            <tr ng-repeat="items in ic.inventory | orderBy:ic.column:ic.reverse" ng-class="{'danger': items.number_on_hand <= items.low_number}" ng-if="items.type==='Merchandise'">
               <td>
                 <thing ng-hide="toggle[items.id]">{{items.item}}</thing>
                 <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.itemUpdate" placeholder="{{items.item}}" value="{{items.item}}"></thing>
