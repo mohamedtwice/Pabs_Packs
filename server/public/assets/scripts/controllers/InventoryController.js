@@ -66,7 +66,6 @@ myApp.controller('InventoryController', ['InventoryService', '$modal', '$route',
     });
   } //end getPackTotals
 
-
   vm.getInventory = function() {
     console.log('Getting the inventory');
     InventoryService.getInventory().then(function() {

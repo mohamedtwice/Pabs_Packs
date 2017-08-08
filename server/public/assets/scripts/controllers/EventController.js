@@ -342,6 +342,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
         });
     }); // end call to service
     $route.reload();
+    vm.cancel();
   }; // end updatePackEvents
 
   // Needed Packs function
@@ -353,23 +354,8 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
       vm.neededPacks = [packsData.needed];
       vm.packsMade = [packsData.made];
       vm.packsDonated = [packsData.donated];
-    }); // end EVentService.getNeededPacks
+    }); // end EventService.getNeededPacks
   }; // end neededPacks
   vm.getPackTotals();
 
 }]);
-
-// .filter('unique', function() {
-//   return function(collection, keyname) {
-//     var output = [],
-//       keys = [];
-//     angular.forEach(collection, function(item) {
-//       var key = item[keyname];
-//       if (keys.indexOf(key) === -1) {
-//         keys.push(key);
-//         output.push(item);
-//       }
-//     });
-//     return output;
-//   };
-// }));

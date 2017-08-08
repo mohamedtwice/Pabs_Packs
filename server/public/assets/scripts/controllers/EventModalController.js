@@ -59,9 +59,20 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
           })
       });
     $route.reload();
+    vm.cancel();
     // getEvents doesn't post new event to page immediately
     // vm.getEvents();
   } // end createEvent
+
+  vm.getPartners = function() {
+    console.log('Getting partners');
+    PartnerService.getPartners().then(function() {
+      vm.partners = PartnerService.partnerData;
+      console.log(vm.partners);
+    });
+  } // end getInventory
+
+  vm.getPartners();
 
   vm.postPartner = function() {
     var newPartner = {

@@ -1,7 +1,7 @@
 <header ng-include="'/views/templates/header.html'"></header>
 <div ng-controller="DashboardController as dc">
 
-  <div class="wrapper">
+  <div class="box">
     <div class="container">
       <h1 id="welcome" class="lead">Welcome, {{ dc.username }}!</h1>
       <hr>
@@ -10,14 +10,14 @@
 
   <div ng-controller="DashboardController as dc">
 
-    <div class="wrapper" id="pie">
+    <div class="box" id="pie">
       <div class="container">
         <h3 class="lead">ANNUAL GOAL FOR PACK DONATIONS</h3>
         <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()"></canvas>
       </div>
     </div>
 
-    <div class="wrapper" id="upcomingEvents">
+    <div class="box" id="upcomingEvents">
       <div class="container">
         <h3 class="lead">UPCOMING EVENTS</h3>
         <div ng-init="dc.getUpcomingEvents()">
