@@ -312,16 +312,84 @@
           </tab>
         </tabset>
 
-
-        <!-- events -->
-
-        <!-- </div> -->
-        <!-- create button -->
-        <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="ec.postEvent(); ec.postPartner()">Create</button>
+        <!-- event modal -->
+              <script type="text/ng-template" id="eventModal.html">
+                <div class="modal-header">
+                  <div class='btn-toolbar pull-right'>
+                    <div class='btn-group'>
+                      <button class="btn" style="background-color:transparent;" ng-click="ec.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                  <h3 class="modal-title">New Event</h3>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <!-- input forms -->
+                      <form>
+                        <div class="form-group">
+                          <label>Date:</label for="date">
+                            <input type="date" class="modalInput form-control" id="date" ng-model="ec.event_date">
+                        </div>
+                  <div class="form-group">
+                    <label>Time:</label for="time">
+                      <div>
+                        <input type="time" id="exampleInput" name="input" ng-model="ec.event_time" placeholder="HH:mm:ss"/><p>e.g. 05:00 pm</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Type of Event:</label for="eventType">
+                      <select label="-- Select option --" class="form-control" id="eventType" ng-model="ec.event_type" placeholder="What type of event?">
+                        <option value="" selected disabled><span class="selectlabel">What type of event?</span></option>
+                        <option class="form-control input-lg input100" value="Donation">Donation Event</option>
+                        <option class="form-control input-lg input100" value="Packing">Packing Event</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Partner:</label for="partner">
+                      <div> <!-- to avoid button from being inline with label -->
+                        <thing ng-hide="partnerToggle">
+                          <select label="-- Select option --" class="form-control" ng-model="ec.partner">
+                            <option value="" selected disabled><span class="selectlabel">Previously Used Partner</span></option>
+                            <option ng-repeat="partners in ec.partners | unique: 'partner_name'" class="form-control input-lg input100" value="{{partners.partner_name}}">{{partners.partner_name}}</option>
+                          </select>
+                        </thing>
+                        <!-- toggle add vendor -->
+                        <button class="btn btn-default btn-sm" id="vendorBtn" ng-click="ec.isCollapsed = !ec.isCollapsed; partnerToggle = !partnerToggle">
+                          <thing ng-show="partnerToggle">Previous Partners <i class="fa fa-chevron-left" aria-hidden="true"></i></thing>
+                          <thing ng-hide="partnerToggle">New Partner <i class="fa fa-plus" aria-hidden="true"></i></thing>
+                        </button>
+                        <div collapse="ec.isCollapsed">
+                          <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner name" ng-model="ec.partner_name">
+                          <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner phone number" ng-model="ec.partner_phone">
+                          <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner contact" ng-model="ec.partner_contact">
+                          <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner address" ng-model="ec.partner_address">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group" ng-show="ec.event_type=='Packing'">
+                    <label>Packs Made:</label for="packsMade">
+                      <input type="number" class="modalInput form-control" placeholder="e.g. 50" id="packsMade" ng-model="ec.packs_made">
+                  </div>
+                  <div class="form-group" ng-show="ec.event_type=='Donation'">
+                    <label>Packs Promised:</label for="packsPromised">
+                      <input type="number" class="modalInput form-control" placeholder="e.g. 250" id="packsPromised" ng-model="ec.packs_promised">
+                  </div>
+                  <div class="form-group">
+                    <label>Comments:</label for="comments">
+                      <textarea type="text" rows="3" class="modalInput form-control" placeholder="Any extra notes you'd like to leave?" id="comments" ng-model="ec.comments"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
+      <!-- create button -->
+          <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ec.postEvent(); ec.postPartner()">Create</button>
+          </div>
         </script>
-        <!-- end modal -->
+      <!-- end modal -->
 
       </div>
     </div>
