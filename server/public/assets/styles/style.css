@@ -11,6 +11,10 @@ header {
   background-color: white;
 }
 
+#totals {
+  /*font-size: 1.5rem;*/
+}
+
 h1, h2, h3 {
   margin: 1em 0 .5em;
   color: #8897aa;

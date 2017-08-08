@@ -2,6 +2,8 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
   console.log('in PartnerModalController');
   var vm = this;
 
+  vm.animationsEnabled = true;
+
   vm.cancel = function() {
     $modalInstance.dismiss('cancel');
   }; // close modal button
@@ -39,6 +41,7 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
           }
         })
     }); // end sweetAlert
+    vm.cancel();
     $route.reload();
   };
   // end postVendor

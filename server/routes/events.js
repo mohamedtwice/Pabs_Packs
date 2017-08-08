@@ -192,6 +192,7 @@ router.get('/neededTotals', function(req, res) {
                 console.log('Error querying the DB for CTD Annual Packs Donated *3*');
                 done(); // exit out of DB pool
               } else {
+                done();
                 packTotals.donated = parseInt(result2.rows[0].sum);
                 console.log('Got CTD Annual Packs Donated *3* from the DB:', result2.rows[0].sum);
               } // end else statement

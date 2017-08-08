@@ -341,6 +341,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
           }
         });
     }); // end call to service
+    vm.cancel();
     $route.reload();
   }; // end updatePackEvents
 
