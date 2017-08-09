@@ -37,8 +37,8 @@
                         <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_contactUpdate" placeholder="{{partners.partner_contact}}" value="{{partners.partner_contact}}"></thing>
                       </td>
                       <td>
-                        <thing ng-hide="toggle[partners.id]">{{partners.partner_phone}}</thing>
-                        <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_phoneUpdate" placeholder="{{partners.partner_phone}}" value="{{partners.partner_phone}}"></thing>
+                        <thing ng-hide="toggle[partners.id]">{{partners.partner_phone | phoneNumber}}</thing>
+                        <thing ng-show="toggle[partners.id]"><input type="text" phone-input ng-model="ac.partner_phoneUpdate" placeholder="{{partners.partner_phone}}" value="{{partners.partner_phone}}"></thing>
                       </td>
                       <td>
                         <thing ng-hide="toggle[partners.id]">{{partners.partner_address}}</thing>
@@ -83,7 +83,7 @@
                         <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_nameUpdate" placeholder="{{vendors.vendor_name}}" value="{{vendors.vendor_name}}"></thing>
                       </td>
                       <td>
-                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_phone}}</thing>
+                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_phone | phoneNumber}}</thing>
                         <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_phoneUpdate" placeholder="{{vendors.vendor_phone}}" value="{{vendors.vendor_phone}}"></thing>
                       </td>
                       <td>
@@ -217,11 +217,11 @@
               <input type="text" class="form-control" name="partner_name" ng-model="pc.partner_name" placeholder="e.g. Smith Hospital" value="{{pc.partners.partner_name}}">
             </div>
             <div class="form-group">
-              <label for="partner">Partner Contact</label>
-              <input type="text" class="form-control" name="partner_phone" ng-model="pc.partner_phone" placeholder="e.g. 555-5555" value="{{pc.partners.partner_phone}}">
+              <label for="partner">Partner Phone</label>
+              <input type="text" class="form-control" name="partner_phone" phone-input ng-model="pc.partner_phone" phone-input placeholder="e.g. 555-5555" value="{{pc.partners.partner_phone}}">
             </div>
             <div class="form-group">
-              <label for="partner">Partner Phone</label>
+              <label for="partner">Partner Contact</label>
               <input type="text" class="form-control" name="partner_contact" ng-model="pc.partner_contact" placeholder="e.g. jane@smithhospital.com" value="{{pc.partners.partner_contact}}">
             </div>
             <div class="form-group">

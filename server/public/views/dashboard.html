@@ -35,9 +35,16 @@
                 <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
                 <td>{{ data.event_time | date:"HH:mm" }}</td>
                 <td>{{ data.event_type }}</td>
-                <td>{{ data.packs_promised }}</td>
+                <td>
+                  <thing ng-show="data.packs_promised" >{{ data.packs_promised }}</thing>
+                  <thing ng-show="data.packs_promised===null">N/A</thing>
+                </td>
+                <!-- <td>{{ data.packs_promised }}</td> -->
                 <td>{{ data.comments }}</td>
-                <td>{{ data.packs_made }}</td>
+                <td>
+                  <thing ng-show="data.packs_made" >{{ data.packs_made }}</thing>
+                  <thing ng-show="data.packs_made===null">N/A</thing>
+                </td>
               </tr>
             </tbody>
           </table>

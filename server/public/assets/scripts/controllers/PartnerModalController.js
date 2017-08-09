@@ -1,4 +1,4 @@
-myApp.controller('PartnerModalController', function(PartnerService, $modalInstance, $route) {
+myApp.controller('PartnerModalController', function(PartnerService, $modalInstance, $filter, $route) {
   console.log('in PartnerModalController');
   var vm = this;
 

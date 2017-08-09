@@ -33,7 +33,6 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
     };
     // pie data
     vm.pieData = [];
-
     DashboardService.getPieChart().then(function() {
       var dashData = DashboardService.pieChartData;
       vm.pieData = [dashData.packsDonated, dashData.leftToDonate, dashData.scheduledDonations];
