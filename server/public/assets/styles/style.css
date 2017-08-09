@@ -21,10 +21,6 @@ h1, h2, h3 {
   font-family: "Varela Round";
 }
 
-#time {
-  width: 13rem;
-}
-
 h1 {
   font-size: 3em;
   line-height: 1.2em;
@@ -40,8 +36,12 @@ h1 {
 }
 
 .totals {
-  margin: -3px 10px;
-  padding: 10px;
+  margin-right: 13rem;
+  /*margin-bottom: 2rem;*/
+  padding: 7px;
+  font-size: 1.4rem;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .fa-lg:hover {
@@ -119,6 +119,11 @@ body {
   height: auto;
   overflow: auto;
   min-height: 84.25vh;
+}
+
+.dashboardTable {
+  width: 100%;
+padding-left: 6rem;
 }
 
 .container {

@@ -85,7 +85,7 @@
                     <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:'MM/dd/yyyy'}}" value="{{events.event_date | date:'MM/dd/yyyy'}}"></thing>
                   </td>
                   <td>
-                    <thing ng-hide="toggle[events.id]">{{events.event_time | date: "HH:mm"}}</thing>
+                    <thing ng-hide="toggle[events.id]">{{events.event_time | date:"shortTime" }}</thing>
                     <thing ng-show="toggle[events.id]"><input type="time" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
                   </td>
                   <td>
@@ -101,11 +101,11 @@
                     <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.commentsUpdate" placeholder="{{events.comments}}" value="{{events.comments}}"></thing>
                   </td>
                   <td>
-                    <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     <button ng-click="ec.updateDonationEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
                   </td>
                   <td>
-                    <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </td>
                 </tr>
               </table>
@@ -174,7 +174,7 @@
                     <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:'MM/dd/yyyy'}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
                   </td>
                   <td>
-                    <thing ng-hide="toggle[events.id]">{{events.event_time | date: "HH:mm"}}</thing>
+                    <thing ng-hide="toggle[events.id]">{{events.event_time | date:"shortTime" }}</thing>
                     <thing ng-show="toggle[events.id]"><input type="time" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
                   </td>
                   <td>
@@ -190,11 +190,11 @@
                     <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.commentsUpdate" placeholder="{{events.comments}}" value="{{events.comments}}"></thing>
                   </td>
                   <td>
-                    <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     <button ng-click="ec.updatePackEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
                   </td>
                   <td>
-                    <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </td>
                 </tr>
               </table>
@@ -204,7 +204,7 @@
               </div>
               <div class="pull-left">
                 <p>View
-                  <select ng-model="ec.viewBy" ng-change="ec.``       setItemsPerPage(ec.viewBy)">
+                  <select ng-model="ec.viewBy" ng-change="ec.setItemsPerPage(ec.viewBy)">
                 <option>10</option>
                 <option>20</option>
                 <option>30</option>
@@ -271,7 +271,7 @@
                     <thing ng-show="toggle[events.id]"><input type="date" ng-model="ec.event_dateUpdate" placeholder="{{events.event_date | date:" MM/dd/yyyy "}}" value="{{events.event_date | date:" MM/dd/yyyy "}}"></thing>
                   </td>
                   <td>
-                    <thing ng-hide="toggle[events.id]">{{events.event_time | date: "HH:mm"}}</thing>
+                    <thing ng-hide="toggle[events.id]">{{events.event_time | date:"shortTime" }}</thing>
                     <thing ng-show="toggle[events.id]"><input type="time" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
                   </td>
                   <td>
@@ -291,11 +291,11 @@
                     <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.commentsUpdate" placeholder="{{events.comments}}" value="{{events.comments}}"></thing>
                   </td>
                   <td>
-                    <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     <button ng-click="ec.updateDonationEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
                   </td>
                   <td>
-                    <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </td>
                 </tr>
               </table>

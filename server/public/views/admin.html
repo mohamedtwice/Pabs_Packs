@@ -22,8 +22,7 @@
                       <th>Contact</th>
                       <th>Phone</th>
                       <th>Address</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th>Edit/Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -45,11 +44,9 @@
                         <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_addressUpdate" placeholder="{{partners.partner_address}}" value="{{partners.partner_address}}"></thing>
                       </td>
                       <td>
-                        <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
-                      </td>
-                      <td>
-                        <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </td>
                     </tr>
                   </tbody>
@@ -72,8 +69,7 @@
                       <th>Phone</th>
                       <th>Email</th>
                       <th>Address</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th>Edit/Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -95,11 +91,9 @@
                         <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_addressUpdate" placeholder="{{vendors.vendor_address}}" value="{{vendors.vendor_address}}"></thing>
                       </td>
                       <td>
-                        <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
-                      </td>
-                      <td>
-                        <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </td>
                     </tr>
                   </tbody>
@@ -134,7 +128,7 @@
                           <thing ng-show="toggle[goal.id]"><input type="text" ng-model="ac.annual_goalUpdate" placeholder="{{goal.annual_goal}}" value="{{goal.annual_goal}}"></thing>
                         </td>
                         <td>
-                          <button class="btn btn-success" ng-hide="toggle[goal.id]" ng-click="toggle[goal.id] = !toggle[goal.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <button class="btn btn-success" ng-hide="toggle[goal.id]" ng-click="toggle[goal.id] = !toggle[goal.id]; ac.selectButton()" ng-disabled="ac.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                           <button ng-click="ac.updateAnnualGoal(goal); ac.selectButton()" ng-show="toggle[goal.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
                         </td>
                       </tr>
