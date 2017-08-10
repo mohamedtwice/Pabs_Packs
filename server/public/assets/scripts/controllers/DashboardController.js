@@ -1,7 +1,7 @@
 myApp.controller('DashboardController', ['DashboardService', 'EventService', '$http', '$location', function(DashboardService, EventService, $http, $location) {
   // This happens after view/controller loads -- not ideal but it works for now.
   var vm = this;
-  
+
   console.log('checking user');
   $http.get('/user').then(function(response) {
     if (response.data.username) {
@@ -50,9 +50,16 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
 
     DashboardService.getBarChart().then(function() {
       var dashData = DashboardService.barChartData;
-      vm.barLabels = [dashData.items.rows[0].item, dashData.items.rows[1].item, dashData.items.rows[2].item, dashData.items.rows[3].item, dashData.items.rows[4].item];
-      vm.barData = [dashData.numbers.rows[0].number_on_hand, dashData.numbers.rows[1].number_on_hand, dashData.numbers.rows[2].number_on_hand, dashData.numbers.rows[3].number_on_hand, dashData.numbers.rows[4].number_on_hand];
-      console.log('back in controller with:', vm.barLabels, vm.barData);
+      console.log('dasData', dashData);
+      console.log('service data', DashboardService.barChartData);
+      for (var i = 0; i < dashData.items.rows.length; i++) {
+        vm.barLabels.push(dashData.items.rows[i].item);
+        vm.barData.push(dashData.numbers.rows[i].number_on_hand);
+        console.log(i);
+      }
+      // vm.barLabels = [dashData.items.rows[0].item, dashData.items.rows[1].item, dashData.items.rows[2].item, dashData.items.rows[3].item, dashData.items.rows[4].item];
+      // vm.barData = [dashData.numbers.rows[0].number_on_hand, dashData.numbers.rows[1].number_on_hand, dashData.numbers.rows[2].number_on_hand, dashData.numbers.rows[3].number_on_hand, dashData.numbers.rows[4].number_on_hand];
+      console.log('back in bargraph controller with:', vm.barLabels, vm.barData);
     }); // end DashboardService.getBarChart
 }; // end getBarChart
 
