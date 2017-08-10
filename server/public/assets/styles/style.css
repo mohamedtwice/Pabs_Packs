@@ -125,6 +125,10 @@ body {
   min-height: 83vh;
 }
 
+#new {
+  margin-top: 1.5rem;
+}
+
 .header-container {
   background-color: #fdfefb;
 }
