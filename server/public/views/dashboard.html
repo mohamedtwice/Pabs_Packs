@@ -6,7 +6,6 @@
       <hr>
     </div>
 
-  <!-- <div ng-controller="DashboardController as dc"> -->
 
     <div id="pie">
       <div class="container">
@@ -36,13 +35,13 @@
                 <td>{{ data.event_time | date:"shortTime" }}</td>
                 <td>{{ data.event_type }}</td>
                 <td>
-                  <thing ng-show="data.packs_promised" >{{ data.packs_promised }}</thing>
+                  <thing ng-show="data.packs_promised">{{ data.packs_promised }}</thing>
                   <thing ng-show="data.packs_promised===null">N/A</thing>
                 </td>
                 <!-- <td>{{ data.packs_promised }}</td> -->
                 <td>{{ data.comments }}</td>
                 <td>
-                  <thing ng-show="data.packs_made" >{{ data.packs_made }}</thing>
+                  <thing ng-show="data.packs_made">{{ data.packs_made }}</thing>
                   <thing ng-show="data.packs_made===null">N/A</thing>
                 </td>
               </tr>
@@ -59,5 +58,4 @@
       </div>
     </div>
 
-  <!-- </div> -->
 </div>

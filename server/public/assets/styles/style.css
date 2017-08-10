@@ -122,6 +122,10 @@ body {
   margin-top: 1.5rem;
 }
 
+#time {
+  width: 13rem;
+}
+
 .lowItems {
   width: 100%;
   padding-left: 6rem;
