@@ -1,16 +1,15 @@
-<header ng-include="'/views/templates/header.html'">
-</header>
-<!-- <div class="wrapper"> -->
-<div class="bg">
-<div class="container">
-  <h2>INVENTORY</h2>
+
+<header ng-include="'/views/templates/header.html'"></header>
+<div class="wrapper">
+  <div class="container">
+    <h2 class="lead">INVENTORY</h2>
 
   <!-- beginning of tabs -->
   <tabset>
     <button class="btn btn-info pull-right" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 
     <!-- packs tab -->
-    <tab heading="PACKS" select="ic.getInventory()">
+    <tab heading="Packs" select="ic.getInventory()">
       <div class="table-responsive" ng-model="ic.packs">
         <table class="table table-bordered table-hover">
           <!-- header with sort -->
@@ -47,8 +46,7 @@
                 </a>
                 </th>
                 <!-- Need edit/delete functionality -->
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Edit / Delete</th>
               </tr>
             </thead>
             <!-- repeat items with hide/show inputs to show upon clicking edit button -->
@@ -74,17 +72,17 @@
                 <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
               </td>
               <td>
-                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                <button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
               </td>
-              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
           </table>
         </div> <!-- end responsive table -->
       </tab> <!-- end packs tab -->
 
     <!-- merchandise section -->
-    <tab heading="MERCHANDISE" select="ic.getInventory()">
+    <tab heading="Merchandise" select="ic.getInventory()">
       <div class="table-responsive" ng-model="ic.packs">
         <table class="table table-bordered table-hover">
           <!-- header with sort -->
@@ -157,7 +155,7 @@
         </div>
       </tab>
 
-      <!-- merchandise section -->
+      <!-- Misc section -->
       <tab heading="Misc" select="ic.getInventory()">
         <div class="table-responsive" ng-model="ic.packs">
           <table class="table table-bordered table-hover">
@@ -195,8 +193,7 @@
                 </a>
                 </th>
                 <!-- need edit/delete functionality -->
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Edit / Delete</th>
               </tr>
             </thead>
             <!-- Repeat items with hide/show inputs. Will appear after clicking edit button. -->
@@ -222,13 +219,13 @@
                 <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
               </td>
               <td>
-                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                <button class="btn btn-danger" ng-click="ic.deleteItem(items.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
               </td>
-              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
           </table>
-        </div> <!-- end table responsive -->
+        </div>
       </tab> <!-- end misc tab -->
     </tabset>
 
@@ -302,6 +299,8 @@
         </div> <!-- end col-md-12 -->
       </div> <!-- end row -->
     </div> <!-- end modal body -->
+
+  </div> <!-- end container -->
 
 <!-- post button -->
 <div class="modal-footer">

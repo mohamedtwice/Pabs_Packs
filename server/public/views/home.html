@@ -8,11 +8,11 @@
     <form ng-submit="login()">
       <div class="input-group margin-bottom-sm">
         <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-    <input type="text" ng-model="user.username" class="input100" placeholder="Username"/>
+    <input type="text" ng-model="user.username" class="input100 form-control" placeholder="Username"/>
       </div>
-      <div class="input-group">
+      <div class="input-group" id="loginInput">
         <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-      <input type="password" ng-model="user.password" class="input100" placeholder="Password"/>
+      <input type="password" ng-model="user.password" class="input100 form-control" placeholder="Password"/>
       </div>
 
       <div>

@@ -27,17 +27,19 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
     // pie piece labels
     vm.pieLabels = ['Packs Already Donated', 'Packs Left to Donate', 'Scheduled Pack Donations'];
     // legend
-    vm.pieOptions = {legend: {display: true}};
+    vm.pieOptions = {
+      legend: {
+        display: true
+      }
+    };
     // pie data
     vm.pieData = [];
-
     DashboardService.getPieChart().then(function() {
       var dashData = DashboardService.pieChartData;
       vm.pieData = [dashData.packsDonated, dashData.leftToDonate, dashData.scheduledDonations];
       console.log('back in controller with:', vm.pieData);
     }); // end DashboardService.getPieChart
   }; // end getPieChart
-
 
   // horizontal bar chart
   vm.getBarChart = function() {
@@ -56,7 +58,7 @@ myApp.controller('DashboardController', ['DashboardService', 'EventService', '$h
         console.log(i);
       console.log('back in controller with:', vm.barLabels, vm.barData);
     }; // end DashboardService.getBarChart
-}); // end getBarChart
+  }); // end getBarChart
 }
 
   // upcoming events

@@ -67,6 +67,7 @@ router.get('/donationData', function(req, res) {
               } else {
                 dashboardData.scheduledDonations = parseInt(result2.rows[0].sum);
                 console.log('Got pie chart scheduled pack donations *3* from the DB:', result2.rows[0].sum);
+                done();
               } // end else statement
               res.send(dashboardData);
               console.log('dashboardData:', dashboardData);

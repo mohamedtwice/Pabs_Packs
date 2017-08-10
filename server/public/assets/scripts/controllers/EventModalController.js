@@ -44,20 +44,21 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
       comments: vm.comments
     }
     console.log(newEvent);
-      EventService.postEvent(newEvent).then(function() {
-        swal({
-          type: 'success',
-          title: 'New event added!',
-          timer: 2500
-        }).then(
-          function() {},
-          // handling the promise rejection
-          function(dismiss) {
-            if (dismiss === 'timer') {
-              console.log('I was closed by the timer');
-            }
-          })
-      });
+    EventService.postEvent(newEvent).then(function() {
+      swal({
+        type: 'success',
+        title: 'New event added!',
+        timer: 2500
+      }).then(
+        function() {},
+        // handling the promise rejection
+        function(dismiss) {
+          if (dismiss === 'timer') {
+            console.log('I was closed by the timer');
+          }
+        })
+    });
+    vm.cancel();
     $route.reload();
     vm.cancel();
     // getEvents doesn't post new event to page immediately
@@ -67,6 +68,7 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
   vm.getPartners = function() {
     console.log('Getting partners');
     PartnerService.getPartners().then(function() {
+
       vm.partners = PartnerService.partnerData;
       console.log(vm.partners);
     });

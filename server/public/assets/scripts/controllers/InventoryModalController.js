@@ -4,6 +4,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
 
   vm.isCollapsed = true;
   vm.itemsPerPage = 10;
+  vm.animationsEnabled = true;
 
   vm.cancel = function() {
     $modalInstance.dismiss('cancel');
@@ -49,6 +50,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
         })
     }); // end sweetAlert
     // vm.getInventory();
+    vm.cancel();
     $route.reload();
     vm.cancel();
   } // end postInventoryItem

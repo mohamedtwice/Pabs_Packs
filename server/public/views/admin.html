@@ -1,4 +1,5 @@
 <header ng-include="'/views/templates/header.html'"></header>
+<div class="container wrapper">
       <h2 class="lead">ADMIN PAGE</h2>
 
       <div class="row">
@@ -18,8 +19,7 @@
                       <th>Contact</th>
                       <th>Phone</th>
                       <th>Address</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th>Edit/Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -33,7 +33,7 @@
                         <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_contactUpdate" placeholder="{{partners.partner_contact}}" value="{{partners.partner_contact}}"></thing>
                       </td>
                       <td>
-                        <thing ng-hide="toggle[partners.id]">{{partners.partner_phone| tel }}</thing>
+                        <thing ng-hide="toggle[partners.id]">{{partners.partner_phone | tel}}</thing>
                         <thing ng-show="toggle[partners.id]"><input type="text" phone-input ng-model="ac.partner_phoneUpdate" placeholder="{{partners.partner_phone}}" value="{{partners.partner_phone}}"></thing>
                       </td>
                       <td>
@@ -41,11 +41,9 @@
                         <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_addressUpdate" placeholder="{{partners.partner_address}}" value="{{partners.partner_address}}"></thing>
                       </td>
                       <td>
-                        <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
-                      </td>
-                      <td>
-                        <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </td>
                     </tr>
                   </tbody>
@@ -68,8 +66,7 @@
                       <th>Phone</th>
                       <th>Email</th>
                       <th>Address</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th>Edit/Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -79,7 +76,7 @@
                         <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_nameUpdate" placeholder="{{vendors.vendor_name}}" value="{{vendors.vendor_name}}"></thing>
                       </td>
                       <td>
-                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_phone | tel }}</thing>
+                        <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_phone | tel}}</thing>
                         <thing ng-show="toggle[vendors.id]"><input type="text" phone-input ng-model="ac.vendor_phoneUpdate" placeholder="{{vendors.vendor_phone}}" value="{{vendors.vendor_phone}}"></thing>
                       </td>
                       <td>
@@ -91,11 +88,9 @@
                         <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_addressUpdate" placeholder="{{vendors.vendor_address}}" value="{{vendors.vendor_address}}"></thing>
                       </td>
                       <td>
-                        <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
-                      </td>
-                      <td>
-                        <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </td>
                     </tr>
                   </tbody>
@@ -133,25 +128,19 @@
                           <thing ng-show="toggle[goal.id]"><input type="text" ng-model="ac.annual_goalUpdate" placeholder="{{goal.annual_goal}}" value="{{goal.annual_goal}}"></thing>
                         </td>
                         <td>
-                          <button class="btn btn-success" ng-hide="toggle[goal.id]" ng-click="toggle[goal.id] = !toggle[goal.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <button class="btn btn-success" ng-hide="toggle[goal.id]" ng-click="toggle[goal.id] = !toggle[goal.id]; ac.selectButton()" ng-disabled="ac.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                           <button ng-click="ac.updateAnnualGoal(goal); ac.selectButton()" ng-show="toggle[goal.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                </div>
-                <!-- end table-responsive -->
-              </div>
-              <!-- end col-md-5 -->
-            </div>
-            <!-- end adminbox -->
-          </tab>
-          <!-- end annual goal tab -->
+                </div> <!-- end table-responsive -->
+              </div> <!-- end col-md-5 -->
+            </div> <!-- end adminbox -->
+          </tab> <!-- end annual goal tab -->
 
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end container -->
+      </div> <!-- end row -->
+    </div> <!-- end container -->
 
     <!-- end html of page -->
 
@@ -178,7 +167,7 @@
               </div>
               <div class="form-group">
                 <label for="vendorPhone">Phone Number</label>
-                <input type="text" class="form-control" name="vendor_phone" phone-input id="vendorPhone" ng-model="vc.vendor_phone" placeholder="e.g. 555-5555" value="{{vc.vendors.vendor_phone}}">
+                <input type="text" class="form-control" name="vendor_phone" id="vendorPhone" phone-input ng-model="vc.vendor_phone" placeholder="e.g. (555)555-5555" value="{{vc.vendors.vendor_phone}}">
               </div>
               <div class="form-group">
                 <label for="vendorEmail">Vendor Email</label>
@@ -189,14 +178,10 @@
                 <input type="text" class="form-control" name="vendor_address" id="vendorAddress" ng-model="vc.vendor_address" placeholder="e.g. 123 Smith Lane" value="{{vc.vendors.vendor_address}}">
               </div>
             </form>
-          </div>
-          <!-- end col-md-12 -->
-        </div>
-        <!-- end row -->
-      </div>
-      <!-- end modal body -->
-  </div>
-  <!-- end wrapper -->
+          </div> <!-- end col-md-12 -->
+        </div> <!-- end row -->
+      </div> <!-- end modal body -->
+  </div> <!-- end wrapper -->
 
   <!-- post button -->
   <div class="modal-footer">
@@ -226,11 +211,11 @@
               <input type="text" class="form-control" name="partner_name" ng-model="pc.partner_name" placeholder="e.g. Smith Hospital" value="{{pc.partners.partner_name}}">
             </div>
             <div class="form-group">
-              <label for="partner">Partner Contact</label>
-              <input type="text" class="form-control" name="partner_phone" phone-input ng-model="pc.partner_phone" placeholder="e.g. (555)555-5555" value="{{pc.partners.partner_phone}}">
+              <label for="partner">Partner Phone</label>
+              <input type="text" class="form-control" name="partner_phone" phone-input ng-model="pc.partner_phone" phone-input placeholder="e.g. (555)555-5555" value="{{pc.partners.partner_phone}}">
             </div>
             <div class="form-group">
-              <label for="partner">Partner Phone</label>
+              <label for="partner">Partner Contact</label>
               <input type="text" class="form-control" name="partner_contact" ng-model="pc.partner_contact" placeholder="e.g. jane@smithhospital.com" value="{{pc.partners.partner_contact}}">
             </div>
             <div class="form-group">
@@ -241,7 +226,6 @@
         </div> <!-- end col-md-12 -->
       </div>  <!-- end row -->
     </div> <!-- end modal body -->
-
 
     <!-- post button -->
     <div class="modal-footer">

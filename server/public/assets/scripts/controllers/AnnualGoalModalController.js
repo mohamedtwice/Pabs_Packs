@@ -39,6 +39,7 @@ myApp.controller('AnnualGoalModalController', function(AnnualgoalService, $modal
           }
         })
     }); // end sweetAlert
+    vm.cancel();
     $route.reload();
   }; // end addnewgoal
 

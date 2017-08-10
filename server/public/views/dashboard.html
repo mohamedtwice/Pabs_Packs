@@ -1,13 +1,12 @@
 <header ng-include="'/views/templates/header.html'"></header>
 
-  <div class="box">
+<div class="wrapper">
     <div class="container">
       <h1 id="welcome" class="lead">Welcome, {{ dc.username }}!</h1>
       <hr>
     </div>
-  </div>
 
-    <div class="box" id="pie">
+    <div id="pie">
       <div class="container">
         <h3 class="lead">ANNUAL GOAL FOR PACK DONATIONS</h3>
         <canvas id="pie" class="chart chart-pie" chart-data="dc.pieData" chart-labels="dc.pieLabels" chart-options="dc.pieOptions" ng-init="dc.getPieChart()"></canvas>
@@ -16,6 +15,7 @@
 
     <div class="box" id="upcomingEvents">
       <div class="container">
+
         <h3 class="lead">UPCOMING EVENTS</h3>
         <div ng-init="dc.getUpcomingEvents()">
           <table class="table table-bordered">
@@ -32,16 +32,17 @@
             <tbody>
               <tr ng-repeat="data in dc.upcomingEvents">
                 <td>{{ data.event_date | date:"MM/dd/yyyy" }}</td>
-                <td>{{ data.event_time | date:"HH:mm" }}</td>
+
+                <td>{{ data.event_time | date:"shortTime" }}</td>
                 <td>{{ data.event_type }}</td>
                 <td>
-                  <thing ng-show="data.packs_promised" >{{ data.packs_promised }}</thing>
+                  <thing ng-show="data.packs_promised">{{ data.packs_promised }}</thing>
                   <thing ng-show="data.packs_promised===null">N/A</thing>
                 </td>
                 <!-- <td>{{ data.packs_promised }}</td> -->
                 <td>{{ data.comments }}</td>
                 <td>
-                  <thing ng-show="data.packs_made" >{{ data.packs_made }}</thing>
+                  <thing ng-show="data.packs_made">{{ data.packs_made }}</thing>
                   <thing ng-show="data.packs_made===null">N/A</thing>
                 </td>
               </tr>
@@ -51,10 +52,10 @@
       </div>
     </div>
 
-
-    <div class="wrapper" id="itemsRunningLow">
-      <div class="container">
+    <div id="itemsRunningLow">
+      <div class="lowItems">
         <h3 class="lead">ITEMS RUNNING LOW</h3>
         <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
       </div>
     </div>
+</div>

@@ -1,6 +1,8 @@
-myApp.controller('PartnerModalController', function(PartnerService, $modalInstance, $route) {
+myApp.controller('PartnerModalController', function(PartnerService, $modalInstance, $filter, $route) {
   console.log('in PartnerModalController');
   var vm = this;
+
+  vm.animationsEnabled = true;
 
   vm.cancel = function() {
     $modalInstance.dismiss('cancel');
@@ -39,6 +41,7 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
           }
         })
     }); // end sweetAlert
+    vm.cancel();
     $route.reload();
     vm.cancel();
   };
