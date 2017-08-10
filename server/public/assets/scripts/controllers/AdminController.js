@@ -78,7 +78,7 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
 
   vm.getPartners = function() {
     console.log('in getPartners');
-    PartnerService.getPartner().then(function() {
+    PartnerService.getPartners().then(function() {
       vm.partners = PartnerService.partnerData;
       console.log(vm.partners);
     });

@@ -2,7 +2,7 @@ myApp.service('PartnerService', function($http) {
   console.log('in partner service');
   var sv = this;
 
-  sv.getPartner = function() {
+  sv.getPartners = function() {
     return $http({
       method: 'GET',
       url: '/partners'
