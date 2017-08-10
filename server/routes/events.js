@@ -162,7 +162,7 @@ router.get('/neededTotals', function(req, res) {
     } // end first if statements
 
     // TOTALS - NEEDED PACKS QUERY   ******  1  *****
-    client.query('SELECT (SUM(e.packs_promised) - SUM(e.packs_made)) "packs_needed_total" FROM events e;', function(err, result) {
+    client.query('SELECT (SUM(e.packs_promised)) FROM events e WHERE e.event_date >= (current_date);', function(err, result) {
 
       var packTotals = {
         needed: '',
@@ -174,8 +174,8 @@ router.get('/neededTotals', function(req, res) {
         console.log('Error querying the DB for Needed Packs');
         done();
       } else {
-        packTotals.needed = parseInt(result.rows[0].packs_needed_total);
-        console.log('Got needed packs *1* from the DB:', result.rows[0].needed);
+        packTotals.needed = parseInt(result.rows[0].sum);
+        console.log('Got needed packs *1* from the DB:', result.rows[0].sum);
 
         // TOTALS - PACKS CURRENTLY MADE QUERY   *****  2  *****
         client.query('SELECT SUM (e.packs_made) FROM events e;', function(err1, result1) {
@@ -184,7 +184,7 @@ router.get('/neededTotals', function(req, res) {
             done(); // exit out of DB pool
           } else {
             packTotals.made = parseInt(result1.rows[0].sum);
-            console.log('Got Packs Currently Made *2* from the DB:', result.rows[0].made);
+            console.log('Got Packs Currently Made *2* from the DB:', result1.rows[0].sum);
 
             // TOTALS - CTD ANNUAL PACKS DONATED QUERY   *****  3  *****
             client.query('SELECT SUM (e.packs_promised) FROM events e WHERE e.event_date <= (current_date);', function(err2, result2) {
