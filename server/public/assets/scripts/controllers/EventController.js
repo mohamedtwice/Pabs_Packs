@@ -351,11 +351,13 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
     EventService.getPackTotals().then(function() {
       vm.packTotals = EventService.packTotalsData;
       var packsData = EventService.packTotalsData;
-      vm.neededPacks = [packsData.needed];
-      vm.packsMade = [packsData.made];
-      vm.packsDonated = [packsData.donated];
+      vm.neededPacks = packsData.needed.toString();
+      vm.needed = parseInt(vm.neededPacks);
+      console.log(vm.needed);
+      console.log(vm.neededPacks);
+      vm.packsMade = packsData.made;
+      vm.packsDonated = packsData.donated;
     }); // end EventService.getNeededPacks
   }; // end neededPacks
-  vm.getPackTotals();
 
 }]);

@@ -13,17 +13,17 @@
           </tr>
         </thead>
         <tr>
-          <div ng-repeat="data in ec.packTotals track by $index">
-            <td>
-              <h3>{{ ec.neededPacks[0] }}</h3>
+          <div>
+            <td ng-class="{'success': ec.needed < 0}">
+              <h3 ng-show="ec.neededPacks < 0">Surplus of: {{ ec.neededPacks.slice(1) }}</h3>
+              <h3 ng-show="ec.neededPacks > 0">{{ ec.neededPacks }}</h3>
             </td>
             <td>
-              <h3>{{ ec.packsMade[0] }}</h3>
+              <h3>{{ ec.packsMade }}</h3>
             </td>
             <td>
-              <h3>{{ ec.packsDonated[0] }}</h3>
+              <h3>{{ ec.packsDonated }}</h3>
             </td>
-
           </div>
         </tr>
         </thead>
