@@ -47,10 +47,10 @@ router.get('/', function(req, res) {
 // POST newVendor
 router.post('/', function(req, res) {
   console.log(req.body);
-  var name = req.body.vendor_name;
-  var phone = req.body.vendor_phone;
-  var email = req.body.vendor_email;
-  var address = req.body.vendor_address;
+  var name = req.body.name;
+  var phone = req.body.phone;
+  var email = req.body.email;
+  var address = req.body.address;
   // do database query to create a new vendor
   pool.connect()
     .then(function(client) {
@@ -106,7 +106,7 @@ router.delete('/:id', function(req, res, next) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('DELETE FROM vendors WHERE id = $1', [id], function(err, result) {
+    client.query('DELETE FROM vendor WHERE id = $1', [id], function(err, result) {
       console.log(id);
       done();
       if (err) {

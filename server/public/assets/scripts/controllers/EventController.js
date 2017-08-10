@@ -160,7 +160,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
     }).then(function() {
       console.log('in remove');
       EventService.deleteEvent(id);
-      vm.getEvents();
+      $route.reload();
       // $route.reload();
       swal(
         'Deleted!',
@@ -342,6 +342,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
         });
     }); // end call to service
     $route.reload();
+    vm.cancel();
   }; // end updatePackEvents
 
   // Needed Packs function
@@ -350,26 +351,13 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
     EventService.getPackTotals().then(function() {
       vm.packTotals = EventService.packTotalsData;
       var packsData = EventService.packTotalsData;
-      vm.neededPacks = [packsData.needed];
-      vm.packsMade = [packsData.made];
-      vm.packsDonated = [packsData.donated];
-    }); // end EVentService.getNeededPacks
+      vm.neededPacks = packsData.needed.toString();
+      vm.needed = parseInt(vm.neededPacks);
+      console.log(vm.needed);
+      console.log(vm.neededPacks);
+      vm.packsMade = packsData.made;
+      vm.packsDonated = packsData.donated;
+    }); // end EventService.getNeededPacks
   }; // end neededPacks
-  vm.getPackTotals();
 
 }]);
-
-// .filter('unique', function() {
-//   return function(collection, keyname) {
-//     var output = [],
-//       keys = [];
-//     angular.forEach(collection, function(item) {
-//       var key = item[keyname];
-//       if (keys.indexOf(key) === -1) {
-//         keys.push(key);
-//         output.push(item);
-//       }
-//     });
-//     return output;
-//   };
-// }));

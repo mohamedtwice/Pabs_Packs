@@ -9,7 +9,6 @@ router.use(bodyParser.urlencoded({
 }));
 router.use(bodyParser.json());
 
-
 // module with db
 var connection = require('../modules/connection');
 var pg = require('pg');
@@ -21,8 +20,6 @@ var config = {
   max: 12
 };
 var pool = new pg.Pool(config); // DO NOT MODIFY
-
-
 
 // GET annualgoal
 router.get('/', function(req, res) {
@@ -46,7 +43,6 @@ router.get('/', function(req, res) {
     });
   });
 });
-
 
 // POST annual_goal
 router.post('/', function(req, res) {
@@ -74,8 +70,28 @@ router.post('/', function(req, res) {
     });
 });
 
-
-
-
+router.put('/:id', function(req, res) {
+  console.log('{{{{{{{{{{{{{{{{{{{ PUT PUT PUT PUT PUT  }}}}}}}}}}}}}}}}}}}[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]');
+  console.log(req.body);
+  var id = req.params.id;
+  var goal = req.body.annual_goalUpdate;
+  var year = req.body.yearUpdate;
+  // updates specified field
+  pool.connect(function(err, client, done) {
+    console.log(id);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("UPDATE backpack_goal SET annual_goal=$1, year=$2 WHERE id = $3;", [goal, year, id], function(err, result) {
+      console.log(id);
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      console.log(result);
+      res.send(result);
+    }); // end query
+  }); // end connect
+}); // end put
 
 module.exports = router;

@@ -121,6 +121,7 @@ router.delete('/:id', function(req, res, next) {
 }); // end delete
 
 router.put('/:id', function(req, res) {
+
   console.log('in put db');
   var id = req.body.id;
   console.log(id);
@@ -135,19 +136,32 @@ router.put('/:id', function(req, res) {
   console.log(packs_promised);
   // updates specified field
   pool.connect(function(err, client, done) {
+
     console.log(id);
     if (err) {
       return console.error('error fetching client from pool', err);
     }
+
+    // UPDATE - EVENTS QUERY   ******  1  *****
     client.query("UPDATE events SET event_date=$1, event_time=$2, partner_name=$3, packs_made=$4, packs_promised=$5, comments=$6 WHERE id = $7;", [event_date, event_time, partner_name, packs_made, packs_promised, comments, id], function(err, result) {
-      console.log(id);
+      console.log('updating this event', id);
       done();
       if (err) {
-        return console.error('error running query', err);
+        return console.error('error running query to update events', err);
+      } else {
+        // UPDATE - INVENTORY QUERY   ******  2  *****
+        client.query("UPDATE inventory SET number_on_hand = number_on_hand - $1 WHERE type = 'Backpack';", [packs_made], function(err2, result2) {
+          console.log(packs_made);
+          if (err2) {
+            console.log('Error querying inventory DB to subtract totals *2*', err2);
+            done(); // exit out of DB pool
+          } else {
+            console.log(result);
+            res.send(result);
+          }
+        }); // end 2nd query
       }
-      console.log(result);
-      res.send(result);
-    }); // end query
+    }); // end 1st query
   }); // end pool
 }); // end put
 
@@ -192,6 +206,7 @@ router.get('/neededTotals', function(req, res) {
                 console.log('Error querying the DB for CTD Annual Packs Donated *3*');
                 done(); // exit out of DB pool
               } else {
+                done();
                 packTotals.donated = parseInt(result2.rows[0].sum);
                 console.log('Got CTD Annual Packs Donated *3* from the DB:', result2.rows[0].sum);
               } // end else statement

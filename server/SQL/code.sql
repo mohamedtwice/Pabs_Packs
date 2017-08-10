@@ -32,7 +32,7 @@ CREATE TABLE events (
   event_date date,
   event_time varchar(80),
   event_type text,
-  partner_id integer,
+  partner_name integer,
   packs_promised integer,
   packs_made integer,
   comments text
@@ -52,16 +52,6 @@ CREATE TABLE partners (
 INSERT INTO partners (partner_name, partner_address, partner_phone, partner_contact)
 VALUES ('Gillete', '123 Main St. Minneapolis, MN 55125', '612-123-1234', 'Joe Schmoe'),
 ('Childrens Hospital', '123 Main St. Minneapolis, MN 55125', '612-123-1234', 'Joe Schmoe')
-
-CREATE TABLE event_type (
-  id SERIAL PRIMARY KEY,
-  event_type_name varchar(80)
-  );
-
-INSERT INTO event_type (event_type_name)
-VALUES ('Packing'),
-('Donation'),
-('Donation');
 
 CREATE TABLE vendor (
   id SERIAL PRIMARY KEY,

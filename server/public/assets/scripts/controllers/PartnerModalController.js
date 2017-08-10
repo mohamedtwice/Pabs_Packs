@@ -8,7 +8,7 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
 
   vm.getPartners = function() {
     console.log('in getPartners');
-    PartnerService.getPartner().then(function() {
+    PartnerService.getPartners().then(function() {
       vm.partners = PartnerService.partnerData;
       console.log(vm.partners);
     });
@@ -28,7 +28,7 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
     PartnerService.postPartner(newPartner).then(function() {
       swal({
         type: 'success',
-        title: 'New item added!',
+        title: 'New partner added!',
         timer: 2500
       }).then(
         function() {},
@@ -40,6 +40,7 @@ myApp.controller('PartnerModalController', function(PartnerService, $modalInstan
         })
     }); // end sweetAlert
     $route.reload();
+    vm.cancel();
   };
   // end postVendor
 
