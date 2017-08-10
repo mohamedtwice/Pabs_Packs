@@ -108,6 +108,10 @@ body {
   background: #e7e9dd;
 }
 
+#timeInput {
+  width: 13rem;
+}
+
 .container {
   /*padding-top: -40rem;*/
   width: 100%;

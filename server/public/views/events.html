@@ -7,19 +7,22 @@
       <table class="table table-condensed table-bordered table-hover">
         <thead>
           <tr>
-            <th>Needed Packs</th>
-            <th>Packs Currently Made</th>
+            <th>Packs Needed for Upcoming Events</th>
+            <th>Packs on Hand</th>
             <th>CTD Annual Packs Donated</th>
           </tr>
         </thead>
         <tr>
           <div ng-repeat="data in ec.packTotals track by $index">
             <td>
-              <h3>{{ ec.neededPacks[0] }}</h3></td>
+              <h3>{{ ec.neededPacks[0] }}</h3>
+            </td>
             <td>
-              <h3>{{ ec.packsMade[0] }}</h3></td>
+              <h3>{{ ec.packsMade[0] }}</h3>
+            </td>
             <td>
-              <h3>{{ ec.packsDonated[0] }}</h3></td>
+              <h3>{{ ec.packsDonated[0] }}</h3>
+            </td>
           </div>
         </tr>
         </thead>
@@ -83,7 +86,7 @@
                     <thing ng-show="toggle[events.id]"><input type="time" ng-model="ec.event_timeUpdate" placeholder="{{events.event_time}}" value="{{events.event_time}}"></thing>
                   </td>
                   <td>
-                    <thing ng-hide="toggle[events.id]">{{events.partner_name}}</thing>
+                    <thing ng-hide="toggle[events.id]">{{ events.partner_name }}</thing>
                     <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
                   </td>
                   <td>
@@ -273,13 +276,18 @@
                     <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.partner_nameUpdate" placeholder="{{events.partner_name}}" value="{{events.partner_name}}"></thing>
                   </td>
                   <td>
-                    <thing ng-hide="toggle[events.id]">{{events.packs_promised}}</thing>
+                    <thing ng-hide="toggle[events.id]">
+                      <thing ng-show="events.packs_promised===null">N/A</thing>
+                      <thing ng-show="events.packs_promised">{{events.packs_promised}}</thing>
+                    </thing>
                     <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.packs_promisedUpdate" placeholder="{{events.packs_promised}}" value="{{events.packs_promised}}"></thing>
                   </td>
                   <td>
-                    <thing ng-hide="toggle[events.id]">{{events.packs_made}}</thing>
+                    <thing ng-hide="toggle[events.id]">
+                      <thing ng-show="events.packs_made===null">N/A</thing>
+                      <thing ng-show="events.packs_made">{{events.packs_made}}</thing>
+                    </thing>
                     <thing ng-show="toggle[events.id]"><input type="number" ng-model="ec.packs_madeUpdate" placeholder="{{events.packs_made}}" value="{{events.packs_made}}"></thing>
-                  </td>
                   <td>
                     <thing ng-hide="toggle[events.id]">{{events.comments}}</thing>
                     <thing ng-show="toggle[events.id]"><input type="text" ng-model="ec.commentsUpdate" placeholder="{{events.comments}}" value="{{events.comments}}"></thing>
@@ -334,7 +342,7 @@
                   <div class="form-group">
                     <label>Time:</label for="time">
                       <div>
-                        <input type="time" id="exampleInput" name="input" ng-model="ec.event_time" placeholder="HH:mm:ss"/><p>e.g. 05:00 pm</p>
+                        <input type="time" id="timeInput" class="form-control" name="input" ng-model="ec.event_time" placeholder="HH:mm:ss"/><p>e.g. 05:00 pm</p>
                       </div>
                   </div>
                   <div class="form-group">
