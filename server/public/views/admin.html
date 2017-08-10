@@ -12,7 +12,7 @@
           <!-- packs tab -->
           <tab heading="Partners">
             <div class="adminbox">
-              <button class="btn btn-info pull-right" ng-click="ac.openPartnerModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button class="btn btn-info pull-right" id="new" ng-click="ac.openPartnerModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
               <h3 class="lead">PARTNERS</h3>
               <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
@@ -59,7 +59,7 @@
           <tab heading="Vendors">
              <!-- ng-click="ac.selectedButton===" -->
             <div class="adminbox">
-              <button class="btn btn-info pull-right" ng-click="ac.openVendorModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button class="btn btn-info pull-right" id="new" ng-click="ac.openVendorModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
               <h3 class="lead">VENDORS</h3>
               <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
@@ -105,7 +105,7 @@
           <!-- annual goal tab -->
           <tab heading="Annual Goal">
             <div class="adminbox">
-              <button class="btn btn-info pull-right" ng-click="ac.openAnnualGoalModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button class="btn btn-info pull-right" id="new" ng-click="ac.openAnnualGoalModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
               <div class="col-md-5">
                 <h3 class="lead">ANNUAL GOAL</h3>
                 <div class="table-responsive">
@@ -167,7 +167,7 @@
               </div>
               <div class="form-group">
                 <label for="vendorPhone">Phone Number</label>
-                <input type="text" class="form-control" name="vendor_phone" id="vendorPhone" phone-input ng-model="vc.vendor_phone" placeholder="e.g. 555-5555" value="{{vc.vendors.vendor_phone}}">
+                <input type="text" class="form-control" name="vendor_phone" id="vendorPhone" phone-input ng-model="vc.vendor_phone" placeholder="e.g. (555)555-5555" value="{{vc.vendors.vendor_phone}}">
               </div>
               <div class="form-group">
                 <label for="vendorEmail">Vendor Email</label>
@@ -212,7 +212,7 @@
             </div>
             <div class="form-group">
               <label for="partner">Partner Phone</label>
-              <input type="text" class="form-control" name="partner_phone" phone-input ng-model="pc.partner_phone" phone-input placeholder="e.g. 555-5555" value="{{pc.partners.partner_phone}}">
+              <input type="text" class="form-control" name="partner_phone" phone-input ng-model="pc.partner_phone" phone-input placeholder="e.g. (555)555-5555" value="{{pc.partners.partner_phone}}">
             </div>
             <div class="form-group">
               <label for="partner">Partner Contact</label>

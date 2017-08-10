@@ -1,18 +1,11 @@
 /*FONTS*/
+
 header {
   margin-bottom: 3rem;
 }
 
 * {
   font-family: Raleway, sans-serif;
-}
-
-.bg {
-  background-color: white;
-}
-
-#totals {
-  /*font-size: 1.5rem;*/
 }
 
 h1, h2, h3 {
@@ -37,7 +30,6 @@ h1 {
 
 .totals {
   margin-right: 13rem;
-  /*margin-bottom: 2rem;*/
   padding: 7px;
   font-size: 1.4rem;
   border: 1px solid black;
@@ -123,11 +115,20 @@ body {
 
 .dashboardTable {
   width: 100%;
-padding-left: 6rem;
+  padding-left: 6rem;
+}
+
+#new {
+  margin-top: 1.5rem;
+}
+
+.lowItems {
+  width: 100%;
+  padding-left: 6rem;
+  margin-bottom: 4rem;
 }
 
 .container {
-  padding-top: -40rem;
   width: 100%;
   padding-left: 6rem;
   padding-right: 6rem;

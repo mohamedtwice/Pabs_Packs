@@ -75,8 +75,7 @@
                       <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                     </a>
                     </th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Edit / Delete</th>
                   </tr>
                 </thead>
                 <tr ng-repeat="events in ec.donationList.slice(((ec.currentPage-1)*ec.itemsPerPage), ((ec.currentPage)*ec.itemsPerPage)) | orderBy:ec.column:ec.reverse">
@@ -103,8 +102,6 @@
                   <td>
                     <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     <button ng-click="ec.updateDonationEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
-                  </td>
-                  <td>
                     <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </td>
                 </tr>
@@ -164,8 +161,7 @@
                         <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                       </a>
                     </th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Edit / Delete</th>
                   </tr>
                 </thead>
                 <tr ng-repeat="events in ec.packList.slice(((ec.currentPage-1)*ec.itemsPerPage), ((ec.currentPage)*ec.itemsPerPage)) | orderBy:ec.column:ec.reverse">
@@ -192,8 +188,6 @@
                   <td>
                     <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     <button ng-click="ec.updatePackEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
-                  </td>
-                  <td>
                     <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </td>
                 </tr>
@@ -261,8 +255,7 @@
                         <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
                       </a>
                     </th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Edit / Delete</th>
                   </tr>
                 </thead>
                 <tr ng-repeat="events in ec.pastList.slice(((ec.currentPage-1)*ec.itemsPerPage), ((ec.currentPage)*ec.itemsPerPage)) | orderBy:ec.column:ec.reverse">
@@ -293,8 +286,6 @@
                   <td>
                     <button class="btn btn-success" ng-hide="toggle[events.id]" ng-click="toggle[events.id] = !toggle[events.id]; ec.selectButton()" ng-disabled="ec.selectedButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     <button ng-click="ec.updateDonationEvents(events); ec.selectButton()" ng-show="toggle[events.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
-                  </td>
-                  <td>
                     <button class="btn btn-danger" ng-click="ec.deleteEvent(events.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </td>
                 </tr>
@@ -367,7 +358,7 @@
                   </button>
   	              <div collapse="ec.isCollapsed">
                     <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner name" ng-model="ec.partner_name">
-                    <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner phone number" ng-model="ec.partner_phone">
+                    <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner phone number" phone-input ng-model="ec.partner_phone">
                     <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner contact" ng-model="ec.partner_contact">
                     <input type="text" id="partnerInputs" class="modalInput form-control" placeholder="Partner address" ng-model="ec.partner_address">
   	              </div>
