@@ -3,7 +3,7 @@
 
   <div class="box">
     <div class="container">
-      <h1 id="welcome" class="lead">Welcome {{ dc.username }}!</h1>
+      <h1 id="welcome" class="lead">Welcome, {{ dc.username }}!</h1>
       <hr>
     </div>
   </div>
@@ -54,7 +54,8 @@
       </div>
     </div>
 
-    <div class="box" id="itemsRunningLow">
+
+    <div class="wrapper" id="itemsRunningLow">
       <div class="container">
         <h3 class="lead">ITEMS RUNNING LOW</h3>
         <canvas id="base" class="chart-horizontal-bar" chart-data="dc.barData" chart-labels="dc.barLabels" ng-init="dc.getBarChart()"></canvas>
