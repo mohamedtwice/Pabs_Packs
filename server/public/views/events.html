@@ -2,7 +2,7 @@
 <div class="wrapper">
   <div class="container" ng-init="ec.getEvents();ec.getPackTotals()">
 
-    <h2 class="lead">TOTALS</h2>
+    <!-- <h2 class="lead">TOTALS</h2>
     <div class="table-responsive">
       <table class="table table-condensed table-bordered table-hover">
         <thead>
@@ -28,14 +28,18 @@
         </tr>
         </thead>
       </table>
-    </div>
+    </div> -->
 
     <!-- events -->
     <div class="col-md-12">
       <div class="wrapper">
         <h2 class="lead">EVENT TRACKER</h2>
         <button class="btn btn-info pull-right" ng-click="ec.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-        <!-- <div class="pull-right totals">Needed Packs: <b>{{ ec.neededPacks[0] }}</b> | Packs Currently Made: <b>{{ ec.packsMade[0] }}</b> | CTD Annual Packs Donated: <b>{{ ec.packsDonated[0] }}</b></div> -->
+        <div class="pull-right totals">
+          Needed Packs: <b><p ng-show="ec.needed < 0" ng-style="{color: green}">Surplus of: {{ ec.neededPacks.slice(1) }}</p><p ng-show="ec.neededPacks > 0">{{ ec.neededPacks }}</p></b>
+          | Packs Currently Made: <b>{{ ec.packsMade }}</b>
+          | CTD Annual Packs Donated: <b>{{ ec.packsDonated }}</b>
+        </div>
         <tabset>
           <tab heading="Donation Events">
             <div class="table-responsive">
