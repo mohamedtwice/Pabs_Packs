@@ -64,15 +64,15 @@ myApp.controller('EventModalController', function(EventService, PartnerService, 
     // vm.getEvents();
   } // end createEvent
 
-  vm.getPartner = function() {
+  vm.getPartners = function() {
     console.log('Getting vendors');
-    PartnerService.getPartner().then(function() {
+    PartnerService.getPartners().then(function() {
       vm.partners = PartnerService.partnerData;
       console.log(vm.partners);
     });
   } // end getInventory
 
-  vm.getPartner();
+  vm.getPartners();
 
   vm.postPartner = function() {
     var newPartner = {

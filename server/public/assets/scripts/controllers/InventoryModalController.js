@@ -21,7 +21,7 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
   vm.getInventory(); // called upon pageload since I was having trouble with ng-init populating the typeahead
 
   vm.postInventoryItem = function() {
-    var name = vm.name;
+    var name = vm.vendor_name;
     if (vm.vendor === undefined) {
       vm.vendor = name;
     }
@@ -67,21 +67,21 @@ myApp.controller('InventoryModalController', function(InventoryService, VendorSe
 
   vm.postVendor = function() {
     var newVendor = {
-      name: vm.name,
-      phone: vm.phone,
-      email: vm.email,
-      address: vm.address
+      name: vm.vendor_name,
+      phone: vm.vendor_phone,
+      email: vm.vendor_email,
+      address: vm.vendor_address
     }
     console.log(newVendor);
     // cancels function from running if all fields are empty
-    if (newVendor.name === undefined && newVendor.phone === undefined && newVendor.address === undefined && newVendor.email === undefined) {
+    if (newVendor.vendor_name === undefined && newVendor.vendor_phone === undefined && newVendor.vendor_address === undefined && newVendor.vendor_email === undefined) {
       console.log('{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}');
       return;
     }
     console.log("I'm here!");
     VendorService.postVendor(newVendor).then(function() {
 
-    }); // end sweetAlert
+    });
   } // end postVendor
 
 }).filter('unique', function() {
