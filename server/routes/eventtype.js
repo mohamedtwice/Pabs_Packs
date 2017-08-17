@@ -11,15 +11,9 @@ router.use(bodyParser.json());
 
 
 // module with db
-var connection = require('../modules/connection');
+var config = require('../modules/connection');
 var pg = require('pg');
 
-var config = {
-  database: 'pabs_packs',
-  host: 'localhost',
-  port: 5432, // always use this port for localhost postgresql
-  max: 12
-};
 var pool = new pg.Pool(config); // DO NOT MODIFY
 
 
