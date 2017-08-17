@@ -9,22 +9,24 @@ if (process.env.DATABASE_URL) {
   var auth = params.auth.split(':');
 
   config = {
-    database: 'pabs_packs',
-    host: 'localhost',
-    port: 5432, // always use this port for localhost postgresql
-    max: 12,
+    user: auth[0],
+    password: auth[1],
+    host: params.hostname,
+    port: params.port,
+    database: params.pathname.split('/')[1],
     ssl: true, // heroku requires ssl to be true
-    idleTimeoutMillis: 30000 // how long a client is allowed to remain idle before being closed
+    max: 10, // max number of clients in the pool
+    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
 
 } else {
   config = {
     user: process.env.PG_USER || null, //env var: PGUSER
-    password: process.env.DATABASE_SECRET || null, //env var: PGPASSWORD
+    password: process.env.DATABASE_SECRET || null, //env var: PGPASSWOR
     host: process.env.DATABASE_SERVER || 'localhost', // Server hosting the postgres database
     port: process.env.DATABASE_PORT || 5432, //env var: PGPORT
-    database: process.env.DATABASE_NAME || 'psi', //env var: PGDATABASE
-    max: 10, // max number of clients in the pool
+    database: process.env.DATABASE_NAME || 'pabs_packs', //env var: PGDATABASE
+    max: 12, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
 }
