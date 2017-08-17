@@ -10,16 +10,9 @@ router.use(bodyParser.urlencoded({
 }));
 router.use(bodyParser.json());
 
-var connection = require('../modules/connection');
+// module with db
+var pool = require('../modules/connection');
 var pg = require('pg');
-
-var config = {
-  database: 'pabs_packs',
-  host: 'localhost',
-  port: 5432, // always use this port for localhost postgresql
-  max: 12
-};
-var pool = new pg.Pool(config); // DO NOT MODIFY
 
 // GET /backpack
 router.get('/', function(req, res) {
