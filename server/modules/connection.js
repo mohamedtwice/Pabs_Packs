@@ -12,9 +12,9 @@ if (process.env.DATABASE_URL) {
     database: 'pabs_packs',
     host: 'localhost',
     port: 5432, // always use this port for localhost postgresql
-    max: 12
+    max: 12,
     ssl: true, // heroku requires ssl to be true
-    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+    idleTimeoutMillis: 30000 // how long a client is allowed to remain idle before being closed
   };
 
 } else {
