@@ -48,7 +48,7 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
                 console.log('I was closed by the timer');
               }
             })
-            $scope.user.name = '';
+            $scope.user.username = '';
             $scope.user.password = '';
         },
         function(response) {
