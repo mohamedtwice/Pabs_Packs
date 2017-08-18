@@ -1,4 +1,4 @@
-myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'VendorService', 'AnnualgoalService', '$modal', '$route', '$http', '$location', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route, $http, $location) {
+myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'VendorService', 'AnnualgoalService', '$modal', '$route', '$http', '$location', '$scope', function(EventtypeService, PartnerService, VendorService, AnnualgoalService, $modal, $route, $http, $location, $scope) {
 
   var vm = this;
 
