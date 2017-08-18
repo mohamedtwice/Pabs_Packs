@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
     password: encryptLib.encryptPassword(req.body.password)
   };
   console.log('new user:', saveUser);
-  pg.connect(connection, function(err, client, done) {
+  pool.connect(function(err, client, done) {
     if (err) {
       console.log("Error connecting: ", err);
       next(err);
