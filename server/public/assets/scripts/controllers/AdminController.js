@@ -22,6 +22,43 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     console.log(vm.selectedButton);
   } // to disable other edit buttons on click
 
+
+  $scope.user = {
+    username: '',
+    password: ''
+  };
+  $scope.message = '';
+
+  $scope.registerUser = function() {
+    if ($scope.user.username == '' || $scope.user.password == '') {
+      $scope.message = "Choose a username and password!";
+    } else {
+      console.log('sending to server...', $scope.user);
+      $http.post('/register', $scope.user).then(function(response) {
+          console.log('success');
+          swal({
+            type: 'success',
+            title: 'New user created!',
+            timer: 2500
+          }).then(
+            function() {},
+            // handling the promise rejection
+            function(dismiss) {
+              if (dismiss === 'timer') {
+                console.log('I was closed by the timer');
+              }
+            })
+            $scope.user.name = '';
+            $scope.user.password = '';
+        },
+        function(response) {
+          console.log('error');
+          $scope.message = "Please try again."
+        });
+    }
+  }
+
+
   /// --------------------------------------------------------------------------------------------------------------
 
   //// ALL GETS

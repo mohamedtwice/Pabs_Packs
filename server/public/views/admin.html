@@ -152,6 +152,35 @@
           </tab>
           <!-- end annual goal tab -->
 
+          <!-- annual goal tab -->
+          <tab heading="Register New User">
+            <div class="adminbox">
+              <div class="col-md-5">
+                <h3 class="lead">REGISTER USER</h3>
+                <div class="row">
+                    <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
+
+                      <form ng-submit="registerUser()">
+                          <div class="input-group margin-bottom-sm">
+                            <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                        <input type="text" ng-required="required" ng-model="user.username" class="input100" placeholder="Enter a Username" />
+                          </div>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+              <input type="password" ng-required="required" ng-model="user.password" class="input100" placeholder="Enter a Password" />
+                          </div>
+                    <input class="btn btn-default btn-info input50" type="submit" name="submit" value="Register" />
+                    <a href="#home">Cancel</a>
+                  </form>
+              </div>
+                <!-- end table-responsive -->
+              </div>
+              <!-- end col-md-5 -->
+            </div>
+            <!-- end add user -->
+          </tab>
+          <!-- end add user tab -->
+
       </div>
       <!-- end row -->
     </div>
