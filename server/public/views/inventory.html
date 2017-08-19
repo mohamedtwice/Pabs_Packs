@@ -7,7 +7,7 @@
 
     <!-- beginning of tabs -->
     <tabset>
-      <button class="btn btn-info pull-right" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+      <button class="btn btn-info pull-right" ng-click="ic.openAddNew()">Add New <i class="fa fa-plus"></i></button>
 
       <!-- packs tab -->
       <tab heading="Packs" select="ic.getInventory()">
@@ -18,33 +18,33 @@
               <tr>
                 <th>
                   <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
+                    <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                    <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                  </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("vendor_name"); arrow = !arrow' ng-class='ic.sortClass("vendor_name")'>Vendor
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
+                    <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                    <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                  </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
+                    <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                    <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                  </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
+                    <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                    <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                  </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
-                </a>
+                    <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                    <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                  </a>
                 </th>
                 <!-- Need edit/delete functionality -->
                 <th>Edit</th>
@@ -74,10 +74,10 @@
                 <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
               </td>
               <td>
-                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o"></i></button>
+                <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check"></i></button>
               </td>
-              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash"></i></button></td>
             </tr>
           </table>
         </div> <!-- end responsive table -->
@@ -92,32 +92,32 @@
               <tr>
                 <th>
                   <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("vendor_name"); arrow = !arrow' ng-class='ic.sortClass("vendor_name")'>Vendor
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <!-- need edit/delete functionality -->
@@ -148,10 +148,10 @@
                 <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
               </td>
               <td>
-                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o"></i></button>
+                <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check"></i></button>
               </td>
-              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash"></i></button></td>
             </tr>
           </table>
         </div>
@@ -166,32 +166,32 @@
               <tr>
                 <th>
                   <a ng-click='ic.sortColumn("item"); arrow = !arrow' ng-class='ic.sortClass("item")'>Item
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("vendor_name"); arrow = !arrow' ng-class='ic.sortClass("vendor_name")'>Vendor
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("number_on_hand"); arrow = !arrow' ng-class='ic.sortClass("number_on_hand")'>Number On Hand
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("comments"); arrow = !arrow' ng-class='ic.sortClass("comments")'>Comments
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <th>
                   <a ng-click='ic.sortColumn("low_number"); arrow = !arrow' ng-class='ic.sortClass("low_number")'>Reorder Alert Amount
-                  <thing ng-hide="arrow"><i class="fa fa-sort-desc" aria-hidden="true"></i></thing>
-                  <thing ng-show="arrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></thing>
+                  <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                  <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
                 </a>
                 </th>
                 <!-- need edit/delete functionality -->
@@ -222,10 +222,10 @@
                 <thing ng-show="toggle[items.id]"><input type="text" ng-model="ic.reorderAlertNumberUpdate" placeholder="{{items.low_number}}" value="{{items.low_number}}"></thing>
               </td>
               <td>
-                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                <button class="btn btn-success" ng-hide="toggle[items.id]" ng-click="toggle[items.id] = !toggle[items.id]; ic.selectButton()" ng-disabled="ic.selectedButton">Edit <i class="fa fa-pencil-square-o"></i></button>
+                <button ng-click="ic.updateProperties(items)" ng-show="toggle[items.id]" class="btn btn-info">Update <i class="fa fa-check"></i></button>
               </td>
-              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+              <td><button class="btn btn-danger" ng-click="ic.deleteItem(items.id)">Delete <i class="fa fa-trash"></i></button></td>
             </tr>
           </table>
         </div> <!-- end table responsive -->
@@ -239,7 +239,7 @@
     <div class="modal-header">
       <div class='btn-toolbar pull-right'>
         <div class='btn-group'>
-          <button class="btn" style="background-color:transparent;" ng-click="mc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+          <button class="btn" style="background-color:transparent;" ng-click="mc.cancel()"><i class="fa fa-times fa-lg"></i></button>
         </div>
       </div>
       <h3 class="modal-title">New Item</h3>
@@ -275,8 +275,8 @@
                 </thing>
                 <!-- toggle add vendor -->
                 <button class="btn btn-default btn-sm" id="vendorBtn" ng-click="mc.isCollapsed = !mc.isCollapsed; vendorToggle = !vendorToggle">
-                  <thing ng-show="vendorToggle">Previous Vendors <i class="fa fa-chevron-left" aria-hidden="true"></i></thing>
-                  <thing ng-hide="vendorToggle">New Vendor <i class="fa fa-plus" aria-hidden="true"></i></thing>
+                  <thing ng-show="vendorToggle">Previous Vendors <i class="fa fa-chevron-left"></i></thing>
+                  <thing ng-hide="vendorToggle">New Vendor <i class="fa fa-plus"></i></thing>
                 </button>
 	              <div collapse="mc.isCollapsed">
                   <input type="text" id="vendorInputs" class="modalInput form-control" placeholder="Vendor name" ng-model="mc.name">

@@ -58,7 +58,7 @@ myApp.controller('InventoryController', ['InventoryService', '$modal', '$route',
     } else {
       return '';
     }
-  }
+  } // end sortClass
 
   vm.getPackTotals = function() {
     InventoryService.getPackTotals().then(function() {

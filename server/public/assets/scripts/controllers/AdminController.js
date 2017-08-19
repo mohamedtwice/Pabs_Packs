@@ -14,6 +14,10 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     }
   });
 
+  vm.column = 'partner_name';
+  vm.reverse = false;
+  vm.orderByField = 'partner_name';
+  vm.reverseSort = false;
   vm.selectedButton = false;
   vm.animationsEnabled = true;
 
@@ -22,6 +26,31 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
     console.log(vm.selectedButton);
   } // to disable other edit buttons on click
 
+  // called on header click
+  vm.sortColumn = function(col) {
+    console.log('In sortColumn');
+    vm.column = col;
+    if (vm.reverse) {
+      vm.reverse = false;
+      vm.reverseclass = 'arrow-up';
+    } else {
+      vm.reverse = true;
+      vm.reverseclass = 'arrow-down';
+    }
+  } // sorts event tracker
+
+  // remove and change class
+  vm.sortClass = function(col) {
+    if (vm.column == col) {
+      if (vm.reverse) {
+        return 'arrow-down';
+      } else {
+        return 'arrow-up';
+      }
+    } else {
+      return '';
+    }
+  } // end sortClass
 
   $scope.user = {
     username: '',
@@ -48,8 +77,8 @@ myApp.controller('AdminController', ['EventtypeService', 'PartnerService', 'Vend
                 console.log('I was closed by the timer');
               }
             })
-            $scope.user.username = '';
-            $scope.user.password = '';
+          $scope.user.username = '';
+          $scope.user.password = '';
         },
         function(response) {
           console.log('error');

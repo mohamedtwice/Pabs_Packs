@@ -12,22 +12,42 @@
           <!-- packs tab -->
           <tab heading="Partners">
             <div class="adminbox">
-              <button class="btn btn-info pull-right" id="new" ng-click="ac.openPartnerModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button class="btn btn-info pull-right" id="new" ng-click="ac.openPartnerModal()">Add New <i class="fa fa-plus"></i></button>
               <h3 class="lead">PARTNERS</h3>
               <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Contact</th>
-                      <th>Phone</th>
-                      <th>Address</th>
+                      <th>
+                        <a ng-click='ac.sortColumn("partner_name"); arrow = !arrow' ng-class='ac.sortClass("partner_name")'>Name
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ac.sortColumn("partner_contact"); arrow = !arrow' ng-class='ac.sortClass("partner_contact")'>Contact
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ac.sortColumn("partner_phone"); arrow = !arrow' ng-class='ac.sortClass("partner_phone")'>Phone
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ac.sortColumn("partner_address"); arrow = !arrow' ng-class='ac.sortClass("partner_address")'>Address
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="partners in ac.partners">
+                    <tr ng-repeat="partners in ac.partners | orderBy:ac.column:ac.reverse">
                       <td>
                         <thing ng-hide="toggle[partners.id]">{{partners.partner_name}}</thing>
                         <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_nameUpdate" placeholder="{{partners.partner_name}}" value="{{partners.partner_name}}"></thing>
@@ -37,7 +57,7 @@
                         <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_contactUpdate" placeholder="{{partners.partner_contact}}" value="{{partners.partner_contact}}"></thing>
                       </td>
                       <td>
-                        <thing ng-hide="toggle[partners.id]">{{partners.partner_phone| tel }}</thing>
+                        <thing ng-hide="toggle[partners.id]">{{partners.partner_phone | tel }}</thing>
                         <thing ng-show="toggle[partners.id]"><input type="text" phone-input ng-model="ac.partner_phoneUpdate" placeholder="{{partners.partner_phone}}" value="{{partners.partner_phone}}"></thing>
                       </td>
                       <td>
@@ -45,39 +65,58 @@
                         <thing ng-show="toggle[partners.id]"><input type="text" ng-model="ac.partner_addressUpdate" placeholder="{{partners.partner_address}}" value="{{partners.partner_address}}"></thing>
                       </td>
                       <td>
-                        <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                        <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                        <button class="btn btn-success" ng-hide="toggle[partners.id]" ng-click="toggle[partners.id] = !toggle[partners.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o"></i></button>
+                        <button ng-click="ac.updatePartners(partners); ac.selectButton()" ng-show="toggle[partners.id]" class="btn btn-info">Update <i class="fa fa-check"></i></button>
                       </td>
                       <td>
-                        <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger" ng-click="ac.deletePartner(partners.id)">Delete <i class="fa fa-trash"></i></button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
-              </div>
-            </div>
-          </tab>
+              </div> <!-- end table-repsonsive -->
+            </div> <!-- end adminbox -->
+          </tab> <!-- end partners tab -->
 
           <!-- vendors tab -->
           <tab heading="Vendors">
-            <!-- ng-click="ac.selectedButton===" -->
             <div class="adminbox">
-              <button class="btn btn-info pull-right" id="new" ng-click="ac.openVendorModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button class="btn btn-info pull-right" id="new" ng-click="ac.openVendorModal()">Add New <i class="fa fa-plus"></i></button>
               <h3 class="lead">VENDORS</h3>
               <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Phone</th>
-                      <th>Email</th>
-                      <th>Address</th>
+                      <th>
+                        <a ng-click='ac.sortColumn("vendor_name"); arrow = !arrow' ng-class='ac.sortClass("vendor_name")'>Name
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ac.sortColumn("vendor_phone"); arrow = !arrow' ng-class='ac.sortClass("vendor_phone")'>Phone
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ac.sortColumn("vendor_email"); arrow = !arrow' ng-class='ac.sortClass("vendor_email")'>Email
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
+                      <th>
+                        <a ng-click='ac.sortColumn("vendor_address"); arrow = !arrow' ng-class='ac.sortClass("vendor_address")'>Address
+                          <thing ng-hide="arrow"><i class="fa fa-sort-desc"></i></thing>
+                          <thing ng-show="arrow"><i class="fa fa-sort-asc"></i></thing>
+                        </a>
+                      </th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="vendors in ac.vendors">
+                    <tr ng-repeat="vendors in ac.vendors | orderBy:ac.column:ac.reverse">
                       <td>
                         <thing ng-hide="toggle[vendors.id]">{{vendors.vendor_name}}</thing>
                         <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_nameUpdate" placeholder="{{vendors.vendor_name}}" value="{{vendors.vendor_name}}"></thing>
@@ -95,26 +134,23 @@
                         <thing ng-show="toggle[vendors.id]"><input type="text" ng-model="ac.vendor_addressUpdate" placeholder="{{vendors.vendor_address}}" value="{{vendors.vendor_address}}"></thing>
                       </td>
                       <td>
-                        <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                        <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                        <button class="btn btn-success" ng-hide="toggle[vendors.id]" ng-click="toggle[vendors.id] = !toggle[vendors.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o"></i></button>
+                        <button ng-click="ac.updateVendor(vendors); ac.selectButton()" ng-show="toggle[vendors.id]" class="btn btn-info">Update <i class="fa fa-check"></i></button>
                       </td>
                       <td>
-                        <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger" ng-click="ac.deleteVendor(vendors.id)">Delete <i class="fa fa-trash"></i></button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
-              </div>
-              <!-- end table-responsive -->
-            </div>
-            <!-- end adminbox -->
-          </tab>
-          <!-- end vendors tab -->
+              </div> <!-- end table-responsive -->
+            </div> <!-- end adminbox -->
+          </tab> <!-- end vendors tab -->
 
           <!-- annual goal tab -->
           <tab heading="Annual Goal">
             <div class="adminbox">
-              <button class="btn btn-info pull-right" id="new" ng-click="ac.openAnnualGoalModal()">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button class="btn btn-info pull-right" id="new" ng-click="ac.openAnnualGoalModal()">Add New <i class="fa fa-plus"></i></button>
               <div class="col-md-5">
                 <h3 class="lead">ANNUAL GOAL</h3>
                 <div class="table-responsive">
@@ -137,20 +173,16 @@
                           <thing ng-show="toggle[goal.id]"><input type="text" ng-model="ac.annual_goalUpdate" placeholder="{{goal.annual_goal}}" value="{{goal.annual_goal}}"></thing>
                         </td>
                         <td>
-                          <button class="btn btn-success" ng-hide="toggle[goal.id]" ng-click="toggle[goal.id] = !toggle[goal.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                          <button ng-click="ac.updateAnnualGoal(goal); ac.selectButton()" ng-show="toggle[goal.id]" class="btn btn-info">Update <i class="fa fa-check" aria-hidden="true"></i></button>
+                          <button class="btn btn-success" ng-hide="toggle[goal.id]" ng-click="toggle[goal.id] = !toggle[goal.id]; ac.selectButton()" ng-disabled="ac.selectedButton">Edit <i class="fa fa-pencil-square-o"></i></button>
+                          <button ng-click="ac.updateAnnualGoal(goal); ac.selectButton()" ng-show="toggle[goal.id]" class="btn btn-info">Update <i class="fa fa-check"></i></button>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                </div>
-                <!-- end table-responsive -->
-              </div>
-              <!-- end col-md-5 -->
-            </div>
-            <!-- end adminbox -->
-          </tab>
-          <!-- end annual goal tab -->
+                </div> <!-- end table-responsive -->
+              </div> <!-- end col-md-5 -->
+            </div> <!-- end adminbox -->
+          </tab> <!-- end annual goal tab -->
 
           <!-- annual goal tab -->
           <tab heading="Register New User">
@@ -162,7 +194,7 @@
 
                       <form ng-submit="registerUser()">
                           <div class="input-group margin-bottom-sm">
-                            <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                         <input type="text" ng-required="required" ng-model="user.username" class="input100" placeholder="Enter a Username" />
                           </div>
                           <div class="input-group">
@@ -172,19 +204,13 @@
                     <input class="btn btn-default btn-info input50" type="submit" name="submit" value="Register" />
                     <a href="#home">Cancel</a>
                   </form>
-              </div>
-                <!-- end table-responsive -->
-              </div>
-              <!-- end col-md-5 -->
-            </div>
-            <!-- end add user -->
-          </tab>
-          <!-- end add user tab -->
+              </div> <!-- end table-responsive -->
+              </div> <!-- end col-md-5 -->
+            </div> <!-- end add user -->
+          </tab> <!-- end add user tab -->
 
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end container -->
+      </div> <!-- end row -->
+    </div> <!-- end container -->
 
     <!-- end html of page -->
 
@@ -195,7 +221,7 @@
       <div class="modal-header">
         <div class='btn-toolbar pull-right'>
           <div class='btn-group'>
-            <button class="btn" style="background-color:transparent;" ng-click="vc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+            <button class="btn" style="background-color:transparent;" ng-click="vc.cancel()"><i class="fa fa-times fa-lg"></i></button>
           </div>
         </div>
         <h3 class="modal-title">Add New Vendor</h3>
@@ -222,14 +248,10 @@
                 <input type="text" class="form-control" name="vendor_address" id="vendorAddress" ng-model="vc.vendor_address" placeholder="e.g. 123 Smith Lane" value="{{vc.vendors.vendor_address}}">
               </div>
             </form>
-          </div>
-          <!-- end col-md-12 -->
-        </div>
-        <!-- end row -->
-      </div>
-      <!-- end modal body -->
-  </div>
-  <!-- end wrapper -->
+          </div> <!-- end col-md-12 -->
+        </div> <!-- end row -->
+      </div> <!-- end modal body -->
+  </div> <!-- end wrapper -->
 
   <!-- post button -->
   <div class="modal-footer">
@@ -244,7 +266,7 @@
     <div class="modal-header">
       <div class='btn-toolbar pull-right'>
         <div class='btn-group'>
-          <button class="btn" style="background-color:transparent;" ng-click="pc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+          <button class="btn" style="background-color:transparent;" ng-click="pc.cancel()"><i class="fa fa-times fa-lg"></i></button>
         </div>
       </div>
       <h3 class="modal-title">Add New Partner</h3>
@@ -259,24 +281,21 @@
               <input type="text" class="form-control" name="partner_name" ng-model="pc.partner_name" placeholder="e.g. Smith Hospital" value="{{pc.partners.partner_name}}">
             </div>
             <div class="form-group">
-              <label for="partner">Partner Contact</label>
+              <label for="partner">Partner Phone</label>
               <input type="text" class="form-control" name="partner_phone" phone-input ng-model="pc.partner_phone" placeholder="e.g. (555)555-5555" value="{{pc.partners.partner_phone}}">
             </div>
             <div class="form-group">
-              <label for="partner">Partner Phone</label>
-              <input type="text" class="form-control" name="partner_contact" ng-model="pc.partner_contact" placeholder="e.g. jane@smithhospital.com" value="{{pc.partners.partner_contact}}">
+              <label for="partner">Partner Contact</label>
+              <input type="text" class="form-control" name="partner_contact" ng-model="pc.partner_contact" placeholder="e.g. Ben" value="{{pc.partners.partner_contact}}">
             </div>
             <div class="form-group">
               <label for="partner">Partner Address</label>
               <input type="text" class="form-control" name="partner_address" ng-model="pc.partner_address" placeholder="e.g. 123 Smith Lane " value="{{pc.partners.partner_address}}">
             </div>
           </form>
-        </div>
-        <!-- end col-md-12 -->
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end modal body -->
+        </div> <!-- end col-md-12 -->
+      </div> <!-- end row -->
+    </div> <!-- end modal body -->
 
     <!-- post button -->
     <div class="modal-footer">
@@ -291,7 +310,7 @@
     <div class="modal-header">
       <div class='btn-toolbar pull-right'>
         <div class='btn-group'>
-          <button class="btn" style="background-color:transparent;" ng-click="agc.cancel()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+          <button class="btn" style="background-color:transparent;" ng-click="agc.cancel()"><i class="fa fa-times fa-lg"></i></button>
         </div>
       </div>
       <h3 class="modal-title">Add New Annual Goal</h3>
@@ -310,12 +329,9 @@
               <input type="text" class="form-control" name="annual_goal" ng-model="agc.annual_goal" placeholder="e.g. 2500" value="{{agc.annualgoal.annual_goal}}">
             </div>
           </form>
-        </div>
-        <!-- end col-md-12 -->
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end modal body -->
+        </div> <!-- end col-md-12 -->
+      </div> <!-- end row -->
+    </div> <!-- end modal body -->
 
     <!-- post button -->
     <div class="modal-footer">

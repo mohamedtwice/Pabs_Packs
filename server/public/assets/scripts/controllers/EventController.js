@@ -13,8 +13,8 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
     }
   });
 
-  // sort ordering (Ascending or Descending). Set true for desending
   vm.column = 'event_date';
+  // sort ordering (Ascending or Descending). Set true for desending
   vm.reverse = false;
   vm.orderByField = 'event_date';
   vm.reverseSort = false;
@@ -38,12 +38,11 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
 
   vm.setItemsPerPage = function(num) {
     vm.itemsPerPage = num;
-    vm.currentPage = 1; //reset to first page
+    vm.currentPage = 1; // reset to first page
   }
 
   // called on header click
   vm.sortColumn = function(col) {
-    console.log('In sortColumn');
     vm.column = col;
     if (vm.reverse) {
       vm.reverse = false;
@@ -65,7 +64,7 @@ myApp.controller('EventController', ['EventService', '$filter', '$modal', '$rout
     } else {
       return '';
     }
-  }
+  } // end sortClass
 
   vm.selectButton = function(id) {
     vm.selectedButton = !vm.selectedButton;
